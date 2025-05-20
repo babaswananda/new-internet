@@ -37,33 +37,33 @@ const MCPSection: React.FC = () => {
     },
   };
 
-  const chains = [
-    { name: "Ethereum", color: "bg-blue-500" },
-    { name: "Solana", color: "bg-purple-500" },
-    { name: "Arbitrum", color: "bg-blue-400" },
-    { name: "Base", color: "bg-blue-600" },
-    { name: "Optimism", color: "bg-red-500" },
-    { name: "Polygon", color: "bg-indigo-500" },
-    { name: "Avalanche", color: "bg-red-600" },
-    { name: "Cosmos", color: "bg-indigo-400" },
+  const dataSources = [
+    { name: "Databases", color: "bg-blue-500" },
+    { name: "APIs", color: "bg-purple-500" },
+    { name: "Documents", color: "bg-blue-400" },
+    { name: "Knowledge Bases", color: "bg-blue-600" },
+    { name: "Web Content", color: "bg-red-500" },
+    { name: "Code Repos", color: "bg-indigo-500" },
+    { name: "Structured Data", color: "bg-red-600" },
+    { name: "Vector DBs", color: "bg-indigo-400" },
   ];
 
   const features = [
     {
-      title: "Cross-Chain Identity",
-      description: "Unified identity system that works across all supported blockchains with a single agent key."
+      title: "Standardized Context",
+      description: "Unified protocol for connecting AI models to any data source with a standardized interface."
     },
     {
-      title: "Asset Bridging",
-      description: "Seamless transfer of assets between chains with minimal gas fees and maximum security."
+      title: "Modular Ingestion",
+      description: "Seamlessly integrate multiple data sources with AI models without custom code for each source."
     },
     {
-      title: "Chain-Agnostic Execution",
-      description: "Deploy and run agent logic on any supported chain without rewriting code."
+      title: "Source-Agnostic Retrieval",
+      description: "Query and retrieve information from any connected data source with a consistent API."
     },
     {
-      title: "Unified State Management",
-      description: "Synchronize agent state across multiple chains with atomic consistency guarantees."
+      title: "Unified Data Management",
+      description: "Synchronize information across multiple sources with consistent formatting and structure."
     }
   ];
 
@@ -82,29 +82,29 @@ const MCPSection: React.FC = () => {
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold mb-8 text-center"
           >
-            Multi-Chain Protocol (MCP)
+            Model Context Protocol (MCP)
           </motion.h2>
 
           <motion.p
             variants={itemVariants}
             className="text-xl md:text-2xl mb-12 text-center"
           >
-            One protocol. Every chain. Unlimited possibilities.
+            One protocol. Every AI model context. Unlimited integration.
           </motion.p>
 
-          {/* Chain logos */}
+          {/* Data source tags */}
           <motion.div
             variants={itemVariants}
             className="flex flex-wrap justify-center gap-4 mb-16"
           >
-            {chains.map((chain, index) => (
+            {dataSources.map((source, index) => (
               <motion.div
                 key={index}
-                className={`${chain.color} px-4 py-2 rounded-full text-white font-medium`}
+                className={`${source.color} px-4 py-2 rounded-full text-white font-medium`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {chain.name}
+                {source.name}
               </motion.div>
             ))}
           </motion.div>
@@ -134,12 +134,12 @@ const MCPSection: React.FC = () => {
             <h3 className="text-2xl font-semibold mb-6 text-center">How MCP Works</h3>
             <div className="h-64 bg-black/40 rounded-sm flex items-center justify-center mb-6">
               <div className="text-center text-gray-500">
-                [Multi-Chain Protocol Diagram]
+                [Model Context Protocol Diagram]
               </div>
             </div>
             <p className="text-gray-300 text-center">
-              MCP uses a network of validators and relayers to ensure secure cross-chain communication,
-              with on-chain verification of message integrity and origin.
+              MCP standardizes how applications provide context to AI models, acting like a USB-C port for AI applications,
+              enabling seamless integration between different model contexts and ensuring consistent performance.
             </p>
           </motion.div>
 
@@ -147,7 +147,7 @@ const MCPSection: React.FC = () => {
             variants={itemVariants}
             className="text-center text-xl md:text-2xl"
           >
-            Build once. Deploy everywhere.<br />The blockchain-agnostic future is here.
+            Connect once. Access everywhere.<br />The AI data integration future is here.
           </motion.p>
         </motion.div>
       </div>

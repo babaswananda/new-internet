@@ -3,18 +3,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import SplineBackground from '../ui/SplineBackground';
-// Temporarily use regular HTML elements instead of custom components
-// import { Section, SectionTitle, SectionDescription, Card, CardHeader, CardTitle, CardContent, Text, Grid, GridItem } from '../ui/21st/index';
 
 const WhatIsUnifiedAISection: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  // Note: Replace this URL with your actual Spline scene URL
-  const splineSceneUrl = undefined;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -37,18 +31,16 @@ const WhatIsUnifiedAISection: React.FC = () => {
 
   return (
     <section className="relative min-h-screen w-full py-24 overflow-hidden">
-      <SplineBackground
-        splineUrl={splineSceneUrl}
-        className="absolute inset-0"
-      >
-        <div className="container mx-auto px-4">
-          <motion.div
-            ref={ref}
-            variants={containerVariants}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            className="max-w-4xl mx-auto"
-          >
+      {/* Background removed - using global Spline background */}
+
+      <div className="container mx-auto px-4 relative z-10">
+        <motion.div
+          ref={ref}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          className="max-w-4xl mx-auto"
+        >
             <motion.h2
               variants={itemVariants}
               className="text-4xl md:text-5xl font-bold mb-12 text-center"
@@ -104,7 +96,6 @@ const WhatIsUnifiedAISection: React.FC = () => {
             </motion.p>
           </motion.div>
         </div>
-      </SplineBackground>
     </section>
   );
 };

@@ -51,8 +51,8 @@ const A2ASection: React.FC = () => {
       description: "Token-gated access controls for sensitive operations and data sharing between agents."
     },
     {
-      title: "Cross-Chain Compatibility",
-      description: "Seamless interaction between agents operating on different blockchain networks and environments."
+      title: "Cross-Platform Interoperability",
+      description: "Seamless interaction between agents operating on different platforms, frameworks, and environments."
     },
     {
       title: "Composable Workflows",

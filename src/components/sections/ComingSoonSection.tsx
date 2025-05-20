@@ -20,9 +20,10 @@ const ComingSoonSection: React.FC = () => {
 
   const controls = useAnimation();
 
-  // Launch date: May 21, 2025
+  // Launch date: 14 days from now
   useEffect(() => {
-    const launchDate = new Date('2025-05-21T00:00:00').getTime();
+    const now = new Date();
+    const launchDate = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000).getTime();
 
     const updateCountdown = () => {
       const now = new Date().getTime();
@@ -156,7 +157,7 @@ const ComingSoonSection: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full py-24 overflow-hidden bg-black">
+    <section id="coming-soon-section" className="relative min-h-screen w-full py-24 overflow-hidden bg-black">
       {/* Background elements */}
       <div className="absolute inset-0 z-0">
         {/* Animated grid background */}
@@ -195,7 +196,7 @@ const ComingSoonSection: React.FC = () => {
             <div className="bg-gradient-to-r from-purple-500 to-blue-500 p-[1px] rounded-full">
               <div className="bg-black/80 backdrop-blur-sm px-6 py-2 rounded-full flex items-center">
                 <span className="animate-pulse mr-2 text-red-500">●</span>
-                <span className="text-white font-medium">Launching May 21-22, 2025</span>
+                <span className="text-white font-medium">Launching in 14 Days</span>
               </div>
             </div>
           </motion.div>
@@ -384,7 +385,7 @@ const ComingSoonSection: React.FC = () => {
             variants={itemVariants}
             className="mt-20 text-center"
           >
-            <h3 className="text-2xl font-bold mb-4">Starting at just $9.99/month</h3>
+            <h3 className="text-2xl font-bold mb-4">Affordable Plans for Every Need</h3>
             <p className="text-gray-300 mb-6">Premium tiers available with advanced features and integrations.</p>
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -393,7 +394,7 @@ const ComingSoonSection: React.FC = () => {
               animate="pulse"
               className="px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg font-bold text-lg shadow-lg shadow-purple-500/20"
             >
-              View Pricing Plans
+              View Plans
             </motion.button>
           </motion.div>
         </motion.div>

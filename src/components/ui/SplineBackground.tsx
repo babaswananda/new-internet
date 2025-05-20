@@ -1,8 +1,18 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Spline from '@splinetool/react-spline';
-import { Application } from '@splinetool/runtime';
+import dynamic from 'next/dynamic';
+import type { Application } from '@splinetool/runtime';
+
+// Import Spline component with dynamic import to avoid SSR issues
+const Spline = dynamic(() => import('@splinetool/react-spline'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full flex items-center justify-center">
+      <div className="animate-pulse text-white/50">Loading 3D scene...</div>
+    </div>
+  ),
+});
 
 interface SplineBackgroundProps {
   splineUrl?: string;

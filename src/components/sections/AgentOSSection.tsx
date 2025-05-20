@@ -34,7 +34,8 @@ const AgentOSSection: React.FC = () => {
 
   return (
     <section className="relative min-h-screen w-full py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-black grid-bg opacity-30"></div>
+      {/* Background removed - using global Spline background */}
+      <div className="absolute inset-0 bg-black grid-bg opacity-30 z-5"></div>
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}

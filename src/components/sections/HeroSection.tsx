@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
-import SplineBackground from '../ui/SplineBackground';
 import Link from 'next/link';
 
 const HeroSection: React.FC = () => {
@@ -16,8 +15,8 @@ const HeroSection: React.FC = () => {
   const controls = useAnimation();
   const textControls = useAnimation();
 
-  // This will be replaced with an actual Spline scene URL when available
-  const splineSceneUrl = undefined;
+  // Spline scene URL
+  const splineSceneUrl = "https://prod.spline.design/EegKcAAn0DX9KgHh/scene.splinecode";
 
   // Handle mouse movement for cursor effects
   useEffect(() => {
@@ -132,16 +131,40 @@ const HeroSection: React.FC = () => {
   ];
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section id="hero-section" className="relative h-screen w-full overflow-hidden">
       {/* Background elements */}
-      <div className="absolute inset-0 z-0">
-        <SplineBackground
-          splineUrl={splineSceneUrl}
-          className="absolute inset-0"
-        />
+      <div className="absolute inset-0" style={{ zIndex: -1 }}>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/20 to-black hero-gradient">
+          {/* Gradient background for the hero section */}
+        </div>
 
         {/* Animated grid background */}
         <div className="absolute inset-0 grid-bg opacity-30"></div>
+
+        {/* Animated particles */}
+        <div className="absolute inset-0 overflow-hidden">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 rounded-full bg-white/30"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, Math.random() * -100 - 50],
+                x: [0, (Math.random() - 0.5) * 50],
+                opacity: [0, 0.8, 0],
+                scale: [0, Math.random() * 2 + 1, 0],
+              }}
+              transition={{
+                duration: Math.random() * 5 + 5,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+              }}
+            />
+          ))}
+        </div>
 
         {/* Animated glow effects */}
         <motion.div

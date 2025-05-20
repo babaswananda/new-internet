@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
 
@@ -9,7 +9,6 @@ import Link from 'next/link';
 const subscriptionTiers = [
   {
     name: 'Basic',
-    price: 9.99,
     features: [
       'Access to ElizaOS AI16z',
       'Basic templates',
@@ -21,7 +20,6 @@ const subscriptionTiers = [
   },
   {
     name: 'Pro',
-    price: 29.99,
     features: [
       'Everything in Basic',
       'Zerebro/Zerepy+Hyperbolic SDK access',
@@ -34,7 +32,6 @@ const subscriptionTiers = [
   },
   {
     name: 'Enterprise',
-    price: 99.99,
     features: [
       'Everything in Pro',
       'SuperAGI and Ollama integration',
@@ -78,6 +75,11 @@ const LibreChatSection: React.FC = () => {
   const [selectedSuggestion, setSelectedSuggestion] = useState<number | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Email capture state
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   // Note: Replace this URL with your actual Spline scene URL
   const splineSceneUrl = undefined;
 
@@ -115,6 +117,18 @@ const LibreChatSection: React.FC = () => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate API call to capture email
+    setTimeout(() => {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+      setEmail('');
+    }, 1500);
   };
 
   return (
@@ -272,12 +286,7 @@ const LibreChatSection: React.FC = () => {
                     </div>
                   )}
 
-                  <h3 className="text-2xl font-bold mb-2">{tier.name}</h3>
-
-                  <div className="mb-6">
-                    <span className="text-4xl font-bold">${tier.price}</span>
-                    <span className="text-gray-400">/month</span>
-                  </div>
+                  <h3 className="text-2xl font-bold mb-6">{tier.name}</h3>
 
                   <ul className="space-y-3 mb-8 flex-grow">
                     {tier.features.map((feature, i) => (
@@ -300,7 +309,7 @@ const LibreChatSection: React.FC = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Choose {tier.name}
+                    See Pricing
                   </motion.button>
                 </div>
               </motion.div>
@@ -332,6 +341,70 @@ const LibreChatSection: React.FC = () => {
                 Try LibreChat Now
               </motion.button>
             </Link>
+          </motion.div>
+
+          {/* Email Capture for Pricing */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-20 max-w-2xl mx-auto"
+          >
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8">
+              <h3 className="text-2xl font-bold mb-2 text-center">Get Detailed Pricing Information</h3>
+              <p className="text-gray-300 mb-6 text-center">Enter your email to receive our complete pricing guide with special offers.</p>
+
+              <AnimatePresence mode="wait">
+                {!isSubmitted ? (
+                  <motion.form
+                    initial={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    onSubmit={handleSubmit}
+                    className="flex flex-col md:flex-row gap-4"
+                  >
+                    <input
+                      type="email"
+                      placeholder="Enter your email"
+                      className="flex-grow px-4 py-3 bg-white/5 border border-white/10 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                    />
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`px-6 py-3 rounded-lg font-semibold ${isSubmitting ? 'bg-gray-500' : 'bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600'}`}
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center justify-center">
+                          <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Processing...
+                        </span>
+                      ) : (
+                        'Get Pricing'
+                      )}
+                    </motion.button>
+                  </motion.form>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-center py-4"
+                  >
+                    <div className="inline-block bg-green-500/20 text-green-400 p-2 rounded-full mb-4">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                    </div>
+                    <h4 className="text-xl font-semibold mb-2">Thank you!</h4>
+                    <p className="text-gray-300">We've sent the pricing details to your email. Check your inbox!</p>
+                    <p className="text-gray-400 mt-4">Starting at just $9.99/month with premium tiers available.</p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </motion.div>
         </motion.div>
       </div>

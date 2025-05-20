@@ -1,19 +1,32 @@
 'use client';
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import Spline from '@splinetool/react-spline/next';
+import HeroSection from '@/components/sections/HeroSection';
+import WhatIsUnifiedAISection from '@/components/sections/WhatIsUnifiedAISection';
+import AgentOSSection from '@/components/sections/AgentOSSection';
+import ADKSection from '@/components/sections/ADKSection';
+import A2ASection from '@/components/sections/A2ASection';
+import MCPSection from '@/components/sections/MCPSection';
+import ParallelProcessingSection from '@/components/sections/ParallelProcessingSection';
+import VibeCodingSection from '@/components/sections/VibeCodingSection';
+import OperatorEconomySection from '@/components/sections/OperatorEconomySection';
+import MarketplaceSection from '@/components/sections/MarketplaceSection';
+import VideoSection from '@/components/sections/VideoSection';
+import InfrastructureSection from '@/components/sections/InfrastructureSection';
+import InvestmentOfferingSection from '@/components/sections/InvestmentOfferingSection';
+import LibreChatSection from '@/components/sections/LibreChatSection';
+import MerchSection from '@/components/sections/MerchSection';
+import MapSection from '@/components/sections/MapSection';
+import FinalCTASection from '@/components/sections/FinalCTASection';
+import ComingSoonSection from '@/components/sections/ComingSoonSection';
+import DashboardSection from '@/components/sections/DashboardSection';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
-import dynamic from 'next/dynamic';
+import FloatingActionButton from '@/components/ui/FloatingActionButton';
+import FOMOTicker from '@/components/ui/FOMOTicker';
+import { useState, useEffect } from 'react';
 
-// Dynamically import components to improve performance
-const FloatingActionButton = dynamic(() => import('../ui/FloatingActionButton'), { ssr: false });
-const FOMOTicker = dynamic(() => import('../ui/FOMOTicker'), { ssr: false });
-
-interface MainLayoutProps {
-  children: React.ReactNode;
-}
-
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+export default function FullSiteWithSpline() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -72,14 +85,17 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   }, []);
 
   return (
-    <div className="min-h-screen relative text-white flex flex-col">
-      {/* Base black background with lowest z-index */}
-      <div className="absolute inset-0 bg-black -z-30"></div>
+    <div className="min-h-screen bg-black text-white flex flex-col">
+      {/* Spline Background */}
+      <div className="fixed inset-0 z-0">
+        <Spline
+          scene="https://prod.spline.design/EegKcAAn0DX9KgHh/scene.splinecode" 
+        />
+      </div>
+      
       {/* FOMO Ticker for investors */}
       <div className="fixed top-0 left-0 right-0 z-[60]">
-        <Suspense fallback={<div className="h-7 bg-black" />}>
-          <FOMOTicker />
-        </Suspense>
+        <FOMOTicker />
       </div>
 
       <motion.header
@@ -129,7 +145,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           </motion.button>
         </div>
 
-        {/* Mobile menu - Only render when needed */}
+        {/* Mobile menu */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
@@ -159,12 +175,67 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         </AnimatePresence>
       </motion.header>
 
-      <main className="flex-grow pt-24">
-        {children}
+      <main className="flex-grow pt-24 relative z-10">
+        {/* Main Hero Section */}
+        <HeroSection />
+
+        {/* What is Unified AI Section */}
+        <WhatIsUnifiedAISection />
+
+        {/* Dashboard Section */}
+        <DashboardSection />
+
+        {/* AgentOS Section */}
+        <AgentOSSection />
+
+        {/* Agent Dev Kit (ADK) Section */}
+        <ADKSection />
+
+        {/* Agent-to-Agent (A2A) Protocol Section */}
+        <A2ASection />
+
+        {/* Multi-Chain Protocol (MCP) Section */}
+        <MCPSection />
+
+        {/* Parallel Processing Section */}
+        <ParallelProcessingSection />
+
+        {/* Vibe Coding Section */}
+        <VibeCodingSection />
+
+        {/* Operator Economy Section */}
+        <OperatorEconomySection />
+
+        {/* Marketplace Section */}
+        <MarketplaceSection />
+
+        {/* Infrastructure Overview Section */}
+        <InfrastructureSection />
+
+        {/* Video Section */}
+        <VideoSection />
+
+        {/* LibreChat Integration Section with Pricing Plans */}
+        <LibreChatSection />
+
+        {/* Investment Offering Section */}
+        <InvestmentOfferingSection />
+
+        {/* Merch Section */}
+        <MerchSection />
+
+        {/* Map of the New Internet Section */}
+        <MapSection />
+
+        {/* Coming Soon - Explore Page for Generative Art */}
+        <ComingSoonSection />
+
+        {/* Final Call to Action Section */}
+        <FinalCTASection />
       </main>
 
       <motion.footer
-        className="bg-black border-t border-white/10 py-12"
+        className="bg-black border-t border-white/10 py-12 relative z-10"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
@@ -290,22 +361,20 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         </div>
       </motion.footer>
 
-      {/* Floating Action Button - Lazy loaded */}
-      <Suspense fallback={null}>
-        <FloatingActionButton
-          items={fabItems}
-          position="bottom-right"
-          mainIcon={
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
-          }
-          mainColor="from-blue-500 to-purple-500"
-        />
-      </Suspense>
+      {/* Floating Action Button */}
+      <FloatingActionButton
+        items={fabItems}
+        position="bottom-right"
+        mainIcon={
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        }
+        mainColor="from-blue-500 to-purple-500"
+      />
     </div>
   );
-};
+}
 
 const NavLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, children }) => {
   return (
@@ -324,5 +393,3 @@ const NavLink: React.FC<{ href: string; children: React.ReactNode }> = ({ href, 
     </Link>
   );
 };
-
-export default MainLayout;
