@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Signal Contributor Tier -->
+        <record id="tier_signal_contributor" model="unified.contributor.tier">
+            <field name="name">Signal Contributor</field>
+            <field name="price">149</field>
+            <field name="description">Protocol badge, community access</field>
+            <field name="benefits">
+- Protocol badge
+- Community access
+- NFT receipt
+- Role-based access
+- Future mint rights
+- Contributor wall timestamp
+            </field>
+            <field name="max_slots">33</field>
+            <field name="protocol_badge">True</field>
+            <field name="community_access">True</field>
+            <field name="agent_key">False</field>
+            <field name="dev_channel">False</field>
+            <field name="endpoint_mint_rights">False</field>
+            <field name="private_dev_forum">False</field>
+            <field name="founding_ledger">False</field>
+            <field name="governance_preview">False</field>
+        </record>
+        
+        <!-- Founding Operator Tier -->
+        <record id="tier_founding_operator" model="unified.contributor.tier">
+            <field name="name">Founding Operator</field>
+            <field name="price">499</field>
+            <field name="description">Agent Key, 6-month access, dev channel</field>
+            <field name="benefits">
+- Protocol badge
+- Community access
+- Agent Key
+- 6-month access
+- Dev channel
+- NFT receipt
+- Role-based access
+- Future mint rights
+- Contributor wall timestamp
+            </field>
+            <field name="max_slots">33</field>
+            <field name="protocol_badge">True</field>
+            <field name="community_access">True</field>
+            <field name="agent_key">True</field>
+            <field name="dev_channel">True</field>
+            <field name="endpoint_mint_rights">False</field>
+            <field name="private_dev_forum">False</field>
+            <field name="founding_ledger">False</field>
+            <field name="governance_preview">False</field>
+        </record>
+        
+        <!-- Protocol Architect Tier -->
+        <record id="tier_protocol_architect" model="unified.contributor.tier">
+            <field name="name">Protocol Architect</field>
+            <field name="price">999</field>
+            <field name="description">Endpoint mint rights, private dev forum</field>
+            <field name="benefits">
+- Protocol badge
+- Community access
+- Agent Key
+- 6-month access
+- Dev channel
+- Endpoint mint rights
+- Private dev forum
+- NFT receipt
+- Role-based access
+- Future mint rights
+- Contributor wall timestamp
+            </field>
+            <field name="max_slots">33</field>
+            <field name="protocol_badge">True</field>
+            <field name="community_access">True</field>
+            <field name="agent_key">True</field>
+            <field name="dev_channel">True</field>
+            <field name="endpoint_mint_rights">True</field>
+            <field name="private_dev_forum">True</field>
+            <field name="founding_ledger">False</field>
+            <field name="governance_preview">False</field>
+        </record>
+        
+        <!-- Board Access Tier -->
+        <record id="tier_board_access" model="unified.contributor.tier">
+            <field name="name">Board Access</field>
+            <field name="price">2500</field>
+            <field name="description">Founding ledger, governance preview, top-tier unlocks</field>
+            <field name="benefits">
+- Protocol badge
+- Community access
+- Agent Key
+- 6-month access
+- Dev channel
+- Endpoint mint rights
+- Private dev forum
+- Founding ledger
+- Governance preview
+- Top-tier unlocks
+- NFT receipt
+- Role-based access
+- Future mint rights
+- Contributor wall timestamp
+            </field>
+            <field name="max_slots">33</field>
+            <field name="protocol_badge">True</field>
+            <field name="community_access">True</field>
+            <field name="agent_key">True</field>
+            <field name="dev_channel">True</field>
+            <field name="endpoint_mint_rights">True</field>
+            <field name="private_dev_forum">True</field>
+            <field name="founding_ledger">True</field>
+            <field name="governance_preview">True</field>
+        </record>
+    </data>
+</odoo>

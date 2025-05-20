@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  librechat:
+    image: ghcr.io/danny-avila/librechat:latest
+    restart: always
+    ports:
+      - "3081:3080"
+    environment:
+      - MONGO_URI=mongodb://mongodb:27017/LibreChat
+      - SESSION_EXPIRY=1000 * 60 * 15
+      - DOMAIN_CLIENT=http://localhost:3081
+      - DOMAIN_SERVER=http://localhost:3081
+      - ENDPOINTS=openAI,azureOpenAI,bingAI,anthropic,chatGPT,ollama,openRouter,customAPI
+      - OPENAI_API_KEY=your-openai-api-key
+      - ANTHROPIC_API_KEY=your-anthropic-api-key
+      - OLLAMA_HOST=http://ollama:11434
+      - OPENROUTER_API_KEY=your-openrouter-api-key
+      - CUSTOM_THEME=unified-ai
+      - ENABLE_SUBSCRIPTION=true
+      - STRIPE_SECRET_KEY=your-stripe-secret-key
+      - STRIPE_PUBLISHABLE_KEY=your-stripe-publishable-key
+      - STRIPE_WEBHOOK_SECRET=your-stripe-webhook-secret
+    volumes:
+      - ./librechat-data:/app/client/public/data
+      - ./librechat-config:/app/config
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    restart: always
+    volumes:
+      - ./mongodb-data:/data/db
+    ports:
+      - "27017:27017"
+
+volumes:
+  librechat-data:
+  mongodb-data:

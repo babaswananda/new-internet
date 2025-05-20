@@ -1,0 +1,26 @@
+{
+  "name": "Unified AI",
+  "colors": {
+    "primary": "#3a86ff",
+    "secondary": "#ffffff",
+    "accent": "#3a86ff",
+    "neutral": "#171717",
+    "base-100": "#000000",
+    "info": "#3a86ff",
+    "success": "#00c853",
+    "warning": "#ffc107",
+    "error": "#ff5252"
+  },
+  "variables": {
+    "rounded-box": "0.25rem",
+    "rounded-btn": "0.25rem",
+    "rounded-badge": "0.25rem",
+    "animation-btn": "0.25s",
+    "animation-input": "0.2s",
+    "btn-text-case": "uppercase",
+    "btn-focus-scale": "0.95",
+    "border-btn": "1px",
+    "tab-border": "1px",
+    "tab-radius": "0.25rem"
+  }
+}

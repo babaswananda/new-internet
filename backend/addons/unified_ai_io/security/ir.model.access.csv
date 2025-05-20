@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_unified_contributor_tier_public,unified.contributor.tier.public,model_unified_contributor_tier,,1,0,0,0
+access_unified_contributor_tier_admin,unified.contributor.tier.admin,model_unified_contributor_tier,base.group_system,1,1,1,1
+access_unified_agent_key_user,unified.agent.key.user,model_unified_agent_key,base.group_user,1,0,0,0
+access_unified_agent_key_admin,unified.agent.key.admin,model_unified_agent_key,base.group_system,1,1,1,1
+access_unified_merch_product_public,unified.merch.product.public,model_unified_merch_product,,1,0,0,0
+access_unified_merch_product_admin,unified.merch.product.admin,model_unified_merch_product,base.group_system,1,1,1,1
