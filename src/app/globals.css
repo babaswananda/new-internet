@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+  --accent: #3a86ff;
+  --accent-hover: #2563eb;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  /* Remove background color from body as it's handled by components */
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+/* Custom cursor effects */
+.cursor-trail {
+  pointer-events: none;
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  z-index: 9999;
+}
+
+/* Spline container styles */
+.spline-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Chrome-on-black theme elements */
+.chrome-border {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+}
+
+.chrome-bg {
+  background: linear-gradient(to bottom, rgba(40, 40, 40, 0.3), rgba(20, 20, 20, 0.3));
+  backdrop-filter: blur(10px);
+}
+
+/* Endpoint glow effect */
+.endpoint-glow {
+  position: relative;
+}
+
+.endpoint-glow::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(circle, rgba(58, 134, 255, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+  z-index: -1;
+  filter: blur(20px);
+}
+
+/* Grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: grid-pulse 8s ease-in-out infinite;
+}
+
+@keyframes grid-pulse {
+  0% {
+    opacity: 0.2;
+    background-size: 40px 40px;
+  }
+  50% {
+    opacity: 0.3;
+    background-size: 42px 42px;
+  }
+  100% {
+    opacity: 0.2;
+    background-size: 40px 40px;
+  }
+}
+
+/* Hero section specific styles */
+.hero-gradient {
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+}
+
+/* Noise texture */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}

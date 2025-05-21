@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spline Static Test</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      background-color: #000;
+      color: #fff;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    
+    .spline-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .spline-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    
+    .content {
+      position: relative;
+      z-index: 10;
+    }
+    
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      padding: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #fff, #a5b4fc, #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    nav a:hover {
+      color: #fff;
+    }
+    
+    .button {
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .button:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    main {
+      padding-top: 5rem;
+    }
+    
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 2rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    h1 {
+      font-size: 5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #fff, #a5b4fc, #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    h2 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      background: linear-gradient(to right, #fff, #a5b4fc, #fff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .subtitle {
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    
+    p {
+      font-size: 1.25rem;
+      color: #ccc;
+      margin-bottom: 2rem;
+      max-width: 800px;
+    }
+    
+    .badge {
+      display: inline-block;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      padding: 1px;
+      border-radius: 9999px;
+      margin-bottom: 1rem;
+    }
+    
+    .badge-inner {
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(4px);
+      padding: 0.25rem 1rem;
+      border-radius: 9999px;
+    }
+    
+    .button-primary {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: linear-gradient(to right, #3b82f6, #8b5cf6);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.125rem;
+      border-radius: 0.5rem;
+      margin-right: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(59, 130, 246, 0.2);
+      transition: transform 0.3s;
+    }
+    
+    .button-primary:hover {
+      transform: scale(1.05);
+    }
+    
+    .button-secondary {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-weight: bold;
+      font-size: 1.125rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    
+    .button-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .card {
+      background-color: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+    }
+    
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .card p {
+      font-size: 1rem;
+      color: #aaa;
+    }
+    
+    .section-dark {
+      background-color: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 3rem;
+      }
+      
+      h2 {
+        font-size: 2rem;
+      }
+      
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      
+      nav {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Spline Background -->
+  <div class="spline-container">
+    <iframe 
+      class="spline-iframe" 
+      src="https://prod.spline.design/EegKcAAn0DX9KgHh/embed" 
+      frameborder="0" 
+      allow="autoplay; fullscreen"
+    ></iframe>
+  </div>
+  
+  <!-- Content Overlay -->
+  <div class="content">
+    <!-- Header -->
+    <header>
+      <div class="logo">UNIFIED AI I/O</div>
+      
+      <nav>
+        <a href="#">Home</a>
+        <a href="#">AgentOS</a>
+        <a href="#">ADK</a>
+        <a href="#">Infrastructure</a>
+        <a href="#">AI Made Me Rich</a>
+      </nav>
+      
+      <button class="button">Enter the Protocol</button>
+    </header>
+    
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section id="hero-section">
+        <div class="container">
+          <div class="badge">
+            <div class="badge-inner">Protocol-Grade Launchpad</div>
+          </div>
+          
+          <h1>
+            UNIFIED AI I/O
+            <div class="subtitle">The New Map of the New Internet</div>
+          </h1>
+          
+          <p>unified ai... think of us as your dashboard to unify all things AI</p>
+          
+          <div>
+            <button class="button-primary">Enter the Protocol</button>
+            <button class="button-secondary">Learn More</button>
+          </div>
+        </div>
+      </section>
+      
+      <!-- What is Unified AI Section -->
+      <section class="section-dark">
+        <div class="container">
+          <h2 class="text-center">What is Unified AI I/O?</h2>
+          
+          <p class="text-center">
+            Unified AI I/O is your dashboard to unify all things AI. We provide a protocol-grade launchpad for the agent economy, enabling seamless integration between different AI systems and tools.
+          </p>
+          
+          <div class="grid">
+            <div class="card">
+              <h3>A2A Protocol</h3>
+              <p>Agent-to-Agent communication protocol for seamless AI collaboration.</p>
+            </div>
+            
+            <div class="card">
+              <h3>Multi-Chain Protocol</h3>
+              <p>Connect and operate across multiple blockchain networks.</p>
+            </div>
+            
+            <div class="card">
+              <h3>Operator Economy</h3>
+              <p>Participate in the new economy of AI operators and agents.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- Coming Soon Section -->
+      <section id="coming-soon-section" class="section-dark text-center">
+        <div class="container">
+          <div class="badge">
+            <div class="badge-inner">
+              <span style="color: #ef4444; margin-right: 0.5rem;">●</span>
+              Launching May 21-22, 2025
+            </div>
+          </div>
+          
+          <h2>Explore the New Internet</h2>
+          
+          <p class="text-center" style="margin-left: auto; margin-right: auto;">
+            A revolutionary marketplace for generative art and vibe coding projects with templates and AI-powered tools.
+          </p>
+          
+          <button class="button-primary">Join Waitlist</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  
+  <script>
+    // Log when the iframe loads
+    window.addEventListener('load', function() {
+      console.log('Page loaded');
+      
+      const iframe = document.querySelector('.spline-iframe');
+      if (iframe) {
+        console.log('Iframe found');
+        
+        iframe.onload = function() {
+          console.log('Iframe loaded successfully');
+        };
+        
+        iframe.onerror = function(error) {
+          console.error('Iframe error:', error);
+        };
+      } else {
+        console.error('Iframe not found');
+      }
+    });
+  </script>
+</body>
+</html>

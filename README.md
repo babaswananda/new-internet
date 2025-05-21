@@ -9,7 +9,7 @@ This project is a protocol-grade launchpad for the agent economy, featuring a co
 - **AgentOS**: The AI-Crypto Native operating system that powers, connects, and governs agents
 - **Agent Dev Kit (ADK)**: Build logic like an Operator, deploy it like a god
 - **Agent-to-Agent (A2A) Protocol**: The communication backbone of the agent economy
-- **Multi-Chain Protocol (MCP)**: One protocol, every chain, unlimited possibilities
+- **Model Context Protocol (MCP)**: One protocol, every model, unlimited possibilities
 - **Parallel Processing**: Unlimited scale, uncompromising performance
 
 ## Development Tools
