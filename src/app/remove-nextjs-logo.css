@@ -1,0 +1,16 @@
+/* Hide Next.js logo in development mode */
+[data-next-badge-root],
+[data-next-badge],
+[data-next-mark] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Hide the dot indicator as well */
+[data-dot] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
