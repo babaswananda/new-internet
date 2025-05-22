@@ -1,0 +1,33 @@
+/* Custom grid animation styles */
+@keyframes grid-animation {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(208px); /* Move exactly 2 grid cells for more noticeable movement */
+  }
+}
+
+.grid-animated {
+  animation: grid-animation 10s linear infinite;
+  will-change: transform;
+  opacity: 1 !important;
+  z-index: 10;
+}
+
+/* Reverse animation */
+@keyframes grid-animation-reverse {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-208px); /* Move exactly 2 grid cells for more noticeable movement */
+  }
+}
+
+.grid-animated-reverse {
+  animation: grid-animation-reverse 10s linear infinite;
+  will-change: transform;
+  opacity: 1 !important;
+  z-index: 10;
+}
