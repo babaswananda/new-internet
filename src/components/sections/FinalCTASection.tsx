@@ -3,15 +3,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { RetroGrid } from '@/components/ui/retro-grid';
 
 const FinalCTASection: React.FC = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  // Note: Replace this URL with your actual Spline scene URL
-  const splineSceneUrl = undefined;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -33,9 +31,17 @@ const FinalCTASection: React.FC = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-black grid-bg opacity-30"></div>
-      <div className="container mx-auto px-4 relative z-10">
+    <section className="relative min-h-screen w-full py-24 overflow-hidden bg-black" style={{
+      transform: 'translateZ(0)',
+      willChange: 'transform',
+      backfaceVisibility: 'hidden'
+    }}>
+      {/* RetroGrid container with animation direction set to false for correct direction */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <RetroGrid angle={45} className="!opacity-100" />
+      </div>
+
+      <div className="container mx-auto px-4 relative z-10"> {/* Content on top with z-10 */}
         <motion.div
           ref={ref}
           variants={containerVariants}
@@ -56,7 +62,7 @@ const FinalCTASection: React.FC = () => {
             variants={itemVariants}
             className="text-2xl md:text-3xl font-bold mb-12"
           >
-            Don&apos;t miss the protocol that mints what&apos;s next.
+            Don't miss the protocol that mints what's next.
           </motion.p>
 
           <motion.div
@@ -65,7 +71,7 @@ const FinalCTASection: React.FC = () => {
           >
             <p>Agent Keys mint soon.</p>
             <p>The protocol is syncing.</p>
-            <p>You&apos;re not joining early. You&apos;re writing the rulebook.</p>
+            <p>You're not joining early. You're writing the rulebook.</p>
           </motion.div>
 
           <motion.button
