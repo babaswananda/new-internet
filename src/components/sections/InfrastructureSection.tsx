@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import DatabaseWithRestApi from '@/components/ui/database-with-rest-api';
 
 const InfrastructureSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -98,12 +99,33 @@ const InfrastructureSection: React.FC = () => {
 
           <motion.p
             variants={itemVariants}
-            className="text-center text-xl md:text-2xl"
+            className="text-center text-xl md:text-2xl mb-16"
           >
             Unified AI isn&apos;t an app.
             <br />
             It&apos;s the protocol layer of the AI-native web.
           </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-center w-full"
+          >
+            <DatabaseWithRestApi
+              title="BridgeOS: REST API for Web2 Integration"
+              circleText="API"
+              badgeTexts={{
+                first: "GET",
+                second: "POST",
+                third: "PUT",
+                fourth: "DELETE"
+              }}
+              buttonTexts={{
+                first: "Agent Data",
+                second: "Endpoints"
+              }}
+              lightColor="#3a86ff"
+            />
+          </motion.div>
         </motion.div>
       </div>
     </section>

@@ -33,10 +33,11 @@ const FOMOTicker: React.FC = () => {
 
   // Calculate animation duration based on content length
   const calculateDuration = () => {
-    if (!containerRef.current) return 20;
+    if (!containerRef.current) return 15;
     const contentWidth = containerRef.current.scrollWidth;
     // Adjust speed based on content width (faster for longer content)
-    return Math.max(20, contentWidth / 100);
+    // Make it 30% faster by multiplying by 0.7
+    return Math.max(15, (contentWidth / 100) * 0.7);
   };
 
   return (

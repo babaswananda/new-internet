@@ -8,6 +8,7 @@ import dynamic from 'next/dynamic';
 // Dynamically import components to improve performance
 const FloatingActionButton = dynamic(() => import('../ui/FloatingActionButton'), { ssr: false });
 const FOMOTicker = dynamic(() => import('../ui/FOMOTicker'), { ssr: false });
+const ScrollToTopButton = dynamic(() => import('../ui/ScrollToTopButton'), { ssr: false });
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -55,7 +56,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
       ),
-      label: 'Chat',
+      label: 'AIVA Chat',
       href: '/chat',
       color: 'bg-gradient-to-r from-red-500 to-orange-500'
     },
@@ -107,16 +108,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             <NavLink href="/adk">ADK</NavLink>
             <NavLink href="/infrastructure">Infrastructure</NavLink>
             <NavLink href="/merch">AI Made Me Rich</NavLink>
-            <NavLink href="/chat">Chat</NavLink>
+            <NavLink href="/chat">AIVA Chat</NavLink>
           </nav>
 
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden md:block px-4 py-2 border border-white/20 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-          >
-            Enter the Protocol
-          </motion.button>
+          <Link href="/ai-tokens">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:block px-4 py-2 border border-white/20 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+            >
+              Enter with AI Tokens
+            </motion.button>
+          </Link>
 
           <motion.button
             className="md:hidden"
@@ -145,14 +148,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 <Link href="/adk" className="text-gray-300 hover:text-white py-2 transition-colors">ADK</Link>
                 <Link href="/infrastructure" className="text-gray-300 hover:text-white py-2 transition-colors">Infrastructure</Link>
                 <Link href="/merch" className="text-gray-300 hover:text-white py-2 transition-colors">AI Made Me Rich</Link>
-                <Link href="/chat" className="text-gray-300 hover:text-white py-2 transition-colors">Chat</Link>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-4 px-4 py-2 border border-white/20 rounded-lg bg-white/5 hover:bg-white/10 transition-colors w-full"
-                >
-                  Enter the Protocol
-                </motion.button>
+                <Link href="/chat" className="text-gray-300 hover:text-white py-2 transition-colors">AIVA Chat</Link>
+                <Link href="/ai-tokens" className="w-full">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="mt-4 px-4 py-2 border border-white/20 rounded-lg bg-white/5 hover:bg-white/10 transition-colors w-full"
+                  >
+                    Enter with AI Tokens
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           )}
@@ -213,6 +218,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   <Link href="/merch" className="hover:text-white transition-colors flex items-center">
                     <span className="mr-2 text-blue-400">→</span>
                     <span>AI Made Me Rich</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/chat" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-blue-400">→</span>
+                    <span>AIVA Chat</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/ai-tokens" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-blue-400">→</span>
+                    <span>AI Tokens</span>
                   </Link>
                 </li>
               </ul>
@@ -302,6 +319,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
           }
           mainColor="from-blue-500 to-purple-500"
         />
+      </Suspense>
+
+      {/* Scroll to Top Button */}
+      <Suspense fallback={null}>
+        <ScrollToTopButton />
       </Suspense>
     </div>
   );
