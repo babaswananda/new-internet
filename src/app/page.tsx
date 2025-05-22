@@ -19,10 +19,10 @@ const ParallelProcessingSection = dynamic(() => import('@/components/sections/Pa
 const VibeCodingSection = dynamic(() => import('@/components/sections/VibeCodingSection'), { ssr: false });
 const OperatorEconomySection = dynamic(() => import('@/components/sections/OperatorEconomySection'), { ssr: false });
 const MarketplaceSection = dynamic(() => import('@/components/sections/MarketplaceSection'), { ssr: false });
-const VideoSection = dynamic(() => import('@/components/sections/VideoSection'), { ssr: false });
+// const VideoSection = dynamic(() => import('@/components/sections/VideoSection'), { ssr: false }); // Disabled
 const InfrastructureSection = dynamic(() => import('@/components/sections/InfrastructureSection'), { ssr: false });
 const InvestmentOfferingSection = dynamic(() => import('@/components/sections/InvestmentOfferingSection'), { ssr: false });
-const LibreChatSection = dynamic(() => import('@/components/sections/LibreChatSection'), { ssr: false });
+const AIVAChatSection = dynamic(() => import('@/components/sections/AIVAChatSection'), { ssr: false });
 const MerchSection = dynamic(() => import('@/components/sections/MerchSection'), { ssr: false });
 const MapSection = dynamic(() => import('@/components/sections/MapSection'), { ssr: false });
 const FinalCTASection = dynamic(() => import('@/components/sections/FinalCTASection'), { ssr: false });
@@ -123,19 +123,19 @@ export default function Home() {
         </div>
       </Suspense>
 
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Video Section */}
+      {/* Video Section - Disabled as requested */}
+      {/* <Suspense fallback={<div className="h-20 bg-black" />}>
         <div className="relative">
           <SpaceParticlesBackground particleCount={130} color="mixed" speed="medium" depth={true} interactive={true} />
           <VideoSection />
         </div>
-      </Suspense>
+      </Suspense> */}
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* LibreChat Integration Section with Pricing Plans */}
+        {/* AIVA Chat Integration Section with Pricing Plans */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={160} color="blue" speed="medium" depth={true} interactive={true} />
-          <LibreChatSection />
+          <AIVAChatSection />
         </div>
       </Suspense>
 
@@ -174,7 +174,7 @@ export default function Home() {
       <Suspense fallback={<div className="h-20 bg-black" />}>
         {/* Final Call to Action Section */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={250} color="purple" speed="slow" depth={true} interactive={true} />
+          {/* SpaceParticlesBackground removed for FinalCTASection */}
           <FinalCTASection />
         </div>
       </Suspense>

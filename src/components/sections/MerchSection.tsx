@@ -120,8 +120,14 @@ const MerchSection: React.FC = () => {
             variants={itemVariants}
             className="text-center"
           >
-            <p className="text-xl font-bold mb-2">Not fashion.</p>
-            <p className="text-xl font-bold">Flag.</p>
+            <motion.a
+              href="/merch-store"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-bold text-lg shadow-lg shadow-blue-500/20"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Visit Full Merch Store
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>

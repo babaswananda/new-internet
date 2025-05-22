@@ -1,6 +1,6 @@
 'use client';
 
-import Spline from '@splinetool/react-spline/next';
+import Spline from '@splinetool/react-spline';
 import HeroSection from '@/components/sections/HeroSection';
 import WhatIsUnifiedAISection from '@/components/sections/WhatIsUnifiedAISection';
 import AgentOSSection from '@/components/sections/AgentOSSection';
