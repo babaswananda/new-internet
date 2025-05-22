@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { GlowingCard } from '@/components/ui/glowing-card';
 
 const WhatIsUnifiedAISection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -63,23 +64,27 @@ const WhatIsUnifiedAISection: React.FC = () => {
             </motion.p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-              <motion.div variants={itemVariants} className="bg-white/5 p-6 rounded-sm">
-                <h3 className="text-xl font-semibold mb-4">It&apos;s not:</h3>
-                <ul className="space-y-2 text-gray-300">
-                  <li>• A chatbot</li>
-                  <li>• A SaaS product</li>
-                  <li>• A wrapper around someone else&apos;s model</li>
-                </ul>
+              <motion.div variants={itemVariants}>
+                <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20">
+                  <h3 className="text-xl font-semibold mb-4">It&apos;s not:</h3>
+                  <ul className="space-y-2 text-gray-300">
+                    <li>• A chatbot</li>
+                    <li>• A SaaS product</li>
+                    <li>• A wrapper around someone else&apos;s model</li>
+                  </ul>
+                </GlowingCard>
               </motion.div>
 
-              <motion.div variants={itemVariants} className="bg-white/5 p-6 rounded-sm">
-                <h3 className="text-xl font-semibold mb-4">It is:</h3>
-                <ul className="space-y-2 text-gray-300">
-                  <li>• A protocol for programmable, monetizable agent logic</li>
-                  <li>• An infrastructure grid for tokenized compute and contribution</li>
-                  <li>• A decentralized operating system for the agent economy</li>
-                  <li>• A cultural and technical layer built for human Operators</li>
-                </ul>
+              <motion.div variants={itemVariants}>
+                <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-purple-500/20">
+                  <h3 className="text-xl font-semibold mb-4">It is:</h3>
+                  <ul className="space-y-2 text-gray-300">
+                    <li>• A protocol for programmable, monetizable agent logic</li>
+                    <li>• An infrastructure grid for tokenized compute and contribution</li>
+                    <li>• A decentralized operating system for the agent economy</li>
+                    <li>• A cultural and technical layer built for human Operators</li>
+                  </ul>
+                </GlowingCard>
               </motion.div>
             </div>
 
