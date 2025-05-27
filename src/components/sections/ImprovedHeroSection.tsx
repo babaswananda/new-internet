@@ -262,19 +262,36 @@ const ImprovedHeroSectionComponent: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-0 right-0 flex justify-center z-10"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: [0.5, 1, 0.5], y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="flex items-center space-x-2">
-          <div className="w-12 h-[1px] bg-white/30"></div>
-          <span className="text-white/50 text-sm">Scroll to explore</span>
-          <div className="w-12 h-[1px] bg-white/30"></div>
-        </div>
-      </motion.div>
+      {/* Animated Typewriter Loop */}
+          <motion.div
+            className="absolute bottom-20 left-8 z-10 font-mono text-sm"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.7, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="bg-black/60 backdrop-blur-sm px-4 py-2 rounded border border-green-500/30">
+              <motion.div
+                animate={{ opacity: [0, 1, 1, 0] }}
+                transition={{ duration: 8, repeat: Infinity, times: [0, 0.1, 0.9, 1] }}
+              >
+                <span className="text-green-400">→ .commandline/claim</span>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            className="absolute bottom-8 left-0 right-0 flex justify-center z-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: [0.5, 1, 0.5], y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <div className="flex items-center space-x-2">
+              <div className="w-12 h-[1px] bg-white/30"></div>
+              <span className="text-white/50 text-sm">Scroll to explore</span>
+              <div className="w-12 h-[1px] bg-white/30"></div>
+            </div>
+          </motion.div>
     </section>
   );
 };

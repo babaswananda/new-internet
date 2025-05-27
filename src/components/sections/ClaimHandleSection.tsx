@@ -122,6 +122,23 @@ const ClaimHandleSection: React.FC = () => {
             </p>
           </motion.div>
 
+          <motion.div variants={itemVariants} className="mb-12">
+            <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
+              <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">💻 Developer Mode Activated</h3>
+              <div className="bg-black/60 rounded-lg p-6 font-mono text-sm mb-6">
+                <div className="text-green-400 mb-2">$ protocol claim --handle="yourname" --network="unifiedai" --access-token="72hr-early-access"</div>
+                <div className="text-gray-400 mb-4">🧠 You're not registering. You're deploying.</div>
+                <div className="text-blue-400">.commandline/claim is where it all begins.</div>
+              </div>
+              <div className="text-center">
+                <p className="text-lg text-gray-300 mb-4">
+                  Run the code. Secure your territory.<br />
+                  You don't need a website. You need a command center.
+                </p>
+              </div>
+            </GlowingCard>
+          </motion.div>
+
           <motion.div variants={itemVariants} className="flex justify-center mb-8">
             <motion.button
               whileHover={{ scale: 1.05 }}
