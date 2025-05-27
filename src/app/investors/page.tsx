@@ -37,7 +37,7 @@ const InvestorsPage = () => {
     {
       name: "Sequoia Capital",
       type: "Strategic Investor",
-      amount: "$10M", 
+      amount: "$10M",
       description: "Legendary VC firm backing transformative technology companies.",
       logo: "🌲"
     },
@@ -133,7 +133,7 @@ const InvestorsPage = () => {
                   Building the Infrastructure for the $1 Trillion AI Economy
                 </p>
                 <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-                  Unified AI is creating the foundational infrastructure for the agentic internet — 
+                  Unified AI is creating the foundational infrastructure for the agentic internet —
                   a $1 trillion market opportunity that will reshape how intelligence flows through digital systems.
                 </p>
               </motion.div>
@@ -147,7 +147,7 @@ const InvestorsPage = () => {
                       <div className="text-3xl mb-4">🌐</div>
                       <h3 className="text-lg font-semibold mb-3 text-white">Massive Market</h3>
                       <p className="text-gray-300 text-sm">
-                        The AI infrastructure market is projected to reach $1 trillion by 2030, 
+                        The AI infrastructure market is projected to reach $1 trillion by 2030,
                         with agent-to-agent communication as the key enabler.
                       </p>
                     </div>
@@ -155,7 +155,7 @@ const InvestorsPage = () => {
                       <div className="text-3xl mb-4">🚀</div>
                       <h3 className="text-lg font-semibold mb-3 text-white">First Mover Advantage</h3>
                       <p className="text-gray-300 text-sm">
-                        We're building the first comprehensive protocol for agent communication, 
+                        We're building the first comprehensive protocol for agent communication,
                         positioning us as the infrastructure layer for the agentic internet.
                       </p>
                     </div>
@@ -163,7 +163,7 @@ const InvestorsPage = () => {
                       <div className="text-3xl mb-4">💡</div>
                       <h3 className="text-lg font-semibold mb-3 text-white">Network Effects</h3>
                       <p className="text-gray-300 text-sm">
-                        Every new agent and developer on our platform increases the value 
+                        Every new agent and developer on our platform increases the value
                         for all participants, creating powerful network effects.
                       </p>
                     </div>
@@ -240,8 +240,8 @@ const InvestorsPage = () => {
                           </div>
                         </div>
                         <div className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                          milestone.status === 'completed' 
-                            ? 'bg-green-500/20 text-green-400' 
+                          milestone.status === 'completed'
+                            ? 'bg-green-500/20 text-green-400'
                             : 'bg-orange-500/20 text-orange-400'
                         }`}>
                           {milestone.status === 'completed' ? 'Completed' : 'Upcoming'}
@@ -308,7 +308,7 @@ const InvestorsPage = () => {
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-pink-500/20">
                   <h2 className="text-3xl font-bold mb-6 text-pink-400">Investor Relations</h2>
                   <p className="text-lg text-gray-300 mb-6">
-                    For investor inquiries, financial reports, and partnership opportunities, 
+                    For investor inquiries, financial reports, and partnership opportunities,
                     please contact our investor relations team.
                   </p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
@@ -316,14 +316,14 @@ const InvestorsPage = () => {
                       <h3 className="text-xl font-semibold mb-4 text-white">Investor Relations</h3>
                       <p className="text-gray-300 mb-2">Jennifer Walsh</p>
                       <p className="text-gray-400 mb-2">VP of Investor Relations</p>
-                      <p className="text-blue-400">investors@unifiedai.com</p>
+                      <p className="text-blue-400">capital@io.unifiedai</p>
                       <p className="text-gray-400">+1 (555) 123-4569</p>
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold mb-4 text-white">Business Development</h3>
                       <p className="text-gray-300 mb-2">Marcus Rodriguez</p>
                       <p className="text-gray-400 mb-2">Head of Business Development</p>
-                      <p className="text-blue-400">partnerships@unifiedai.com</p>
+                      <p className="text-blue-400">protocol@io.unifiedai</p>
                       <p className="text-gray-400">+1 (555) 123-4568</p>
                     </div>
                   </div>

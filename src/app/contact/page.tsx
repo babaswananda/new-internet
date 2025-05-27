@@ -45,28 +45,28 @@ const ContactPage = () => {
   const contactMethods = [
     {
       title: "General Inquiries",
-      email: "hello@unifiedai.com",
+      email: "support@io.unifiedai",
       description: "Questions about our platform, products, or services",
       icon: "💬",
       color: "blue"
     },
     {
       title: "Sales & Partnerships",
-      email: "partnerships@unifiedai.com", 
+      email: "protocol@io.unifiedai",
       description: "Enterprise sales, strategic partnerships, and business development",
       icon: "🤝",
       color: "green"
     },
     {
       title: "Developer Support",
-      email: "developers@unifiedai.com",
+      email: "dev@io.unifiedai",
       description: "Technical support, API questions, and developer resources",
       icon: "👨‍💻",
       color: "purple"
     },
     {
       title: "Press & Media",
-      email: "press@unifiedai.com",
+      email: "press@io.unifiedai",
       description: "Media inquiries, press releases, and interview requests",
       icon: "📰",
       color: "orange"
@@ -84,7 +84,7 @@ const ContactPage = () => {
     {
       city: "New York",
       address: "456 Broadway, Floor 12",
-      zipcode: "New York, NY 10013", 
+      zipcode: "New York, NY 10013",
       phone: "+1 (555) 123-4568",
       type: "East Coast Office"
     },
@@ -119,7 +119,7 @@ const ContactPage = () => {
                   Let's Build the Future Together
                 </p>
                 <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-                  Whether you're a developer, enterprise customer, investor, or just curious about the agentic internet, 
+                  Whether you're a developer, enterprise customer, investor, or just curious about the agentic internet,
                   we'd love to hear from you. Reach out and let's start a conversation.
                 </p>
               </motion.div>
@@ -148,7 +148,7 @@ const ContactPage = () => {
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
                   <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">🔗 Developer Contact Protocol</h3>
                   <div className="bg-black/60 rounded-lg p-6 font-mono text-sm mb-6">
-                    <div className="text-green-400 mb-2">$ contact.send --to="developers@unifiedai.com" --priority="high" --type="technical"</div>
+                    <div className="text-green-400 mb-2">$ contact.send --to="dev@io.unifiedai" --priority="high" --type="technical"</div>
                     <div className="text-gray-400 mb-4">🔗 Establishing secure channel...</div>
                     <div className="text-blue-400 mb-2">✓ Connected to developer support</div>
                     <div className="text-purple-400">📨 Average response time: &lt; 2 hours</div>
@@ -342,7 +342,7 @@ const ContactPage = () => {
                       <p className="text-red-200 font-semibold mb-2">Security or Critical Issues:</p>
                       <p className="text-gray-300">
                         For security vulnerabilities or critical system issues, contact us immediately at:<br />
-                        <span className="text-red-400 font-mono">security@unifiedai.com</span> or call our 24/7 hotline: 
+                        <span className="text-red-400 font-mono">security@io.unifiedai</span> or call our 24/7 hotline:
                         <span className="text-red-400"> +1 (555) 911-HELP</span>
                       </p>
                     </div>

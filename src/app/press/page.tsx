@@ -34,7 +34,7 @@ const PressPage = () => {
       category: "Funding"
     },
     {
-      date: "November 28, 2024", 
+      date: "November 28, 2024",
       title: "Unified AI Launches ION Protocol: The First Ontology Network for AI Agents",
       excerpt: "Revolutionary protocol enables semantic understanding and intelligent routing between autonomous agents.",
       category: "Product Launch"
@@ -47,7 +47,7 @@ const PressPage = () => {
     },
     {
       date: "September 22, 2024",
-      title: "Unified AI Partners with OpenAI on Multi-Agent Research Initiative", 
+      title: "Unified AI Partners with OpenAI on Multi-Agent Research Initiative",
       excerpt: "Collaboration focuses on advancing agent-to-agent communication and coordination protocols.",
       category: "Partnership"
     }
@@ -63,7 +63,7 @@ const PressPage = () => {
     {
       title: "Executive Headshots",
       description: "Professional photos of leadership team",
-      size: "8.1 MB", 
+      size: "8.1 MB",
       icon: "📸"
     },
     {
@@ -90,7 +90,7 @@ const PressPage = () => {
     {
       outlet: "The Information",
       headline: "Inside Unified AI's $50M Bet on Agent Infrastructure",
-      date: "Dec 15, 2024", 
+      date: "Dec 15, 2024",
       type: "Exclusive"
     },
     {
@@ -129,7 +129,7 @@ const PressPage = () => {
                   Latest News & Resources
                 </p>
                 <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-                  Stay updated on Unified AI's journey to build the infrastructure for the agentic internet. 
+                  Stay updated on Unified AI's journey to build the infrastructure for the agentic internet.
                   Find press releases, media assets, and coverage from leading technology publications.
                 </p>
               </motion.div>
@@ -143,14 +143,14 @@ const PressPage = () => {
                       <h3 className="text-xl font-semibold mb-4 text-white">Media Inquiries</h3>
                       <p className="text-gray-300 mb-2">Sarah Chen</p>
                       <p className="text-gray-400 mb-2">Head of Communications</p>
-                      <p className="text-blue-400">press@unifiedai.com</p>
+                      <p className="text-blue-400">press@io.unifiedai</p>
                       <p className="text-gray-400">+1 (555) 123-4567</p>
                     </div>
                     <div className="text-center">
                       <h3 className="text-xl font-semibold mb-4 text-white">Partnership Inquiries</h3>
                       <p className="text-gray-300 mb-2">Marcus Rodriguez</p>
                       <p className="text-gray-400 mb-2">Head of Business Development</p>
-                      <p className="text-blue-400">partnerships@unifiedai.com</p>
+                      <p className="text-blue-400">protocol@io.unifiedai</p>
                       <p className="text-gray-400">+1 (555) 123-4568</p>
                     </div>
                   </div>
@@ -292,7 +292,7 @@ const PressPage = () => {
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-orange-500/20">
                   <h2 className="text-3xl font-bold mb-6 text-orange-400">Download Complete Press Kit</h2>
                   <p className="text-lg text-gray-300 mb-6">
-                    Get access to our complete media package including logos, photos, fact sheets, 
+                    Get access to our complete media package including logos, photos, fact sheets,
                     and executive bios in one convenient download.
                   </p>
                   <motion.button
