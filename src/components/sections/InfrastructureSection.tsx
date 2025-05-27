@@ -3,6 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { GlowingCard } from '@/components/ui/glowing-card';
+import DatabaseWithRestApi from '@/components/ui/database-with-rest-api';
 
 const InfrastructureSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -33,16 +35,17 @@ const InfrastructureSection: React.FC = () => {
   };
 
   const infrastructureLayers = [
-    { layer: 'AgentOS', description: 'AI-Crypto Native Operating System' },
-    { layer: 'ADK', description: 'Dev tools for building agents' },
-    { layer: 'A2A Protocol', description: 'Agent-to-Agent logic communication' },
-    { layer: 'MCP', description: 'Model Context Protocol: modular ingestion' },
-    { layer: 'Agent Vault', description: 'Logic, memory, permissions stored on-chain' },
-    { layer: 'Compute Grid', description: 'Decentralized GPU power via AI Token' },
-    { layer: 'Logic Grid', description: 'Endpoints-as-a-Service for monetization' },
-    { layer: 'Operator Console', description: 'Command UI for managing your agents' },
-    { layer: 'Agent Registry', description: 'Discover / Fork / License logic' },
-    { layer: 'BridgeOS', description: 'REST/Socket API to interact with Web2 systems' },
+    { layer: '⚙️ Parallel Processing', description: 'Runs agents, memory, and endpoints across distributed nodes in real time.' },
+    { layer: '🧠 AgentOS', description: 'OS managing logic, permissions, runtime, and agent identity.' },
+    { layer: '🧰 ADK (Agent Dev Kit)', description: 'Build and deploy agents, endpoints, and tools.' },
+    { layer: '🧬 MCP (Model Context Protocol)', description: 'Routes input, memory, and context into executable logic.' },
+    { layer: '🔗 A2A Protocol', description: 'Agents communicate, delegate, and sync logic across the network.' },
+    { layer: '🗃 Agent Vault', description: 'Stores agent logic, memory, and token access modules.' },
+    { layer: '🖥 Compute Grid', description: 'Decentralized runtime for all AI logic and agent execution.' },
+    { layer: '⚡ GPU Cloud', description: 'Rent or stake compute power. Power your agents. Earn from others.' },
+    { layer: '🧱 Parallel Computer', description: 'Registers physical and virtual machines that run protocol logic.' },
+    { layer: '🌉 AgentOS Connect', description: 'Connects agents to APIs, databases, and Web2 platforms.' },
+    { layer: '💻 VibeCoding IDE', description: 'The AI-native coding environment for building, testing, and launching agents.' },
   ];
 
   return (
@@ -60,50 +63,85 @@ const InfrastructureSection: React.FC = () => {
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold mb-8 text-center"
           >
-            Infrastructure Overview
+            Tech Stack + Infrastructure — Parallel Protocol
           </motion.h2>
+
+          <motion.p
+            variants={itemVariants}
+            className="text-xl md:text-2xl mb-6 text-center"
+          >
+            Parallel Processing is how agents scale.
+          </motion.p>
 
           <motion.p
             variants={itemVariants}
             className="text-xl md:text-2xl mb-12 text-center"
           >
-            Unified AI powers the full-stack agent grid:
+            The Parallel Protocol is Unified AI&apos;s engine for decentralized execution.
           </motion.p>
 
           <motion.div
             variants={itemVariants}
-            className="overflow-x-auto mb-12"
+            className="mb-12"
           >
-            <table className="w-full border-collapse">
-              <thead>
-                <tr className="bg-white/10">
-                  <th className="py-4 px-6 text-left text-lg font-semibold">Layer</th>
-                  <th className="py-4 px-6 text-left text-lg font-semibold">Description</th>
-                </tr>
-              </thead>
-              <tbody>
-                {infrastructureLayers.map((item, index) => (
-                  <motion.tr
-                    key={index}
-                    variants={itemVariants}
-                    className={index % 2 === 0 ? 'bg-white/5' : ''}
-                  >
-                    <td className="py-4 px-6 font-medium">{item.layer}</td>
-                    <td className="py-4 px-6 text-gray-300">{item.description}</td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
+            <GlowingCard className="bg-black/30 backdrop-blur-sm rounded-sm border border-blue-500/20 overflow-hidden">
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse">
+                  <thead>
+                    <tr className="bg-white/10">
+                      <th className="py-4 px-6 text-left text-lg font-semibold">Layer</th>
+                      <th className="py-4 px-6 text-left text-lg font-semibold">Description</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {infrastructureLayers.map((item, index) => (
+                      <motion.tr
+                        key={index}
+                        variants={itemVariants}
+                        className={index % 2 === 0 ? 'bg-white/5' : ''}
+                      >
+                        <td className="py-4 px-6 font-medium">{item.layer}</td>
+                        <td className="py-4 px-6 text-gray-300">{item.description}</td>
+                      </motion.tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </GlowingCard>
           </motion.div>
 
           <motion.p
             variants={itemVariants}
-            className="text-center text-xl md:text-2xl"
+            className="text-center text-xl md:text-2xl mb-16"
           >
             Unified AI isn&apos;t an app.
             <br />
             It&apos;s the protocol layer of the AI-native web.
           </motion.p>
+
+          <motion.div
+            variants={itemVariants}
+            className="w-full flex flex-col items-center justify-center px-4"
+          >
+            <div className="w-full max-w-4xl flex flex-col items-center">
+              <DatabaseWithRestApi
+                title="AgentOS: REST API for Agent Integration"
+                circleText="API"
+                badgeTexts={{
+                  first: "GET",
+                  second: "POST",
+                  third: "PUT",
+                  fourth: "DELETE"
+                }}
+                buttonTexts={{
+                  first: "Agent Data",
+                  second: "Endpoints"
+                }}
+                lightColor="#3a86ff"
+                className="mx-auto"
+              />
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

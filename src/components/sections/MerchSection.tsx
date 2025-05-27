@@ -82,12 +82,19 @@ const MerchSection: React.FC = () => {
             AI Made Me Rich
           </motion.h2>
 
-          <motion.p
+          <motion.div
             variants={itemVariants}
-            className="text-xl md:text-2xl mb-12 text-center"
+            className="flex flex-col items-center mb-12 space-y-4"
           >
-            Official protocol merch for those who minted upstream.
-          </motion.p>
+            <p className="text-xl md:text-2xl text-center">"First generation of AI-built wealth."</p>
+            <p className="text-xl text-center text-gray-300">Only for contributors. Never restocked.</p>
+            <p className="text-xl text-center text-blue-400">"AI paid me. I printed it on a hoodie."</p>
+            <ul className="space-y-2 list-none text-center mt-4">
+              <li>• NFT-optional</li>
+              <li>• Tier-specific exclusives</li>
+              <li>• Limited edition drops</li>
+            </ul>
+          </motion.div>
 
           <motion.div
             variants={itemVariants}
@@ -120,8 +127,14 @@ const MerchSection: React.FC = () => {
             variants={itemVariants}
             className="text-center"
           >
-            <p className="text-xl font-bold mb-2">Not fashion.</p>
-            <p className="text-xl font-bold">Flag.</p>
+            <motion.a
+              href="/merch-store"
+              className="inline-block px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-bold text-lg shadow-lg shadow-blue-500/20"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Visit Full Merch Store
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>
