@@ -13,6 +13,7 @@ const WhatIsUnifiedAISection = dynamic(() => import('@/components/sections/WhatI
 const AgentChatSection = dynamic(() => import('@/components/sections/AgentChatSection'), { ssr: false });
 const AlphaRouterSection = dynamic(() => import('@/components/sections/AlphaRouterSection'), { ssr: false });
 const OntologyNetworkSection = dynamic(() => import('@/components/sections/OntologyNetworkSection'), { ssr: false });
+const PreOrderHardwareSection = dynamic(() => import('@/components/sections/PreOrderHardwareSection'), { ssr: false });
 const AIDirectoryMarketplaceSection = dynamic(() => import('@/components/sections/AIDirectoryMarketplaceSection'), { ssr: false });
 const AIDatacentersSection = dynamic(() => import('@/components/sections/AIDatacentersSection'), { ssr: false });
 const VibeCoderSection = dynamic(() => import('@/components/sections/VibeCoderSection'), { ssr: false });
@@ -73,7 +74,15 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 6. AI Directory + AI Marketplace */}
+        {/* 6. Pre-Order Hardware */}
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={180} color="orange" speed="medium" depth={true} interactive={true} />
+          <PreOrderHardwareSection />
+        </div>
+      </Suspense>
+
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        {/* 7. AI Directory + AI Marketplace */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={170} color="purple" speed="medium" depth={true} interactive={true} />
           <AIDirectoryMarketplaceSection />
@@ -81,7 +90,7 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 7. AI Datacenters + GPU Cloud */}
+        {/* 8. AI Datacenters + GPU Cloud */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={170} color="cyan" speed="medium" depth={true} interactive={true} />
           <AIDatacentersSection />
@@ -89,7 +98,7 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 8. VibeCoder + VibeCoding */}
+        {/* 9. VibeCoder + VibeCoding */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={180} color="blue" speed="medium" depth={true} interactive={true} />
           <VibeCoderSection />
@@ -97,7 +106,7 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 9. Free Handle Program */}
+        {/* 10. Free Handle Program */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={160} color="mixed" speed="slow" depth={true} interactive={true} />
           <FreeHandleProgramSection />
@@ -105,7 +114,7 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 10. Operator Economy + DevCommunity */}
+        {/* 11. Operator Economy + DevCommunity */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={150} color="purple" speed="medium" depth={true} interactive={true} />
           <OperatorEconomySection />
@@ -113,7 +122,7 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 11. Claim Your Handle - Final CTA */}
+        {/* 12. Claim Your Handle - Final CTA */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={200} color="mixed" speed="slow" depth={true} interactive={true} />
           <ClaimHandleSection />
