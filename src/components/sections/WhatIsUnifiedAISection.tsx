@@ -66,7 +66,6 @@ const WhatIsUnifiedAISection: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
               <motion.div variants={itemVariants}>
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20">
-<<<<<<< HEAD
                   <h3 className="text-xl font-semibold mb-4">Your Handle Stack:</h3>
                   <ul className="space-y-2 text-gray-300">
                     <li>• yourname.commandline — The terminal for your internet</li>
@@ -75,20 +74,12 @@ const WhatIsUnifiedAISection: React.FC = () => {
                     <li>• yourname.superagents — Token-gated power agents</li>
                     <li>• yourname.seedgpt — Precision recall, seed-based memory</li>
                     <li>• yourname.vibecoder — No-code/pro-code IDE for agents</li>
-=======
-                  <h3 className="text-xl font-semibold mb-4">It&apos;s not:</h3>
-                  <ul className="space-y-2 text-gray-300">
-                    <li>• A chatbot</li>
-                    <li>• A SaaS product</li>
-                    <li>• A wrapper around someone else&apos;s model</li>
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
                   </ul>
                 </GlowingCard>
               </motion.div>
 
               <motion.div variants={itemVariants}>
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-purple-500/20">
-<<<<<<< HEAD
                   <h3 className="text-xl font-semibold mb-4">Business & Communication:</h3>
                   <ul className="space-y-2 text-gray-300">
                     <li>• yourname.textme / videochat / callmyagent — AI-native messaging</li>
@@ -97,14 +88,6 @@ const WhatIsUnifiedAISection: React.FC = () => {
                     <li>• yourname.devagency — Dev firm in a vault</li>
                     <li>• yourname.aimarketplace — Sell agents, prompts, stacks</li>
                     <li>• yourname.aidatacenters — On-prem GPU/HaaS</li>
-=======
-                  <h3 className="text-xl font-semibold mb-4">It is:</h3>
-                  <ul className="space-y-2 text-gray-300">
-                    <li>• A protocol for programmable, monetizable agent logic</li>
-                    <li>• An infrastructure grid for tokenized compute and contribution</li>
-                    <li>• A decentralized operating system for the agent economy</li>
-                    <li>• A cultural and technical layer built for human Operators</li>
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
                   </ul>
                 </GlowingCard>
               </motion.div>
