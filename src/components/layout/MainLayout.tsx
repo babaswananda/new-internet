@@ -249,6 +249,8 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               ]}
             />
 
+            <NavLink href="/token-flow">Token Flow</NavLink>
+
             <Link href="/ai-tokens">
               <motion.div
                 className="text-purple-400 hover:text-pink-400 transition-colors tracking-wide uppercase text-sm relative group font-bold animate-pulse"
@@ -322,6 +324,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 <Link href="/videochat" className="text-blue-400 hover:text-blue-300 py-2 transition-colors">.VideoChat</Link>
                 <Link href="/webinar" className="text-orange-400 hover:text-orange-300 py-2 transition-colors">.Webinar</Link>
                 <Link href="/learn-aimademerich" className="text-yellow-400 hover:text-yellow-300 py-2 transition-colors">Learn.AIMadeMeRich</Link>
+                <Link href="/token-flow" className="text-gray-300 hover:text-white py-2 transition-colors">Token Flow</Link>
                 <Link href="/ai-tokens" className="text-purple-400 hover:text-pink-400 py-2 transition-colors font-bold animate-pulse">🪙 ITO</Link>
                 <Link href="/about" className="text-gray-300 hover:text-white py-2 transition-colors">About</Link>
                 <Link href="/partners" className="text-gray-300 hover:text-white py-2 transition-colors">Partners</Link>
@@ -515,6 +518,12 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   <Link href="/contact" className="hover:text-white transition-colors flex items-center">
                     <span className="mr-2 text-green-400">→</span>
                     <span>Contact</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/token-flow" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-blue-400">→</span>
+                    <span>Token Flow</span>
                   </Link>
                 </li>
                 <li>
