@@ -53,6 +53,29 @@ const IONPage = () => {
                 </p>
               </motion.div>
 
+              {/* ION Meaning */}
+              <motion.div variants={itemVariants} className="mb-16">
+                <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
+                  <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">
+                    <span className="font-normal">What</span> <span className="font-bold">ION</span> <span className="font-normal">Means</span>
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="text-center p-4">
+                      <h4 className="font-bold text-lg mb-2 text-green-400">Intelligent</h4>
+                      <p className="text-gray-300 text-sm">Smart routing and decision-making based on context and capability</p>
+                    </div>
+                    <div className="text-center p-4">
+                      <h4 className="font-bold text-lg mb-2 text-teal-400">Ontology</h4>
+                      <p className="text-gray-300 text-sm">Semantic understanding and knowledge graph relationships</p>
+                    </div>
+                    <div className="text-center p-4">
+                      <h4 className="font-bold text-lg mb-2 text-cyan-400">Network</h4>
+                      <p className="text-gray-300 text-sm">Distributed protocol connecting agents, models, and capabilities</p>
+                    </div>
+                  </div>
+                </GlowingCard>
+              </motion.div>
+
               {/* Core Powers */}
               <motion.div variants={itemVariants} className="mb-16">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
