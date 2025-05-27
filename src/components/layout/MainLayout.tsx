@@ -104,20 +104,20 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
           <nav className="hidden md:flex space-x-8">
             <NavLink href="/">Home</NavLink>
-            <NavLink href="/agentos">AgentOS</NavLink>
-            <NavLink href="/adk">ADK</NavLink>
-            <NavLink href="/infrastructure">Infrastructure</NavLink>
-            <NavLink href="/merch">AI Made Me Rich</NavLink>
-            <NavLink href="/chat">AIVA Chat</NavLink>
+            <NavLink href="/agentchat">AgentChat</NavLink>
+            <NavLink href="/alpharouter">AlphaRouter</NavLink>
+            <NavLink href="/ion">ION</NavLink>
+            <NavLink href="/aidirectory">AI Directory</NavLink>
+            <NavLink href="/vibecoder">VibeCoder</NavLink>
           </nav>
 
-          <Link href="/ai-tokens">
+          <Link href="/claim">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="hidden md:block px-4 py-2 border border-white/20 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
             >
-              Enter with AI Tokens
+              CLAIM YOUR HANDLE
             </motion.button>
           </Link>
 
@@ -144,18 +144,18 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             >
               <div className="container mx-auto px-4 py-6 flex flex-col space-y-4">
                 <Link href="/" className="text-gray-300 hover:text-white py-2 transition-colors">Home</Link>
-                <Link href="/agentos" className="text-gray-300 hover:text-white py-2 transition-colors">AgentOS</Link>
-                <Link href="/adk" className="text-gray-300 hover:text-white py-2 transition-colors">ADK</Link>
-                <Link href="/infrastructure" className="text-gray-300 hover:text-white py-2 transition-colors">Infrastructure</Link>
-                <Link href="/merch" className="text-gray-300 hover:text-white py-2 transition-colors">AI Made Me Rich</Link>
-                <Link href="/chat" className="text-gray-300 hover:text-white py-2 transition-colors">AIVA Chat</Link>
-                <Link href="/ai-tokens" className="w-full">
+                <Link href="/agentchat" className="text-gray-300 hover:text-white py-2 transition-colors">AgentChat</Link>
+                <Link href="/alpharouter" className="text-gray-300 hover:text-white py-2 transition-colors">AlphaRouter</Link>
+                <Link href="/ion" className="text-gray-300 hover:text-white py-2 transition-colors">ION</Link>
+                <Link href="/aidirectory" className="text-gray-300 hover:text-white py-2 transition-colors">AI Directory</Link>
+                <Link href="/vibecoder" className="text-gray-300 hover:text-white py-2 transition-colors">VibeCoder</Link>
+                <Link href="/claim" className="w-full">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     className="mt-4 px-4 py-2 border border-white/20 rounded-lg bg-white/5 hover:bg-white/10 transition-colors w-full"
                   >
-                    Enter with AI Tokens
+                    CLAIM YOUR HANDLE
                   </motion.button>
                 </Link>
               </div>
@@ -197,33 +197,33 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               <h3 className="text-lg font-semibold mb-4">Links</h3>
               <ul className="space-y-3 text-gray-400">
                 <li>
-                  <Link href="/agentos" className="hover:text-white transition-colors flex items-center">
+                  <Link href="/agentchat" className="hover:text-white transition-colors flex items-center">
                     <span className="mr-2 text-blue-400">→</span>
-                    <span>AgentOS</span>
+                    <span>AgentChat</span>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/adk" className="hover:text-white transition-colors flex items-center">
+                  <Link href="/alpharouter" className="hover:text-white transition-colors flex items-center">
                     <span className="mr-2 text-blue-400">→</span>
-                    <span>Agent Dev Kit</span>
+                    <span>AlphaRouter</span>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/infrastructure" className="hover:text-white transition-colors flex items-center">
+                  <Link href="/ion" className="hover:text-white transition-colors flex items-center">
                     <span className="mr-2 text-blue-400">→</span>
-                    <span>Infrastructure</span>
+                    <span>ION</span>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/merch" className="hover:text-white transition-colors flex items-center">
+                  <Link href="/aidirectory" className="hover:text-white transition-colors flex items-center">
                     <span className="mr-2 text-blue-400">→</span>
-                    <span>AI Made Me Rich</span>
+                    <span>AI Directory</span>
                   </Link>
                 </li>
                 <li>
-                  <Link href="/chat" className="hover:text-white transition-colors flex items-center">
+                  <Link href="/vibecoder" className="hover:text-white transition-colors flex items-center">
                     <span className="mr-2 text-blue-400">→</span>
-                    <span>AIVA Chat</span>
+                    <span>VibeCoder</span>
                   </Link>
                 </li>
                 <li>
