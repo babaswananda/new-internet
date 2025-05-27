@@ -44,44 +44,45 @@ const OntologyNetworkSection: React.FC = () => {
             variants={itemVariants}
             className="text-4xl md:text-6xl font-bold mb-8 text-center"
           >
-            ONTOLOGY NETWORK PROTOCOL
+            INTELLIGENT ONTOLOGY NETWORK (ION)
           </motion.h2>
 
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-2xl mb-12 text-center font-bold"
+            className="text-xl md:text-2xl mb-8 text-center font-bold"
           >
-            "AI doesn't just need intelligence. It needs meaning."
+            You don't just train agents. You route intelligence.
           </motion.p>
 
           <motion.p
             variants={itemVariants}
             className="text-xl md:text-2xl mb-12 text-center"
           >
-            Ontology is the backbone of the Agentic Web.
+            Introducing ION — the Intelligent Ontology Network.<br />
+            It's how agents think, sort, and scale across use cases, domains, and knowledge layers.
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <motion.div variants={itemVariants}>
               <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20">
-                <h3 className="text-xl font-semibold mb-4 text-blue-400">Core Components:</h3>
+                <h3 className="text-xl font-semibold mb-4 text-blue-400">ION Powers:</h3>
                 <ul className="space-y-2 text-gray-300">
-                  <li>• <strong>.OntologyNetwork</strong> = every concept, domain, and category</li>
-                  <li>• Tags, taxonomies, semantics, and vector meaning at protocol level</li>
-                  <li>• AI licensing & labeling enforcement</li>
-                  <li>• Discovery, classification, filtering systems</li>
+                  <li>• 🧠 <strong>Ontology Agents</strong> (define and classify your model's domain)</li>
+                  <li>• 🏷️ <strong>Semantic Tagging</strong> (industry, vertical, function, and task-based logic)</li>
+                  <li>• 🧩 <strong>Model Mixing + Multimodal Matching</strong></li>
+                  <li>• 🧭 <strong>Agent routing</strong> by skill, memory, relevance, and accuracy</li>
                 </ul>
               </GlowingCard>
             </motion.div>
 
             <motion.div variants={itemVariants}>
               <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-purple-500/20">
-                <h3 className="text-xl font-semibold mb-4 text-purple-400">Used By:</h3>
+                <h3 className="text-xl font-semibold mb-4 text-purple-400">FSPP Integration:</h3>
                 <ul className="space-y-2 text-gray-300">
-                  <li>• <strong>Curator Agents</strong> — Content organization and curation</li>
-                  <li>• <strong>Benchmark Agents</strong> — Performance evaluation and testing</li>
-                  <li>• <strong>Ontology Agents</strong> — Semantic understanding and mapping</li>
-                  <li>• <strong>Discovery Systems</strong> — Search and recommendation engines</li>
+                  <li>• <strong>Framework Stack Prompt Protocol</strong> alignment for every AI drop</li>
+                  <li>• <strong>Cognitive Web Infrastructure</strong> — Beyond just another GPT</li>
+                  <li>• <strong>Agent Job Classification</strong> — Knows what it was hired for</li>
+                  <li>• <strong>Intelligence Routing</strong> — Right agent, right task, right time</li>
                 </ul>
               </GlowingCard>
             </motion.div>
@@ -89,16 +90,18 @@ const OntologyNetworkSection: React.FC = () => {
 
           <motion.div variants={itemVariants} className="mb-12">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
-              <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">The Meaning Layer</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">The Cognitive Web</h3>
               <div className="text-center space-y-4">
                 <p className="text-xl text-gray-300">
-                  <strong>Ontologies = Genres. Labels. Languages.</strong>
+                  <strong>Think: WordNet × Wolfram Alpha × Wikipedia — rebuilt as agent infrastructure.</strong>
                 </p>
                 <p className="text-lg text-gray-300">
-                  Without them, your agents don't know where they belong.
+                  ION is the difference between "just another GPT" and an agent that knows what job it was hired for.
                 </p>
                 <p className="text-lg text-gray-300">
-                  The Ontology Network provides the semantic foundation that gives AI systems context, meaning, and purpose.
+                  ION turns the Agentic Web into a cognitive web.<br />
+                  You don't need another AI model.<br />
+                  You need the intelligent infrastructure behind the ones worth keeping.
                 </p>
               </div>
             </GlowingCard>
@@ -111,13 +114,20 @@ const OntologyNetworkSection: React.FC = () => {
             </p>
           </motion.div>
 
-          <motion.div variants={itemVariants} className="flex justify-center">
+          <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg rounded-lg shadow-lg shadow-blue-500/20"
             >
-              EXPLORE ONTOLOGY LAYERS
+              EXPLORE ION
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-lg rounded-lg hover:bg-white/10 transition-colors"
+            >
+              DEPLOY AN ONTOLOGY AGENT
             </motion.button>
           </motion.div>
         </motion.div>
