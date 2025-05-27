@@ -114,6 +114,15 @@ const OntologyNetworkSection: React.FC = () => {
             </p>
           </motion.div>
 
+          <motion.div variants={itemVariants} className="mb-8">
+            <div className="text-center">
+              <p className="text-lg text-gray-400 mb-6">
+                Ready to give your agents meaning? <span className="text-green-400">.commandline/claim</span> is where it all begins.<br />
+                (no paste '.commandline/claim' in your browser, it leads somewhere special).
+              </p>
+            </div>
+          </motion.div>
+
           <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
             <motion.button
               whileHover={{ scale: 1.05 }}

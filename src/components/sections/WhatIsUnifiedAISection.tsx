@@ -134,7 +134,8 @@ const WhatIsUnifiedAISection: React.FC = () => {
                   </div>
                 </div>
                 <p className="text-center text-gray-400 mt-4 text-sm">
-                  Paste one. Press Enter. Watch the future unfold.
+                  Paste one. Press Enter. Watch the future unfold.<br />
+                  <span className="text-green-400">.commandline/claim</span> is where it all begins. (no paste '.commandline/claim' in your browser, it leads somewhere special).
                 </p>
               </GlowingCard>
             </motion.div>
