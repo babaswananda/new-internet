@@ -28,7 +28,7 @@ const AboutPage = () => {
 
   const team = [
     {
-      name: "You Know Who",
+      name: "Industry Tycoon (I.T.)",
       role: "Founder, Architect, Operator",
       bio: "Founder of Unified AI, builder of digital sovereignty infrastructure, and orchestrator of the Agentic Internet. Operating under 100+ sovereign TLDs, deploying protocol-native identity systems, token economics, and agent OS infrastructure from the ground up.",
       image: "👤"
