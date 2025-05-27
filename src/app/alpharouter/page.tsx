@@ -27,7 +27,8 @@ const AlphaRouterPage = () => {
   };
 
   return (
-    <MainLayout>
+    <>
+      <MainLayout>
       <div className="min-h-screen bg-black text-white">
         <section className="relative min-h-screen w-full py-24 overflow-hidden">
           <div className="container mx-auto px-4 relative z-10">
@@ -48,7 +49,7 @@ const AlphaRouterPage = () => {
                   The Carrier of Intelligence. If OpenRouter routes models, AlphaRouter routes the internet itself.
                 </p>
                 <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-                  AlphaRouter is the sovereign compute layer that routes intelligence across the entire Unified AI ecosystem. 
+                  AlphaRouter is the sovereign compute layer that routes intelligence across the entire Unified AI ecosystem.
                   Clean, agent-native, and protocol-grade infrastructure for the new internet.
                 </p>
               </motion.div>
@@ -191,7 +192,8 @@ const AlphaRouterPage = () => {
           </div>
         </section>
       </div>
-    </MainLayout>
+      </MainLayout>
+    </>
   );
 };
 
