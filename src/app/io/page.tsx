@@ -3,9 +3,11 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import Link from 'next/link';
 import { GlowingCard } from '@/components/ui/glowing-card';
 import { IOChatInterface } from '@/components/ui/IOChatInterface';
 import MainLayout from '@/components/layout/MainLayout';
+import { HeaderText } from '@/utils/normalBold';
 
 export default function IOPage() {
   const [ref, inView] = useInView({
@@ -52,7 +54,7 @@ export default function IOPage() {
                 </span>
               </h1>
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white">
-                <span className="font-normal">Your</span> <span className="font-bold">Intelligent</span> <span className="font-normal">Operator</span>
+                <HeaderText>Your Intelligent Operator</HeaderText>
               </h2>
               <p className="text-xl text-gray-300 mb-4">
                 The AI that runs your AI. Command your entire digital ecosystem.
@@ -175,21 +177,32 @@ export default function IOPage() {
 
             {/* Try IO */}
             <motion.div variants={itemVariants} className="text-center">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => setIsChatOpen(true)}
-                className="px-12 py-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-2xl rounded-lg shadow-lg shadow-purple-500/20 mr-4"
-              >
-                TALK TO IO
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-12 py-6 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-2xl rounded-lg hover:bg-white/10 transition-colors"
-              >
-                DEPLOY YOUR IO
-              </motion.button>
+              <div className="flex flex-col md:flex-row justify-center gap-4">
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsChatOpen(true)}
+                  className="px-12 py-6 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-2xl rounded-lg shadow-lg shadow-purple-500/20"
+                >
+                  QUICK CHAT
+                </motion.button>
+                <Link href="/io/chat">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-12 py-6 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold text-2xl rounded-lg shadow-lg shadow-blue-500/20"
+                  >
+                    ENTER IO PORTAL
+                  </motion.button>
+                </Link>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-12 py-6 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-2xl rounded-lg hover:bg-white/10 transition-colors"
+                >
+                  DEPLOY YOUR IO
+                </motion.button>
+              </div>
             </motion.div>
           </motion.div>
         </div>

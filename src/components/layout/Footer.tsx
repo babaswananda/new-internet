@@ -41,7 +41,9 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
         { href: '/textme', label: '.TextMe', color: 'text-green-400' },
         { href: '/videochat', label: '.VideoChat', color: 'text-blue-400' },
         { href: '/webinar', label: '.Webinar', color: 'text-orange-400' },
-        { href: '/learn-aimademerich', label: 'Learn.AIMadeMeRich', color: 'text-yellow-400' }
+        { href: '/social-webinar', label: 'Social.Webinar', color: 'text-red-400' },
+        { href: '/aimademerich', label: 'AIMadeMeRich', color: 'text-yellow-400' },
+        { href: '/learn-aimademerich', label: 'Learn.AIMadeMeRich', color: 'text-green-400' }
       ]
     },
     {
@@ -91,7 +93,7 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
             <p className="text-gray-400 text-sm mb-6 max-w-md">
               The protocol-grade launchpad for the agent economy. Deploy IO, orchestrate agents, and own your digital sovereignty.
             </p>
-            
+
             {/* Social Links */}
             <div className="grid grid-cols-4 md:grid-cols-8 gap-3">
               {socialPlatforms.map((platform) => (
