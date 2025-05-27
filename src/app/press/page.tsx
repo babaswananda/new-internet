@@ -31,27 +31,27 @@ const PressPage = () => {
   const pressReleases = [
     {
       date: "December 15, 2024",
-      title: "<ProductName>Unified AI</ProductName> Raises $50M Series A to Build the Agentic Internet",
-      excerpt: "Led by Andreessen Horowitz, funding will accelerate development of <ProductName>ION</ProductName> protocol and agent infrastructure.",
-      category: "Funding"
-    },
-    {
-      date: "November 28, 2024",
-      title: "<ProductName>Unified AI</ProductName> Launches <ProductName>ION</ProductName> Protocol: The First Ontology Network for AI Agents",
-      excerpt: "Revolutionary protocol enables semantic understanding and intelligent routing between autonomous agents.",
+      title: "Unified AI Launches Protocol Stack for the Agentic Internet",
+      excerpt: "Self-funded infrastructure company deploys ION protocol and agent OS across 100+ sovereign TLDs.",
       category: "Product Launch"
     },
     {
+      date: "November 28, 2024",
+      title: "ION Protocol Goes Live: First Intelligent Ontology Network for AI Agents",
+      excerpt: "Revolutionary protocol enables semantic understanding and intelligent routing between autonomous agents.",
+      category: "Protocol Launch"
+    },
+    {
       date: "October 10, 2024",
-      title: "<ProductName>Agent Chat</ProductName> Superapp Reaches 100,000 Active Developers",
+      title: "AgentChat Superapp Reaches 1,000+ Active Developers in Early Vaults",
       excerpt: "Platform milestone demonstrates growing adoption of agent-first development paradigm.",
       category: "Milestone"
     },
     {
       date: "September 22, 2024",
-      title: "Unified AI Partners with OpenAI on Multi-Agent Research Initiative",
-      excerpt: "Collaboration focuses on advancing agent-to-agent communication and coordination protocols.",
-      category: "Partnership"
+      title: "Unified AI Opens AI Tokens ITO with 72-Hour Activation Window",
+      excerpt: "Token offering includes handle reservation utility, device access, and vault staking capabilities.",
+      category: "Token Launch"
     }
   ];
 
@@ -84,28 +84,28 @@ const PressPage = () => {
 
   const coverage = [
     {
-      outlet: "TechCrunch",
-      headline: "<ProductName>Unified AI</ProductName>'s Vision for the Agentic Internet Could Reshape How AI Systems Communicate",
+      outlet: "Private Founder Briefings",
+      headline: "Unified AI Operating One of the Deepest TLD Protocol Stacks on Decentralized Web",
       date: "Dec 16, 2024",
-      type: "Feature Article"
+      type: "Featured Coverage"
     },
     {
-      outlet: "The Information",
-      headline: "Inside <ProductName>Unified AI</ProductName>'s $50M Bet on Agent Infrastructure",
+      outlet: "AI x Web3 Ecosystem",
+      headline: "The Infrastructure Layer for Sovereign Intelligence Systems",
       date: "Dec 15, 2024",
-      type: "Exclusive"
+      type: "Ecosystem Recognition"
     },
     {
-      outlet: "Wired",
-      headline: "The Protocol That Could Make AI Agents Actually Useful",
+      outlet: "Crypto Infrastructure",
+      headline: "Stealth Partnerships Across Crypto, Telecom, and AI Hardware",
       date: "Nov 30, 2024",
-      type: "Deep Dive"
+      type: "Partnership Coverage"
     },
     {
-      outlet: "VentureBeat",
-      headline: "Why Developers Are Flocking to <ProductName>Unified AI</ProductName>'s Agent Platform",
+      outlet: "Protocol Analysis",
+      headline: "ION: The Missing Layer Between AI Models and Real-World Applications",
       date: "Oct 12, 2024",
-      type: "Analysis"
+      type: "Technical Deep Dive"
     }
   ];
 
@@ -239,51 +239,62 @@ const PressPage = () => {
               {/* Company Facts */}
               <motion.div variants={itemVariants} className="mb-16">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
-                  <h2 className="text-3xl font-bold mb-6 text-green-400 text-center">Company Facts</h2>
+                  <h2 className="text-3xl font-bold mb-6 text-green-400 text-center">Company Snapshot</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-white mb-2">$50M</div>
-                      <div className="text-gray-400">Series A Funding</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-white mb-2">100K+</div>
-                      <div className="text-gray-400">Active Developers</div>
-                    </div>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-white mb-2">50+</div>
-                      <div className="text-gray-400">Team Members</div>
-                    </div>
                     <div className="text-center">
                       <div className="text-3xl font-bold text-white mb-2">2024</div>
                       <div className="text-gray-400">Founded</div>
                     </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-white mb-2">&lt;5</div>
+                      <div className="text-gray-400">Employees (by design)</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-white mb-2">1K+</div>
+                      <div className="text-gray-400">Active Devs in Ecosystem</div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-3xl font-bold text-white mb-2">Self-Funded</div>
+                      <div className="text-gray-400">Seeking Aligned Capital</div>
+                    </div>
+                  </div>
+                  <div className="mt-8 text-center">
+                    <p className="text-lg text-gray-300 mb-4">
+                      <span className="font-normal">Status:</span> <span className="font-bold text-green-400">Public protocol launch in progress</span>
+                    </p>
+                    <p className="text-lg text-gray-300 mb-4">
+                      <span className="font-normal">Location:</span> <span className="font-bold">Protocol-first / Globally distributed</span>
+                    </p>
+                    <p className="text-lg text-gray-300">
+                      <span className="font-normal">Motto:</span> <span className="font-bold text-blue-400">You don't browse the internet. You command it.</span>
+                    </p>
                   </div>
                 </GlowingCard>
               </motion.div>
 
-              {/* Awards & Recognition */}
+              {/* Positioning Headlines */}
               <motion.div variants={itemVariants} className="mb-16">
-                <h2 className="text-3xl font-bold mb-8 text-center">Awards & Recognition</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Positioning Headlines</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-yellow-500/20">
                     <div className="text-center">
-                      <div className="text-3xl mb-3">🏆</div>
-                      <h3 className="text-lg font-semibold text-yellow-400 mb-2">TechCrunch Disrupt</h3>
-                      <p className="text-gray-300 text-sm">Startup Battlefield Winner 2024</p>
+                      <div className="text-3xl mb-3">🏗️</div>
+                      <h3 className="text-lg font-semibold text-yellow-400 mb-2">Infrastructure Focus</h3>
+                      <p className="text-gray-300 text-sm">"Unified AI is building the OS for the agentic internet."</p>
                     </div>
                   </GlowingCard>
                   <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20">
                     <div className="text-center">
-                      <div className="text-3xl mb-3">🌟</div>
-                      <h3 className="text-lg font-semibold text-blue-400 mb-2">Fast Company</h3>
-                      <p className="text-gray-300 text-sm">Most Innovative AI Company 2024</p>
+                      <div className="text-3xl mb-3">🚀</div>
+                      <h3 className="text-lg font-semibold text-blue-400 mb-2">Beyond Current AI</h3>
+                      <p className="text-gray-300 text-sm">"Where GPT ends, Unified begins."</p>
                     </div>
                   </GlowingCard>
                   <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-purple-500/20">
                     <div className="text-center">
-                      <div className="text-3xl mb-3">🚀</div>
-                      <h3 className="text-lg font-semibold text-purple-400 mb-2">Forbes</h3>
-                      <p className="text-gray-300 text-sm">AI 50 List 2024</p>
+                      <div className="text-3xl mb-3">💼</div>
+                      <h3 className="text-lg font-semibold text-purple-400 mb-2">Economic Model</h3>
+                      <p className="text-gray-300 text-sm">"Every handle is a vault. Every vault is a business."</p>
                     </div>
                   </GlowingCard>
                 </div>

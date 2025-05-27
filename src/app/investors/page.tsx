@@ -26,61 +26,63 @@ const InvestorsPage = () => {
     },
   };
 
-  const investors = [
+  const investmentFocus = [
     {
-      name: "Andreessen Horowitz (a16z)",
-      type: "Lead Investor - Series A",
-      amount: "$30M",
-      description: "Leading venture capital firm focused on technology investments.",
-      logo: "🏛️"
+      name: "Hardware",
+      type: "Strategic Investment Target",
+      description: "AI device production and real-world deployment infrastructure.",
+      logo: "📱"
     },
     {
-      name: "Sequoia Capital",
-      type: "Strategic Investor",
-      amount: "$10M",
-      description: "Legendary VC firm backing transformative technology companies.",
-      logo: "🌲"
+      name: "Telecom",
+      type: "Strategic Investment Target",
+      description: "Network infrastructure for agent-to-agent communication protocols.",
+      logo: "📡"
     },
     {
-      name: "Coinbase Ventures",
-      type: "Strategic Investor",
-      amount: "$5M",
-      description: "Investment arm of Coinbase, focused on crypto and blockchain infrastructure.",
+      name: "DePIN",
+      type: "Strategic Investment Target",
+      description: "Decentralized physical infrastructure for distributed agent networks.",
+      logo: "🌐"
+    },
+    {
+      name: "AI Model Expansion",
+      type: "Strategic Investment Target",
+      description: "Advanced model integration and ontology network expansion.",
+      logo: "🧠"
+    },
+    {
+      name: "MemeCoin + Token Economics",
+      type: "Strategic Investment Target",
+      description: "Token ecosystem development and viral adoption mechanisms.",
       logo: "🪙"
-    },
-    {
-      name: "OpenAI Fund",
-      type: "Strategic Investor",
-      amount: "$5M",
-      description: "Investment vehicle for AI infrastructure and applications.",
-      logo: "🤖"
     }
   ];
 
   const metrics = [
     {
-      metric: "$50M",
-      label: "Total Funding Raised",
-      growth: "+∞%",
-      period: "Series A"
+      metric: "10K+",
+      label: "Vaults Claimed",
+      growth: "Active",
+      period: "Growing"
     },
     {
-      metric: "100K+",
-      label: "Active Developers",
-      growth: "+250%",
-      period: "QoQ"
+      metric: "1K+",
+      label: "Developers Active",
+      growth: "Early",
+      period: "Ecosystem"
     },
     {
-      metric: "$2.5M",
-      label: "Monthly Recurring Revenue",
-      growth: "+180%",
-      period: "YoY"
+      metric: "300+",
+      label: "Agent Templates Live",
+      growth: "Protocol",
+      period: "Ready"
     },
     {
-      metric: "500+",
-      label: "Enterprise Customers",
-      growth: "+320%",
-      period: "YoY"
+      metric: "72hr",
+      label: "Token Activation Window",
+      growth: "ITO",
+      period: "Open"
     }
   ];
 
@@ -126,15 +128,17 @@ const InvestorsPage = () => {
               <motion.div variants={itemVariants} className="text-center mb-16">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
-                    Investor Relations
+                    🧾 Unified AI: Private Round Thesis
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  Building the Infrastructure for the $1 Trillion AI Economy
+                  <span className="font-normal">We're opening a</span> <span className="font-bold">select round</span> <span className="font-normal">of aligned capital to fuel the protocol layer of the agentic internet.</span>
                 </p>
-                <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-                  Unified AI is creating the foundational infrastructure for the agentic internet —
-                  a $1 trillion market opportunity that will reshape how intelligence flows through digital systems.
+                <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-6">
+                  This is not SaaS. This is infrastructure for sovereign intelligence.
+                </p>
+                <p className="text-lg text-gray-300 max-w-4xl mx-auto">
+                  We're not raising from anyone who asks. We're selecting those who build.
                 </p>
               </motion.div>
 
@@ -179,7 +183,7 @@ const InvestorsPage = () => {
 
               {/* Key Metrics */}
               <motion.div variants={itemVariants} className="mb-16">
-                <h2 className="text-3xl font-bold mb-8 text-center">Key Metrics</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">📈 Metrics (Positioned Honestly + Optimistically)</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {metrics.map((item, index) => (
                     <GlowingCard key={index} className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-green-500/20">
@@ -196,22 +200,21 @@ const InvestorsPage = () => {
                 </div>
               </motion.div>
 
-              {/* Our Investors */}
+              {/* Investment Focus */}
               <motion.div variants={itemVariants} className="mb-16">
-                <h2 className="text-3xl font-bold mb-8 text-center">Our Investors</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  {investors.map((investor, index) => (
+                <h2 className="text-3xl font-bold mb-8 text-center">🎯 Investment Focus</h2>
+                <p className="text-center text-gray-300 mb-8">
+                  We are raising to deploy across compute, agent marketplace, and real-world device production.<br/>
+                  Actively seeking strategic investors for:
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {investmentFocus.map((focus, index) => (
                     <GlowingCard key={index} className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20">
-                      <div className="flex items-start space-x-4">
-                        <div className="text-3xl">{investor.logo}</div>
-                        <div className="flex-1">
-                          <div className="flex items-center justify-between mb-2">
-                            <h3 className="text-lg font-semibold text-white">{investor.name}</h3>
-                            <div className="text-blue-400 font-semibold">{investor.amount}</div>
-                          </div>
-                          <p className="text-blue-400 text-sm mb-3">{investor.type}</p>
-                          <p className="text-gray-300 text-sm">{investor.description}</p>
-                        </div>
+                      <div className="text-center">
+                        <div className="text-3xl mb-4">{focus.logo}</div>
+                        <h3 className="text-lg font-semibold text-white mb-2">{focus.name}</h3>
+                        <p className="text-blue-400 text-sm mb-3">{focus.type}</p>
+                        <p className="text-gray-300 text-sm">{focus.description}</p>
                       </div>
                     </GlowingCard>
                   ))}

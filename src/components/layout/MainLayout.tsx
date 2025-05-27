@@ -232,7 +232,10 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 { href: '/io', label: 'IO', description: 'Your Intelligent Operator', color: 'text-pink-400' },
                 { href: '/ion', label: 'ION', description: 'Intelligent Ontology Network', color: 'text-orange-400' },
                 { href: '/aidirectory', label: 'AI Directory', description: 'Discover AI agents and tools', color: 'text-green-400' },
-                { href: '/vibecoder', label: 'VibeCoder', description: 'AI-powered development', color: 'text-yellow-400' }
+                { href: '/vibecoder', label: 'VibeCoder', description: 'AI-powered development', color: 'text-yellow-400' },
+                { href: '/adk', label: 'ADK', description: 'Agent Development Kit', color: 'text-teal-400' },
+                { href: '/preorder', label: 'Hardware', description: 'Pre-order AI devices', color: 'text-red-400' },
+                { href: '/merch-store', label: 'Merch Store', description: 'Official Unified AI merchandise', color: 'text-indigo-400' }
               ]}
             />
 
@@ -311,12 +314,15 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 <Link href="/io" className="text-gray-300 hover:text-white py-2 transition-colors">IO</Link>
                 <Link href="/ion" className="text-gray-300 hover:text-white py-2 transition-colors">ION</Link>
                 <Link href="/aidirectory" className="text-gray-300 hover:text-white py-2 transition-colors">AI Directory</Link>
+                <Link href="/vibecoder" className="text-gray-300 hover:text-white py-2 transition-colors">VibeCoder</Link>
+                <Link href="/adk" className="text-gray-300 hover:text-white py-2 transition-colors">ADK</Link>
+                <Link href="/preorder" className="text-gray-300 hover:text-white py-2 transition-colors">Hardware</Link>
+                <Link href="/merch-store" className="text-gray-300 hover:text-white py-2 transition-colors">Merch Store</Link>
                 <Link href="/textme" className="text-green-400 hover:text-green-300 py-2 transition-colors">.TextMe</Link>
                 <Link href="/videochat" className="text-blue-400 hover:text-blue-300 py-2 transition-colors">.VideoChat</Link>
                 <Link href="/webinar" className="text-orange-400 hover:text-orange-300 py-2 transition-colors">.Webinar</Link>
                 <Link href="/learn-aimademerich" className="text-yellow-400 hover:text-yellow-300 py-2 transition-colors">Learn.AIMadeMeRich</Link>
                 <Link href="/ai-tokens" className="text-purple-400 hover:text-pink-400 py-2 transition-colors font-bold animate-pulse">🪙 ITO</Link>
-                <Link href="/vibecoder" className="text-gray-300 hover:text-white py-2 transition-colors">VibeCoder</Link>
                 <Link href="/about" className="text-gray-300 hover:text-white py-2 transition-colors">About</Link>
                 <Link href="/partners" className="text-gray-300 hover:text-white py-2 transition-colors">Partners</Link>
                 <Link href="/contact" className="text-gray-300 hover:text-white py-2 transition-colors">Contact</Link>
@@ -409,6 +415,24 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   <Link href="/vibecoder" className="hover:text-white transition-colors flex items-center">
                     <span className="mr-2 text-yellow-400">→</span>
                     <span>VibeCoder</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/adk" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-teal-400">→</span>
+                    <span>ADK</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/preorder" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-red-400">→</span>
+                    <span>Hardware</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/merch-store" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-indigo-400">→</span>
+                    <span>Merch Store</span>
                   </Link>
                 </li>
               </ul>
