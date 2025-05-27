@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 
 const WhatIsUnifiedAISection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -30,9 +31,47 @@ const WhatIsUnifiedAISection: React.FC = () => {
     },
   };
 
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.3 }
+    },
+  };
+
   return (
     <section className="relative min-h-screen w-full py-24 overflow-hidden">
       {/* Background removed - using global Spline background */}
+
+      {/* Scrolling Marquee */}
+      <div className="w-full overflow-hidden mb-16">
+        <motion.div
+          className="flex whitespace-nowrap py-4"
+          animate={{
+            x: [0, '-100%']
+          }}
+          transition={{
+            x: {
+              repeat: Infinity,
+              repeatType: "loop",
+              duration: 30,
+              ease: "linear"
+            }
+          }}
+        >
+          {Array.from({ length: 3 }).map((_, index) => (
+            <div key={index} className="flex items-center text-4xl md:text-5xl font-bold tracking-wider text-white mr-16">
+              <span className="mx-8"><HeaderText>Welcome To The New Map Of The New Internet</HeaderText></span>
+              <span className="text-blue-400 mx-8">•</span>
+              <span className="mx-8"><HeaderText>Welcome To The New Map Of The New Internet</HeaderText></span>
+              <span className="text-purple-400 mx-8">•</span>
+              <span className="mx-8"><HeaderText>Welcome To The New Map Of The New Internet</HeaderText></span>
+              <span className="text-cyan-400 mx-8">•</span>
+            </div>
+          ))}
+        </motion.div>
+      </div>
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -44,9 +83,9 @@ const WhatIsUnifiedAISection: React.FC = () => {
         >
             <motion.h2
               variants={itemVariants}
-              className="text-4xl md:text-5xl font-bold mb-12 text-center"
+              className="text-4xl md:text-5xl mb-12 text-center tracking-wider"
             >
-              EVERY HANDLE IS A FUNCTION
+              <HeaderText>Every Handle Is A Framework</HeaderText>
             </motion.h2>
 
             <motion.p
@@ -68,12 +107,12 @@ const WhatIsUnifiedAISection: React.FC = () => {
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20">
                   <h3 className="text-xl font-semibold mb-4">Your Handle Stack:</h3>
                   <ul className="space-y-2 text-gray-300">
-                    <li>• yourname.commandline — The terminal for your internet</li>
-                    <li>• yourname.agentchat — Superapp: AI Inbox, Devices, Drops</li>
-                    <li>• yourname.aiagents — Your fleet of GPTs</li>
-                    <li>• yourname.superagents — Token-gated power agents</li>
-                    <li>• yourname.seedgpt — Precision recall, seed-based memory</li>
-                    <li>• yourname.vibecoder — No-code/pro-code IDE for agents</li>
+                    <li>• yourname<TLDName>.commandline</TLDName> — The terminal for your internet</li>
+                    <li>• yourname<TLDName>.agentchat</TLDName> — Superapp: AI Inbox, Devices, Drops</li>
+                    <li>• yourname<TLDName>.aiagents</TLDName> — Your fleet of GPTs</li>
+                    <li>• yourname<TLDName>.superagents</TLDName> — Token-gated power agents</li>
+                    <li>• yourname<TLDName>.seedgpt</TLDName> — Precision recall, seed-based memory</li>
+                    <li>• yourname<TLDName>.vibecoder</TLDName> — No-code/pro-code IDE for agents</li>
                   </ul>
                 </GlowingCard>
               </motion.div>
@@ -94,19 +133,19 @@ const WhatIsUnifiedAISection: React.FC = () => {
             </div>
 
             <motion.div variants={itemVariants} className="text-center text-xl md:text-2xl mb-4">
-              <p className="font-bold">Every slash is a stack.</p>
-              <p className="font-bold">Every handle is a vault.</p>
-              <p className="font-bold">Every vault is a business.</p>
+              <p><span className="font-normal">Every</span> <span className="font-bold">slash</span> <span className="font-normal">is a</span> <span className="font-bold">stack.</span></p>
+              <p><span className="font-normal">Every</span> <span className="font-bold">handle</span> <span className="font-normal">is a</span> <span className="font-bold">vault.</span></p>
+              <p><span className="font-normal">Every</span> <span className="font-bold">vault</span> <span className="font-normal">is a</span> <span className="font-bold">business.</span></p>
             </motion.div>
 
             <motion.p
               variants={itemVariants}
-              className="text-xl md:text-2xl font-bold text-center mb-8"
+              className="text-xl md:text-2xl text-center mb-8"
             >
-              This is Unified AI.<br />
-              Where your handle is your hub.<br />
-              Your vault is your stack.<br />
-              And your agent is your OS.
+              <span className="font-normal">This is</span> <span className="font-bold">Unified AI.</span><br />
+              <span className="font-normal">Where your</span> <span className="font-bold">handle</span> <span className="font-normal">is your</span> <span className="font-bold">hub.</span><br />
+              <span className="font-normal">Your</span> <span className="font-bold">vault</span> <span className="font-normal">is your</span> <span className="font-bold">stack.</span><br />
+              <span className="font-normal">And your</span> <span className="font-bold">agent</span> <span className="font-normal">is your</span> <span className="font-bold">OS.</span>
             </motion.p>
 
             <motion.div variants={itemVariants} className="mb-8">
@@ -118,24 +157,24 @@ const WhatIsUnifiedAISection: React.FC = () => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-sm">
                   <div className="bg-black/60 rounded-lg p-4">
-                    <div className="text-green-400">.commandline/claim</div>
-                    <div className="text-blue-400">.agentchat/start</div>
-                    <div className="text-purple-400">.vibecoder/deploy</div>
+                    <div className="text-green-400"><TLDName>.commandline</TLDName>/claim</div>
+                    <div className="text-blue-400"><TLDName>.agentchat</TLDName>/start</div>
+                    <div className="text-purple-400"><TLDName>.vibecoder</TLDName>/deploy</div>
                   </div>
                   <div className="bg-black/60 rounded-lg p-4">
-                    <div className="text-yellow-400">.aimarketplace/mint</div>
-                    <div className="text-red-400">.superagents/unlock</div>
-                    <div className="text-cyan-400">.aidatacenters/spinup</div>
+                    <div className="text-yellow-400"><TLDName>.aimarketplace</TLDName>/mint</div>
+                    <div className="text-red-400"><TLDName>.superagents</TLDName>/unlock</div>
+                    <div className="text-cyan-400"><TLDName>.aidatacenters</TLDName>/spinup</div>
                   </div>
                   <div className="bg-black/60 rounded-lg p-4">
-                    <div className="text-pink-400">.seedgpt/train</div>
-                    <div className="text-orange-400">.cryptobounties/post</div>
-                    <div className="text-indigo-400">.alpharouter/view</div>
+                    <div className="text-pink-400"><TLDName>.seedgpt</TLDName>/train</div>
+                    <div className="text-orange-400"><TLDName>.cryptobounties</TLDName>/post</div>
+                    <div className="text-indigo-400"><TLDName>.alpharouter</TLDName>/view</div>
                   </div>
                 </div>
                 <p className="text-center text-gray-400 mt-4 text-sm">
                   Paste one. Press Enter. Watch the future unfold.<br />
-                  <span className="text-green-400">.commandline/claim</span> is where it all begins. (no paste '.commandline/claim' in your browser, it leads somewhere special).
+                  <span className="text-green-400"><TLDName>.commandline</TLDName>/claim</span> is where it all begins. (no paste '<TLDName>.commandline</TLDName>/claim' in your browser, it leads somewhere special).
                 </p>
               </GlowingCard>
             </motion.div>

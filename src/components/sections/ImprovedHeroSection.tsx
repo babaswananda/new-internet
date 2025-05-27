@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 import dynamic from 'next/dynamic';
 import InteractiveBackground from '../ui/InteractiveBackground';
 
@@ -35,7 +36,7 @@ const ImprovedHeroSectionComponent: React.FC = () => {
   const heroContentSets = [
     {
       // Slide 1: The Core Message
-      heading: "UNIFIED AI",
+      heading: "Unified AI",
       subtitle: "\"We didn't build a platform. We built the internet. From the .commandline up.\"",
       bubbleText: "Forget dashboards. You now run your future from a slash.",
       bubbleColor: "from-blue-500 to-purple-500",
@@ -47,7 +48,7 @@ const ImprovedHeroSectionComponent: React.FC = () => {
     },
     {
       // Slide 2: The Handle Revolution
-      heading: "EVERY HANDLE IS A FUNCTION",
+      heading: "Every Handle Is A Function",
       subtitle: "FSPP = Framework / Stack / Prompt / Protocol",
       bubbleText: "You don't load a profile. You deploy a protocol.",
       bubbleColor: "from-purple-500 to-pink-500",
@@ -59,7 +60,7 @@ const ImprovedHeroSectionComponent: React.FC = () => {
     },
     {
       // Slide 3: The Infrastructure
-      heading: "ALPHAROUTER: THE CARRIER OF INTELLIGENCE",
+      heading: "AlphaRouter The Carrier Of Intelligence",
       subtitle: "If OpenRouter routes models, AlphaRouter routes the internet itself.",
       bubbleText: "Clean, sovereign, agent-native compute layer.",
       bubbleColor: "from-pink-500 to-red-500",
@@ -83,7 +84,7 @@ const ImprovedHeroSectionComponent: React.FC = () => {
     },
     {
       // Slide 5: The Marketplace
-      heading: ".AIDIRECTORY + .AIMARKETPLACE",
+      heading: "AI Directory Plus AI Marketplace",
       subtitle: "The public brain of Unified AI.",
       bubbleText: "Think Shopify + GitHub + OpenSea — for AI.",
       bubbleColor: "from-amber-500 to-orange-500",
@@ -166,8 +167,8 @@ const ImprovedHeroSectionComponent: React.FC = () => {
                 animate="visible"
                 exit="exit"
               >
-                <motion.h1 variants={textFadeVariants} className="text-6xl md:text-8xl font-bold tracking-wider text-white">
-                  {heroContentSets[activeIndex].heading}
+                <motion.h1 variants={textFadeVariants} className="text-6xl md:text-8xl tracking-wider text-white">
+                  <HeaderText>{heroContentSets[activeIndex].heading}</HeaderText>
                 </motion.h1>
                 <motion.p variants={textFadeVariants} className="text-2xl md:text-3xl mt-4 font-light text-blue-100">
                   {heroContentSets[activeIndex].subtitle}
@@ -262,22 +263,7 @@ const ImprovedHeroSectionComponent: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* Animated Typewriter Loop */}
-          <motion.div
-            className="absolute bottom-20 left-8 z-10 font-mono text-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0.7, 0] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <div className="bg-black/60 backdrop-blur-sm px-4 py-2 rounded border border-green-500/30">
-              <motion.div
-                animate={{ opacity: [0, 1, 1, 0] }}
-                transition={{ duration: 8, repeat: Infinity, times: [0, 0.1, 0.9, 1] }}
-              >
-                <span className="text-green-400">→ .commandline/claim</span>
-              </motion.div>
-            </div>
-          </motion.div>
+
 
           {/* Scroll indicator */}
           <motion.div

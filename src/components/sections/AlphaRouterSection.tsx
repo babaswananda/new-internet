@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 
 const AlphaRouterSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -43,9 +44,9 @@ const AlphaRouterSection: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold mb-8 text-center"
+            className="text-4xl md:text-6xl mb-8 text-center"
           >
-            ALPHAROUTER: THE CARRIER OF INTELLIGENCE
+            <HeaderText>AlphaRouter The Carrier Of Intelligence</HeaderText>
           </motion.h2>
 
           <motion.p
@@ -53,7 +54,7 @@ const AlphaRouterSection: React.FC = () => {
             className="text-xl md:text-2xl mb-8 text-center"
           >
             If OpenRouter routes models,<br />
-            AlphaRouter routes the internet itself.
+            <ProductName>Alpha Router</ProductName> routes the internet itself.
           </motion.p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
@@ -119,7 +120,7 @@ const AlphaRouterSection: React.FC = () => {
                   <p className="text-gray-300">
                     Institutional APIs are not routed unless licensed.<br />
                     Open-source models are default-enabled.<br />
-                    AlphaRouter + ION = Clean, sovereign, agent-native compute layer.
+                    <ProductName>Alpha Router</ProductName> + <ProductName>ION</ProductName> = Clean, sovereign, agent-native compute layer.
                   </p>
                 </div>
               </div>

@@ -45,11 +45,11 @@ const AgentChatPage = () => {
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  The AI Superapp. Your OS in a chat window.
+                  <span className="font-normal">Chat.</span> <span className="font-bold">Orchestrate.</span> <span className="font-normal">Deploy.</span> <span className="font-bold">Scale.</span>
                 </p>
                 <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-                  AgentChat isn't just another chatbot. It's your entire digital operating system, 
-                  accessible through a conversational interface. Manage your agents, deploy your stack, 
+                  AgentChat isn't just another chatbot. It's your entire digital operating system,
+                  accessible through a conversational interface. Manage your agents, deploy your stack,
                   and run your digital life from one unified chat experience.
                 </p>
               </motion.div>

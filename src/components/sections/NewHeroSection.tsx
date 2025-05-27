@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { HeaderText } from '@/utils/normalBold';
 import Link from 'next/link';
 
 /**
@@ -71,11 +72,11 @@ const NewHeroSection: React.FC = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-6xl md:text-8xl font-bold tracking-wider mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-white"
+            className="text-6xl md:text-8xl tracking-wider mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-white"
           >
-            UNIFIED AI I/O
-            <span className="block text-2xl md:text-3xl mt-4 font-light text-white">
-              The New Map of the New Internet
+            <HeaderText>Unified AI I/O</HeaderText>
+            <span className="block text-2xl md:text-3xl mt-4 text-white">
+              <HeaderText>The New Map Of The New Internet</HeaderText>
             </span>
           </motion.h1>
 

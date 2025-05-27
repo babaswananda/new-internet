@@ -45,10 +45,10 @@ const IONPage = () => {
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  Intelligent Ontology Network. You don't just train agents. You route intelligence.
+                  <span className="font-normal">Think.</span> <span className="font-bold">Connect.</span> <span className="font-normal">Route.</span> <span className="font-bold">Evolve.</span>
                 </p>
                 <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-                  ION turns the Agentic Web into a cognitive web. The protocol that gives agents meaning, 
+                  ION turns the Agentic Web into a cognitive web. The protocol that gives agents meaning,
                   context, and the ability to understand where they belong in the digital ecosystem.
                 </p>
               </motion.div>

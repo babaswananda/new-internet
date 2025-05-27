@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { HeaderText } from '@/utils/normalBold';
 
 const VibeCoderSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -42,9 +43,9 @@ const VibeCoderSection: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold mb-8 text-center"
+            className="text-4xl md:text-6xl mb-8 text-center"
           >
-            .VIBECODER + .VIBECODING
+            <HeaderText>VibeCoder Plus VibeCoding</HeaderText>
           </motion.h2>
 
           <motion.p
@@ -103,7 +104,7 @@ const VibeCoderSection: React.FC = () => {
 
           <motion.div variants={itemVariants} className="mb-12">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-cyan-500/20">
-              <h3 className="text-2xl font-semibold mb-6 text-cyan-400 text-center">Built For Everyone</h3>
+              <h3 className="text-2xl mb-6 text-cyan-400 text-center"><HeaderText>Built For Everyone</HeaderText></h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="text-4xl mb-4">👤</div>

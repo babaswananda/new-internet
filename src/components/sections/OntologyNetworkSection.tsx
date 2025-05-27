@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 
 const OntologyNetworkSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -42,9 +43,9 @@ const OntologyNetworkSection: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold mb-8 text-center"
+            className="text-4xl md:text-6xl mb-8 text-center"
           >
-            INTELLIGENT ONTOLOGY NETWORK (ION)
+            <HeaderText>Intelligent Ontology Network ION</HeaderText>
           </motion.h2>
 
           <motion.p
@@ -90,7 +91,7 @@ const OntologyNetworkSection: React.FC = () => {
 
           <motion.div variants={itemVariants} className="mb-12">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
-              <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">The Cognitive Web</h3>
+              <h3 className="text-2xl mb-6 text-green-400 text-center"><HeaderText>The Cognitive Web</HeaderText></h3>
               <div className="text-center space-y-4">
                 <p className="text-xl text-gray-300">
                   <strong>Think: WordNet × Wolfram Alpha × Wikipedia — rebuilt as agent infrastructure.</strong>
@@ -117,8 +118,8 @@ const OntologyNetworkSection: React.FC = () => {
           <motion.div variants={itemVariants} className="mb-8">
             <div className="text-center">
               <p className="text-lg text-gray-400 mb-6">
-                Ready to give your agents meaning? <span className="text-green-400">.commandline/claim</span> is where it all begins.<br />
-                (no paste '.commandline/claim' in your browser, it leads somewhere special).
+                Ready to give your agents meaning? <span className="text-green-400"><TLDName>.commandline</TLDName>/claim</span> is where it all begins.<br />
+                (no paste '<TLDName>.commandline</TLDName>/claim' in your browser, it leads somewhere special).
               </p>
             </div>
           </motion.div>

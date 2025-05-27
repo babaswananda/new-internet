@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import MainLayout from '@/components/layout/MainLayout';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 
 const AIDirectoryPage = () => {
   const containerVariants = {
@@ -39,16 +40,16 @@ const AIDirectoryPage = () => {
             >
               {/* Hero Section */}
               <motion.div variants={itemVariants} className="text-center mb-16">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                <h1 className="text-5xl md:text-7xl mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-400 via-orange-500 to-red-500">
-                    AI Directory
+                    <HeaderText>AI Directory</HeaderText>
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  + AI Marketplace. The public brain of Unified AI.
+                  <HeaderText>Discover Build Deploy Monetize</HeaderText>
                 </p>
                 <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-                  Think Shopify + GitHub + OpenSea — for AI. Discover any agent, any function, any creator. 
+                  Think Shopify + GitHub + OpenSea — for AI. Discover any agent, any function, any creator.
                   Sell agents, tools, templates, and prompt packs. Token-gate drops and support modules.
                 </p>
               </motion.div>
@@ -56,22 +57,22 @@ const AIDirectoryPage = () => {
               {/* Browser Commands */}
               <motion.div variants={itemVariants} className="mb-16">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-amber-500/20">
-                  <h3 className="text-2xl font-semibold mb-6 text-amber-400 text-center">🌐 Directory Commands</h3>
+                  <h3 className="text-2xl mb-6 text-amber-400 text-center"><HeaderText>🌐 Directory Commands</HeaderText></h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-sm">
                     <div className="bg-black/60 rounded-lg p-4">
-                      <div className="text-amber-400">.aidirectory/search</div>
-                      <div className="text-orange-400">.aimarketplace/mint</div>
-                      <div className="text-red-400">.aimarketplace/browse</div>
+                      <div className="text-amber-400"><TLDName>.aidirectory</TLDName>/search</div>
+                      <div className="text-orange-400"><TLDName>.aimarketplace</TLDName>/mint</div>
+                      <div className="text-red-400"><TLDName>.aimarketplace</TLDName>/browse</div>
                     </div>
                     <div className="bg-black/60 rounded-lg p-4">
-                      <div className="text-yellow-400">.aidirectory/agents</div>
-                      <div className="text-pink-400">.aidirectory/creators</div>
-                      <div className="text-purple-400">.aidirectory/tools</div>
+                      <div className="text-yellow-400"><TLDName>.aidirectory</TLDName>/agents</div>
+                      <div className="text-pink-400"><TLDName>.aidirectory</TLDName>/creators</div>
+                      <div className="text-purple-400"><TLDName>.aidirectory</TLDName>/tools</div>
                     </div>
                     <div className="bg-black/60 rounded-lg p-4">
-                      <div className="text-green-400">.aimarketplace/sell</div>
-                      <div className="text-blue-400">.aimarketplace/drops</div>
-                      <div className="text-cyan-400">.aimarketplace/support</div>
+                      <div className="text-green-400"><TLDName>.aimarketplace</TLDName>/sell</div>
+                      <div className="text-blue-400"><TLDName>.aimarketplace</TLDName>/drops</div>
+                      <div className="text-cyan-400"><TLDName>.aimarketplace</TLDName>/support</div>
                     </div>
                   </div>
                 </GlowingCard>
@@ -131,7 +132,7 @@ const AIDirectoryPage = () => {
               {/* Categories */}
               <motion.div variants={itemVariants} className="mb-16">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-purple-500/20">
-                  <h3 className="text-2xl font-semibold mb-6 text-purple-400 text-center">Browse Categories</h3>
+                  <h3 className="text-2xl mb-6 text-purple-400 text-center"><HeaderText>Browse Categories</HeaderText></h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center p-4 bg-black/40 rounded-lg">
                       <div className="text-2xl mb-2">🤖</div>

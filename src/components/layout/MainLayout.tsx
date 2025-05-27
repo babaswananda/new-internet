@@ -18,8 +18,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // FAB action items
+  // FAB action items - Comprehensive navigation
   const fabItems = [
+    // Core Platform
     {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
@@ -33,31 +34,126 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
         </svg>
       ),
-      label: 'AgentOS',
-      href: '/agentos',
+      label: 'AgentChat',
+      href: '/agentchat',
       color: 'bg-gradient-to-r from-purple-500 to-pink-500'
     },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        </svg>
+      ),
+      label: 'AlphaRouter',
+      href: '/alpharouter',
+      color: 'bg-gradient-to-r from-pink-500 to-red-500'
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+        </svg>
+      ),
+      label: 'ION',
+      href: '/ion',
+      color: 'bg-gradient-to-r from-red-500 to-orange-500'
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+        </svg>
+      ),
+      label: 'AI Directory',
+      href: '/aidirectory',
+      color: 'bg-gradient-to-r from-orange-500 to-yellow-500'
+    },
+    // Development Tools
     {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
         </svg>
       ),
+      label: 'VibeCoder',
+      href: '/vibecoder',
+      color: 'bg-gradient-to-r from-yellow-500 to-green-500'
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+        </svg>
+      ),
       label: 'ADK',
       href: '/adk',
+      color: 'bg-gradient-to-r from-green-500 to-teal-500'
+    },
+    // Hardware
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+        </svg>
+      ),
+      label: 'Hardware',
+      href: '/preorder',
+      color: 'bg-gradient-to-r from-teal-500 to-cyan-500'
+    },
+    // Identity & Claims
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+        </svg>
+      ),
+      label: 'Claim Handle',
+      href: '/claim',
+      color: 'bg-gradient-to-r from-cyan-500 to-blue-500'
+    },
+    // Business
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      ),
+      label: 'Partners',
+      href: '/partners',
+      color: 'bg-gradient-to-r from-indigo-500 to-purple-500'
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      label: 'Investors',
+      href: '/investors',
+      color: 'bg-gradient-to-r from-purple-500 to-pink-500'
+    },
+    // Support & Info
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      ),
+      label: 'About',
+      href: '/about',
       color: 'bg-gradient-to-r from-pink-500 to-red-500'
     },
     {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       ),
-      label: 'AIVA Chat',
-      href: '/chat',
+      label: 'Contact',
+      href: '/contact',
       color: 'bg-gradient-to-r from-red-500 to-orange-500'
     },
   ];
@@ -108,8 +204,24 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             <NavLink href="/alpharouter">AlphaRouter</NavLink>
             <NavLink href="/ion">ION</NavLink>
             <NavLink href="/aidirectory">AI Directory</NavLink>
+            <NavLink href="/textme">.TextMe</NavLink>
+            <NavLink href="/videochat">.VideoChat</NavLink>
+            <NavLink href="/webinar">.Webinar</NavLink>
+            <NavLink href="/learn-aimademerich">Learn</NavLink>
+            <Link href="/ai-tokens">
+              <motion.div
+                className="text-purple-400 hover:text-pink-400 transition-colors tracking-wide uppercase text-sm relative group font-bold animate-pulse"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                🪙 ITO
+                <motion.div
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"
+                  whileHover={{ width: '100%' }}
+                />
+              </motion.div>
+            </Link>
             <NavLink href="/about">About</NavLink>
-            <NavLink href="/partners">Partners</NavLink>
             <NavLink href="/contact">Contact</NavLink>
           </nav>
 
@@ -150,6 +262,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 <Link href="/alpharouter" className="text-gray-300 hover:text-white py-2 transition-colors">AlphaRouter</Link>
                 <Link href="/ion" className="text-gray-300 hover:text-white py-2 transition-colors">ION</Link>
                 <Link href="/aidirectory" className="text-gray-300 hover:text-white py-2 transition-colors">AI Directory</Link>
+                <Link href="/textme" className="text-green-400 hover:text-green-300 py-2 transition-colors">.TextMe</Link>
+                <Link href="/videochat" className="text-blue-400 hover:text-blue-300 py-2 transition-colors">.VideoChat</Link>
+                <Link href="/webinar" className="text-orange-400 hover:text-orange-300 py-2 transition-colors">.Webinar</Link>
+                <Link href="/learn-aimademerich" className="text-yellow-400 hover:text-yellow-300 py-2 transition-colors">Learn.AIMadeMeRich</Link>
+                <Link href="/ai-tokens" className="text-purple-400 hover:text-pink-400 py-2 transition-colors font-bold animate-pulse">🪙 ITO</Link>
                 <Link href="/vibecoder" className="text-gray-300 hover:text-white py-2 transition-colors">VibeCoder</Link>
                 <Link href="/about" className="text-gray-300 hover:text-white py-2 transition-colors">About</Link>
                 <Link href="/partners" className="text-gray-300 hover:text-white py-2 transition-colors">Partners</Link>
@@ -201,7 +318,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-semibold mb-4">Products</h3>
+              <h3 className="text-lg font-semibold mb-4">Core Products</h3>
               <ul className="space-y-2 text-gray-400 text-sm">
                 <li>
                   <Link href="/agentchat" className="hover:text-white transition-colors flex items-center">
@@ -233,6 +350,41 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                     <span>VibeCoder</span>
                   </Link>
                 </li>
+              </ul>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-lg font-semibold mb-4">Agentic Protocols</h3>
+              <ul className="space-y-2 text-gray-400 text-sm">
+                <li>
+                  <Link href="/textme" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-green-400">→</span>
+                    <span>.TextMe</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/videochat" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-blue-400">→</span>
+                    <span>.VideoChat</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/webinar" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-orange-400">→</span>
+                    <span>.Webinar</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/learn-aimademerich" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-yellow-400">→</span>
+                    <span>Learn.AIMadeMeRich</span>
+                  </Link>
+                </li>
                 <li>
                   <Link href="/preorder" className="hover:text-white transition-colors flex items-center">
                     <span className="mr-2 text-orange-400">→</span>
@@ -245,7 +397,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.25 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
             >
               <h3 className="text-lg font-semibold mb-4">Company</h3>
@@ -292,7 +444,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.35 }}
               viewport={{ once: true }}
             >
               <h3 className="text-lg font-semibold mb-4">Connect</h3>
@@ -353,7 +505,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
             className="mt-12 pt-8 border-t border-white/10 text-center text-gray-400"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.5, delay: 0.45 }}
             viewport={{ once: true }}
           >
             <p>&copy; {new Date().getFullYear()} Unified AI I/O. All rights reserved.</p>
@@ -361,17 +513,17 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         </div>
       </motion.footer>
 
-      {/* Floating Action Button - Lazy loaded */}
+      {/* Floating Action Button - IO Chat */}
       <Suspense fallback={null}>
         <FloatingActionButton
           items={fabItems}
           position="bottom-right"
           mainIcon={
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+            <div className="flex items-center justify-center">
+              <span className="text-white font-bold text-lg">IO</span>
+            </div>
           }
-          mainColor="from-blue-500 to-purple-500"
+          mainColor="from-purple-500 to-pink-500"
         />
       </Suspense>
 

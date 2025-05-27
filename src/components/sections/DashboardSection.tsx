@@ -2,10 +2,11 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { HeaderText } from '@/utils/normalBold';
 
 /**
  * DashboardSection
- * 
+ *
  * This section highlights Unified AI as a dashboard to unify all things AI.
  */
 const DashboardSection: React.FC = () => {
@@ -13,7 +14,7 @@ const DashboardSection: React.FC = () => {
     <section className="py-24 relative overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-900/20 to-black opacity-50"></div>
-      
+
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -22,22 +23,22 @@ const DashboardSection: React.FC = () => {
           viewport={{ once: true, margin: "-100px" }}
           className="max-w-4xl mx-auto text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
-            Unified AI
+          <h2 className="text-4xl md:text-5xl mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+            <HeaderText>Unified AI</HeaderText>
           </h2>
-          
+
           <p className="text-2xl md:text-3xl font-light mb-8 text-white">
             Think of us as your dashboard to unify all things AI
           </p>
-          
+
           <div className="bg-black/40 backdrop-blur-sm p-8 rounded-xl border border-white/10 mb-12">
             <p className="text-lg text-gray-300 mb-6">
-              In a world of fragmented AI tools and services, Unified AI brings everything together in one seamless experience. 
+              In a world of fragmented AI tools and services, Unified AI brings everything together in one seamless experience.
               Navigate the new internet with a single control layer for all your AI interactions.
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-              <motion.div 
+              <motion.div
                 className="bg-black/30 p-6 rounded-lg border border-blue-500/30 hover:border-blue-500/60 transition-colors"
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
@@ -51,8 +52,8 @@ const DashboardSection: React.FC = () => {
                   Manage all your AI agents and tools from a single, intuitive dashboard
                 </p>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="bg-black/30 p-6 rounded-lg border border-purple-500/30 hover:border-purple-500/60 transition-colors"
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
@@ -66,8 +67,8 @@ const DashboardSection: React.FC = () => {
                   Connect your favorite AI services and tools with zero friction
                 </p>
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="bg-black/30 p-6 rounded-lg border border-pink-500/30 hover:border-pink-500/60 transition-colors"
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
               >
@@ -83,7 +84,7 @@ const DashboardSection: React.FC = () => {
               </motion.div>
             </div>
           </div>
-          
+
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}

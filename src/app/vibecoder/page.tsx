@@ -4,6 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import MainLayout from '@/components/layout/MainLayout';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { HeaderText } from '@/utils/normalBold';
+import { TLDName, ProductName } from '@/utils/normalBold';
 
 const VibeCoder = () => {
   const containerVariants = {
@@ -39,16 +41,16 @@ const VibeCoder = () => {
             >
               {/* Hero Section */}
               <motion.div variants={itemVariants} className="text-center mb-16">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                <h1 className="text-5xl md:text-7xl mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
-                    VibeCoder
+                    <HeaderText>Vibe Coder</HeaderText>
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  + VibeCoding. Build agents with energy. Deploy with vibes.
+                  <HeaderText>Plus VibeCoding Build Agents With Energy Deploy With Vibes</HeaderText>
                 </p>
                 <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-                  VibeCoder is the no-code/pro-code IDE for agents. Create generative art, 
+                  VibeCoder is the no-code/pro-code IDE for agents. Create generative art,
                   build AI systems, and deploy with the energy that only comes from pure creative flow.
                 </p>
               </motion.div>
@@ -56,7 +58,7 @@ const VibeCoder = () => {
               {/* Hidden Route URL Hack */}
               <motion.div variants={itemVariants} className="mb-16">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-purple-500/20">
-                  <h3 className="text-xl font-semibold mb-4 text-purple-400 text-center">🔗 Hidden Route URL Hack (Just for Vibes)</h3>
+                  <h3 className="text-xl mb-4 text-purple-400 text-center"><HeaderText>🔗 Hidden Route URL Hack Just For Vibes</HeaderText></h3>
                   <div className="bg-black/60 rounded-lg p-4 font-mono text-sm text-center">
                     <div className="text-purple-400">https://commandline/claim?handle=yourname&access=early&source=terminal</div>
                   </div>
@@ -120,7 +122,7 @@ const VibeCoder = () => {
               {/* VibeCoding Philosophy */}
               <motion.div variants={itemVariants} className="mb-16">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-pink-500/20">
-                  <h3 className="text-2xl font-semibold mb-6 text-pink-400 text-center">The VibeCoding Philosophy</h3>
+                  <h3 className="text-2xl mb-6 text-pink-400 text-center"><HeaderText>The VibeCoding Philosophy</HeaderText></h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                       <h4 className="text-lg font-semibold mb-4 text-purple-400">Energy-First Development</h4>
@@ -147,7 +149,7 @@ const VibeCoder = () => {
               {/* Project Types */}
               <motion.div variants={itemVariants} className="mb-16">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-orange-500/20">
-                  <h3 className="text-2xl font-semibold mb-6 text-orange-400 text-center">What You Can Build</h3>
+                  <h3 className="text-2xl mb-6 text-orange-400 text-center"><HeaderText>What You Can Build</HeaderText></h3>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <div className="text-center p-4 bg-black/40 rounded-lg">
                       <div className="text-2xl mb-2">🎵</div>
