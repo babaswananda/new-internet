@@ -31,7 +31,8 @@ const AlphaRouterSection: React.FC = () => {
   };
 
   return (
-    <section id="alpharouter" className="relative min-h-screen w-full py-24 overflow-hidden">
+    <>
+      <section id="alpharouter" className="relative min-h-screen w-full py-24 overflow-hidden">
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
           ref={ref}
@@ -155,7 +156,8 @@ const AlphaRouterSection: React.FC = () => {
           </motion.div>
         </motion.div>
       </div>
-    </section>
+      </section>
+    </>
   );
 };
 
