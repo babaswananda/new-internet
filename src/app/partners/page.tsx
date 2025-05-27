@@ -36,7 +36,7 @@ const PartnersPage = () => {
     },
     {
       name: "Anthropic",
-      type: "Safety & Alignment Partner", 
+      type: "Safety & Alignment Partner",
       description: "Ensuring AI safety and alignment in distributed agent networks.",
       logo: "🛡️",
       partnership: "Co-developing safety standards for autonomous agent interactions."
@@ -133,7 +133,7 @@ const PartnersPage = () => {
                   Building the Agentic Internet Together
                 </p>
                 <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-                  We collaborate with leading organizations across AI research, infrastructure, and developer tools 
+                  We collaborate with leading organizations across AI research, infrastructure, and developer tools
                   to create the most comprehensive platform for intelligent agents.
                 </p>
               </motion.div>
@@ -143,7 +143,7 @@ const PartnersPage = () => {
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-blue-500/20">
                   <h2 className="text-3xl font-bold mb-6 text-blue-400 text-center">Partnership Philosophy</h2>
                   <p className="text-lg text-gray-300 text-center mb-6">
-                    We believe the agentic internet will be built through collaboration, not competition. 
+                    We believe the agentic internet will be built through collaboration, not competition.
                     Our partnerships focus on creating open standards, shared infrastructure, and mutual growth.
                   </p>
                   <div className="text-center">
@@ -295,9 +295,14 @@ const PartnersPage = () => {
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-pink-500/20">
                   <h2 className="text-3xl font-bold mb-6 text-pink-400">Become a Partner</h2>
                   <p className="text-lg text-gray-300 mb-6">
-                    Ready to build the future of AI together? Join our partner ecosystem and help shape 
+                    Ready to build the future of AI together? Join our partner ecosystem and help shape
                     the infrastructure for the next generation of intelligent applications.
                   </p>
+                  <div className="text-center mb-6">
+                    <p className="text-gray-400">
+                      Partnership inquiries: <span className="text-pink-400">protocol@io.unifiedai</span>
+                    </p>
+                  </div>
                   <div className="flex flex-col md:flex-row justify-center gap-4">
                     <motion.button
                       whileHover={{ scale: 1.05 }}

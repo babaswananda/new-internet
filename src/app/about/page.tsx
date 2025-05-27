@@ -35,7 +35,7 @@ const AboutPage = () => {
     },
     {
       name: "Sarah Kim",
-      role: "CTO & Co-Founder", 
+      role: "CTO & Co-Founder",
       bio: "Ex-Google Brain, architect of distributed AI systems. Built the first production-scale agent orchestration platform.",
       image: "👩‍💻"
     },
@@ -75,7 +75,7 @@ const AboutPage = () => {
                   Building the New Map of the New Internet
                 </p>
                 <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-                  We're creating the infrastructure for the agentic internet — where every handle is a function, 
+                  We're creating the infrastructure for the agentic internet — where every handle is a function,
                   every agent has meaning, and intelligence flows seamlessly across the digital landscape.
                 </p>
               </motion.div>
@@ -85,7 +85,7 @@ const AboutPage = () => {
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-blue-500/20">
                   <h2 className="text-3xl font-bold mb-6 text-blue-400 text-center">Our Mission</h2>
                   <p className="text-lg text-gray-300 text-center mb-6">
-                    To democratize AI by creating a unified protocol where agents, humans, and systems 
+                    To democratize AI by creating a unified protocol where agents, humans, and systems
                     can collaborate seamlessly in a decentralized, intelligent internet.
                   </p>
                   <div className="text-center">
@@ -104,14 +104,14 @@ const AboutPage = () => {
                   <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-purple-500/20">
                     <h3 className="text-xl font-semibold mb-4 text-purple-400">The Problem</h3>
                     <p className="text-gray-300">
-                      AI agents exist in silos. They can't communicate, share context, or build on each other's work. 
+                      AI agents exist in silos. They can't communicate, share context, or build on each other's work.
                       The internet wasn't designed for intelligence — it was designed for documents.
                     </p>
                   </GlowingCard>
                   <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-green-500/20">
                     <h3 className="text-xl font-semibold mb-4 text-green-400">Our Solution</h3>
                     <p className="text-gray-300">
-                      Unified AI creates the missing infrastructure: handle-based identity, semantic routing, 
+                      Unified AI creates the missing infrastructure: handle-based identity, semantic routing,
                       and ontology networks that let agents understand not just what they do, but how they fit together.
                     </p>
                   </GlowingCard>
@@ -211,7 +211,7 @@ const AboutPage = () => {
                 <div className="text-center">
                   <h2 className="text-3xl font-bold mb-6">Backed by Leading Investors</h2>
                   <p className="text-gray-400 mb-8">
-                    Series A: $50M led by Andreessen Horowitz, with participation from Sequoia Capital, 
+                    Series A: $50M led by Andreessen Horowitz, with participation from Sequoia Capital,
                     Coinbase Ventures, and prominent AI researchers from OpenAI, DeepMind, and Anthropic.
                   </p>
                   <div className="flex justify-center space-x-8 text-gray-500">
@@ -228,9 +228,14 @@ const AboutPage = () => {
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-orange-500/20">
                   <h2 className="text-3xl font-bold mb-6 text-orange-400">Join the Future</h2>
                   <p className="text-lg text-gray-300 mb-6">
-                    We're hiring world-class engineers, researchers, and builders who want to create 
+                    We're hiring world-class engineers, researchers, and builders who want to create
                     the infrastructure for the next generation of the internet.
                   </p>
+                  <div className="text-center mb-6">
+                    <p className="text-gray-400">
+                      Ready to join the team? Contact us at <span className="text-blue-400">careers@io.unifiedai</span>
+                    </p>
+                  </div>
                   <div className="flex flex-col md:flex-row justify-center gap-4">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
