@@ -46,12 +46,32 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
     {
       icon: (
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+        </svg>
+      ),
+      label: 'AGENT OS',
+      href: '/agentos',
+      color: 'bg-gradient-to-r from-cyan-500 to-teal-500'
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
         </svg>
       ),
       label: 'AlphaRouter',
       href: '/alpharouter',
       color: 'bg-gradient-to-r from-pink-500 to-red-500'
+    },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+        </svg>
+      ),
+      label: 'IO',
+      href: '/io',
+      color: 'bg-gradient-to-r from-pink-400 to-purple-500'
     },
     {
       icon: (
@@ -207,7 +227,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               label="Products"
               items={[
                 { href: '/agentchat', label: 'AgentChat', description: 'AI-powered chat interface', color: 'text-blue-400' },
+                { href: '/agentos', label: 'AGENT OS', description: 'Operating system for AI agents', color: 'text-cyan-400' },
                 { href: '/alpharouter', label: 'AlphaRouter', description: 'Intelligent model routing', color: 'text-purple-400' },
+                { href: '/io', label: 'IO', description: 'Your Intelligent Operator', color: 'text-pink-400' },
                 { href: '/ion', label: 'ION', description: 'Intelligent Ontology Network', color: 'text-orange-400' },
                 { href: '/aidirectory', label: 'AI Directory', description: 'Discover AI agents and tools', color: 'text-green-400' },
                 { href: '/vibecoder', label: 'VibeCoder', description: 'AI-powered development', color: 'text-yellow-400' }
@@ -284,7 +306,9 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
               <div className="container mx-auto px-4 py-6 flex flex-col space-y-4">
                 <Link href="/" className="text-gray-300 hover:text-white py-2 transition-colors">Home</Link>
                 <Link href="/agentchat" className="text-gray-300 hover:text-white py-2 transition-colors">AgentChat</Link>
+                <Link href="/agentos" className="text-gray-300 hover:text-white py-2 transition-colors">AGENT OS</Link>
                 <Link href="/alpharouter" className="text-gray-300 hover:text-white py-2 transition-colors">AlphaRouter</Link>
+                <Link href="/io" className="text-gray-300 hover:text-white py-2 transition-colors">IO</Link>
                 <Link href="/ion" className="text-gray-300 hover:text-white py-2 transition-colors">ION</Link>
                 <Link href="/aidirectory" className="text-gray-300 hover:text-white py-2 transition-colors">AI Directory</Link>
                 <Link href="/textme" className="text-green-400 hover:text-green-300 py-2 transition-colors">.TextMe</Link>
@@ -352,26 +376,38 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                   </Link>
                 </li>
                 <li>
+                  <Link href="/agentos" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-cyan-400">→</span>
+                    <span>AGENT OS</span>
+                  </Link>
+                </li>
+                <li>
                   <Link href="/alpharouter" className="hover:text-white transition-colors flex items-center">
-                    <span className="mr-2 text-blue-400">→</span>
+                    <span className="mr-2 text-purple-400">→</span>
                     <span>AlphaRouter</span>
                   </Link>
                 </li>
                 <li>
+                  <Link href="/io" className="hover:text-white transition-colors flex items-center">
+                    <span className="mr-2 text-pink-400">→</span>
+                    <span>IO</span>
+                  </Link>
+                </li>
+                <li>
                   <Link href="/ion" className="hover:text-white transition-colors flex items-center">
-                    <span className="mr-2 text-blue-400">→</span>
+                    <span className="mr-2 text-orange-400">→</span>
                     <span>ION</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/aidirectory" className="hover:text-white transition-colors flex items-center">
-                    <span className="mr-2 text-blue-400">→</span>
+                    <span className="mr-2 text-green-400">→</span>
                     <span>AI Directory</span>
                   </Link>
                 </li>
                 <li>
                   <Link href="/vibecoder" className="hover:text-white transition-colors flex items-center">
-                    <span className="mr-2 text-blue-400">→</span>
+                    <span className="mr-2 text-yellow-400">→</span>
                     <span>VibeCoder</span>
                   </Link>
                 </li>

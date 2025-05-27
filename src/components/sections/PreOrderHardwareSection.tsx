@@ -52,7 +52,13 @@ const PreOrderHardwareSection = () => {
     {
       name: '.AIEmail',
       description: 'The first email that speaks AI.',
-      features: ['Inbox = Agent', 'Smart replies = Intent aware', 'Built on your handle, routed by AlphaRouter'],
+      features: [
+        'Inbox = Agent',
+        'Smart replies = Intent aware',
+        'Built on your handle, routed by AlphaRouter',
+        'Yearly registration: 1yr ($99), 3yr ($249), 5yr ($399)',
+        'Includes handle reservation + AI email service'
+      ],
       icon: '📩',
       color: 'from-orange-500 to-red-500'
     }
