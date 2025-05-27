@@ -1,48 +1,40 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import MainLayout from '@/components/layout/MainLayout';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { FormField, SubmitButton } from '@/components/ui/forms';
+import { useForm, validators } from '@/hooks/useForm';
+import { HeaderText } from '@/utils/normalBold';
+import { containerVariants, itemVariants } from '@/utils/animations';
+import { ContactMethod } from '@/types';
 
 const ContactPage = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    subject: '',
-    message: '',
-    inquiryType: 'general'
-  });
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
+  const { values, errors, isSubmitting, handleChange, handleSubmit } = useForm(
+    {
+      name: '',
+      email: '',
+      company: '',
+      subject: '',
+      message: '',
+      inquiryType: 'general'
     },
+    {
+      name: { required: true },
+      email: { required: true, validator: validators.email },
+      subject: { required: true },
+      message: { required: true, validator: validators.minLength(10) }
+    }
+  );
+
+  const onSubmit = async (formData: typeof values) => {
+    // Handle form submission
+    console.log('Form submitted:', formData);
+    // Add your API call here
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6 }
-    },
-  };
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const contactMethods = [
+  const contactMethods: ContactMethod[] = [
     {
       title: "General Inquiries",
       email: "support@io.unifiedai",
@@ -168,93 +160,82 @@ const ContactPage = () => {
                   {/* Form */}
                   <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-blue-500/20">
                     <h2 className="text-3xl font-bold mb-6 text-blue-400">Send us a Message</h2>
-                    <form className="space-y-6">
+                    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
-                          <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-black/60 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                            placeholder="Your name"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
-                          <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleInputChange}
-                            className="w-full px-4 py-3 bg-black/60 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                            placeholder="your@email.com"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">Company</label>
-                        <input
-                          type="text"
-                          name="company"
-                          value={formData.company}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-black/60 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                          placeholder="Your company (optional)"
+                        <FormField
+                          label="Name"
+                          name="name"
+                          value={values.name}
+                          onChange={handleChange}
+                          placeholder="Your name"
+                          required
+                          error={errors.name}
+                        />
+                        <FormField
+                          label="Email"
+                          name="email"
+                          type="email"
+                          value={values.email}
+                          onChange={handleChange}
+                          placeholder="your@email.com"
+                          required
+                          error={errors.email}
                         />
                       </div>
 
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">Inquiry Type</label>
-                        <select
-                          name="inquiryType"
-                          value={formData.inquiryType}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-black/60 border border-white/20 rounded-lg text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                        >
-                          <option value="general">General Inquiry</option>
-                          <option value="sales">Sales & Partnerships</option>
-                          <option value="technical">Technical Support</option>
-                          <option value="press">Press & Media</option>
-                          <option value="careers">Careers</option>
-                          <option value="investor">Investor Relations</option>
-                        </select>
-                      </div>
+                      <FormField
+                        label="Company"
+                        name="company"
+                        value={values.company}
+                        onChange={handleChange}
+                        placeholder="Your company (optional)"
+                      />
 
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">Subject</label>
-                        <input
-                          type="text"
-                          name="subject"
-                          value={formData.subject}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 bg-black/60 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                          placeholder="Brief subject line"
-                        />
-                      </div>
+                      <FormField
+                        label="Inquiry Type"
+                        name="inquiryType"
+                        type="select"
+                        value={values.inquiryType}
+                        onChange={handleChange}
+                        options={[
+                          { value: 'general', label: 'General Inquiry' },
+                          { value: 'sales', label: 'Sales & Partnerships' },
+                          { value: 'technical', label: 'Technical Support' },
+                          { value: 'press', label: 'Press & Media' },
+                          { value: 'careers', label: 'Careers' },
+                          { value: 'investor', label: 'Investor Relations' }
+                        ]}
+                      />
 
-                      <div>
-                        <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
-                        <textarea
-                          name="message"
-                          value={formData.message}
-                          onChange={handleInputChange}
-                          rows={6}
-                          className="w-full px-4 py-3 bg-black/60 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
-                          placeholder="Tell us about your project, questions, or how we can help..."
-                        />
-                      </div>
+                      <FormField
+                        label="Subject"
+                        name="subject"
+                        value={values.subject}
+                        onChange={handleChange}
+                        placeholder="Brief subject line"
+                        required
+                        error={errors.subject}
+                      />
 
-                      <motion.button
-                        whileHover={{ scale: 1.02 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="w-full px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg rounded-lg shadow-lg shadow-blue-500/20"
-                        type="submit"
+                      <FormField
+                        label="Message"
+                        name="message"
+                        type="textarea"
+                        value={values.message}
+                        onChange={handleChange}
+                        placeholder="Tell us about your project, questions, or how we can help..."
+                        rows={6}
+                        required
+                        error={errors.message}
+                      />
+
+                      <SubmitButton
+                        isLoading={isSubmitting}
+                        className="w-full"
+                        size="lg"
                       >
                         Send Message
-                      </motion.button>
+                      </SubmitButton>
                     </form>
                   </GlowingCard>
 
