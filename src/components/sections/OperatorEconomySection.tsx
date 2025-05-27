@@ -131,6 +131,18 @@ const OperatorEconomySection: React.FC = () => {
             </p>
           </motion.div>
 
+          <motion.div variants={itemVariants} className="mb-8">
+            <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-amber-500/20">
+              <h3 className="text-xl font-semibold mb-4 text-amber-400 text-center">🪙 Smart Contract Flex (EVM-ready)</h3>
+              <div className="bg-black/60 rounded-lg p-4 font-mono text-sm">
+                <div className="text-amber-400">DomainRegistry.reserve("yourname.commandline", msg.sender, block.timestamp);</div>
+              </div>
+              <p className="text-center text-gray-400 mt-4 text-sm">
+                Full sovereignty. On-chain. Yours.
+              </p>
+            </GlowingCard>
+          </motion.div>
+
           <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
             <motion.button
               whileHover={{ scale: 1.05 }}

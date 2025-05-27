@@ -108,6 +108,36 @@ const WhatIsUnifiedAISection: React.FC = () => {
               Your vault is your stack.<br />
               And your agent is your OS.
             </motion.p>
+
+            <motion.div variants={itemVariants} className="mb-8">
+              <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-blue-500/20">
+                <h3 className="text-2xl font-semibold mb-6 text-blue-400 text-center">🌐 Browser Bar Commands That Slap</h3>
+                <p className="text-center text-gray-300 mb-6">
+                  🧠 You don't browse the new internet. You command it.<br />
+                  Paste these into your browser bar — and see why we don't need to explain it.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 font-mono text-sm">
+                  <div className="bg-black/60 rounded-lg p-4">
+                    <div className="text-green-400">.commandline/claim</div>
+                    <div className="text-blue-400">.agentchat/start</div>
+                    <div className="text-purple-400">.vibecoder/deploy</div>
+                  </div>
+                  <div className="bg-black/60 rounded-lg p-4">
+                    <div className="text-yellow-400">.aimarketplace/mint</div>
+                    <div className="text-red-400">.superagents/unlock</div>
+                    <div className="text-cyan-400">.aidatacenters/spinup</div>
+                  </div>
+                  <div className="bg-black/60 rounded-lg p-4">
+                    <div className="text-pink-400">.seedgpt/train</div>
+                    <div className="text-orange-400">.cryptobounties/post</div>
+                    <div className="text-indigo-400">.alpharouter/view</div>
+                  </div>
+                </div>
+                <p className="text-center text-gray-400 mt-4 text-sm">
+                  Paste one. Press Enter. Watch the future unfold.
+                </p>
+              </GlowingCard>
+            </motion.div>
           </motion.div>
         </div>
     </section>

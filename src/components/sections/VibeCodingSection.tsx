@@ -104,55 +104,55 @@ const VibeCodingSection: React.FC = () => {
                     [Vibe Coding IDE Visualization]
                   </div>
                 </div>
-                
+
                 {/* Floating UI elements to simulate the IDE */}
-                <motion.div 
+                <motion.div
                   className="absolute top-8 left-8 w-48 h-64 bg-purple-900/30 rounded-md border border-purple-500/30"
-                  animate={{ 
+                  animate={{
                     y: [0, 5, 0],
                     boxShadow: ['0 0 0px rgba(168, 85, 247, 0.3)', '0 0 15px rgba(168, 85, 247, 0.5)', '0 0 0px rgba(168, 85, 247, 0.3)']
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
                 />
-                
-                <motion.div 
+
+                <motion.div
                   className="absolute bottom-12 right-12 w-64 h-32 bg-blue-900/30 rounded-md border border-blue-500/30"
-                  animate={{ 
+                  animate={{
                     y: [0, -5, 0],
                     boxShadow: ['0 0 0px rgba(59, 130, 246, 0.3)', '0 0 15px rgba(59, 130, 246, 0.5)', '0 0 0px rgba(59, 130, 246, 0.3)']
                   }}
                   transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
                 />
-                
-                <motion.div 
+
+                <motion.div
                   className="absolute top-12 right-24 w-32 h-32 bg-green-900/30 rounded-md border border-green-500/30"
-                  animate={{ 
+                  animate={{
                     y: [0, 7, 0],
                     boxShadow: ['0 0 0px rgba(34, 197, 94, 0.3)', '0 0 15px rgba(34, 197, 94, 0.5)', '0 0 0px rgba(34, 197, 94, 0.3)']
                   }}
                   transition={{ duration: 3.5, repeat: Infinity, delay: 1 }}
                 />
-                
+
                 {/* Connection lines */}
                 <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                  <motion.path 
-                    d="M100,100 C150,150 200,150 250,100" 
-                    stroke="rgba(139, 92, 246, 0.5)" 
-                    strokeWidth="2" 
+                  <motion.path
+                    d="M100,100 C150,150 200,150 250,100"
+                    stroke="rgba(139, 92, 246, 0.5)"
+                    strokeWidth="2"
                     fill="none"
-                    animate={{ 
+                    animate={{
                       strokeDashoffset: [0, 100, 0],
                       opacity: [0.3, 0.7, 0.3]
                     }}
                     transition={{ duration: 4, repeat: Infinity }}
                     strokeDasharray="5,5"
                   />
-                  <motion.path 
-                    d="M250,100 C300,50 350,50 400,100" 
-                    stroke="rgba(59, 130, 246, 0.5)" 
-                    strokeWidth="2" 
+                  <motion.path
+                    d="M250,100 C300,50 350,50 400,100"
+                    stroke="rgba(59, 130, 246, 0.5)"
+                    strokeWidth="2"
                     fill="none"
-                    animate={{ 
+                    animate={{
                       strokeDashoffset: [0, 100, 0],
                       opacity: [0.3, 0.7, 0.3]
                     }}
@@ -198,6 +198,18 @@ const VibeCodingSection: React.FC = () => {
                 </motion.div>
               ))}
             </div>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="mb-8">
+            <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-purple-500/20">
+              <h3 className="text-xl font-semibold mb-4 text-purple-400 text-center">🔗 Hidden Route URL Hack (Just for Vibes)</h3>
+              <div className="bg-black/60 rounded-lg p-4 font-mono text-sm text-center">
+                <div className="text-purple-400">https://commandline/claim?handle=yourname&access=early&source=terminal</div>
+              </div>
+              <p className="text-center text-gray-400 mt-4 text-sm">
+                For those who know how to type fast and move first.
+              </p>
+            </GlowingCard>
           </motion.div>
 
           <motion.p
