@@ -10,6 +10,7 @@ import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 
 // Dynamically import all other sections with no SSR to improve performance
 const IOSection = dynamic(() => import('@/components/sections/IOSection'), { ssr: false });
+const AITokensITOSection = dynamic(() => import('@/components/sections/AITokensITOSection'), { ssr: false });
 const WhatIsUnifiedAISection = dynamic(() => import('@/components/sections/WhatIsUnifiedAISection'), { ssr: false });
 const AgentChatSection = dynamic(() => import('@/components/sections/AgentChatSection'), { ssr: false });
 const AlphaRouterSection = dynamic(() => import('@/components/sections/AlphaRouterSection'), { ssr: false });
@@ -47,6 +48,14 @@ export default function Home() {
         <div className="relative">
           <SpaceParticlesBackground particleCount={200} color="blue" speed="slow" depth={true} interactive={true} />
           <IOSection />
+        </div>
+      </Suspense>
+
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        {/* 2.5. AI Tokens ITO - Official Token Offering */}
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={250} color="purple" speed="medium" depth={true} interactive={true} />
+          <AITokensITOSection />
         </div>
       </Suspense>
 

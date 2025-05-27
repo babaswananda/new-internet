@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 
 const IOSection = () => {
   const [activeDefinition, setActiveDefinition] = useState(0);
@@ -36,7 +37,7 @@ const IOSection = () => {
       color: "from-blue-500 to-cyan-500"
     },
     {
-      acronym: "Input → Orchestration", 
+      acronym: "Input → Orchestration",
       tagline: "Feed it signals. Watch it command the stack.",
       description: "Every input becomes coordinated action across your entire agent ecosystem.",
       icon: "⚡",
@@ -106,16 +107,16 @@ const IOSection = () => {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl mb-6">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
-                Meet IO
+                <HeaderText>Meet IO</HeaderText>
               </span>
             </h2>
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-white">
-              Your Intelligent Operator
+            <h3 className="text-2xl md:text-3xl mb-6 text-white">
+              <HeaderText>Your Intelligent Operator</HeaderText>
             </h3>
             <p className="text-xl text-gray-300 mb-4">
-              This isn't ChatGPT. This is your sovereign AI control layer.
+              This isn't just another chatbot. This is your sovereign AI control layer.
             </p>
             <p className="text-lg text-gray-400 max-w-4xl mx-auto">
               IO manages your agents, routes your workflows, and translates your intent into execution.
@@ -137,7 +138,7 @@ const IOSection = () => {
                   >
                     <div className="text-6xl mb-6">{ioDefinitions[activeDefinition].icon}</div>
                     <h3 className={`text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r ${ioDefinitions[activeDefinition].color}`}>
-                      IO = {ioDefinitions[activeDefinition].acronym}
+                      <ProductName>IO</ProductName> = {ioDefinitions[activeDefinition].acronym}
                     </h3>
                     <p className="text-2xl text-gray-300 mb-6 font-light">
                       {ioDefinitions[activeDefinition].tagline}
@@ -153,14 +154,14 @@ const IOSection = () => {
 
           {/* Definition Grid */}
           <motion.div variants={itemVariants} className="mb-16">
-            <h3 className="text-2xl font-bold mb-8 text-center">IO is Everything You Need</h3>
+            <h3 className="text-2xl mb-8 text-center"><HeaderText>IO Is Everything You Need</HeaderText></h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
               {ioDefinitions.map((def, index) => (
                 <motion.div
                   key={index}
                   className={`p-4 rounded-lg border cursor-pointer transition-all duration-300 ${
-                    activeDefinition === index 
-                      ? 'border-white/40 bg-white/5' 
+                    activeDefinition === index
+                      ? 'border-white/40 bg-white/5'
                       : 'border-white/10 bg-black/20 hover:border-white/20'
                   }`}
                   onClick={() => setActiveDefinition(index)}
@@ -216,24 +217,24 @@ const IOSection = () => {
 
           {/* Key Differentiators */}
           <motion.div variants={itemVariants} className="mb-16">
-            <h3 className="text-2xl font-bold mb-8 text-center">IO vs. Everything Else</h3>
+            <h3 className="text-2xl mb-8 text-center"><HeaderText>IO Vs Traditional AI</HeaderText></h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-red-500/20">
-                <h4 className="text-red-400 font-semibold mb-3 text-center">❌ ChatGPT</h4>
+                <h4 className="text-red-400 font-semibold mb-3 text-center">❌ Traditional Chat</h4>
                 <p className="text-gray-300 text-sm text-center">
                   You chat. It responds. One conversation at a time. No memory, no orchestration, no control.
                 </p>
               </GlowingCard>
               <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-yellow-500/20">
-                <h4 className="text-yellow-400 font-semibold mb-3 text-center">⚠️ Other AI Platforms</h4>
+                <h4 className="text-yellow-400 font-semibold mb-3 text-center">⚠️ Legacy AI Platforms</h4>
                 <p className="text-gray-300 text-sm text-center">
                   Siloed agents. Manual workflows. No unified control layer. You're the integration.
                 </p>
               </GlowingCard>
               <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-green-500/20">
-                <h4 className="text-green-400 font-semibold mb-3 text-center">✅ IO</h4>
+                <h4 className="text-green-400 font-semibold mb-3 text-center">✅ <ProductName>IO</ProductName></h4>
                 <p className="text-gray-300 text-sm text-center">
-                  You command. IO orchestrates. Multiple agents, unified control, persistent memory, sovereign infrastructure.
+                  You command. <ProductName>IO</ProductName> orchestrates. Multiple agents, unified control, persistent memory, sovereign infrastructure.
                 </p>
               </GlowingCard>
             </div>

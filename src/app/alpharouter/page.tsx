@@ -46,7 +46,7 @@ const AlphaRouterPage = () => {
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  The Carrier of Intelligence. If OpenRouter routes models, AlphaRouter routes the internet itself.
+                  <span className="font-normal">Route.</span> <span className="font-bold">Scale.</span> <span className="font-normal">Orchestrate.</span> <span className="font-bold">Dominate.</span>
                 </p>
                 <p className="text-lg text-gray-400 max-w-3xl mx-auto">
                   AlphaRouter is the sovereign compute layer that routes intelligence across the entire Unified AI ecosystem.

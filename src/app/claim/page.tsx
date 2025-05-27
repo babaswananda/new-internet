@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import MainLayout from '@/components/layout/MainLayout';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 
 const ClaimPage = () => {
   const [handle, setHandle] = useState('');
@@ -42,13 +43,13 @@ const ClaimPage = () => {
             >
               {/* Hero Section */}
               <motion.div variants={itemVariants} className="text-center mb-16">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                <h1 className="text-5xl md:text-7xl mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
-                    Claim Your Handle
+                    <HeaderText>Claim Your Handle</HeaderText>
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  Deploy Your IO. Command Your Stack. Own Your Internet.
+                  <HeaderText>Deploy Your IO Command Your Stack Own Your Internet</HeaderText>
                 </p>
                 <p className="text-lg text-gray-400 max-w-3xl mx-auto">
                   Your handle isn't just an identity — it's your command center for the agentic internet.
@@ -135,23 +136,23 @@ const ClaimPage = () => {
                     <div>
                       <h4 className="text-lg font-semibold mb-4 text-blue-400">Your Handle Stack:</h4>
                       <ul className="space-y-2 text-gray-300 text-sm">
-                        <li>• yourname.commandline — The terminal for your internet</li>
-                        <li>• yourname.agentchat — Superapp: AI Inbox, Devices, Drops</li>
-                        <li>• yourname.aiagents — Your fleet of GPTs</li>
-                        <li>• yourname.superagents — Token-gated power agents</li>
-                        <li>• yourname.seedgpt — Precision recall, seed-based memory</li>
-                        <li>• yourname.vibecoder — No-code/pro-code IDE for agents</li>
+                        <li>• yourname<TLDName>.commandline</TLDName> — The terminal for your internet</li>
+                        <li>• yourname<TLDName>.agentchat</TLDName> — Superapp: AI Inbox, Devices, Drops</li>
+                        <li>• yourname<TLDName>.aiagents</TLDName> — Your fleet of GPTs</li>
+                        <li>• yourname<TLDName>.superagents</TLDName> — Token-gated power agents</li>
+                        <li>• yourname<TLDName>.seedgpt</TLDName> — Precision recall, seed-based memory</li>
+                        <li>• yourname<TLDName>.vibecoder</TLDName> — No-code/pro-code IDE for agents</li>
                       </ul>
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold mb-4 text-green-400">Business & Communication:</h4>
                       <ul className="space-y-2 text-gray-300 text-sm">
-                        <li>• yourname.textme / videochat / callmyagent — AI-native messaging</li>
-                        <li>• yourname.webinar — Token-gated events, LMS, drops</li>
-                        <li>• yourname.cryptobounties — Fork-to-earn bounty board</li>
-                        <li>• yourname.devagency — Dev firm in a vault</li>
-                        <li>• yourname.aimarketplace — Sell agents, prompts, stacks</li>
-                        <li>• yourname.aidatacenters — On-prem GPU/HaaS</li>
+                        <li>• yourname<TLDName>.textme</TLDName> / <TLDName>videochat</TLDName> / <TLDName>callmyagent</TLDName> — AI-native messaging</li>
+                        <li>• yourname<TLDName>.webinar</TLDName> — Token-gated events, LMS, drops</li>
+                        <li>• yourname<TLDName>.cryptobounties</TLDName> — Fork-to-earn bounty board</li>
+                        <li>• yourname<TLDName>.devagency</TLDName> — Dev firm in a vault</li>
+                        <li>• yourname<TLDName>.aimarketplace</TLDName> — Sell agents, prompts, stacks</li>
+                        <li>• yourname<TLDName>.aidatacenters</TLDName> — On-prem GPU/HaaS</li>
                       </ul>
                     </div>
                   </div>

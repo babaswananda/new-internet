@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 
 const AgentChatSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -42,9 +43,9 @@ const AgentChatSection: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold mb-8 text-center"
+            className="text-4xl md:text-6xl mb-8 text-center"
           >
-            AGENTCHAT: THE AI SUPERAPP
+            <HeaderText>AgentChat The AI Superapp</HeaderText>
           </motion.h2>
 
           <motion.p
@@ -83,10 +84,10 @@ const AgentChatSection: React.FC = () => {
               <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-green-500/20 h-full">
                 <h3 className="text-xl font-semibold mb-4 text-green-400">Communication Suite</h3>
                 <ul className="space-y-2 text-gray-300">
-                  <li>• Message via .TextMe</li>
-                  <li>• Face-call via .VideoChat</li>
-                  <li>• Stream .Webinar events + LMS</li>
-                  <li>• Enter AI Made Me Rich as native app module</li>
+                  <li>• Message via <TLDName>.TextMe</TLDName></li>
+                  <li>• Face-call via <TLDName>.VideoChat</TLDName></li>
+                  <li>• Stream <TLDName>.Webinar</TLDName> events + LMS</li>
+                  <li>• Enter <ProductName>AI Made Me Rich</ProductName> as native app module</li>
                 </ul>
               </GlowingCard>
             </motion.div>
@@ -94,7 +95,7 @@ const AgentChatSection: React.FC = () => {
 
           <motion.div variants={itemVariants} className="text-center mb-8">
             <p className="text-xl md:text-2xl font-bold mb-4">
-              All flows route through AgentChat — your real-time Agentic Control Center.
+              All flows route through <ProductName>Agent Chat</ProductName> — your real-time Agentic Control Center.
             </p>
           </motion.div>
 

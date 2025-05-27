@@ -4,6 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import MainLayout from '@/components/layout/MainLayout';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { HeaderText } from '@/utils/normalBold';
+import { TLDName, ProductName } from '@/utils/normalBold';
 
 const PressPage = () => {
   const containerVariants = {
@@ -29,19 +31,19 @@ const PressPage = () => {
   const pressReleases = [
     {
       date: "December 15, 2024",
-      title: "Unified AI Raises $50M Series A to Build the Agentic Internet",
-      excerpt: "Led by Andreessen Horowitz, funding will accelerate development of ION protocol and agent infrastructure.",
+      title: "<ProductName>Unified AI</ProductName> Raises $50M Series A to Build the Agentic Internet",
+      excerpt: "Led by Andreessen Horowitz, funding will accelerate development of <ProductName>ION</ProductName> protocol and agent infrastructure.",
       category: "Funding"
     },
     {
       date: "November 28, 2024",
-      title: "Unified AI Launches ION Protocol: The First Ontology Network for AI Agents",
+      title: "<ProductName>Unified AI</ProductName> Launches <ProductName>ION</ProductName> Protocol: The First Ontology Network for AI Agents",
       excerpt: "Revolutionary protocol enables semantic understanding and intelligent routing between autonomous agents.",
       category: "Product Launch"
     },
     {
       date: "October 10, 2024",
-      title: "AgentChat Superapp Reaches 100,000 Active Developers",
+      title: "<ProductName>Agent Chat</ProductName> Superapp Reaches 100,000 Active Developers",
       excerpt: "Platform milestone demonstrates growing adoption of agent-first development paradigm.",
       category: "Milestone"
     },
@@ -83,13 +85,13 @@ const PressPage = () => {
   const coverage = [
     {
       outlet: "TechCrunch",
-      headline: "Unified AI's Vision for the Agentic Internet Could Reshape How AI Systems Communicate",
+      headline: "<ProductName>Unified AI</ProductName>'s Vision for the Agentic Internet Could Reshape How AI Systems Communicate",
       date: "Dec 16, 2024",
       type: "Feature Article"
     },
     {
       outlet: "The Information",
-      headline: "Inside Unified AI's $50M Bet on Agent Infrastructure",
+      headline: "Inside <ProductName>Unified AI</ProductName>'s $50M Bet on Agent Infrastructure",
       date: "Dec 15, 2024",
       type: "Exclusive"
     },
@@ -101,7 +103,7 @@ const PressPage = () => {
     },
     {
       outlet: "VentureBeat",
-      headline: "Why Developers Are Flocking to Unified AI's Agent Platform",
+      headline: "Why Developers Are Flocking to <ProductName>Unified AI</ProductName>'s Agent Platform",
       date: "Oct 12, 2024",
       type: "Analysis"
     }
@@ -120,13 +122,13 @@ const PressPage = () => {
             >
               {/* Hero Section */}
               <motion.div variants={itemVariants} className="text-center mb-16">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">
+                <h1 className="text-5xl md:text-7xl mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500">
-                    Press & Media
+                    <HeaderText>Press And Media</HeaderText>
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  Latest News & Resources
+                  <HeaderText>Latest News And Resources</HeaderText>
                 </p>
                 <p className="text-lg text-gray-400 max-w-4xl mx-auto">
                   Stay updated on Unified AI's journey to build the infrastructure for the agentic internet.
@@ -137,7 +139,7 @@ const PressPage = () => {
               {/* Press Contact */}
               <motion.div variants={itemVariants} className="mb-16">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-yellow-500/20">
-                  <h2 className="text-3xl font-bold mb-6 text-yellow-400 text-center">Press Contact</h2>
+                  <h2 className="text-3xl mb-6 text-yellow-400 text-center"><HeaderText>Press Contact</HeaderText></h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div className="text-center">
                       <h3 className="text-xl font-semibold mb-4 text-white">Media Inquiries</h3>

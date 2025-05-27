@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
+import { HeaderText } from '@/utils/normalBold';
 import Link from 'next/link';
 
 const HeroSection: React.FC = () => {
@@ -124,11 +125,11 @@ const HeroSection: React.FC = () => {
   };
 
   const keyPoints = [
-    { text: "IO: Your Intelligent Operator", color: "from-blue-500 to-purple-500" },
-    { text: "Input → Orchestration", color: "from-purple-500 to-pink-500" },
-    { text: "You don't chat. You command.", color: "from-pink-500 to-red-500" },
-    { text: "IO is what ChatGPT wants to be when it grows up.", color: "from-red-500 to-orange-500" },
-    { text: "The agent that runs your agents.", color: "from-orange-500 to-blue-500" },
+    { text: "IO Your Intelligent Operator", color: "from-blue-500 to-purple-500" },
+    { text: "Discover Build Deploy Monetize", color: "from-purple-500 to-pink-500" },
+    { text: "You Don't Chat You Command", color: "from-pink-500 to-red-500" },
+    { text: "AI Tokens ITO 72-Hour Drop Window", color: "from-red-500 to-orange-500" },
+    { text: "Pre-Orders AIPhone AIPods AIGlasses", color: "from-orange-500 to-blue-500" },
   ];
 
   return (
@@ -234,14 +235,14 @@ const HeroSection: React.FC = () => {
 
           <motion.h1
             variants={itemVariants}
-            className="text-6xl md:text-8xl font-bold tracking-wider mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-white"
+            className="text-6xl md:text-8xl tracking-wider mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-white"
           >
-            UNIFIED AI I/O
+            <HeaderText>Unified AI I/O</HeaderText>
             <motion.span
               variants={itemVariants}
-              className="block text-2xl md:text-3xl mt-4 font-light text-white"
+              className="block text-2xl md:text-3xl mt-4 text-white"
             >
-              The New Map of the New Internet
+              <HeaderText>The New Map Of The New Internet</HeaderText>
             </motion.span>
           </motion.h1>
 
@@ -261,7 +262,7 @@ const HeroSection: React.FC = () => {
                 >
                   <div className={`inline-block bg-gradient-to-r ${keyPoints[activeIndex].color} p-[1px] rounded-lg`}>
                     <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg">
-                      <p className="text-2xl md:text-3xl">{keyPoints[activeIndex].text}</p>
+                      <p className="text-2xl md:text-3xl"><HeaderText>{keyPoints[activeIndex].text}</HeaderText></p>
                     </div>
                   </div>
                 </motion.div>

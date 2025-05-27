@@ -4,6 +4,7 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
+import { TLDName, ProductName } from '@/utils/normalBold';
 
 // Subscription tiers for AIVA Chat (Advanced Intelligent Virtual Assistant)
 const subscriptionTiers = [
@@ -146,7 +147,7 @@ const AIVAChatSection: React.FC = () => {
             variants={itemVariants}
             className="text-4xl md:text-5xl font-bold mb-4 text-center"
           >
-            AIVA Chat Integration
+            <ProductName>AIVA Chat</ProductName> Integration
           </motion.h2>
 
           <motion.p

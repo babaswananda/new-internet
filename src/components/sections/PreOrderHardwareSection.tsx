@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { HeaderText } from '@/utils/normalBold';
 import Link from 'next/link';
 
 const PreOrderHardwareSection = () => {
@@ -69,13 +70,13 @@ const PreOrderHardwareSection = () => {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <h2 className="text-4xl md:text-6xl mb-6">
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-red-500 to-pink-500">
-                🔮 PRE-ORDER
+                <HeaderText>🔮 Pre-Order</HeaderText>
               </span>
             </h2>
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 text-white">
-              THE HARDWARE LAYER OF THE AGENTIC INTERNET
+            <h3 className="text-2xl md:text-3xl mb-6 text-white">
+              <HeaderText>The Hardware Layer Of The Agentic Internet</HeaderText>
             </h3>
             <p className="text-xl text-gray-300 mb-4">
               Your software now comes with a body.
@@ -123,7 +124,7 @@ const PreOrderHardwareSection = () => {
           {/* All Devices Include */}
           <motion.div variants={itemVariants} className="mb-16">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-yellow-500/20">
-              <h3 className="text-2xl font-semibold mb-6 text-yellow-400 text-center">⚙️ ALL DEVICES INCLUDE:</h3>
+              <h3 className="text-2xl mb-6 text-yellow-400 text-center"><HeaderText>⚙️ All Devices Include</HeaderText></h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="flex items-center text-gray-300">
                   <span className="mr-3 text-blue-400">🔐</span>
@@ -156,7 +157,7 @@ const PreOrderHardwareSection = () => {
           {/* Live Pre-Order Drops */}
           <motion.div variants={itemVariants} className="mb-16">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-purple-500/20">
-              <h3 className="text-2xl font-semibold mb-6 text-purple-400 text-center">🧾 LIVE PRE-ORDER DROPS</h3>
+              <h3 className="text-2xl mb-6 text-purple-400 text-center"><HeaderText>🧾 Live Pre-Order Drops</HeaderText></h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-center">

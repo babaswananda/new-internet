@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 
 const AIDirectoryMarketplaceSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -42,9 +43,9 @@ const AIDirectoryMarketplaceSection: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold mb-8 text-center"
+            className="text-4xl md:text-6xl mb-8 text-center"
           >
-            .AIDIRECTORY + .AIMARKETPLACE
+            <HeaderText>AI Directory Plus AI Marketplace</HeaderText>
           </motion.h2>
 
           <motion.p
@@ -57,7 +58,7 @@ const AIDirectoryMarketplaceSection: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
             <motion.div variants={itemVariants}>
               <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20">
-                <h3 className="text-xl font-semibold mb-4 text-blue-400">.AIDirectory</h3>
+                <h3 className="text-xl font-semibold mb-4 text-blue-400"><TLDName>.AIDirectory</TLDName></h3>
                 <ul className="space-y-2 text-gray-300">
                   <li>• Discover any agent, any function, any creator</li>
                   <li>• Search by stack, usage, model, license, vault</li>
@@ -70,7 +71,7 @@ const AIDirectoryMarketplaceSection: React.FC = () => {
 
             <motion.div variants={itemVariants}>
               <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-purple-500/20">
-                <h3 className="text-xl font-semibold mb-4 text-purple-400">.AIMarketplace</h3>
+                <h3 className="text-xl font-semibold mb-4 text-purple-400"><TLDName>.AIMarketplace</TLDName></h3>
                 <ul className="space-y-2 text-gray-300">
                   <li>• Sell agents, tools, templates, prompt packs</li>
                   <li>• Token-gate drops and exclusive releases</li>
@@ -84,7 +85,7 @@ const AIDirectoryMarketplaceSection: React.FC = () => {
 
           <motion.div variants={itemVariants} className="mb-12">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
-              <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">The AI Economy Hub</h3>
+              <h3 className="text-2xl mb-6 text-green-400 text-center"><HeaderText>The AI Economy Hub</HeaderText></h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <div className="text-4xl mb-4">🛍️</div>

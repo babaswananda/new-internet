@@ -61,7 +61,7 @@ export const CardSpotlight = ({
           background: useMotionTemplate`
             radial-gradient(
               650px circle at ${mouseX}px ${mouseY}px,
-              rgba(59, 130, 246, 0.15),
+              rgba(139, 92, 246, 0.15),
               transparent 80%
             )
           `,
@@ -72,8 +72,8 @@ export const CardSpotlight = ({
             animationSpeed={5}
             containerClassName="bg-transparent absolute inset-0 pointer-events-none"
             colors={[
-              [59, 130, 246],
               [139, 92, 246],
+              [236, 72, 153],
             ]}
             dotSize={3}
           />
