@@ -41,7 +41,6 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
         { href: '/textme', label: '.TextMe', color: 'text-green-400' },
         { href: '/videochat', label: '.VideoChat', color: 'text-blue-400' },
         { href: '/webinar', label: '.Webinar', color: 'text-orange-400' },
-        { href: '/social-webinar', label: 'Social.Webinar', color: 'text-red-400' },
         { href: '/aimademerich', label: 'AIMadeMeRich', color: 'text-yellow-400' },
         { href: '/learn-aimademerich', label: 'Learn.AIMadeMeRich', color: 'text-green-400' }
       ]

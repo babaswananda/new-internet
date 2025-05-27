@@ -1,35 +1,16 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import MainLayout from '@/components/layout/MainLayout';
 import { GlowingCard } from '@/components/ui/glowing-card';
 import { HeaderText, TLDName } from '@/utils/normalBold';
+import { containerVariants, itemVariants } from '@/utils/animations';
+import { FeatureCard } from '@/components/ui/cards';
 
 const WebinarPage = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
-      }
-    },
-  };
+  const [activeTab, setActiveTab] = useState('overview');
 
   const features = [
     {
@@ -38,13 +19,13 @@ const WebinarPage = () => {
       description: "Control access with AI Tokens or custom requirements"
     },
     {
-      icon: "🧠", 
+      icon: "🧠",
       title: "AI Co-hosts",
       description: "Live agents assist with Q&A and audience engagement"
     },
     {
       icon: "📝",
-      title: "Live Interaction", 
+      title: "Live Interaction",
       description: "Real-time notes, polls, and action triggers"
     },
     {
@@ -66,7 +47,7 @@ const WebinarPage = () => {
       icon: "📊"
     },
     {
-      title: "Protocol Onboarding", 
+      title: "Protocol Onboarding",
       description: "Educational sessions for new users and developers",
       icon: "🚀"
     },
@@ -109,7 +90,7 @@ const WebinarPage = () => {
                   <HeaderText>Broadcast Protocol For Token-Gated Events</HeaderText>
                 </p>
                 <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-8">
-                  A full-stack webinar + LMS layer natively built into the Unified AI OS. 
+                  A full-stack webinar + LMS layer natively built into the Unified AI OS.
                   Stream events, drops, training, and campaigns — powered by tokens and agents.
                 </p>
                 <div className="bg-black/60 rounded-lg p-4 font-mono text-sm text-center max-w-2xl mx-auto">
@@ -203,20 +184,36 @@ const WebinarPage = () => {
 
               {/* CTA Section */}
               <motion.div variants={itemVariants} className="text-center">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-12 py-6 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold text-2xl rounded-lg shadow-lg shadow-orange-500/20 mr-4"
-                >
-                  CREATE WEBINAR
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-12 py-6 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-2xl rounded-lg hover:bg-white/10 transition-colors"
-                >
-                  BROWSE EVENTS
-                </motion.button>
+                <div className="mb-8">
+                  <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-purple-500/20 max-w-2xl mx-auto">
+                    <h3 className="text-xl font-bold text-purple-400 mb-4">🚀 Full Platform Available</h3>
+                    <p className="text-gray-300 mb-4">
+                      Access the complete webinar platform with live streaming, token gating, and AI features.
+                    </p>
+                    <p className="text-sm text-gray-400">
+                      <strong>Powered by Unified AI</strong> - Integrated with our protocol ecosystem
+                    </p>
+                  </GlowingCard>
+                </div>
+
+                <div className="flex flex-col md:flex-row justify-center gap-4">
+                  <Link href="http://localhost:3003" target="_blank">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-12 py-6 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold text-2xl rounded-lg shadow-lg shadow-orange-500/20"
+                    >
+                      🎥 LAUNCH PLATFORM
+                    </motion.button>
+                  </Link>
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-12 py-6 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-2xl rounded-lg hover:bg-white/10 transition-colors"
+                  >
+                    📖 VIEW DOCS
+                  </motion.button>
+                </div>
               </motion.div>
             </motion.div>
           </div>

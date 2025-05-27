@@ -87,7 +87,7 @@ const AIMadeMeRichPage = () => {
       <div className="min-h-screen relative">
         {/* Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-green-900/20 via-black to-yellow-900/20"></div>
-        
+
         <section className="relative z-10 py-24">
           <div className="container mx-auto px-4">
             <motion.div
@@ -107,7 +107,7 @@ const AIMadeMeRichPage = () => {
                   The viral feed showcase for the Agentic Internet
                 </p>
                 <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-                  Share your AI success stories, connect with builders, and discover the strategies 
+                  Share your AI success stories, connect with builders, and discover the strategies
                   that are generating real wealth in the new economy.
                 </p>
               </motion.div>
@@ -266,17 +266,31 @@ const AIMadeMeRichPage = () => {
               <motion.div variants={itemVariants} className="mt-16 text-center">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
                   <h3 className="text-2xl font-bold text-white mb-4">Ready to Share Your Success?</h3>
-                  <p className="text-gray-300 mb-6">
+                  <p className="text-gray-300 mb-4">
                     Join thousands of builders sharing their AI-powered wealth creation strategies.
                   </p>
+                  <div className="mb-6">
+                    <p className="text-sm text-gray-400">
+                      <strong>Powered by Unified AI</strong> - Full social platform available
+                    </p>
+                  </div>
                   <div className="flex flex-col md:flex-row justify-center gap-4">
-                    <Link href="/aimademerich/join">
+                    <Link href="http://localhost:3004" target="_blank">
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="px-8 py-4 bg-gradient-to-r from-green-500 to-yellow-500 text-white font-bold text-lg rounded-lg"
                       >
-                        💰 JOIN THE COMMUNITY
+                        🚀 LAUNCH PLATFORM
+                      </motion.button>
+                    </Link>
+                    <Link href="/learn-aimademerich">
+                      <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg rounded-lg"
+                      >
+                        🎓 LEARN ACADEMY
                       </motion.button>
                     </Link>
                     <Link href="/claim">
@@ -285,7 +299,7 @@ const AIMadeMeRichPage = () => {
                         whileTap={{ scale: 0.95 }}
                         className="px-8 py-4 bg-white/5 border border-white/20 text-white font-bold text-lg rounded-lg hover:bg-white/10 transition-colors"
                       >
-                        🔖 CLAIM YOUR HANDLE
+                        🔖 CLAIM HANDLE
                       </motion.button>
                     </Link>
                   </div>

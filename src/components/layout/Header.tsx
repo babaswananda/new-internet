@@ -46,7 +46,6 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     { href: '/textme', label: '.TextMe', description: 'Messaging protocol of the Agentic Internet', color: 'text-green-400' },
     { href: '/videochat', label: '.VideoChat', description: 'Face-to-face agent intelligence', color: 'text-blue-400' },
     { href: '/webinar', label: '.Webinar', description: 'Token-gated events and broadcasts', color: 'text-orange-400' },
-    { href: '/social-webinar', label: 'Social.Webinar', description: 'Live webinar platform with token gating', color: 'text-red-400' },
     { href: '/aimademerich', label: 'AIMadeMeRich', description: 'Viral feed showcase for AI success stories', color: 'text-yellow-400' },
     { href: '/learn-aimademerich', label: 'Learn.AIMadeMeRich', description: 'Protocol academy for operators', color: 'text-green-400' }
   ];
