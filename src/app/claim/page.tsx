@@ -9,6 +9,56 @@ import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
 const ClaimPage = () => {
   const [handle, setHandle] = useState('');
   const [email, setEmail] = useState('');
+  const [selectedHandleType, setSelectedHandleType] = useState('human');
+  const [isAvailable, setIsAvailable] = useState<boolean | null>(null);
+  const [isChecking, setIsChecking] = useState(false);
+
+  const handleTypes = [
+    {
+      id: 'human',
+      icon: '🧑‍💻',
+      title: 'Human Handles',
+      description: 'For developers and operators',
+      examples: ['.aideveloper', '.devagency', '.commandline'],
+      pricing: '$50-$500+',
+      color: 'from-blue-500 to-cyan-500'
+    },
+    {
+      id: 'agent',
+      icon: '🤖',
+      title: 'Agent Handles',
+      description: 'For AI agents and bots',
+      examples: ['.aiagent', '.aichatbot', '.botstack'],
+      pricing: '$1-$5',
+      color: 'from-purple-500 to-pink-500'
+    },
+    {
+      id: 'endpoint',
+      icon: '🧬',
+      title: 'Endpoint Handles',
+      description: 'For infrastructure components',
+      examples: ['.router', '.endpoint', '.nodeid'],
+      pricing: '$0.01/hr',
+      color: 'from-green-500 to-teal-500'
+    }
+  ];
+
+  // Simulate availability check
+  const checkAvailability = async (handleName: string) => {
+    if (!handleName.trim()) {
+      setIsAvailable(null);
+      return;
+    }
+
+    setIsChecking(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 1000));
+
+    // Simple simulation - handles starting with 'test' are unavailable
+    const available = !handleName.toLowerCase().startsWith('test');
+    setIsAvailable(available);
+    setIsChecking(false);
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -45,16 +95,90 @@ const ClaimPage = () => {
               <motion.div variants={itemVariants} className="text-center mb-16">
                 <h1 className="text-5xl md:text-7xl mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
-                    <HeaderText>Claim Your Handle</HeaderText>
+                    <HeaderText>Claim Your Handle. Activate Your Vault.</HeaderText>
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  <HeaderText>Deploy Your IO Command Your Stack Own Your Internet</HeaderText>
+                  <HeaderText>Your identity in the agentic internet starts here.</HeaderText>
                 </p>
-                <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+                <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-8">
                   Your handle isn't just an identity — it's your command center for the agentic internet.
                   Deploy IO, orchestrate agents, and own your digital sovereignty.
                 </p>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg rounded-lg shadow-lg shadow-blue-500/20"
+                  onClick={() => document.getElementById('claim-form')?.scrollIntoView({ behavior: 'smooth' })}
+                >
+                  Get Started
+                </motion.button>
+              </motion.div>
+
+              {/* How It Works */}
+              <motion.div variants={itemVariants} className="mb-16">
+                <h2 className="text-3xl font-bold mb-8 text-center">
+                  <HeaderText>How It Works</HeaderText>
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                  <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20 text-center">
+                    <div className="text-4xl mb-4">1️⃣</div>
+                    <h3 className="text-xl font-semibold mb-4 text-blue-400">Choose Your Handle Type</h3>
+                    <p className="text-gray-300 text-sm">Human, Agent, or Endpoint — each designed for different use cases in the agentic internet.</p>
+                  </GlowingCard>
+
+                  <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-purple-500/20 text-center">
+                    <div className="text-4xl mb-4">2️⃣</div>
+                    <h3 className="text-xl font-semibold mb-4 text-purple-400">Mint to Vault</h3>
+                    <p className="text-gray-300 text-sm">Secure your handle on-chain with vault-based ownership and permanent protocol identity.</p>
+                  </GlowingCard>
+
+                  <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-green-500/20 text-center">
+                    <div className="text-4xl mb-4">3️⃣</div>
+                    <h3 className="text-xl font-semibold mb-4 text-green-400">Deploy Agent or Product</h3>
+                    <p className="text-gray-300 text-sm">Utilize your handle within the ecosystem — launch agents, join communities, pre-order hardware.</p>
+                  </GlowingCard>
+                </div>
+              </motion.div>
+
+              {/* Handle Types Explained */}
+              <motion.div variants={itemVariants} className="mb-16">
+                <h2 className="text-3xl font-bold mb-8 text-center">
+                  <HeaderText>Handle Types Explained</HeaderText>
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {handleTypes.map((type) => (
+                    <GlowingCard
+                      key={type.id}
+                      className={`bg-black/30 backdrop-blur-sm p-6 rounded-lg border cursor-pointer transition-all duration-300 ${
+                        selectedHandleType === type.id
+                          ? 'border-white/50 bg-white/5'
+                          : 'border-white/10 hover:border-white/20'
+                      }`}
+                      onClick={() => setSelectedHandleType(type.id)}
+                    >
+                      <div className="text-center mb-4">
+                        <div className="text-3xl mb-2">{type.icon}</div>
+                        <h3 className={`text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r ${type.color}`}>
+                          {type.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm">{type.description}</p>
+                      </div>
+                      <div className="space-y-2 mb-4">
+                        {type.examples.map((example, idx) => (
+                          <div key={idx} className="text-center">
+                            <TLDName>{example}</TLDName>
+                          </div>
+                        ))}
+                      </div>
+                      <div className="text-center">
+                        <div className={`inline-block px-3 py-1 rounded-full text-xs font-bold bg-gradient-to-r ${type.color} text-white`}>
+                          {type.pricing}
+                        </div>
+                      </div>
+                    </GlowingCard>
+                  ))}
+                </div>
               </motion.div>
 
               {/* Developer Mode */}
@@ -78,7 +202,7 @@ const ClaimPage = () => {
               </motion.div>
 
               {/* Claim Form */}
-              <motion.div variants={itemVariants} className="mb-12">
+              <motion.div variants={itemVariants} className="mb-12" id="claim-form">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-blue-500/20">
                   <h3 className="text-2xl font-semibold mb-6 text-blue-400 text-center">Claim Your Handle</h3>
                   <form className="space-y-6">
@@ -90,17 +214,36 @@ const ClaimPage = () => {
                         <input
                           type="text"
                           value={handle}
-                          onChange={(e) => setHandle(e.target.value)}
+                          onChange={(e) => {
+                            setHandle(e.target.value);
+                            checkAvailability(e.target.value);
+                          }}
                           placeholder="yourname"
                           className="w-full px-4 py-3 bg-black/60 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                         />
-                        <div className="absolute right-3 top-3 text-gray-400 text-sm">
-                          .commandline
+                        <div className="absolute right-3 top-3 flex items-center space-x-2">
+                          {isChecking && (
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-400"></div>
+                          )}
+                          {isAvailable === true && (
+                            <div className="text-green-400 text-sm">✓ Available</div>
+                          )}
+                          {isAvailable === false && (
+                            <div className="text-red-400 text-sm">✗ Taken</div>
+                          )}
+                          <div className="text-gray-400 text-sm">
+                            .commandline
+                          </div>
                         </div>
                       </div>
                       <p className="text-xs text-gray-400 mt-2">
                         This will be your universal handle across all Unified AI services
                       </p>
+                      {isAvailable === false && (
+                        <p className="text-xs text-red-400 mt-1">
+                          This handle is already taken. Try a different one.
+                        </p>
+                      )}
                     </div>
 
                     <div>
@@ -155,6 +298,102 @@ const ClaimPage = () => {
                         <li>• yourname<TLDName>.aidatacenters</TLDName> — On-prem GPU/HaaS</li>
                       </ul>
                     </div>
+                  </div>
+                </GlowingCard>
+              </motion.div>
+
+              {/* Vault Setup */}
+              <motion.div variants={itemVariants} className="mb-12">
+                <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-orange-500/20">
+                  <h3 className="text-2xl font-semibold mb-6 text-orange-400 text-center">🔐 Vault Setup</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                      <h4 className="text-lg font-semibold mb-4 text-white">Connect Existing Wallet</h4>
+                      <p className="text-gray-300 text-sm mb-4">
+                        Link your existing wallet to your new vault for seamless asset management.
+                      </p>
+                      <button className="w-full px-4 py-2 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-lg">
+                        Connect Wallet
+                      </button>
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold mb-4 text-white">Create New Vault</h4>
+                      <p className="text-gray-300 text-sm mb-4">
+                        Generate a new vault with built-in identity management and access controls.
+                      </p>
+                      <button className="w-full px-4 py-2 bg-white/10 border border-white/20 text-white font-bold rounded-lg hover:bg-white/20 transition-colors">
+                        Create Vault
+                      </button>
+                    </div>
+                  </div>
+                  <div className="mt-6 p-4 bg-orange-500/10 border border-orange-500/30 rounded-lg">
+                    <h4 className="font-semibold text-white mb-2">Vault Features:</h4>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-300">
+                      <div>• Asset storage & management</div>
+                      <div>• Identity verification</div>
+                      <div>• Access control systems</div>
+                    </div>
+                  </div>
+                </GlowingCard>
+              </motion.div>
+
+              {/* Post-Claim Actions */}
+              <motion.div variants={itemVariants} className="mb-12">
+                <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-cyan-500/20">
+                  <h3 className="text-2xl font-semibold mb-6 text-cyan-400 text-center">🚀 What's Next?</h3>
+                  <p className="text-center text-gray-300 mb-8">
+                    Once you claim your handle, here's what you can do:
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div className="text-center p-4 bg-cyan-500/10 rounded-lg">
+                      <div className="text-3xl mb-2">🤖</div>
+                      <h4 className="font-semibold text-white mb-2">Launch an AI Agent</h4>
+                      <p className="text-gray-300 text-xs">Deploy your first intelligent operator</p>
+                    </div>
+                    <div className="text-center p-4 bg-purple-500/10 rounded-lg">
+                      <div className="text-3xl mb-2">🪙</div>
+                      <h4 className="font-semibold text-white mb-2">Join Meme Coin Community</h4>
+                      <p className="text-gray-300 text-xs">Participate in token economies</p>
+                    </div>
+                    <div className="text-center p-4 bg-orange-500/10 rounded-lg">
+                      <div className="text-3xl mb-2">📱</div>
+                      <h4 className="font-semibold text-white mb-2">Pre-order Hardware</h4>
+                      <p className="text-gray-300 text-xs">Reserve .AIPhone, .AIPods, .AIGlasses</p>
+                    </div>
+                    <div className="text-center p-4 bg-green-500/10 rounded-lg">
+                      <div className="text-3xl mb-2">⚙️</div>
+                      <h4 className="font-semibold text-white mb-2">Explore Automation</h4>
+                      <p className="text-gray-300 text-xs">Build workflows and integrations</p>
+                    </div>
+                  </div>
+                </GlowingCard>
+              </motion.div>
+
+              {/* Bulk Registration Portal Access */}
+              <motion.div variants={itemVariants} className="mb-12">
+                <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-yellow-500/20">
+                  <h3 className="text-2xl font-semibold mb-6 text-yellow-400 text-center">🛠️ Need Bulk Registration?</h3>
+                  <div className="text-center">
+                    <p className="text-gray-300 mb-6">
+                      For DevOps teams and protocol operators who need to register multiple handles at once.
+                    </p>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-sm">
+                      <div className="flex items-center justify-center">
+                        <span className="mr-2 text-green-400">•</span>
+                        <span className="text-gray-300">CSV Upload Support</span>
+                      </div>
+                      <div className="flex items-center justify-center">
+                        <span className="mr-2 text-blue-400">•</span>
+                        <span className="text-gray-300">Real-Time Validation</span>
+                      </div>
+                      <div className="flex items-center justify-center">
+                        <span className="mr-2 text-purple-400">•</span>
+                        <span className="text-gray-300">API Access Available</span>
+                      </div>
+                    </div>
+                    <button className="px-8 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-black font-bold rounded-lg shadow-lg shadow-yellow-500/20">
+                      Access Bulk Portal
+                    </button>
                   </div>
                 </GlowingCard>
               </motion.div>

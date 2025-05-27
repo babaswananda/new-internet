@@ -108,9 +108,10 @@ export default function TokenFlowPage() {
             >
               {/* Hero Section */}
               <motion.div variants={itemVariants} className="text-center mb-16">
-                <h1 className="text-5xl md:text-7xl font-bold mb-6">
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-purple-500">
-                    🧭 Token Flow Mastermap
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 relative">
+                  <span className="text-4xl md:text-6xl relative z-20 mr-4">🧭</span>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 relative z-10">
+                    Token Flow Mastermap
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
@@ -156,8 +157,9 @@ export default function TokenFlowPage() {
 
               {/* Token Roles */}
               <motion.div variants={itemVariants} className="mb-16">
-                <h2 className="text-3xl font-bold mb-8 text-center">
-                  <HeaderText>🪙 Token Roles Summary</HeaderText>
+                <h2 className="text-3xl font-bold mb-8 text-center relative">
+                  <span className="text-2xl relative z-20 mr-3">🪙</span>
+                  <HeaderText>Token Roles Summary</HeaderText>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                   {tokenRoles.map((token, index) => (
@@ -183,8 +185,9 @@ export default function TokenFlowPage() {
 
               {/* Circular Economy */}
               <motion.div variants={itemVariants} className="mb-16">
-                <h2 className="text-3xl font-bold mb-8 text-center">
-                  <HeaderText>🔁 Circular Economy Paths</HeaderText>
+                <h2 className="text-3xl font-bold mb-8 text-center relative">
+                  <span className="text-2xl relative z-20 mr-3">🔁</span>
+                  <HeaderText>Circular Economy Paths</HeaderText>
                 </h2>
                 <div className="overflow-x-auto">
                   <table className="w-full bg-black/30 backdrop-blur-sm rounded-lg border border-white/10">
