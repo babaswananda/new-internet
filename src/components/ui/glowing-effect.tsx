@@ -26,11 +26,7 @@ const GlowingEffect = memo(
     glow = true,
     className,
     movementDuration = 2,
-<<<<<<< HEAD
     borderWidth = 1,
-=======
-    borderWidth = 3,
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
     disabled = false,
   }: GlowingEffectProps) => {
     const containerRef = useRef<HTMLDivElement>(null);

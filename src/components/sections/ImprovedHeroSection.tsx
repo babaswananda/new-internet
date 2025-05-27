@@ -33,7 +33,6 @@ const ImprovedHeroSectionComponent: React.FC = () => {
   }, []);
 
   const heroContentSets = [
-<<<<<<< HEAD
     {
       // Slide 1: The Core Message
       heading: "UNIFIED AI",
@@ -117,85 +116,13 @@ const ImprovedHeroSectionComponent: React.FC = () => {
   const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
   const itemVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5 } } };
   const textFadeVariants = {
-=======
-    {
-      heading: "UNIFIED AI I/O",
-      subtitle: "The New Map of the New Internet",
-      bubbleText: "AI is the fuel.",
-      bubbleColor: "from-blue-500 to-purple-500",
-    },
-    {
-      heading: "PROTOCOL-GRADE",
-      subtitle: "Infrastructure for AI",
-      bubbleText: "Input is Ownership.",
-      bubbleColor: "from-purple-500 to-pink-500",
-    },
-    {
-      heading: "AGENT ECONOMY",
-      subtitle: "Powering the Next Generation",
-      bubbleText: "Operators are Infrastructure.",
-      bubbleColor: "from-pink-500 to-red-500",
-    },
-    {
-      heading: "THE NEW INTERNET",
-      subtitle: "Built on AgentOS",
-      bubbleText: "AgentOS is how it all runs.",
-      bubbleColor: "from-red-500 to-blue-500",
-    }
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % heroContentSets.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [heroContentSets.length]);
-
-  // Static features grid data - Emojis added
-  const features = [
-    {
-      title: "A2A Protocol",
-      description: "Agent-to-Agent communication protocol for seamless AI collaboration.",
-      emoji: "🔗",
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "Model Context Protocol",
-      description: "Seamlessly connect and operate across different AI model contexts.",
-      emoji: "🧠",
-      color: "from-purple-500 to-pink-500"
-    },
-    {
-      title: "Operator Economy",
-      description: "Participate in the new economy of AI operators and agents.",
-      emoji: "💰",
-      color: "from-amber-500 to-orange-500"
-    },
-    {
-      title: "Vibe Coding",
-      description: "Create generative art and vibe coding projects with AI-powered tools.",
-      emoji: "✨",
-      color: "from-green-500 to-teal-500"
-    }
-  ];
-
-  const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
-  const itemVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5 } } };
-  const textFadeVariants = {
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
     exit: { opacity: 0, y: -10, transition: { duration: 0.3 } }
   };
-<<<<<<< HEAD
   const bubbleFadeVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } },
-=======
-  const bubbleFadeVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } },
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
     exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
   };
   // Removed barIconVariants as it's not used for dot-dash
@@ -231,15 +158,9 @@ const ImprovedHeroSectionComponent: React.FC = () => {
           </motion.div>
 
           {/* Rotating Text Block (Heading, Subtitle, and Highlight Bubble) */}
-<<<<<<< HEAD
           <motion.div variants={itemVariants} className="mb-8" style={getParallaxStyle(0.8)}>
             <AnimatePresence mode="wait">
               <motion.div
-=======
-          <motion.div variants={itemVariants} className="mb-8" style={getParallaxStyle(0.8)}>
-            <AnimatePresence mode="wait">
-              <motion.div
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
                 key={`content-set-${activeIndex}`}
                 initial="hidden"
                 animate="visible"
@@ -253,25 +174,16 @@ const ImprovedHeroSectionComponent: React.FC = () => {
                 </motion.p>
                 <motion.div
                   variants={bubbleFadeVariants}
-<<<<<<< HEAD
                   className="relative mt-4"
                 >
                   <div className="inline-block">
                     <div className={`bg-gradient-to-r ${heroContentSets[activeIndex].bubbleColor} p-[1px] rounded-lg`}>
                       <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg">
-=======
-                  className="relative mt-4"
-                >
-                  <div className="inline-block">
-                    <div className={`bg-gradient-to-r ${heroContentSets[activeIndex].bubbleColor} p-[1px] rounded-lg`}>
-                      <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg">
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
                         <p className="text-2xl md:text-3xl text-white">{heroContentSets[activeIndex].bubbleText}</p>
                       </div>
                     </div>
                   </div>
                 </motion.div>
-<<<<<<< HEAD
 
                 {heroContentSets[activeIndex].bulletPoints && (
                   <motion.div
@@ -296,12 +208,6 @@ const ImprovedHeroSectionComponent: React.FC = () => {
             </AnimatePresence>
           </motion.div>
 
-=======
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
-
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
           {/* Dot-Dash Animated Icon Indicator */}
           <motion.div
             variants={itemVariants}
