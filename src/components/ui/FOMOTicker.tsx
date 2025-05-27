@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
  */
 const FOMOTicker: React.FC = () => {
   const [animate, setAnimate] = useState(true);
-  const [duration, setDuration] = useState(60);
+  const [duration, setDuration] = useState(30); // Sped up from 60 to 30 seconds
   const containerRef = useRef<HTMLDivElement>(null);
 
   // AI Tokens ITO launch messages

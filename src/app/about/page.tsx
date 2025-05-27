@@ -28,28 +28,10 @@ const AboutPage = () => {
 
   const team = [
     {
-      name: "Alex Chen",
-      role: "CEO & Co-Founder",
-      bio: "Former OpenAI researcher, led the development of multi-agent systems. PhD in Computer Science from Stanford.",
-      image: "👨‍💻"
-    },
-    {
-      name: "Sarah Kim",
-      role: "CTO & Co-Founder",
-      bio: "Ex-Google Brain, architect of distributed AI systems. Built the first production-scale agent orchestration platform.",
-      image: "👩‍💻"
-    },
-    {
-      name: "Marcus Rodriguez",
-      role: "Head of Protocol",
-      bio: "Ethereum core contributor, designed ION protocol. Expert in decentralized systems and blockchain infrastructure.",
-      image: "🧑‍💻"
-    },
-    {
-      name: "Dr. Priya Patel",
-      role: "Head of AI Research",
-      bio: "Former DeepMind researcher, specialist in ontology networks and semantic AI. 50+ publications in top-tier journals.",
-      image: "👩‍🔬"
+      name: "You Know Who",
+      role: "Founder, Architect, Operator",
+      bio: "Founder of Unified AI, builder of digital sovereignty infrastructure, and orchestrator of the Agentic Internet. Operating under 100+ sovereign TLDs, deploying protocol-native identity systems, token economics, and agent OS infrastructure from the ground up.",
+      image: "👤"
     }
   ];
 
@@ -68,15 +50,17 @@ const AboutPage = () => {
               <motion.div variants={itemVariants} className="text-center mb-16">
                 <h1 className="text-5xl md:text-7xl font-bold mb-6">
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
-                    About Unified AI
+                    🔥 Unified AI
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  Building the New Map of the New Internet
+                  <span className="font-normal">Foundational</span> <span className="font-bold">Infrastructure</span> <span className="font-normal">for the</span> <span className="font-bold">Agentic Internet</span>
                 </p>
-                <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-                  We're creating the infrastructure for the agentic internet — where every handle is a function,
-                  every agent has meaning, and intelligence flows seamlessly across the digital landscape.
+                <p className="text-lg text-gray-400 max-w-4xl mx-auto mb-6">
+                  Unified AI is creating the core protocol stack for the next era of intelligence — one where agents, not users, power digital systems.
+                </p>
+                <p className="text-lg text-gray-300 max-w-4xl mx-auto">
+                  We're not building an app. We're architecting a sovereign protocol layer for AI-native identity, ownership, and interaction.
                 </p>
               </motion.div>
 
@@ -148,10 +132,13 @@ const AboutPage = () => {
 
               {/* Team */}
               <motion.div variants={itemVariants} className="mb-16">
-                <h2 className="text-3xl font-bold mb-8 text-center">Leadership Team</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <h2 className="text-3xl font-bold mb-4 text-center">🧠 Leadership Team</h2>
+                <p className="text-center text-gray-400 mb-8">
+                  <span className="font-normal">Backed by</span> <span className="font-bold">purpose.</span> <span className="font-normal">Not</span> <span className="font-bold">payroll.</span>
+                </p>
+                <div className="grid grid-cols-1 gap-8 max-w-2xl mx-auto">
                   {team.map((member, index) => (
-                    <GlowingCard key={index} className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-white/10">
+                    <GlowingCard key={index} className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-white/10">
                       <div className="flex items-start space-x-4">
                         <div className="text-4xl">{member.image}</div>
                         <div>
@@ -206,50 +193,40 @@ const AboutPage = () => {
                 </GlowingCard>
               </motion.div>
 
-              {/* Funding & Investors */}
+              {/* Partnership Focus */}
               <motion.div variants={itemVariants} className="mb-16">
                 <div className="text-center">
-                  <h2 className="text-3xl font-bold mb-6">Backed by Leading Investors</h2>
+                  <h2 className="text-3xl font-bold mb-6">🤝 We're Seeking Builders, Partners, and Signal Holders</h2>
                   <p className="text-gray-400 mb-8">
-                    Series A: $50M led by Andreessen Horowitz, with participation from Sequoia Capital,
-                    Coinbase Ventures, and prominent AI researchers from OpenAI, DeepMind, and Anthropic.
+                    We're not hiring. We're partnering with operators.
                   </p>
-                  <div className="flex justify-center space-x-8 text-gray-500">
-                    <div className="text-lg font-semibold">a16z</div>
-                    <div className="text-lg font-semibold">Sequoia</div>
-                    <div className="text-lg font-semibold">Coinbase Ventures</div>
-                    <div className="text-lg font-semibold">OpenAI Fund</div>
-                  </div>
+                  <p className="text-lg text-gray-300 max-w-4xl mx-auto">
+                    Whether you're a dev, founder, protocol architect, or sovereign capital allocator — if you're building the future of intelligence infrastructure, we want to talk.
+                  </p>
                 </div>
               </motion.div>
 
               {/* Join Us */}
               <motion.div variants={itemVariants} className="text-center">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-orange-500/20">
-                  <h2 className="text-3xl font-bold mb-6 text-orange-400">Join the Future</h2>
+                  <h2 className="text-3xl font-bold mb-6 text-orange-400">Ready to Build the Agentic Internet?</h2>
                   <p className="text-lg text-gray-300 mb-6">
-                    We're hiring world-class engineers, researchers, and builders who want to create
-                    the infrastructure for the next generation of the internet.
+                    Contact us at <span className="text-blue-400">protocol@io.unifiedai</span>
                   </p>
-                  <div className="text-center mb-6">
-                    <p className="text-gray-400">
-                      Ready to join the team? Contact us at <span className="text-blue-400">careers@io.unifiedai</span>
-                    </p>
-                  </div>
                   <div className="flex flex-col md:flex-row justify-center gap-4">
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg rounded-lg shadow-lg shadow-blue-500/20"
                     >
-                      View Open Positions
+                      🪙 JOIN THE ITO
                     </motion.button>
                     <motion.button
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       className="px-8 py-4 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-lg rounded-lg hover:bg-white/10 transition-colors"
                     >
-                      Contact Us
+                      📦 CLAIM YOUR HANDLE
                     </motion.button>
                   </div>
                 </GlowingCard>
