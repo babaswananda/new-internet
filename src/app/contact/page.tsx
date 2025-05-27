@@ -308,15 +308,15 @@ const ContactPage = () => {
                   <p className="text-lg text-gray-300 text-center mb-8">
                     Connect with developers, researchers, and builders who are creating the future of AI.
                   </p>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-4">
                     <div className="text-center p-4 bg-black/40 rounded-lg hover:bg-black/60 transition-colors cursor-pointer">
-                      <div className="text-2xl mb-2">💬</div>
+                      <div className="text-2xl mb-2">🎮</div>
                       <p className="text-sm text-gray-300">Discord</p>
                       <p className="text-xs text-gray-400">50K+ members</p>
                     </div>
                     <div className="text-center p-4 bg-black/40 rounded-lg hover:bg-black/60 transition-colors cursor-pointer">
-                      <div className="text-2xl mb-2">🐦</div>
-                      <p className="text-sm text-gray-300">Twitter</p>
+                      <div className="text-2xl mb-2">❌</div>
+                      <p className="text-sm text-gray-300">X</p>
                       <p className="text-xs text-gray-400">@UnifiedAI</p>
                     </div>
                     <div className="text-center p-4 bg-black/40 rounded-lg hover:bg-black/60 transition-colors cursor-pointer">
@@ -328,6 +328,31 @@ const ContactPage = () => {
                       <div className="text-2xl mb-2">📺</div>
                       <p className="text-sm text-gray-300">YouTube</p>
                       <p className="text-xs text-gray-400">Tutorials</p>
+                    </div>
+                    <div className="text-center p-4 bg-black/40 rounded-lg hover:bg-black/60 transition-colors cursor-pointer">
+                      <div className="text-2xl mb-2">🎵</div>
+                      <p className="text-sm text-gray-300">TikTok</p>
+                      <p className="text-xs text-gray-400">@UnifiedAI</p>
+                    </div>
+                    <div className="text-center p-4 bg-black/40 rounded-lg hover:bg-black/60 transition-colors cursor-pointer">
+                      <div className="text-2xl mb-2">📘</div>
+                      <p className="text-sm text-gray-300">Facebook</p>
+                      <p className="text-xs text-gray-400">UnifiedAI</p>
+                    </div>
+                    <div className="text-center p-4 bg-black/40 rounded-lg hover:bg-black/60 transition-colors cursor-pointer">
+                      <div className="text-2xl mb-2">💚</div>
+                      <p className="text-sm text-gray-300">WhatsApp</p>
+                      <p className="text-xs text-gray-400">Business</p>
+                    </div>
+                    <div className="text-center p-4 bg-black/40 rounded-lg hover:bg-black/60 transition-colors cursor-pointer">
+                      <div className="text-2xl mb-2">🟢</div>
+                      <p className="text-sm text-gray-300">WeChat</p>
+                      <p className="text-xs text-gray-400">UnifiedAI</p>
+                    </div>
+                    <div className="text-center p-4 bg-black/40 rounded-lg hover:bg-black/60 transition-colors cursor-pointer">
+                      <div className="text-2xl mb-2">✈️</div>
+                      <p className="text-sm text-gray-300">Telegram</p>
+                      <p className="text-xs text-gray-400">@UnifiedAI</p>
                     </div>
                   </div>
                 </GlowingCard>
