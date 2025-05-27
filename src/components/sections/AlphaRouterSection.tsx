@@ -84,7 +84,7 @@ const AlphaRouterSection: React.FC = () => {
           <motion.div variants={itemVariants} className="mb-12">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
               <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">Model Protocol Support</h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div className="text-center">
                   <div className="text-green-400 text-2xl mb-2">✅</div>
                   <h4 className="font-semibold mb-2">A2A Protocol</h4>
@@ -94,6 +94,11 @@ const AlphaRouterSection: React.FC = () => {
                   <div className="text-green-400 text-2xl mb-2">✅</div>
                   <h4 className="font-semibold mb-2">MCP</h4>
                   <p className="text-gray-300 text-sm">Model Context Protocol from Anthropic</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-green-400 text-2xl mb-2">✅</div>
+                  <h4 className="font-semibold mb-2">ION</h4>
+                  <p className="text-gray-300 text-sm">Intelligent Ontology Network</p>
                 </div>
                 <div className="text-center">
                   <div className="text-green-400 text-2xl mb-2">✅</div>
@@ -113,7 +118,7 @@ const AlphaRouterSection: React.FC = () => {
                   <p className="text-gray-300">
                     Institutional APIs are not routed unless licensed.<br />
                     Open-source models are default-enabled.<br />
-                    AlphaRouter = Clean, sovereign, agent-native compute layer.
+                    AlphaRouter + ION = Clean, sovereign, agent-native compute layer.
                   </p>
                 </div>
               </div>

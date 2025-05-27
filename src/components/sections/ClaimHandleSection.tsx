@@ -143,7 +143,7 @@ const ClaimHandleSection: React.FC = () => {
               Powered by FSPP
             </p>
             <p className="text-lg text-gray-400 mb-2">
-              Secured by OntologyNetwork
+              Classified by ION
             </p>
             <p className="text-lg text-gray-400">
               Deployed via AgentChat

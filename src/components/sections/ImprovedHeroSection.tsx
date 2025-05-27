@@ -71,15 +71,15 @@ const ImprovedHeroSectionComponent: React.FC = () => {
       ]
     },
     {
-      // Slide 4: The Ontology Network
-      heading: "ONTOLOGY NETWORK PROTOCOL",
-      subtitle: "\"AI doesn't just need intelligence. It needs meaning.\"",
-      bubbleText: "Ontology is the backbone of the Agentic Web.",
+      // Slide 4: The Intelligent Ontology Network
+      heading: "INTELLIGENT ONTOLOGY NETWORK (ION)",
+      subtitle: "You don't just train agents. You route intelligence.",
+      bubbleText: "ION turns the Agentic Web into a cognitive web.",
       bubbleColor: "from-green-500 to-teal-500",
       bulletPoints: [
-        "Tags, taxonomies, semantics at protocol level",
-        "Used by Curator, Benchmark, and Ontology Agents",
-        "Without them, your agents don't know where they belong."
+        "🧠 Ontology Agents define and classify domains",
+        "🧭 Agent routing by skill, memory, and relevance",
+        "🧩 Model mixing + multimodal matching"
       ]
     },
     {
@@ -121,24 +121,24 @@ const ImprovedHeroSectionComponent: React.FC = () => {
     {
       heading: "UNIFIED AI I/O",
       subtitle: "The New Map of the New Internet",
-      bubbleText: "AI is the fuel.", 
+      bubbleText: "AI is the fuel.",
       bubbleColor: "from-blue-500 to-purple-500",
     },
     {
       heading: "PROTOCOL-GRADE",
       subtitle: "Infrastructure for AI",
-      bubbleText: "Input is Ownership.", 
+      bubbleText: "Input is Ownership.",
       bubbleColor: "from-purple-500 to-pink-500",
     },
     {
       heading: "AGENT ECONOMY",
       subtitle: "Powering the Next Generation",
-      bubbleText: "Operators are Infrastructure.", 
+      bubbleText: "Operators are Infrastructure.",
       bubbleColor: "from-pink-500 to-red-500",
     },
-    { 
-      heading: "THE NEW INTERNET", 
-      subtitle: "Built on AgentOS",  
+    {
+      heading: "THE NEW INTERNET",
+      subtitle: "Built on AgentOS",
       bubbleText: "AgentOS is how it all runs.",
       bubbleColor: "from-red-500 to-blue-500",
     }
@@ -147,7 +147,7 @@ const ImprovedHeroSectionComponent: React.FC = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % heroContentSets.length);
-    }, 4000); 
+    }, 4000);
     return () => clearInterval(interval);
   }, [heroContentSets.length]);
 
@@ -181,7 +181,7 @@ const ImprovedHeroSectionComponent: React.FC = () => {
 
   const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
   const itemVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5 } } };
-  const textFadeVariants = { 
+  const textFadeVariants = {
 >>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -192,9 +192,9 @@ const ImprovedHeroSectionComponent: React.FC = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } },
 =======
-  const bubbleFadeVariants = { 
+  const bubbleFadeVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } }, 
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } },
 >>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
     exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
   };
@@ -236,9 +236,9 @@ const ImprovedHeroSectionComponent: React.FC = () => {
             <AnimatePresence mode="wait">
               <motion.div
 =======
-          <motion.div variants={itemVariants} className="mb-8" style={getParallaxStyle(0.8)}> 
+          <motion.div variants={itemVariants} className="mb-8" style={getParallaxStyle(0.8)}>
             <AnimatePresence mode="wait">
-              <motion.div 
+              <motion.div
 >>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
                 key={`content-set-${activeIndex}`}
                 initial="hidden"
@@ -260,11 +260,11 @@ const ImprovedHeroSectionComponent: React.FC = () => {
                     <div className={`bg-gradient-to-r ${heroContentSets[activeIndex].bubbleColor} p-[1px] rounded-lg`}>
                       <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg">
 =======
-                  className="relative mt-4" 
+                  className="relative mt-4"
                 >
-                  <div className="inline-block"> 
+                  <div className="inline-block">
                     <div className={`bg-gradient-to-r ${heroContentSets[activeIndex].bubbleColor} p-[1px] rounded-lg`}>
-                      <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg"> 
+                      <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg">
 >>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
                         <p className="text-2xl md:text-3xl text-white">{heroContentSets[activeIndex].bubbleText}</p>
                       </div>
@@ -337,8 +337,8 @@ const ImprovedHeroSectionComponent: React.FC = () => {
                   className="w-full"
                 >
                   <div className={`inline-block bg-gradient-to-r ${feature.color} p-[1px] rounded-lg w-full`}>
-                    <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg flex items-center h-full"> 
-                      <span className="mr-4 text-2xl">{feature.emoji}</span> 
+                    <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg flex items-center h-full">
+                      <span className="mr-4 text-2xl">{feature.emoji}</span>
                       <div>
                         <h3 className="text-xl font-semibold text-white">{feature.title}</h3>
                         <p className="text-blue-200 text-sm">{feature.description}</p>
