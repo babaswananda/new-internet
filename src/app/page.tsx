@@ -22,6 +22,7 @@ const VibeCoderSection = dynamic(() => import('@/components/sections/VibeCoderSe
 const FreeHandleProgramSection = dynamic(() => import('@/components/sections/FreeHandleProgramSection'), { ssr: false });
 const OperatorEconomySection = dynamic(() => import('@/components/sections/OperatorEconomySection'), { ssr: false });
 const ClaimHandleSection = dynamic(() => import('@/components/sections/ClaimHandleSection'), { ssr: false });
+const NewsletterSection = dynamic(() => import('@/components/sections/NewsletterSection'), { ssr: false });
 
 // Other sections not in the main flow
 const DashboardSection = dynamic(() => import('@/components/sections/DashboardSection'), { ssr: false });
@@ -136,6 +137,14 @@ export default function Home() {
         <div className="relative">
           <SpaceParticlesBackground particleCount={150} color="red" speed="medium" depth={true} interactive={true} />
           <OperatorEconomySection />
+        </div>
+      </Suspense>
+
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        {/* 12.5. Newsletter Subscription */}
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={180} color="purple" speed="medium" depth={true} interactive={true} />
+          <NewsletterSection />
         </div>
       </Suspense>
 
