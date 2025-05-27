@@ -44,46 +44,69 @@ const ClaimHandleSection: React.FC = () => {
             variants={itemVariants}
             className="text-4xl md:text-7xl font-bold mb-8 text-center"
           >
-            CLAIM YOUR HANDLE
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
+              CLAIM YOUR HANDLE
+            </span>
           </motion.h2>
+
+          <motion.div variants={itemVariants} className="text-center mb-12">
+            <p className="text-xl md:text-2xl text-gray-300 mb-4">
+              Deploy Your IO. Command Your Stack.
+            </p>
+            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+              Your handle isn't just an identity — it's your command center for the agentic internet.
+              Deploy IO, orchestrate agents, and own your digital sovereignty.
+            </p>
+          </motion.div>
 
           <motion.div variants={itemVariants} className="mb-12">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-blue-500/20">
-              <h3 className="text-2xl font-semibold mb-6 text-center">Your handle is:</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-center">Your handle is your command center:</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
                 <div className="text-center">
-                  <div className="text-3xl mb-2">👤</div>
-                  <p className="text-lg font-semibold">Your username</p>
+                  <div className="text-3xl mb-2">🧠</div>
+                  <p className="text-lg font-semibold">Your IO</p>
+                  <p className="text-xs text-gray-400">Intelligent Operator</p>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl mb-2">📧</div>
-                  <p className="text-lg font-semibold">Your email</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl mb-2">💰</div>
-                  <p className="text-lg font-semibold">Your wallet</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl mb-2">📥</div>
-                  <p className="text-lg font-semibold">Your inbox</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl mb-2">🏦</div>
-                  <p className="text-lg font-semibold">Your vault</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl mb-2">🤖</div>
-                  <p className="text-lg font-semibold">Your AI</p>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl mb-2">💼</div>
-                  <p className="text-lg font-semibold">Your business</p>
+                  <div className="text-3xl mb-2">⚡</div>
+                  <p className="text-lg font-semibold">Your Stack</p>
+                  <p className="text-xs text-gray-400">Agent Orchestration</p>
                 </div>
                 <div className="text-center">
                   <div className="text-3xl mb-2">🌐</div>
-                  <p className="text-lg font-semibold">Your identity</p>
+                  <p className="text-lg font-semibold">Your Internet</p>
+                  <p className="text-xs text-gray-400">Sovereign Identity</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">🏦</div>
+                  <p className="text-lg font-semibold">Your Vault</p>
+                  <p className="text-xs text-gray-400">Secure Storage</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">📧</div>
+                  <p className="text-lg font-semibold">Your Inbox</p>
+                  <p className="text-xs text-gray-400">AI-Native Messaging</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">🤖</div>
+                  <p className="text-lg font-semibold">Your Agents</p>
+                  <p className="text-xs text-gray-400">Fleet Management</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">💼</div>
+                  <p className="text-lg font-semibold">Your Business</p>
+                  <p className="text-xs text-gray-400">Enterprise Control</p>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl mb-2">💰</div>
+                  <p className="text-lg font-semibold">Your Wallet</p>
+                  <p className="text-xs text-gray-400">Token Management</p>
                 </div>
               </div>
+              <p className="text-center text-xl text-gray-300">
+                All orchestrated by <strong>your IO</strong> under <strong>one handle</strong>.
+              </p>
             </GlowingCard>
           </motion.div>
 
@@ -124,16 +147,17 @@ const ClaimHandleSection: React.FC = () => {
 
           <motion.div variants={itemVariants} className="mb-12">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
-              <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">💻 Developer Mode Activated</h3>
+              <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">💻 IO Deployment Protocol</h3>
               <div className="bg-black/60 rounded-lg p-6 font-mono text-sm mb-6">
-                <div className="text-green-400 mb-2">$ protocol claim --handle="yourname" --network="unifiedai" --access-token="72hr-early-access"</div>
-                <div className="text-gray-400 mb-4">🧠 You're not registering. You're deploying.</div>
-                <div className="text-blue-400">.commandline/claim is where it all begins.</div>
+                <div className="text-green-400 mb-2">$ io claim --handle="yourname" --deploy="intelligent-operator" --network="unifiedai"</div>
+                <div className="text-gray-400 mb-2">🧠 Initializing your Intelligent Operator...</div>
+                <div className="text-blue-400 mb-2">✓ IO deployed at yourname.commandline</div>
+                <div className="text-purple-400">⚡ Agent orchestration layer active</div>
               </div>
               <div className="text-center">
                 <p className="text-lg text-gray-300 mb-4">
-                  Run the code. Secure your territory.<br />
-                  You don't need a website. You need a command center.
+                  You're not registering. You're deploying your IO.<br />
+                  <span className="text-green-400">.commandline/claim</span> is where it all begins.
                 </p>
               </div>
             </GlowingCard>
@@ -151,19 +175,19 @@ const ClaimHandleSection: React.FC = () => {
 
           <motion.div variants={itemVariants} className="text-center">
             <p className="text-lg text-gray-400 mb-2">
-              Born on .Commandline/
+              Orchestrated by <span className="text-blue-400">IO</span>
             </p>
             <p className="text-lg text-gray-400 mb-2">
-              Routed through AlphaRouter
+              Born on <span className="text-green-400">.Commandline/</span>
             </p>
             <p className="text-lg text-gray-400 mb-2">
-              Powered by FSPP
+              Routed through <span className="text-cyan-400">AlphaRouter</span>
             </p>
             <p className="text-lg text-gray-400 mb-2">
-              Classified by ION
+              Classified by <span className="text-purple-400">ION</span>
             </p>
             <p className="text-lg text-gray-400">
-              Deployed via AgentChat
+              Deployed via <span className="text-pink-400">AgentChat</span>
             </p>
           </motion.div>
         </motion.div>

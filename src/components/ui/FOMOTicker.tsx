@@ -13,18 +13,18 @@ const FOMOTicker: React.FC = () => {
   const [animate, setAnimate] = useState(true);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Investment FOMO messages
+  // IO-focused launch messages
   const messages = [
-    "🔥 First private seed round now open for early investors",
-    "⏰ Only 14 days until official launch",
-    "💰 Limited allocation available for early supporters",
-    "🚀 Join our waiting list for exclusive early access",
-    "🌐 Building our first community of early adopters",
-    "📈 AI market projected to reach $1.8T by 2030",
-    "🔐 Secure your position in our first private round",
-    "⚡ Early supporters receive lifetime benefits",
-    "🌟 Be among the first to experience the new protocol",
-    "💎 Early adopter benefits closing in 14 days"
+    "🧠 IO: Your Intelligent Operator is now live",
+    "⚡ Input → Orchestration: Command your agent stack",
+    "🌐 First sovereign AI control layer in history",
+    "🔥 IO is what ChatGPT wants to be when it grows up",
+    "💻 You don't chat. You command. Deploy your IO today.",
+    "🚀 The agent that runs your agents - now available",
+    "🔓 .commandline/claim is where it all begins",
+    "⚙️ Infrastructure Operator: Runs ecosystems, not apps",
+    "🪄 Intention Output: Speak your intent, IO executes",
+    "🧬 Intelligence Orchestrator: Multiple agents, one conductor"
   ];
 
   // Pause animation on hover
@@ -47,9 +47,9 @@ const FOMOTicker: React.FC = () => {
       onMouseLeave={handleMouseLeave}
     >
       <div className="relative flex items-center">
-        {/* "Private Round" label */}
-        <div className="hidden md:flex items-center justify-center bg-red-600 text-white px-3 py-1 font-bold text-xs uppercase tracking-wider z-10 ml-4">
-          <span className="animate-pulse mr-1">●</span> Private Round Open
+        {/* "IO Live" label */}
+        <div className="hidden md:flex items-center justify-center bg-blue-600 text-white px-3 py-1 font-bold text-xs uppercase tracking-wider z-10 ml-4">
+          <span className="animate-pulse mr-1">●</span> IO Live Now
         </div>
 
         {/* Ticker content */}
@@ -87,9 +87,9 @@ const FOMOTicker: React.FC = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="bg-gradient-to-r from-green-500 to-emerald-600 text-white text-xs font-bold py-1 px-4 rounded-sm mr-4 uppercase tracking-wider"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-bold py-1 px-4 rounded-sm mr-4 uppercase tracking-wider"
           >
-            Join Waitlist
+            Deploy IO
           </motion.button>
         </div>
       </div>
