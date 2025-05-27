@@ -130,14 +130,14 @@ const AlphaRouterSection: React.FC = () => {
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-blue-500/20">
               <h3 className="text-xl font-semibold mb-4 text-blue-400 text-center">🌐 Browser Console Swagger</h3>
               <div className="bg-black/60 rounded-lg p-4 font-mono text-xs overflow-x-auto">
-                <div className="text-blue-400 mb-2">fetch("https://api.commandline/claim", {</div>
-                <div className="text-gray-300 ml-4 mb-1">method: "POST",</div>
-                <div className="text-gray-300 ml-4 mb-1">headers: {</div>
-                <div className="text-green-400 ml-8 mb-1">"Authorization": "Bearer earlyaccess-token",</div>
-                <div className="text-green-400 ml-8 mb-1">"Content-Type": "application/json"</div>
-                <div className="text-gray-300 ml-4 mb-1">},</div>
-                <div className="text-gray-300 ml-4 mb-1">body: JSON.stringify({ handle: "yourname", stack: "Unified AI v1" })</div>
-                <div className="text-blue-400">}).then(res => res.json()).then(console.log)</div>
+                <div className="text-blue-400 mb-2">fetch(&quot;https://api.commandline/claim&quot;, &#123;</div>
+                <div className="text-gray-300 ml-4 mb-1">method: &quot;POST&quot;,</div>
+                <div className="text-gray-300 ml-4 mb-1">headers: &#123;</div>
+                <div className="text-green-400 ml-8 mb-1">&quot;Authorization&quot;: &quot;Bearer earlyaccess-token&quot;,</div>
+                <div className="text-green-400 ml-8 mb-1">&quot;Content-Type&quot;: &quot;application/json&quot;</div>
+                <div className="text-gray-300 ml-4 mb-1">&#125;,</div>
+                <div className="text-gray-300 ml-4 mb-1">body: JSON.stringify(&#123; handle: &quot;yourname&quot;, stack: &quot;Unified AI v1&quot; &#125;)</div>
+                <div className="text-blue-400">&#125;).then(res =&gt; res.json()).then(console.log)</div>
               </div>
               <p className="text-center text-gray-400 mt-4 text-sm">
                 For devs who know the only UI that matters is the one they build.
