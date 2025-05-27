@@ -227,39 +227,10 @@ const ImprovedHeroSectionComponent: React.FC = () => {
                 onClick={() => setActiveIndex(index)}
               />
             ))}
-<<<<<<< HEAD
-=======
-          </motion.div>
-
-          {/* Static Feature Grid */}
-          <motion.div variants={itemVariants} className="mb-12" style={getParallaxStyle(1.2)}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {features.map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="w-full"
-                >
-                  <div className={`inline-block bg-gradient-to-r ${feature.color} p-[1px] rounded-lg w-full`}>
-                    <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg flex items-center h-full">
-                      <span className="mr-4 text-2xl">{feature.emoji}</span>
-                      <div>
-                        <h3 className="text-xl font-semibold text-white">{feature.title}</h3>
-                        <p className="text-blue-200 text-sm">{feature.description}</p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
           </motion.div>
 
           {/* CTA buttons */}
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4" style={getParallaxStyle(1.5)}>
-<<<<<<< HEAD
             <Link href="#claim-handle">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -287,22 +258,6 @@ const ImprovedHeroSectionComponent: React.FC = () => {
                 VIEW ROUTER ARCHITECTURE
               </motion.button>
             </Link>
-=======
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg rounded-lg shadow-lg shadow-blue-500/20"
-            >
-              Enter the Protocol
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-lg rounded-lg hover:bg-white/10 transition-colors"
-            >
-              Learn More
-            </motion.button>
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
           </motion.div>
         </motion.div>
       </div>
