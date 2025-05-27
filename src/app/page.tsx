@@ -10,6 +10,17 @@ import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 
 // Dynamically import all other sections with no SSR to improve performance
 const WhatIsUnifiedAISection = dynamic(() => import('@/components/sections/WhatIsUnifiedAISection'), { ssr: false });
+const AgentChatSection = dynamic(() => import('@/components/sections/AgentChatSection'), { ssr: false });
+const AlphaRouterSection = dynamic(() => import('@/components/sections/AlphaRouterSection'), { ssr: false });
+const OntologyNetworkSection = dynamic(() => import('@/components/sections/OntologyNetworkSection'), { ssr: false });
+const AIDirectoryMarketplaceSection = dynamic(() => import('@/components/sections/AIDirectoryMarketplaceSection'), { ssr: false });
+const AIDatacentersSection = dynamic(() => import('@/components/sections/AIDatacentersSection'), { ssr: false });
+const VibeCoderSection = dynamic(() => import('@/components/sections/VibeCoderSection'), { ssr: false });
+const FreeHandleProgramSection = dynamic(() => import('@/components/sections/FreeHandleProgramSection'), { ssr: false });
+const OperatorEconomySection = dynamic(() => import('@/components/sections/OperatorEconomySection'), { ssr: false });
+const ClaimHandleSection = dynamic(() => import('@/components/sections/ClaimHandleSection'), { ssr: false });
+
+// Other sections not in the main flow
 const DashboardSection = dynamic(() => import('@/components/sections/DashboardSection'), { ssr: false });
 const AgentOSSection = dynamic(() => import('@/components/sections/AgentOSSection'), { ssr: false });
 const ADKSection = dynamic(() => import('@/components/sections/ADKSection'), { ssr: false });
@@ -17,15 +28,9 @@ const A2ASection = dynamic(() => import('@/components/sections/A2ASection'), { s
 const MCPSection = dynamic(() => import('@/components/sections/MCPSection'), { ssr: false });
 const ParallelProcessingSection = dynamic(() => import('@/components/sections/ParallelProcessingSection'), { ssr: false });
 const VibeCodingSection = dynamic(() => import('@/components/sections/VibeCodingSection'), { ssr: false });
-const OperatorEconomySection = dynamic(() => import('@/components/sections/OperatorEconomySection'), { ssr: false });
 const MarketplaceSection = dynamic(() => import('@/components/sections/MarketplaceSection'), { ssr: false });
-const VideoSection = dynamic(() => import('@/components/sections/VideoSection'), { ssr: false });
-const InfrastructureSection = dynamic(() => import('@/components/sections/InfrastructureSection'), { ssr: false });
-const InvestmentOfferingSection = dynamic(() => import('@/components/sections/InvestmentOfferingSection'), { ssr: false });
-const LibreChatSection = dynamic(() => import('@/components/sections/LibreChatSection'), { ssr: false });
-const MerchSection = dynamic(() => import('@/components/sections/MerchSection'), { ssr: false });
+const AIVAChatSection = dynamic(() => import('@/components/sections/AIVAChatSection'), { ssr: false });
 const MapSection = dynamic(() => import('@/components/sections/MapSection'), { ssr: false });
-const FinalCTASection = dynamic(() => import('@/components/sections/FinalCTASection'), { ssr: false });
 const ComingSoonSection = dynamic(() => import('@/components/sections/ComingSoonSection'), { ssr: false });
 
 export default function Home() {
@@ -36,7 +41,7 @@ export default function Home() {
 
       {/* Load all other sections with Suspense for better performance */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* What is Unified AI Section */}
+        {/* 2. Every Handle is a Function Section */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={150} color="blue" speed="medium" depth={true} interactive={true} />
           <WhatIsUnifiedAISection />
@@ -44,138 +49,74 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Dashboard Section */}
+        {/* 3. AgentChat: The AI Superapp */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={120} color="purple" speed="medium" depth={true} interactive={true} />
-          <DashboardSection />
+          <SpaceParticlesBackground particleCount={200} color="purple" speed="slow" depth={true} interactive={true} />
+          <AgentChatSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* AgentOS Section */}
+        {/* 4. AlphaRouter: The Carrier of Intelligence */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={180} color="cyan" speed="medium" depth={true} interactive={true} />
-          <AgentOSSection />
+          <AlphaRouterSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Agent Dev Kit (ADK) Section */}
+        {/* 5. Ontology Network Protocol */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={140} color="mixed" speed="medium" depth={true} interactive={true} />
-          <ADKSection />
+          <SpaceParticlesBackground particleCount={150} color="green" speed="slow" depth={true} interactive={true} />
+          <OntologyNetworkSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Agent-to-Agent (A2A) Protocol Section */}
+        {/* 6. AI Directory + AI Marketplace */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={160} color="blue" speed="slow" depth={true} interactive={true} />
-          <A2ASection />
+          <SpaceParticlesBackground particleCount={170} color="purple" speed="medium" depth={true} interactive={true} />
+          <AIDirectoryMarketplaceSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Model Context Protocol (MCP) Section */}
+        {/* 7. AI Datacenters + GPU Cloud */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="purple" speed="medium" depth={true} interactive={true} />
-          <MCPSection />
+          <SpaceParticlesBackground particleCount={170} color="cyan" speed="medium" depth={true} interactive={true} />
+          <AIDatacentersSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Parallel Processing Section */}
+        {/* 8. VibeCoder + VibeCoding */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={250} color="cyan" speed="fast" depth={true} interactive={true} />
-          <ParallelProcessingSection />
+          <SpaceParticlesBackground particleCount={180} color="blue" speed="medium" depth={true} interactive={true} />
+          <VibeCoderSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Vibe Coding Section */}
+        {/* 9. Free Handle Program */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="mixed" speed="medium" depth={true} interactive={true} />
-          <VibeCodingSection />
+          <SpaceParticlesBackground particleCount={160} color="mixed" speed="slow" depth={true} interactive={true} />
+          <FreeHandleProgramSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Operator Economy Section */}
+        {/* 10. Operator Economy + DevCommunity */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={150} color="blue" speed="slow" depth={true} interactive={true} />
+          <SpaceParticlesBackground particleCount={150} color="purple" speed="medium" depth={true} interactive={true} />
           <OperatorEconomySection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Marketplace Section */}
+        {/* 11. Claim Your Handle - Final CTA */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={220} color="purple" speed="medium" depth={true} interactive={true} />
-          <MarketplaceSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Infrastructure Overview Section */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={170} color="cyan" speed="medium" depth={true} interactive={true} />
-          <InfrastructureSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Video Section */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={130} color="mixed" speed="medium" depth={true} interactive={true} />
-          <VideoSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* LibreChat Integration Section with Pricing Plans */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={160} color="blue" speed="medium" depth={true} interactive={true} />
-          <LibreChatSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Investment Offering Section */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="purple" speed="slow" depth={true} interactive={true} />
-          <InvestmentOfferingSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Merch Section */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="cyan" speed="medium" depth={true} interactive={true} />
-          <MerchSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Map of the New Internet Section */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={250} color="mixed" speed="medium" depth={true} interactive={true} />
-          <MapSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Coming Soon - Explore Page for Generative Art */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="blue" speed="medium" depth={true} interactive={true} />
-          <ComingSoonSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* Final Call to Action Section */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={250} color="purple" speed="slow" depth={true} interactive={true} />
-          <FinalCTASection />
+          <SpaceParticlesBackground particleCount={200} color="mixed" speed="slow" depth={true} interactive={true} />
+          <ClaimHandleSection />
         </div>
       </Suspense>
     </MainLayout>

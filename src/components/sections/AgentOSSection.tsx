@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { GlowingCard } from '@/components/ui/glowing-card';
 
 const AgentOSSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -32,6 +33,29 @@ const AgentOSSection: React.FC = () => {
     },
   };
 
+  const features = [
+    {
+      title: "Agent Key System",
+      description: "Identity and permissioning for agents"
+    },
+    {
+      title: "Token-powered Execution",
+      description: "Monetization and licensing for agent logic"
+    },
+    {
+      title: "Endpoint Logic",
+      description: "Programmable endpoints that earn tokens"
+    },
+    {
+      title: "On-chain Registry",
+      description: "Registry for every agent, version, and class"
+    },
+    {
+      title: "Decentralized Compute",
+      description: "Runs across distributed GPU grid nodes"
+    }
+  ];
+
   return (
     <section className="relative min-h-screen w-full py-24 overflow-hidden">
       {/* Background removed - using global Spline background */}
@@ -60,35 +84,52 @@ const AgentOSSection: React.FC = () => {
 
           <motion.div
             variants={itemVariants}
-            className="bg-white/5 p-8 rounded-sm mb-12"
+            className="mb-12"
           >
-            <p className="text-xl mb-6">
-              AgentOS is the AI-Crypto Native operating system that powers, connects, and governs agents.
-            </p>
+            <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-blue-500/20">
+              <p className="text-xl mb-6">
+                AgentOS is the AI-Crypto Native operating system that powers, connects, and governs agents.
+              </p>
 
-            <ul className="space-y-4 text-gray-300">
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>Agent Key system for identity + permissioning</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>Token-powered execution + licensing</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>Endpoint logic that earns</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>On-chain registry for every agent, version, and class</span>
-              </li>
-              <li className="flex items-start">
-                <span className="mr-2">•</span>
-                <span>Runs across decentralized compute nodes (GPU grid)</span>
-              </li>
-            </ul>
+              <ul className="space-y-4 text-gray-300">
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>Agent Key system for identity + permissioning</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>Token-powered execution + licensing</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>Endpoint logic that earns</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>On-chain registry for every agent, version, and class</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-2">•</span>
+                  <span>Runs across decentralized compute nodes (GPU grid)</span>
+                </li>
+              </ul>
+            </GlowingCard>
           </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                className="h-full"
+              >
+                <GlowingCard className="h-full bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-cyan-500/20">
+                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-gray-300">{feature.description}</p>
+                </GlowingCard>
+              </motion.div>
+            ))}
+          </div>
 
           <motion.div
             variants={itemVariants}
