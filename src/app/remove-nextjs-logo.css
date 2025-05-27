@@ -1,16 +1,47 @@
-/* Hide Next.js logo in development mode */
+/* Hide Next.js logo in development mode - COMPREHENSIVE */
 [data-next-badge-root],
 [data-next-badge],
-[data-next-mark] {
+[data-next-mark],
+[data-nextjs-badge],
+[data-nextjs-badge-root],
+.__next-badge,
+.__nextjs-badge,
+#__next-badge,
+#__nextjs-badge,
+.next-badge,
+.nextjs-badge {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  z-index: -1 !important;
+}
+
+/* Hide the dot indicator as well */
+[data-dot],
+.__next-dot,
+.next-dot {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
   pointer-events: none !important;
 }
 
-/* Hide the dot indicator as well */
-[data-dot] {
+/* Additional selectors for any Next.js branding */
+div[style*="position: fixed"][style*="bottom"][style*="left"],
+div[style*="position:fixed"][style*="bottom"][style*="left"] {
   display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
+}
+
+/* Target any fixed positioned elements in bottom left that might be Next.js badge */
+div[style*="position: fixed"][style*="bottom: 16px"][style*="left: 16px"],
+div[style*="position:fixed"][style*="bottom:16px"][style*="left:16px"],
+div[style*="position: fixed"][style*="bottom: 20px"][style*="left: 20px"],
+div[style*="position:fixed"][style*="bottom:20px"][style*="left:20px"] {
+  display: none !important;
 }
