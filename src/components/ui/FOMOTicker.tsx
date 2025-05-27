@@ -16,16 +16,11 @@ const FOMOTicker: React.FC = () => {
 
   // AI Tokens ITO launch messages
   const messages = [
-    "🪙 AI Tokens ITO Now Live → Stake to Reserve Your Handle | 72h Drop Window",
-    "🔓 Your Vault = Your Identity → Claim Your .Commandline / .AgentChat Handle Now",
-    "📦 Pre-Orders Open → .AIPhone / .AIPods / .AIGlasses | Token-Gated Access",
-    "⚙️ AgentChat Activated → Deploy Your Stack at io.unified.ai",
-    "🌐 Unified AI Is Live → Don't Chat. Command.",
-    "🧠 IO: Your Intelligent Operator is now live",
-    "⚡ Input → Orchestration: Command your agent stack",
-    "🔥 IO is the next evolution of AI interaction",
-    "💻 You don't chat. You command. Deploy your IO today.",
-    "🚀 The agent that runs your agents - now available"
+    "🚨 AI Tokens ITO LIVE → Claim Handle • Stake Vault • Pre-Order Devices at activate.unifiedai",
+    "📦 Deploy Your Stack at io.unifiedai → Your Agent. Your Interface. Your Internet.",
+    "🧠 Discover & Stake Upcoming Agents → explore.aiagents",
+    "💸 AI Made Me Rich Is LIVE → Real Wins • Token Flex • Meme Capital → join.aimademerich",
+    "🎓 Learn How It All Works → Step-by-Step Operator Playbook → learn.aimademerich"
   ];
 
   // Pause animation on hover

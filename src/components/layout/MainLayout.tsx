@@ -9,6 +9,8 @@ import dynamic from 'next/dynamic';
 const FloatingActionButton = dynamic(() => import('../ui/FloatingActionButton'), { ssr: false });
 const FOMOTicker = dynamic(() => import('../ui/FOMOTicker'), { ssr: false });
 const ScrollToTopButton = dynamic(() => import('../ui/ScrollToTopButton'), { ssr: false });
+const DropdownNav = dynamic(() => import('../ui/DropdownNav'), { ssr: false });
+const AIMadeMeRichIcon = dynamic(() => import('../ui/AIMadeMeRichIcon'), { ssr: false });
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -200,14 +202,28 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
           <nav className="hidden md:flex space-x-6">
             <NavLink href="/">Home</NavLink>
-            <NavLink href="/agentchat">AgentChat</NavLink>
-            <NavLink href="/alpharouter">AlphaRouter</NavLink>
-            <NavLink href="/ion">ION</NavLink>
-            <NavLink href="/aidirectory">AI Directory</NavLink>
-            <NavLink href="/textme">.TextMe</NavLink>
-            <NavLink href="/videochat">.VideoChat</NavLink>
-            <NavLink href="/webinar">.Webinar</NavLink>
-            <NavLink href="/learn-aimademerich">Learn</NavLink>
+
+            <DropdownNav
+              label="Products"
+              items={[
+                { href: '/agentchat', label: 'AgentChat', description: 'AI-powered chat interface', color: 'text-blue-400' },
+                { href: '/alpharouter', label: 'AlphaRouter', description: 'Intelligent model routing', color: 'text-purple-400' },
+                { href: '/ion', label: 'ION', description: 'Intelligent Ontology Network', color: 'text-orange-400' },
+                { href: '/aidirectory', label: 'AI Directory', description: 'Discover AI agents and tools', color: 'text-green-400' },
+                { href: '/vibecoder', label: 'VibeCoder', description: 'AI-powered development', color: 'text-yellow-400' }
+              ]}
+            />
+
+            <DropdownNav
+              label="Protocols"
+              items={[
+                { href: '/textme', label: '.TextMe', description: 'Messaging protocol of the Agentic Internet', color: 'text-green-400' },
+                { href: '/videochat', label: '.VideoChat', description: 'Face-to-face agent intelligence', color: 'text-blue-400' },
+                { href: '/webinar', label: '.Webinar', description: 'Token-gated events and broadcasts', color: 'text-orange-400' },
+                { href: '/learn-aimademerich', label: 'Learn.AIMadeMeRich', description: 'Protocol academy for operators', color: 'text-yellow-400' }
+              ]}
+            />
+
             <Link href="/ai-tokens">
               <motion.div
                 className="text-purple-400 hover:text-pink-400 transition-colors tracking-wide uppercase text-sm relative group font-bold animate-pulse"
@@ -221,8 +237,17 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 />
               </motion.div>
             </Link>
-            <NavLink href="/about">About</NavLink>
-            <NavLink href="/contact">Contact</NavLink>
+
+            <DropdownNav
+              label="Company"
+              items={[
+                { href: '/about', label: 'About', description: 'Our mission and vision', color: 'text-gray-300' },
+                { href: '/partners', label: 'Partners', description: 'Strategic partnerships', color: 'text-gray-300' },
+                { href: '/press', label: 'Press', description: 'Media resources and news', color: 'text-gray-300' },
+                { href: '/investors', label: 'Investors', description: 'Investment information', color: 'text-gray-300' },
+                { href: '/contact', label: 'Contact', description: 'Get in touch with us', color: 'text-gray-300' }
+              ]}
+            />
           </nav>
 
           <Link href="/claim">
@@ -530,6 +555,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       {/* Scroll to Top Button */}
       <Suspense fallback={null}>
         <ScrollToTopButton />
+      </Suspense>
+
+      {/* AI Made Me Rich Icon */}
+      <Suspense fallback={null}>
+        <AIMadeMeRichIcon />
       </Suspense>
     </div>
   );
