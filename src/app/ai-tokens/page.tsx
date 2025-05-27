@@ -45,9 +45,10 @@ export default function AITokensPage() {
           >
             {/* Header */}
             <motion.div variants={itemVariants} className="text-center mb-16">
-              <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
-                  🪙 INITIAL TOKEN OFFERING: AI TOKENS
+              <h1 className="text-4xl md:text-6xl font-bold mb-6 relative">
+                <span className="text-3xl md:text-5xl relative z-20 mr-4">🪙</span>
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 relative z-10">
+                  INITIAL TOKEN OFFERING: AI TOKENS
                 </span>
               </h1>
               <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white">

@@ -114,6 +114,16 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       href: '/adk',
       color: 'bg-gradient-to-r from-green-500 to-teal-500'
     },
+    {
+      icon: (
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a1.994 1.994 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+        </svg>
+      ),
+      label: 'Handle Registry',
+      href: '/handle-registry',
+      color: 'bg-gradient-to-r from-cyan-500 to-blue-500'
+    },
     // Hardware
     {
       icon: (
@@ -234,6 +244,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 { href: '/aidirectory', label: 'AI Directory', description: 'Discover AI agents and tools', color: 'text-green-400' },
                 { href: '/vibecoder', label: 'VibeCoder', description: 'AI-powered development', color: 'text-yellow-400' },
                 { href: '/adk', label: 'ADK', description: 'Agent Development Kit', color: 'text-teal-400' },
+                { href: '/handle-registry', label: 'Handle Registry', description: 'Protocol-native identity system', color: 'text-cyan-400' },
                 { href: '/preorder', label: 'Hardware', description: 'Pre-order AI devices', color: 'text-red-400' },
                 { href: '/merch-store', label: 'Merch Store', description: 'Official Unified AI merchandise', color: 'text-indigo-400' }
               ]}
@@ -318,6 +329,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
                 <Link href="/aidirectory" className="text-gray-300 hover:text-white py-2 transition-colors">AI Directory</Link>
                 <Link href="/vibecoder" className="text-gray-300 hover:text-white py-2 transition-colors">VibeCoder</Link>
                 <Link href="/adk" className="text-gray-300 hover:text-white py-2 transition-colors">ADK</Link>
+                <Link href="/handle-registry" className="text-cyan-400 hover:text-cyan-300 py-2 transition-colors">Handle Registry</Link>
                 <Link href="/preorder" className="text-gray-300 hover:text-white py-2 transition-colors">Hardware</Link>
                 <Link href="/merch-store" className="text-gray-300 hover:text-white py-2 transition-colors">Merch Store</Link>
                 <Link href="/textme" className="text-green-400 hover:text-green-300 py-2 transition-colors">.TextMe</Link>

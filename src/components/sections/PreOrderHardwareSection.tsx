@@ -76,9 +76,10 @@ const PreOrderHardwareSection = () => {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl mb-6">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-red-500 to-pink-500">
-                <HeaderText>🔮 Pre-Order</HeaderText>
+            <h2 className="text-4xl md:text-6xl mb-6 relative">
+              <span className="text-3xl md:text-5xl relative z-20 mr-4">🔮</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-red-500 to-pink-500 relative z-10">
+                <HeaderText>Pre-Order</HeaderText>
               </span>
             </h2>
             <h3 className="text-2xl md:text-3xl mb-6 text-white">
@@ -130,7 +131,10 @@ const PreOrderHardwareSection = () => {
           {/* All Devices Include */}
           <motion.div variants={itemVariants} className="mb-16">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-yellow-500/20">
-              <h3 className="text-2xl mb-6 text-yellow-400 text-center"><HeaderText>⚙️ All Devices Include</HeaderText></h3>
+              <h3 className="text-2xl mb-6 text-yellow-400 text-center relative">
+                <span className="text-xl relative z-20 mr-3">⚙️</span>
+                <HeaderText>All Devices Include</HeaderText>
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div className="flex items-center text-gray-300">
                   <span className="mr-3 text-blue-400">🔐</span>
@@ -163,7 +167,10 @@ const PreOrderHardwareSection = () => {
           {/* Live Pre-Order Drops */}
           <motion.div variants={itemVariants} className="mb-16">
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-purple-500/20">
-              <h3 className="text-2xl mb-6 text-purple-400 text-center"><HeaderText>🧾 Live Pre-Order Drops</HeaderText></h3>
+              <h3 className="text-2xl mb-6 text-purple-400 text-center relative">
+                <span className="text-xl relative z-20 mr-3">🧾</span>
+                <HeaderText>Live Pre-Order Drops</HeaderText>
+              </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-center">
