@@ -124,10 +124,11 @@ const HeroSection: React.FC = () => {
   };
 
   const keyPoints = [
-    { text: "AI is the fuel.", color: "from-blue-500 to-purple-500" },
-    { text: "Input is Ownership.", color: "from-purple-500 to-pink-500" },
-    { text: "Operators are Infrastructure.", color: "from-pink-500 to-red-500" },
-    { text: "AgentOS is how it all runs.", color: "from-red-500 to-blue-500" },
+    { text: "IO: Your Intelligent Operator", color: "from-blue-500 to-purple-500" },
+    { text: "Input → Orchestration", color: "from-purple-500 to-pink-500" },
+    { text: "You don't chat. You command.", color: "from-pink-500 to-red-500" },
+    { text: "IO is what ChatGPT wants to be when it grows up.", color: "from-red-500 to-orange-500" },
+    { text: "The agent that runs your agents.", color: "from-orange-500 to-blue-500" },
   ];
 
   return (

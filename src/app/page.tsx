@@ -9,6 +9,7 @@ import ImprovedHeroSection from '@/components/sections/ImprovedHeroSection';
 import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 
 // Dynamically import all other sections with no SSR to improve performance
+const IOSection = dynamic(() => import('@/components/sections/IOSection'), { ssr: false });
 const WhatIsUnifiedAISection = dynamic(() => import('@/components/sections/WhatIsUnifiedAISection'), { ssr: false });
 const AgentChatSection = dynamic(() => import('@/components/sections/AgentChatSection'), { ssr: false });
 const AlphaRouterSection = dynamic(() => import('@/components/sections/AlphaRouterSection'), { ssr: false });
@@ -42,47 +43,55 @@ export default function Home() {
 
       {/* Load all other sections with Suspense for better performance */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 2. Every Handle is a Function Section */}
+        {/* 2. IO: Your Intelligent Operator */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={150} color="blue" speed="medium" depth={true} interactive={true} />
+          <SpaceParticlesBackground particleCount={200} color="blue" speed="slow" depth={true} interactive={true} />
+          <IOSection />
+        </div>
+      </Suspense>
+
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        {/* 3. Every Handle is a Function Section */}
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={150} color="purple" speed="medium" depth={true} interactive={true} />
           <WhatIsUnifiedAISection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 3. AgentChat: The AI Superapp */}
+        {/* 4. AgentChat: The AI Superapp */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="purple" speed="slow" depth={true} interactive={true} />
+          <SpaceParticlesBackground particleCount={200} color="cyan" speed="slow" depth={true} interactive={true} />
           <AgentChatSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 4. AlphaRouter: The Carrier of Intelligence */}
+        {/* 5. AlphaRouter: The Carrier of Intelligence */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="cyan" speed="medium" depth={true} interactive={true} />
+          <SpaceParticlesBackground particleCount={180} color="green" speed="medium" depth={true} interactive={true} />
           <AlphaRouterSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 5. Ontology Network Protocol */}
+        {/* 6. Ontology Network Protocol */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={150} color="green" speed="slow" depth={true} interactive={true} />
+          <SpaceParticlesBackground particleCount={150} color="orange" speed="slow" depth={true} interactive={true} />
           <OntologyNetworkSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 6. Pre-Order Hardware */}
+        {/* 7. Pre-Order Hardware */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="orange" speed="medium" depth={true} interactive={true} />
+          <SpaceParticlesBackground particleCount={180} color="pink" speed="medium" depth={true} interactive={true} />
           <PreOrderHardwareSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 7. AI Directory + AI Marketplace */}
+        {/* 8. AI Directory + AI Marketplace */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={170} color="purple" speed="medium" depth={true} interactive={true} />
           <AIDirectoryMarketplaceSection />
@@ -90,7 +99,7 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 8. AI Datacenters + GPU Cloud */}
+        {/* 9. AI Datacenters + GPU Cloud */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={170} color="cyan" speed="medium" depth={true} interactive={true} />
           <AIDatacentersSection />
@@ -98,15 +107,15 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 9. VibeCoder + VibeCoding */}
+        {/* 10. VibeCoder + VibeCoding */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="blue" speed="medium" depth={true} interactive={true} />
+          <SpaceParticlesBackground particleCount={180} color="yellow" speed="medium" depth={true} interactive={true} />
           <VibeCoderSection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 10. Free Handle Program */}
+        {/* 11. Free Handle Program */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={160} color="mixed" speed="slow" depth={true} interactive={true} />
           <FreeHandleProgramSection />
@@ -114,15 +123,15 @@ export default function Home() {
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 11. Operator Economy + DevCommunity */}
+        {/* 12. Operator Economy + DevCommunity */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={150} color="purple" speed="medium" depth={true} interactive={true} />
+          <SpaceParticlesBackground particleCount={150} color="red" speed="medium" depth={true} interactive={true} />
           <OperatorEconomySection />
         </div>
       </Suspense>
 
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 12. Claim Your Handle - Final CTA */}
+        {/* 13. Claim Your Handle - Final CTA */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={200} color="mixed" speed="slow" depth={true} interactive={true} />
           <ClaimHandleSection />
