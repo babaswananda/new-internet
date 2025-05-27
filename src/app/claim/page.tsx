@@ -48,26 +48,29 @@ const ClaimPage = () => {
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  Your handle is your username, email, wallet, inbox, vault, AI, and business.
+                  Deploy Your IO. Command Your Stack. Own Your Internet.
                 </p>
                 <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-                  Once it's taken — it's taken. Forever. First time in digital history to own your entire online identity.
+                  Your handle isn't just an identity — it's your command center for the agentic internet.
+                  Deploy IO, orchestrate agents, and own your digital sovereignty.
                 </p>
               </motion.div>
 
               {/* Developer Mode */}
               <motion.div variants={itemVariants} className="mb-12">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
-                  <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">💻 Developer Mode Activated</h3>
+                  <h3 className="text-2xl font-semibold mb-6 text-green-400 text-center">💻 IO Deployment Protocol</h3>
                   <div className="bg-black/60 rounded-lg p-6 font-mono text-sm mb-6">
-                    <div className="text-green-400 mb-2">$ protocol claim --handle="yourname" --network="unifiedai" --access-token="72hr-early-access"</div>
-                    <div className="text-gray-400 mb-4">🧠 You're not registering. You're deploying.</div>
-                    <div className="text-blue-400">.commandline/claim is where it all begins.</div>
+                    <div className="text-green-400 mb-2">$ io claim --handle="yourname" --deploy="intelligent-operator" --network="unifiedai"</div>
+                    <div className="text-gray-400 mb-2">🧠 Initializing your Intelligent Operator...</div>
+                    <div className="text-blue-400 mb-2">✓ IO deployed at yourname.commandline</div>
+                    <div className="text-purple-400">⚡ Agent orchestration layer active</div>
                   </div>
                   <div className="text-center">
                     <p className="text-lg text-gray-300 mb-4">
-                      Run the code. Secure your territory.<br />
-                      You don't need a website. You need a command center.
+                      You're not registering. You're deploying your IO.<br />
+                      <span className="text-green-400">.commandline/claim</span> is where it all begins.<br />
+                      (no paste '.commandline/claim' in your browser, it leads somewhere special).
                     </p>
                   </div>
                 </GlowingCard>
