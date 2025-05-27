@@ -5,7 +5,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Link from 'next/link';
 import { CardSpotlight } from '@/components/ui/card-spotlight';
+<<<<<<< HEAD
 import { GlowingCard } from '@/components/ui/glowing-card';
+=======
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
 
 const InvestmentOfferingSection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -91,6 +94,7 @@ const InvestmentOfferingSection: React.FC = () => {
 
           <motion.div
             variants={itemVariants}
+<<<<<<< HEAD
             className="flex flex-wrap justify-center gap-4 mb-8"
           >
             <motion.button
@@ -108,6 +112,19 @@ const InvestmentOfferingSection: React.FC = () => {
             >
               Join the I/O Round
             </motion.button>
+=======
+            className="flex justify-center mb-8"
+          >
+            <Link href="/ai-tokens">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg font-bold text-lg shadow-lg shadow-blue-500/20"
+              >
+                Enter with AI Tokens
+              </motion.button>
+            </Link>
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
           </motion.div>
 
           <motion.div
@@ -160,6 +177,7 @@ const InvestmentOfferingSection: React.FC = () => {
 
           <motion.div
             variants={itemVariants}
+<<<<<<< HEAD
             className="mb-12"
           >
             <GlowingCard className="bg-black/30 backdrop-blur-sm rounded-sm border border-blue-500/20 overflow-hidden">
@@ -211,6 +229,29 @@ const InvestmentOfferingSection: React.FC = () => {
               </CardSpotlight>
             </div>
 
+=======
+            className="flex flex-col md:flex-row gap-8 mb-12"
+          >
+            <div className="flex-1">
+              <CardSpotlight className="h-full w-full" color="#1e293b">
+                <p className="text-xl font-bold relative z-20 mt-2 text-white">
+                  Every tier gets:
+                </p>
+                <div className="text-neutral-200 mt-4 relative z-20">
+                  <ul className="list-none mt-2 space-y-4">
+                    <InvestmentStep title="NFT receipt" />
+                    <InvestmentStep title="Role-based access" />
+                    <InvestmentStep title="Future mint rights" />
+                    <InvestmentStep title="Contributor wall timestamp" />
+                  </ul>
+                </div>
+                <p className="text-neutral-300 mt-4 relative z-20 text-sm">
+                  Secure your position in the protocol with exclusive benefits for early contributors.
+                </p>
+              </CardSpotlight>
+            </div>
+
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
             <div className="flex-1">
               <CardSpotlight className="h-full w-full" color="#1e293b">
                 <p className="text-xl font-bold relative z-20 mt-2 text-white">
@@ -236,7 +277,11 @@ const InvestmentOfferingSection: React.FC = () => {
             variants={itemVariants}
             className="max-w-2xl mx-auto"
           >
+<<<<<<< HEAD
             <GlowingCard className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-xl p-8">
+=======
+            <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8">
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
               <h3 className="text-2xl font-bold mb-2 text-center">Request Investment Access</h3>
               <p className="text-gray-300 mb-6 text-center">Investment opportunities are invite-only. Enter your email to request access to our exclusive investment tiers.</p>
 

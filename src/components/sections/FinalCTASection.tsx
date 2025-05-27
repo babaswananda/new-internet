@@ -4,7 +4,10 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { RetroGrid } from '@/components/ui/retro-grid';
+<<<<<<< HEAD
 import { GlowingCard } from '@/components/ui/glowing-card';
+=======
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
 
 const FinalCTASection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -70,6 +73,7 @@ const FinalCTASection: React.FC = () => {
             variants={itemVariants}
             className="mb-16"
           >
+<<<<<<< HEAD
             <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-sm border border-blue-500/20">
               <div className="text-xl md:text-2xl space-y-4">
                 <p>Agent Keys mint soon.</p>
@@ -77,6 +81,11 @@ const FinalCTASection: React.FC = () => {
                 <p>This isn't early access. It's early territory.</p>
               </div>
             </GlowingCard>
+=======
+            <p>Agent Keys mint soon.</p>
+            <p>The protocol is syncing.</p>
+            <p>You're not joining early. You're writing the rulebook.</p>
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
           </motion.div>
 
           <motion.div

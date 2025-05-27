@@ -3,7 +3,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+<<<<<<< HEAD
 import { GlowingCard } from '@/components/ui/glowing-card';
+=======
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
 import DatabaseWithRestApi from '@/components/ui/database-with-rest-api';
 
 const InfrastructureSection: React.FC = () => {
@@ -121,6 +124,7 @@ const InfrastructureSection: React.FC = () => {
 
           <motion.div
             variants={itemVariants}
+<<<<<<< HEAD
             className="w-full flex flex-col items-center justify-center px-4"
           >
             <div className="w-full max-w-4xl flex flex-col items-center">
@@ -141,6 +145,25 @@ const InfrastructureSection: React.FC = () => {
                 className="mx-auto"
               />
             </div>
+=======
+            className="flex justify-center w-full"
+          >
+            <DatabaseWithRestApi
+              title="BridgeOS: REST API for Web2 Integration"
+              circleText="API"
+              badgeTexts={{
+                first: "GET",
+                second: "POST",
+                third: "PUT",
+                fourth: "DELETE"
+              }}
+              buttonTexts={{
+                first: "Agent Data",
+                second: "Endpoints"
+              }}
+              lightColor="#3a86ff"
+            />
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
           </motion.div>
         </motion.div>
       </div>

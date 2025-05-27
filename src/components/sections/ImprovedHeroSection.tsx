@@ -33,6 +33,7 @@ const ImprovedHeroSectionComponent: React.FC = () => {
   }, []);
 
   const heroContentSets = [
+<<<<<<< HEAD
     {
       // Slide 1: The Core Message
       heading: "UNIFIED AI",
@@ -116,13 +117,85 @@ const ImprovedHeroSectionComponent: React.FC = () => {
   const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
   const itemVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5 } } };
   const textFadeVariants = {
+=======
+    {
+      heading: "UNIFIED AI I/O",
+      subtitle: "The New Map of the New Internet",
+      bubbleText: "AI is the fuel.", 
+      bubbleColor: "from-blue-500 to-purple-500",
+    },
+    {
+      heading: "PROTOCOL-GRADE",
+      subtitle: "Infrastructure for AI",
+      bubbleText: "Input is Ownership.", 
+      bubbleColor: "from-purple-500 to-pink-500",
+    },
+    {
+      heading: "AGENT ECONOMY",
+      subtitle: "Powering the Next Generation",
+      bubbleText: "Operators are Infrastructure.", 
+      bubbleColor: "from-pink-500 to-red-500",
+    },
+    { 
+      heading: "THE NEW INTERNET", 
+      subtitle: "Built on AgentOS",  
+      bubbleText: "AgentOS is how it all runs.",
+      bubbleColor: "from-red-500 to-blue-500",
+    }
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % heroContentSets.length);
+    }, 4000); 
+    return () => clearInterval(interval);
+  }, [heroContentSets.length]);
+
+  // Static features grid data - Emojis added
+  const features = [
+    {
+      title: "A2A Protocol",
+      description: "Agent-to-Agent communication protocol for seamless AI collaboration.",
+      emoji: "🔗",
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
+      title: "Model Context Protocol",
+      description: "Seamlessly connect and operate across different AI model contexts.",
+      emoji: "🧠",
+      color: "from-purple-500 to-pink-500"
+    },
+    {
+      title: "Operator Economy",
+      description: "Participate in the new economy of AI operators and agents.",
+      emoji: "💰",
+      color: "from-amber-500 to-orange-500"
+    },
+    {
+      title: "Vibe Coding",
+      description: "Create generative art and vibe coding projects with AI-powered tools.",
+      emoji: "✨",
+      color: "from-green-500 to-teal-500"
+    }
+  ];
+
+  const containerVariants = { hidden: { opacity: 0 }, visible: { opacity: 1 } };
+  const itemVariants = { hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 0.5 } } };
+  const textFadeVariants = { 
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
     hidden: { opacity: 0, y: 10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
     exit: { opacity: 0, y: -10, transition: { duration: 0.3 } }
   };
+<<<<<<< HEAD
   const bubbleFadeVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } },
+=======
+  const bubbleFadeVariants = { 
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.1 } }, 
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
     exit: { opacity: 0, y: -20, transition: { duration: 0.3 } }
   };
   // Removed barIconVariants as it's not used for dot-dash
@@ -158,9 +231,15 @@ const ImprovedHeroSectionComponent: React.FC = () => {
           </motion.div>
 
           {/* Rotating Text Block (Heading, Subtitle, and Highlight Bubble) */}
+<<<<<<< HEAD
           <motion.div variants={itemVariants} className="mb-8" style={getParallaxStyle(0.8)}>
             <AnimatePresence mode="wait">
               <motion.div
+=======
+          <motion.div variants={itemVariants} className="mb-8" style={getParallaxStyle(0.8)}> 
+            <AnimatePresence mode="wait">
+              <motion.div 
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
                 key={`content-set-${activeIndex}`}
                 initial="hidden"
                 animate="visible"
@@ -174,16 +253,25 @@ const ImprovedHeroSectionComponent: React.FC = () => {
                 </motion.p>
                 <motion.div
                   variants={bubbleFadeVariants}
+<<<<<<< HEAD
                   className="relative mt-4"
                 >
                   <div className="inline-block">
                     <div className={`bg-gradient-to-r ${heroContentSets[activeIndex].bubbleColor} p-[1px] rounded-lg`}>
                       <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg">
+=======
+                  className="relative mt-4" 
+                >
+                  <div className="inline-block"> 
+                    <div className={`bg-gradient-to-r ${heroContentSets[activeIndex].bubbleColor} p-[1px] rounded-lg`}>
+                      <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg"> 
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
                         <p className="text-2xl md:text-3xl text-white">{heroContentSets[activeIndex].bubbleText}</p>
                       </div>
                     </div>
                   </div>
                 </motion.div>
+<<<<<<< HEAD
 
                 {heroContentSets[activeIndex].bulletPoints && (
                   <motion.div
@@ -208,6 +296,12 @@ const ImprovedHeroSectionComponent: React.FC = () => {
             </AnimatePresence>
           </motion.div>
 
+=======
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
           {/* Dot-Dash Animated Icon Indicator */}
           <motion.div
             variants={itemVariants}
@@ -227,10 +321,39 @@ const ImprovedHeroSectionComponent: React.FC = () => {
                 onClick={() => setActiveIndex(index)}
               />
             ))}
+<<<<<<< HEAD
+=======
+          </motion.div>
+
+          {/* Static Feature Grid */}
+          <motion.div variants={itemVariants} className="mb-12" style={getParallaxStyle(1.2)}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {features.map((feature, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="w-full"
+                >
+                  <div className={`inline-block bg-gradient-to-r ${feature.color} p-[1px] rounded-lg w-full`}>
+                    <div className="bg-black/60 backdrop-blur-sm px-6 py-3 rounded-lg flex items-center h-full"> 
+                      <span className="mr-4 text-2xl">{feature.emoji}</span> 
+                      <div>
+                        <h3 className="text-xl font-semibold text-white">{feature.title}</h3>
+                        <p className="text-blue-200 text-sm">{feature.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
           </motion.div>
 
           {/* CTA buttons */}
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4" style={getParallaxStyle(1.5)}>
+<<<<<<< HEAD
             <Link href="#claim-handle">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -258,6 +381,22 @@ const ImprovedHeroSectionComponent: React.FC = () => {
                 VIEW ROUTER ARCHITECTURE
               </motion.button>
             </Link>
+=======
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg rounded-lg shadow-lg shadow-blue-500/20"
+            >
+              Enter the Protocol
+            </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-lg rounded-lg hover:bg-white/10 transition-colors"
+            >
+              Learn More
+            </motion.button>
+>>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
           </motion.div>
         </motion.div>
       </div>
