@@ -134,14 +134,28 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
         <div className="flex items-center space-x-4">
           <Link href="/ai-tokens">
             <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="hidden md:block px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all relative overflow-hidden group"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="hidden md:block px-4 py-2 bg-gradient-to-br from-gray-200 via-gray-300 to-gray-400 text-gray-900 font-bold text-sm rounded border border-gray-300 shadow-lg hover:shadow-purple-500/30 transition-all relative overflow-hidden group"
+              style={{
+                background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 25%, #dee2e6 50%, #ced4da 75%, #adb5bd 100%)',
+                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.1), 0 2px 4px rgba(0,0,0,0.1)'
+              }}
             >
-              <span className="relative z-10">Get Powered by A.I.</span>
-              {/* Glowing edge effect */}
-              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
-              <div className="absolute inset-0.5 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500"></div>
+              <span className="relative z-10 flex items-center gap-1">
+                <span className="text-xs">⚡</span>
+                Get Powered by A.I.
+              </span>
+              {/* GPU chip pattern */}
+              <div className="absolute inset-0 opacity-20">
+                <div className="absolute inset-1 border border-gray-400/30 rounded-sm"></div>
+                <div className="absolute top-1 left-1 w-1 h-1 bg-gray-600 rounded-full"></div>
+                <div className="absolute top-1 right-1 w-1 h-1 bg-gray-600 rounded-full"></div>
+                <div className="absolute bottom-1 left-1 w-1 h-1 bg-gray-600 rounded-full"></div>
+                <div className="absolute bottom-1 right-1 w-1 h-1 bg-gray-600 rounded-full"></div>
+              </div>
+              {/* Glowing edge effect on hover */}
+              <div className="absolute -inset-0.5 rounded bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-75 transition-opacity duration-300 blur-sm -z-10"></div>
             </motion.button>
           </Link>
           <Link href="/claim">

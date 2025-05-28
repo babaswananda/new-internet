@@ -141,28 +141,17 @@ const HeroSection: React.FC = () => {
           {/* Gradient background for the hero section */}
         </div>
 
-        {/* Cinematic Hero Media Placeholder */}
+        {/* Optimized Background Image */}
         <div className="absolute inset-0 opacity-30">
-          <CinematicMediaPlaceholder
-            id="hero-awakening"
-            title="The Awakening"
-            description="AI consciousness emerging from digital void with neural networks and energy flows"
-            type="video"
-            duration="30s"
-            resolution="4K"
-            category="hero"
-            priority="high"
-            aspectRatio="21:9"
-            className="w-full h-full"
-          />
+          <div className="w-full h-full bg-gradient-to-br from-blue-900/20 via-purple-900/20 to-black"></div>
         </div>
 
         {/* Animated grid background */}
         <div className="absolute inset-0 grid-bg opacity-30"></div>
 
-        {/* Animated particles */}
+        {/* Optimized particles */}
         <div className="absolute inset-0 overflow-hidden">
-          {Array.from({ length: 20 }).map((_, i) => (
+          {Array.from({ length: 8 }).map((_, i) => (
             <motion.div
               key={i}
               className="absolute w-1 h-1 rounded-full bg-white/30"

@@ -3,18 +3,27 @@ import React from 'react';
 /**
  * Utility function for HEADERS - normalBOLD styling without italics
  * Alternates between normal and bold words for headers
+ * Preserves emojis with proper z-index
  */
 export const normalBoldHeader = (text: string): React.ReactNode => {
   const words = text.split(' ');
 
   return (
-    <span>
-      {words.map((word, index) => (
-        <span key={index} className={index % 2 === 0 ? 'font-normal' : 'font-bold'}>
-          {word}
-          {index < words.length - 1 ? ' ' : ''}
-        </span>
-      ))}
+    <span className="relative z-20">
+      {words.map((word, index) => {
+        // Check if word contains emoji
+        const hasEmoji = /[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u.test(word);
+
+        return (
+          <span
+            key={index}
+            className={`${index % 2 === 0 ? 'font-normal' : 'font-bold'} ${hasEmoji ? 'relative z-30' : ''}`}
+          >
+            {word}
+            {index < words.length - 1 ? ' ' : ''}
+          </span>
+        );
+      })}
     </span>
   );
 };

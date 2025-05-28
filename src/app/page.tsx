@@ -111,20 +111,61 @@ export default function Home() {
     {
       id: 'ai-marketplace',
       title: 'AI Marketplace',
-      description: 'The new creator economy where AI agents are bought, sold, and deployed across industries. Monetize your intelligence and discover powerful agents.',
+      description: 'The new creator economy where AI agents are bought, sold, and deployed across industries. Build, monetize, and scale intelligent agents that solve real-world problems.',
       content: (
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-            <span className="text-gray-300">Deploy & monetize agents</span>
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-lg p-4">
+            <h4 className="text-purple-400 font-bold mb-3">💰 CREATOR ECONOMY:</h4>
+            <p className="text-gray-300 text-sm mb-3">Turn your AI expertise into sustainable revenue streams.</p>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Revenue sharing models</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Subscription tiers</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Pay-per-use pricing</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Licensing opportunities</span>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
-            <span className="text-gray-300">Creator revenue sharing</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-            <span className="text-gray-300">Remix & fork capabilities</span>
+
+          <div className="space-y-3">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🤖</span>
+              <div>
+                <h5 className="text-purple-400 font-semibold">Agent Deployment Hub</h5>
+                <p className="text-gray-400 text-sm">One-click deployment across multiple platforms</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🔄</span>
+              <div>
+                <h5 className="text-pink-400 font-semibold">Remix & Fork System</h5>
+                <p className="text-gray-400 text-sm">Collaborative development with revenue sharing</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">📊</span>
+              <div>
+                <h5 className="text-orange-400 font-semibold">Performance Analytics</h5>
+                <p className="text-gray-400 text-sm">Real-time metrics and optimization insights</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🏆</span>
+              <div>
+                <h5 className="text-blue-400 font-semibold">Creator Leaderboards</h5>
+                <p className="text-gray-400 text-sm">Recognition and rewards for top performers</p>
+              </div>
+            </div>
           </div>
         </div>
       ),
@@ -141,20 +182,68 @@ export default function Home() {
     {
       id: 'handle-registry',
       title: 'Handle Registry',
-      description: 'Secure your digital identity with protocol-native handles for the Agentic Internet. Universal identity across all AI platforms and services.',
+      description: 'Secure your digital identity with protocol-native handles for the Agentic Internet. Three-tier architecture supporting humans, agents, and infrastructure with cryptographic security.',
       content: (
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="text-gray-300">Universal identity system</span>
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 border border-green-500/20 rounded-lg p-4">
+            <h4 className="text-green-400 font-bold mb-3">🆔 IDENTITY ARCHITECTURE:</h4>
+            <p className="text-gray-300 text-sm mb-3">Three-tier system for complete ecosystem coverage.</p>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Developer handles</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Agent handles</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Endpoint handles</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Session handles</span>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-            <span className="text-gray-300">Cryptographically secured</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-            <span className="text-gray-300">Valuable digital assets</span>
+
+          <div className="space-y-3">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🔐</span>
+              <div>
+                <h5 className="text-green-400 font-semibold">Cryptographic Security</h5>
+                <p className="text-gray-400 text-sm">Military-grade encryption and verification</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">💎</span>
+              <div>
+                <h5 className="text-blue-400 font-semibold">Digital Asset Value</h5>
+                <p className="text-gray-400 text-sm">Handles appreciate as network effects grow</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🌐</span>
+              <div>
+                <h5 className="text-purple-400 font-semibold">Universal Compatibility</h5>
+                <p className="text-gray-400 text-sm">Works across all AI platforms and services</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">📊</span>
+              <div>
+                <h5 className="text-cyan-400 font-semibold">Analytics Dashboard</h5>
+                <p className="text-gray-400 text-sm">Track handle usage and performance metrics</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🔄</span>
+              <div>
+                <h5 className="text-orange-400 font-semibold">Bulk Registration</h5>
+                <p className="text-gray-400 text-sm">CSV upload and API access for enterprises</p>
+              </div>
+            </div>
           </div>
         </div>
       ),

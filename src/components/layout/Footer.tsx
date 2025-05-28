@@ -55,6 +55,7 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
         { href: '/investors', label: 'Investors', color: 'text-gray-300' },
         { href: '/retailers', label: 'Retail Partners', color: 'text-gray-300' },
         { href: '/contact', label: 'Contact', color: 'text-gray-300' },
+        { href: '/alphasignals', label: '🔊 AlphaSignals', color: 'text-green-400' },
         { href: '/token-flow', label: 'Token Flow', color: 'text-gray-300' },
         { href: '/ai-tokens', label: 'get.poweredbyai', color: 'text-gray-300' }
       ]
