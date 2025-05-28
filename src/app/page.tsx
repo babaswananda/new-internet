@@ -45,128 +45,128 @@ export default function Home() {
   // Protocol Stack Parallax Data
   const protocolStackData = useMemo(() => [
     {
-      id: 'ai-agents-goldmine',
-      title: 'AI Agents: The Real Goldmine',
-      description: 'Industry-specific AI agents that target overlooked verticals, unsolved problems, and underserved operators. Forget generic chatbots — this is where the deep money lives.',
+      id: 'ai-directory',
+      title: 'AI Directory',
+      description: 'Discover and access the world\'s largest collection of AI tools, agents, and services. Find the perfect AI solution for any task or industry.',
       content: (
         <div className="space-y-6">
-          <div className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-lg p-4">
-            <h4 className="text-yellow-400 font-bold mb-3">🧠 STRATEGY:</h4>
-            <p className="text-gray-300 text-sm mb-3">We focus on agents that solve real pain, not just chat.</p>
+          <div className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/20 rounded-lg p-4">
+            <h4 className="text-cyan-400 font-bold mb-3">🔍 DISCOVERY:</h4>
+            <p className="text-gray-300 text-sm mb-3">Find the right AI tool for every need.</p>
             <div className="grid grid-cols-2 gap-2 text-xs">
               <div className="flex items-center gap-2">
                 <span className="text-green-400">✅</span>
-                <span className="text-gray-300">Unserved industries</span>
+                <span className="text-gray-300">Smart search & filtering</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-green-400">✅</span>
-                <span className="text-gray-300">Cash flow problems</span>
+                <span className="text-gray-300">Ratings & reviews</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-green-400">✅</span>
-                <span className="text-gray-300">Manual labor bottlenecks</span>
+                <span className="text-gray-300">Category organization</span>
               </div>
               <div className="flex items-center gap-2">
                 <span className="text-green-400">✅</span>
-                <span className="text-gray-300">Specialized knowledge gaps</span>
+                <span className="text-gray-300">Easy integration</span>
               </div>
             </div>
           </div>
 
           <div className="space-y-3">
             <div className="flex items-start gap-3">
-              <span className="text-2xl">🏥</span>
+              <span className="text-2xl">🤖</span>
               <div>
-                <h5 className="text-blue-400 font-semibold">Health Intake Optimizer</h5>
-                <p className="text-gray-400 text-sm">Auto-collects patient history, standardizes insurance data</p>
+                <h5 className="text-blue-400 font-semibold">AI Agents Marketplace</h5>
+                <p className="text-gray-400 text-sm">Browse and deploy intelligent agents</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-2xl">🧾</span>
+              <span className="text-2xl">🛠️</span>
               <div>
-                <h5 className="text-green-400 font-semibold">Solo Hustler TaxBot</h5>
-                <p className="text-gray-400 text-sm">For creators, freelancers, crypto traders</p>
+                <h5 className="text-green-400 font-semibold">Developer Tools</h5>
+                <p className="text-gray-400 text-sm">APIs, SDKs, and integration tools</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-2xl">🏘️</span>
+              <span className="text-2xl">📊</span>
               <div>
-                <h5 className="text-purple-400 font-semibold">Follow-Up Fiend</h5>
-                <p className="text-gray-400 text-sm">Real estate agents who suck at follow-up</p>
+                <h5 className="text-purple-400 font-semibold">Analytics & Insights</h5>
+                <p className="text-gray-400 text-sm">Performance metrics and usage analytics</p>
               </div>
             </div>
           </div>
         </div>
       ),
       media: {
-        id: 'industry-agents-showcase',
-        title: 'Industry-Specific Agents Showcase',
-        description: 'Specialized AI agents working across healthcare, finance, real estate, and blue-collar industries',
+        id: 'ai-directory-showcase',
+        title: 'AI Directory Platform',
+        description: 'Comprehensive directory of AI tools, agents, and services with smart discovery features',
         type: 'video' as const,
-        category: 'agents' as const,
-        priority: 'high' as const
-      },
-      gradient: 'from-yellow-600 to-orange-600'
-    },
-    {
-      id: 'alpharouter',
-      title: 'AlphaRouter: Intelligence Routing',
-      description: 'Automatically route requests to the best AI models and agents. Optimize performance, cost, and results across the entire AI ecosystem.',
-      content: (
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-            <span className="text-gray-300">Smart model selection</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-            <span className="text-gray-300">Cost optimization</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-            <span className="text-gray-300">Performance monitoring</span>
-          </div>
-        </div>
-      ),
-      media: {
-        id: 'alpharouter-flow',
-        title: 'AlphaRouter Flow Visualization',
-        description: 'Data flow showing intelligent routing between AI models and agents',
-        type: 'animation' as const,
         category: 'protocol' as const,
         priority: 'high' as const
       },
-      gradient: 'from-green-600 to-emerald-600'
+      gradient: 'from-cyan-600 to-blue-600'
     },
     {
-      id: 'ion-network',
-      title: 'ION: Intelligent Ontology Network',
-      description: 'The semantic backbone that connects all AI agents and protocols. Create intelligent relationships and enable autonomous collaboration.',
+      id: 'ai-marketplace',
+      title: 'AI Marketplace',
+      description: 'The new creator economy where AI agents are bought, sold, and deployed across industries. Monetize your intelligence and discover powerful agents.',
       content: (
         <div className="space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-            <span className="text-gray-300">Semantic relationships</span>
+            <span className="text-gray-300">Deploy & monetize agents</span>
           </div>
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
-            <span className="text-gray-300">Agent collaboration</span>
+            <span className="text-gray-300">Creator revenue sharing</span>
           </div>
           <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-            <span className="text-gray-300">Knowledge graphs</span>
+            <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+            <span className="text-gray-300">Remix & fork capabilities</span>
           </div>
         </div>
       ),
       media: {
-        id: 'ion-network-viz',
-        title: 'ION Network Visualization',
-        description: 'Interconnected nodes showing semantic relationships and data flows',
+        id: 'ai-marketplace-flow',
+        title: 'AI Marketplace Economy',
+        description: 'Creator economy showing agent deployment, monetization, and collaboration',
         type: 'video' as const,
         category: 'protocol' as const,
         priority: 'high' as const
       },
-      gradient: 'from-purple-600 to-violet-600'
+      gradient: 'from-purple-600 to-pink-600'
+    },
+    {
+      id: 'handle-registry',
+      title: 'Handle Registry',
+      description: 'Secure your digital identity with protocol-native handles for the Agentic Internet. Universal identity across all AI platforms and services.',
+      content: (
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="text-gray-300">Universal identity system</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="text-gray-300">Cryptographically secured</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+            <span className="text-gray-300">Valuable digital assets</span>
+          </div>
+        </div>
+      ),
+      media: {
+        id: 'handle-registry-viz',
+        title: 'Handle Registry System',
+        description: 'Decentralized identity system showing handle registration and verification',
+        type: 'video' as const,
+        category: 'protocol' as const,
+        priority: 'high' as const
+      },
+      gradient: 'from-green-600 to-emerald-600'
     }
   ], []);
 
@@ -206,99 +206,15 @@ export default function Home() {
         </div>
       </Suspense>
 
-      {/* Core Products Slide - POW! */}
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        <CoreProductsSlide />
-      </Suspense>
-
-      {/* Protocol Stack Slide - POW! */}
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        <ProtocolStackSlide />
-      </Suspense>
-
-      {/* AI Marketplace Section */}
+      {/* Protocol Stack Parallax Deck */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
         <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="purple" speed="medium" depth={true} interactive={true} />
-          <div className="py-20 px-4">
-            <div className="max-w-6xl mx-auto text-center">
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">AI Marketplace</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
-                The new creator economy where AI agents are bought, sold, and deployed across industries
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
-                  <div className="text-4xl mb-4">🤖</div>
-                  <h3 className="text-xl font-bold text-white mb-3">Deploy Agents</h3>
-                  <p className="text-gray-300">Launch intelligent agents across various business functions</p>
-                </div>
-                <div className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
-                  <div className="text-4xl mb-4">💰</div>
-                  <h3 className="text-xl font-bold text-white mb-3">Monetize Intelligence</h3>
-                  <p className="text-gray-300">Create revenue streams from your AI agent creations</p>
-                </div>
-                <div className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
-                  <div className="text-4xl mb-4">🔄</div>
-                  <h3 className="text-xl font-bold text-white mb-3">Remix & Fork</h3>
-                  <p className="text-gray-300">Build upon existing agents with collaborative development</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </Suspense>
-
-      {/* AI Directory Section */}
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="cyan" speed="medium" depth={true} interactive={true} />
-          <div className="py-20 px-4">
-            <div className="max-w-6xl mx-auto text-center">
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">AI Directory</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
-                Discover and access the world's largest collection of AI tools, agents, and services
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {["🔍 Search & Discovery", "⭐ Ratings & Reviews", "🏷️ Smart Categories", "🔗 Easy Integration"].map((feature, index) => (
-                  <div key={index} className="bg-black/30 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-4">
-                    <p className="text-white font-medium">{feature}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </Suspense>
-
-      {/* Handle Registry Section */}
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={160} color="cyan" speed="slow" depth={true} interactive={true} />
-          <div className="py-20 px-4">
-            <div className="max-w-6xl mx-auto text-center">
-              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">Handle Registry</h2>
-              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
-                Secure your digital identity with protocol-native handles for the Agentic Internet
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-6">
-                  <div className="text-4xl mb-4">🆔</div>
-                  <h3 className="text-xl font-bold text-white mb-3">Universal Identity</h3>
-                  <p className="text-gray-300">One handle across all AI platforms and services</p>
-                </div>
-                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-6">
-                  <div className="text-4xl mb-4">🔐</div>
-                  <h3 className="text-xl font-bold text-white mb-3">Cryptographically Secured</h3>
-                  <p className="text-gray-300">Your identity is protected by advanced cryptography</p>
-                </div>
-                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-6">
-                  <div className="text-4xl mb-4">💎</div>
-                  <h3 className="text-xl font-bold text-white mb-3">Valuable Asset</h3>
-                  <p className="text-gray-300">Handles appreciate in value as the network grows</p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <SpaceParticlesBackground particleCount={180} color="mixed" speed="slow" depth={true} interactive={true} />
+          <ParallaxDeck
+            cards={protocolStackData}
+            title="Protocol Stack"
+            subtitle="The intelligent infrastructure powering the new internet"
+          />
         </div>
       </Suspense>
 
@@ -319,7 +235,7 @@ export default function Home() {
                   { name: ".AIGlasses", icon: "👓", desc: "Augmented reality AI" },
                   { name: ".AIEmail", icon: "📧", desc: "Hardware email device" }
                 ].map((device, index) => (
-                  <div key={index} className="bg-black/30 backdrop-blur-sm border border-orange-500/20 rounded-lg p-6">
+                  <div key={index} className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
                     <div className="text-4xl mb-4">{device.icon}</div>
                     <h3 className="text-xl font-bold text-white mb-2">{device.name}</h3>
                     <p className="text-gray-300 text-sm">{device.desc}</p>
@@ -360,18 +276,6 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </div>
-      </Suspense>
-
-      {/* Protocol Stack Parallax Deck */}
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="mixed" speed="slow" depth={true} interactive={true} />
-          <ParallaxDeck
-            cards={protocolStackData}
-            title="Protocol Stack"
-            subtitle="The intelligent infrastructure powering the new internet"
-          />
         </div>
       </Suspense>
 

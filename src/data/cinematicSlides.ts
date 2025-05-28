@@ -6,12 +6,12 @@ export const homePageSlides: CinematicSlide[] = [
     type: 'video',
     src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4', // Placeholder - will be replaced with epic launch video
     poster: 'https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=1920&h=1080&fit=crop',
-    title: 'Unified AI is NOW LIVE',
+    title: 'Welcome to the New Map of the New Internet',
     subtitle: 'The Agentic Internet Has Arrived',
     description: 'Deploy, manage, and monetize AI agents across the decentralized web. Early access pricing available now.',
     cta: {
       primary: { text: '🚀 Start Free Trial', href: '/io' },
-      secondary: { text: 'Watch Demo', href: '/documentation' }
+      secondary: { text: 'Read Whitepaper', href: 'https://whitepaper.newinternet' }
     },
     overlay: 'gradient',
     textPosition: 'center'
@@ -65,12 +65,12 @@ export const homePageSlides: CinematicSlide[] = [
     type: 'video',
     src: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4', // Epic vision of the future internet
     poster: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&h=1080&fit=crop',
-    title: 'The Agentic Internet',
+    title: 'The Agentic Web',
     subtitle: 'Where Intelligence Meets Infrastructure',
     description: 'Join the revolution. Own your tools, run the system, become the intelligence.',
     cta: {
-      primary: { text: '🌐 Join Revolution', href: '/claim' },
-      secondary: { text: 'Read Manifesto', href: '/about' }
+      primary: { text: '🌐 download.agentic', href: 'https://download.agentic' },
+      secondary: { text: 'Join Waitlist', href: '/waitlist' }
     },
     overlay: 'gradient',
     textPosition: 'center'
