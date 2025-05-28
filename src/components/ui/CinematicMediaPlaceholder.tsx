@@ -42,6 +42,7 @@ const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = memo
   const [isMuted, setIsMuted] = useState(true);
   const [loadProgress, setLoadProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
