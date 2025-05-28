@@ -15,6 +15,7 @@ import IOSection from '@/components/sections/IOSection';
 import ClaimHandleSection from '@/components/sections/ClaimHandleSection';
 import NewsletterSection from '@/components/sections/NewsletterSection';
 import FAQSection from '@/components/sections/FAQSection';
+import FinalCTASection from '@/components/sections/FinalCTASection';
 import CinematicHeroBanner from '@/components/ui/CinematicHeroBanner';
 import { homePageSlides } from '@/data/cinematicSlides';
 import RotatingProductShowcase from '@/components/ui/RotatingProductShowcase';
@@ -191,19 +192,7 @@ export default function Home() {
         </div>
       </Suspense>
 
-      {/* Core Products Carousel */}
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="blue" speed="medium" depth={true} interactive={true} />
-          <ScrollTriggeredCarousel
-            items={coreProductsData}
-            title="Core Products"
-            subtitle="The foundation of your Agentic Internet experience"
-            autoAdvance={true}
-            showProgress={true}
-          />
-        </div>
-      </Suspense>
+
 
       {/* Protocol Stack Parallax Deck */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
@@ -233,12 +222,9 @@ export default function Home() {
         </div>
       </Suspense>
 
-      {/* Final CTA */}
+      {/* Final CTA with Retro Grid */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="mixed" speed="slow" depth={true} interactive={true} />
-          <ClaimHandleSection />
-        </div>
+        <FinalCTASection />
       </Suspense>
     </MainLayout>
   );

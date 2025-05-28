@@ -4,10 +4,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { RetroGrid } from '@/components/ui/retro-grid';
-<<<<<<< HEAD
-import { GlowingCard } from '@/components/ui/glowing-card';
-=======
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
+import Link from 'next/link';
+import { HeaderText } from '@/components/ui/header-text';
 
 const FinalCTASection: React.FC = () => {
   const [ref, inView] = useInView({
@@ -51,70 +49,77 @@ const FinalCTASection: React.FC = () => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          className="max-w-4xl mx-auto text-center"
+          className="max-w-6xl mx-auto text-center"
         >
-          <motion.div
-            variants={itemVariants}
-            className="mb-12 text-xl md:text-2xl space-y-4"
-          >
-            <p>If you missed Bitcoin.</p>
-            <p>If you missed Ethereum.</p>
-            <p>If you missed buying that NFT of a rock for $8.</p>
-          </motion.div>
-
-          <motion.p
-            variants={itemVariants}
-            className="text-2xl md:text-3xl font-bold mb-12"
-          >
-            Don't miss the protocol that mints what's next.
-          </motion.p>
-
+          {/* Main Headline */}
           <motion.div
             variants={itemVariants}
             className="mb-16"
           >
-<<<<<<< HEAD
-            <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-sm border border-blue-500/20">
-              <div className="text-xl md:text-2xl space-y-4">
-                <p>Agent Keys mint soon.</p>
-                <p>Contribution window closes May 23.</p>
-                <p>This isn't early access. It's early territory.</p>
-              </div>
-            </GlowingCard>
-=======
-            <p>Agent Keys mint soon.</p>
-            <p>The protocol is syncing.</p>
-            <p>You're not joining early. You're writing the rulebook.</p>
->>>>>>> a8bb613d961596c562319d771cbc81914bce23ba
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-8 leading-none">
+              <HeaderText>THE FUTURE IS</HeaderText>
+            </h1>
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent leading-none">
+              AGENTIC
+            </h2>
           </motion.div>
 
+          {/* Key Messages */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap justify-center gap-4"
+            className="mb-16 text-xl md:text-2xl lg:text-3xl space-y-6 text-gray-300"
           >
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white text-black font-bold text-lg rounded-sm hover:bg-opacity-90 transition-colors"
-            >
-              Enter with AI Tokens
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-black text-white border border-white/20 font-bold text-lg rounded-sm hover:bg-white/10 transition-colors"
-            >
-              Reserve Contributor Slot
-            </motion.button>
+            <p className="font-light">
+              <span className="font-bold text-white">Deploy</span> AI agents.
+              <span className="font-bold text-white"> Orchestrate</span> intelligence.
+              <span className="font-bold text-white"> Own</span> your digital sovereignty.
+            </p>
+            <p className="text-lg md:text-xl text-gray-400 max-w-4xl mx-auto">
+              The protocol-grade launchpad for the agent economy is here.
+              Join the builders creating the AI-native internet.
+            </p>
           </motion.div>
 
-          <motion.p
+          {/* CTA Buttons */}
+          <motion.div
             variants={itemVariants}
-            className="mt-4 text-gray-400"
+            className="flex flex-col sm:flex-row justify-center gap-6 mb-12"
           >
-            Tier Selection + Agent Key Minting + Protocol Access
-          </motion.p>
+            <Link href="/io">
+              <motion.button
+                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(139, 92, 246, 0.4)' }}
+                whileTap={{ scale: 0.95 }}
+                className="px-12 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xl rounded-lg shadow-2xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300"
+              >
+                🚀 Start Your Free Trial
+              </motion.button>
+            </Link>
+
+            <Link href="/blog">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-12 py-4 bg-black/50 text-white border border-white/30 font-bold text-xl rounded-lg hover:bg-white/10 hover:border-white/50 transition-all duration-300 backdrop-blur-sm"
+              >
+                📚 Research Library
+              </motion.button>
+            </Link>
+          </motion.div>
+
+          {/* Additional Info */}
+          <motion.div
+            variants={itemVariants}
+            className="text-center space-y-4"
+          >
+            <p className="text-lg text-gray-400">
+              Join <span className="font-bold text-white">10,000+</span> builders already using Unified AI
+            </p>
+            <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-500">
+              <span>✓ No credit card required</span>
+              <span>✓ Deploy in minutes</span>
+              <span>✓ Scale globally</span>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>

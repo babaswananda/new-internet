@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { HeaderText } from '@/components/ui/header-text';
-import ParticleBackground from '@/components/ui/particle-background';
+import MainLayout from '@/components/layout/MainLayout';
+import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 
 const blogPosts = [
   {
@@ -312,8 +313,11 @@ const categories = [
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      <ParticleBackground />
+    <MainLayout>
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <SpaceParticlesBackground particleCount={300} color="purple" speed="slow" depth={true} interactive={true} />
+      </div>
 
       {/* Hero Section */}
       <div className="relative z-10 py-20 px-4">

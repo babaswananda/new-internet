@@ -19,7 +19,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { nav, isRTL } = useNavigationTranslation();
+  const { nav } = useNavigationTranslation();
 
   // Handle scroll effect for header
   useEffect(() => {
@@ -59,6 +59,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     { href: '/partners', label: 'Partners', description: 'Strategic partnerships', color: 'text-gray-300' },
     { href: '/press', label: 'Press', description: 'Media resources and news', color: 'text-gray-300' },
     { href: '/investors', label: 'Investors', description: 'Investment information', color: 'text-gray-300' },
+    { href: '/retailers', label: 'Retail Partners', description: 'Retail partnership program', color: 'text-green-400' },
     { href: '/contact', label: 'Contact', description: 'Get in touch with us', color: 'text-gray-300' }
   ];
 
@@ -88,6 +89,8 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           <DropdownNav
             label={nav('products')}
             items={productItems}
+            multiColumn={true}
+            columns={3}
           />
 
           <DropdownNav
@@ -112,11 +115,17 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           <DropdownNav
             label={nav('about')}
             items={companyItems}
+            multiColumn={true}
+            columns={2}
           />
 
           <NavLink href="/blog">📰 RESEARCH</NavLink>
 
-          <NavLink href="/documentation">📚 DOCS</NavLink>
+          <NavLink href="/models">🤖 MODELS</NavLink>
+
+          <NavLink href="/docs">📚 DOCS</NavLink>
+
+          <NavLink href="/support">🛟 SUPPORT</NavLink>
 
           {/* 🌍 SOVEREIGN LANGUAGE SWITCHER */}
           <LanguageSwitcher variant="header" />
@@ -184,7 +193,9 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               </Link>
             ))}
             <Link href="/blog" className="text-orange-400 hover:text-orange-300 py-2 transition-colors">📰 Research</Link>
-            <Link href="/documentation" className="text-blue-400 hover:text-blue-300 py-2 transition-colors">📚 Documentation</Link>
+            <Link href="/models" className="text-cyan-400 hover:text-cyan-300 py-2 transition-colors">🤖 Models</Link>
+            <Link href="/docs" className="text-blue-400 hover:text-blue-300 py-2 transition-colors">📚 Documentation</Link>
+            <Link href="/support" className="text-green-400 hover:text-green-300 py-2 transition-colors">🛟 Support</Link>
             <Link href="/ai-tokens" className="w-full">
               <motion.button
                 whileHover={{ scale: 1.05 }}
