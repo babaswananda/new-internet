@@ -1,0 +1,51 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="zaraGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06B6D4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="zaraAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00D4AA;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+    </linearGradient>
+    <filter id="techGlow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="url(#zaraGradient)" filter="url(#techGlow)"/>
+  
+  <!-- Circuit Board Pattern -->
+  <g stroke="#FFFFFF" stroke-width="2" fill="none" opacity="0.9">
+    <!-- Main Circuit Lines -->
+    <path d="M40 60 L80 60 L80 80 L120 80 L120 60 L160 60"/>
+    <path d="M40 140 L80 140 L80 120 L120 120 L120 140 L160 140"/>
+    <path d="M60 40 L60 80 L80 80 L80 120 L60 120 L60 160"/>
+    <path d="M140 40 L140 80 L120 80 L120 120 L140 120 L140 160"/>
+    
+    <!-- Circuit Nodes -->
+    <circle cx="60" cy="60" r="4" fill="url(#zaraAccent)"/>
+    <circle cx="140" cy="60" r="4" fill="url(#zaraAccent)"/>
+    <circle cx="60" cy="140" r="4" fill="url(#zaraAccent)"/>
+    <circle cx="140" cy="140" r="4" fill="url(#zaraAccent)"/>
+    <circle cx="80" cy="80" r="3" fill="#FFFFFF"/>
+    <circle cx="120" cy="120" r="3" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Central Processor -->
+  <rect x="85" y="85" width="30" height="30" fill="url(#zaraAccent)" stroke="#FFFFFF" stroke-width="2" rx="3"/>
+  <rect x="90" y="90" width="20" height="20" fill="#FFFFFF" opacity="0.3" rx="2"/>
+  
+  <!-- Initials -->
+  <text x="100" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#FFFFFF">ZN</text>
+  
+  <!-- Tech Symbol -->
+  <circle cx="100" cy="180" r="8" fill="url(#zaraAccent)" stroke="#FFFFFF" stroke-width="2"/>
+  <text x="100" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#FFFFFF">⚡</text>
+</svg>

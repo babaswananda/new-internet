@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import dynamic from 'next/dynamic';
 import { NavItem } from '@/types';
 import { headerSlideDown } from '@/utils/animations';
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
+import { useNavigationTranslation } from '@/hooks/useTranslation';
 
 // Dynamically import DropdownNav to improve performance
 const DropdownNav = dynamic(() => import('../ui/DropdownNav'), { ssr: false });
@@ -17,6 +19,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { nav, isRTL } = useNavigationTranslation();
 
   // Handle scroll effect for header
   useEffect(() => {
@@ -52,6 +55,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
   const companyItems: NavItem[] = [
     { href: '/about', label: 'About', description: 'Our mission and vision', color: 'text-gray-300' },
+    { href: '/team', label: 'AI Team', description: 'Meet our AI-native executive team', color: 'text-purple-400' },
     { href: '/partners', label: 'Partners', description: 'Strategic partnerships', color: 'text-gray-300' },
     { href: '/press', label: 'Press', description: 'Media resources and news', color: 'text-gray-300' },
     { href: '/investors', label: 'Investors', description: 'Investment information', color: 'text-gray-300' },
@@ -78,20 +82,20 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           </motion.div>
         </Link>
 
-        <nav className="hidden md:flex space-x-6">
-          <NavLink href="/">Home</NavLink>
+        <nav className="hidden md:flex space-x-6 items-center">
+          <NavLink href="/">{nav('home')}</NavLink>
 
           <DropdownNav
-            label="Products"
+            label={nav('products')}
             items={productItems}
           />
 
           <DropdownNav
-            label="Protocols"
+            label={nav('protocols')}
             items={protocolItems}
           />
 
-          <NavLink href="/token-flow">Token Flow</NavLink>
+          <NavLink href="/token-flow">{nav('tokenFlow')}</NavLink>
 
           <Link href="/ai-tokens">
             <motion.div
@@ -99,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              🪙 ITO
+              {nav('ito')}
               <motion.div
                 className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"
                 whileHover={{ width: '100%' }}
@@ -122,20 +126,25 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
           </Link>
 
           <DropdownNav
-            label="Company"
+            label={nav('about')}
             items={companyItems}
           />
+
+          {/* 🌍 SOVEREIGN LANGUAGE SWITCHER */}
+          <LanguageSwitcher variant="header" />
         </nav>
 
-        <Link href="/claim">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="hidden md:block px-4 py-2 border border-white/20 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-          >
-            CLAIM YOUR HANDLE
-          </motion.button>
-        </Link>
+        <div className="flex items-center space-x-4">
+          <Link href="/claim">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:block px-4 py-2 border border-white/20 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
+            >
+              {nav('claimHandle').toUpperCase()}
+            </motion.button>
+          </Link>
+        </div>
 
         <motion.button
           className="md:hidden"

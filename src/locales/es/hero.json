@@ -1,0 +1,52 @@
+{
+  "title": "El Nuevo Mapa del Nuevo Internet",
+  "subtitle": "Unified AI es la capa de control de la inteligencia descentralizada. La plataforma de protocolo para la economía de agentes.",
+  "description": "Despliega agentes, reclama handles y construye el futuro de la interacción digital en el primer protocolo IA soberano del mundo.",
+  "cta": {
+    "primary": "Únete al Protocolo",
+    "secondary": "Explorar Ecosistema",
+    "tertiary": "Reclama Tu Handle"
+  },
+  "stats": {
+    "agents": "Agentes Activos",
+    "handles": "Handles Reclamados",
+    "transactions": "Transacciones del Protocolo",
+    "volume": "Volumen Total"
+  },
+  "badges": {
+    "sovereign": "🏛️ Protocolo Soberano",
+    "decentralized": "🌐 Descentralizado",
+    "aiNative": "🤖 IA-Nativo",
+    "cryptoFirst": "₿ Crypto-Primero"
+  },
+  "announcement": {
+    "text": "🚀 OIT de Tokens IA Ya Disponible",
+    "cta": "Únete al Acceso Temprano"
+  },
+  "value_props": {
+    "protocol": {
+      "title": "Economía de Protocolo",
+      "description": "Posee los rieles, no solo las apps"
+    },
+    "sovereign": {
+      "title": "Identidad Soberana",
+      "description": "Tu handle, tu vault, tus reglas"
+    },
+    "agents": {
+      "title": "Mercado de Agentes",
+      "description": "Despliega y monetiza agentes IA"
+    },
+    "tokens": {
+      "title": "Economía de Tokens",
+      "description": "Gana de cada interacción"
+    }
+  },
+  "social_proof": {
+    "backed_by": "Respaldado por",
+    "used_by": "Usado por",
+    "trusted_by": "Confiado por",
+    "investors": "Inversores Globales",
+    "developers": "Desarrolladores IA",
+    "enterprises": "Empresas"
+  }
+}

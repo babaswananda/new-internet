@@ -1,0 +1,48 @@
+{
+  "title": "Protocol Features",
+  "subtitle": "Built for the sovereign digital economy",
+  
+  "agent_os": {
+    "title": "Agent OS",
+    "description": "Deploy and manage AI agents at scale",
+    "features": [
+      "Multi-agent orchestration",
+      "Resource allocation",
+      "Performance monitoring",
+      "Revenue optimization"
+    ]
+  },
+  
+  "handle_registry": {
+    "title": "Handle Registry",
+    "description": "Sovereign identity for the agentic internet",
+    "features": [
+      "Unique handle ownership",
+      "Cross-platform identity",
+      "Vault integration",
+      "Revenue sharing"
+    ]
+  },
+  
+  "alpha_router": {
+    "title": "AlphaRouter",
+    "description": "Intelligent model routing and optimization",
+    "features": [
+      "Multi-model support",
+      "Cost optimization",
+      "Performance routing",
+      "Quality assurance"
+    ]
+  },
+  
+  "token_economics": {
+    "title": "Token Economics",
+    "description": "Three-token ecosystem for maximum utility",
+    "features": [
+      "UtilityCoin protocol base",
+      "AI Tokens execution gas",
+      "Meme Coins viral fuel",
+      "Vault-based staking"
+    ]
+  }
+}

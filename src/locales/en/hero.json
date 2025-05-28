@@ -1,0 +1,52 @@
+{
+  "title": "The New Map of the New Internet",
+  "subtitle": "Unified AI is the control layer of decentralized intelligence. The protocol-grade launchpad for the agent economy.",
+  "description": "Deploy agents, claim handles, and build the future of digital interaction on the world's first sovereign AI protocol.",
+  "cta": {
+    "primary": "Join the Protocol",
+    "secondary": "Explore Ecosystem",
+    "tertiary": "Claim Your Handle"
+  },
+  "stats": {
+    "agents": "Active Agents",
+    "handles": "Claimed Handles",
+    "transactions": "Protocol Transactions",
+    "volume": "Total Volume"
+  },
+  "badges": {
+    "sovereign": "🏛️ Sovereign Protocol",
+    "decentralized": "🌐 Decentralized",
+    "aiNative": "🤖 AI-Native",
+    "cryptoFirst": "₿ Crypto-First"
+  },
+  "announcement": {
+    "text": "🚀 AI Tokens ITO Now Live",
+    "cta": "Join Early Access"
+  },
+  "value_props": {
+    "protocol": {
+      "title": "Protocol Economy",
+      "description": "Own the rails, not just the apps"
+    },
+    "sovereign": {
+      "title": "Sovereign Identity",
+      "description": "Your handle, your vault, your rules"
+    },
+    "agents": {
+      "title": "Agent Marketplace",
+      "description": "Deploy and monetize AI agents"
+    },
+    "tokens": {
+      "title": "Token Economics",
+      "description": "Earn from every interaction"
+    }
+  },
+  "social_proof": {
+    "backed_by": "Backed by",
+    "used_by": "Used by",
+    "trusted_by": "Trusted by",
+    "investors": "Global Investors",
+    "developers": "AI Developers",
+    "enterprises": "Enterprises"
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "title": "Join the Protocol Economy",
+  "subtitle": "Early access to the infrastructure layer of the agentic internet",
+  "tier_name": "Founding Backer",
+  "tier_description": "Exclusive access to protocol ownership and governance rights",
+  
+  "value_proposition": {
+    "headline": "Own the Rails, Not Just the Apps",
+    "description": "Unified AI is building the foundational infrastructure for the agent economy. Early contributors get protocol ownership, not just tokens.",
+    "benefits": [
+      "Protocol governance rights",
+      "Revenue sharing from all transactions",
+      "Exclusive handle reservations",
+      "Early access to all products",
+      "Vault staking rewards",
+      "Meme coin generation rights"
+    ]
+  },
+  
+  "investment_tiers": {
+    "tier_1": {
+      "name": "Protocol Contributor",
+      "amount": "$500 - $2,500",
+      "tokens": "50,000 - 250,000 AI Tokens",
+      "benefits": [
+        "Handle reservation",
+        "Vault access",
+        "Community governance"
+      ]
+    },
+    "tier_2": {
+      "name": "Protocol Backer",
+      "amount": "$2,500 - $10,000",
+      "tokens": "250,000 - 1,000,000 AI Tokens",
+      "benefits": [
+        "Premium handle selection",
+        "Advanced vault features",
+        "Revenue sharing",
+        "Early product access"
+      ]
+    },
+    "tier_3": {
+      "name": "Protocol Founder",
+      "amount": "$10,000 - $25,000+",
+      "tokens": "1,000,000+ AI Tokens",
+      "benefits": [
+        "Custom handle creation",
+        "Institutional vault access",
+        "Protocol governance",
+        "Direct team access",
+        "Regional licensing rights"
+      ]
+    }
+  },
+  
+  "payment_methods": {
+    "title": "Contribution Methods",
+    "primary": "Bitcoin (BTC)",
+    "secondary": "Ethereum (ETH)",
+    "fiat": "Cash App",
+    "note": "All contributions processed securely via blockchain"
+  },
+  
+  "roi_simulator": {
+    "title": "Protocol Value Calculator",
+    "description": "Estimate your potential returns based on protocol adoption",
+    "scenarios": {
+      "conservative": "2x - 5x (Conservative)",
+      "moderate": "5x - 15x (Moderate Growth)",
+      "aggressive": "15x - 50x+ (Mass Adoption)"
+    },
+    "disclaimer": "Projections are estimates. Cryptocurrency investments carry risk."
+  },
+  
+  "urgency": {
+    "limited_time": "72-Hour Access Window",
+    "scarcity": "Limited to 1,000 Founding Backers",
+    "countdown": "Offer expires in:",
+    "next_round": "Next round at 3x valuation"
+  },
+  
+  "trust_signals": {
+    "security": "🔒 Multi-sig secured",
+    "transparency": "📊 Full tokenomics disclosure",
+    "compliance": "⚖️ Legal framework compliant",
+    "team": "👥 Doxxed founding team"
+  },
+  
+  "cta": {
+    "primary": "Secure Your Position",
+    "secondary": "Download Whitepaper",
+    "tertiary": "Schedule Call"
+  }
+}

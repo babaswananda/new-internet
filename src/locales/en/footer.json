@@ -1,0 +1,65 @@
+{
+  "company": {
+    "title": "Company",
+    "about": "About",
+    "team": "Team",
+    "careers": "Careers",
+    "press": "Press",
+    "contact": "Contact"
+  },
+  
+  "products": {
+    "title": "Products",
+    "agentOS": "Agent OS",
+    "agentChat": "AgentChat",
+    "alphaRouter": "AlphaRouter",
+    "handleRegistry": "Handle Registry",
+    "io": "IO Agent"
+  },
+  
+  "protocols": {
+    "title": "Protocols",
+    "ion": "ION",
+    "textMe": "TextMe",
+    "videoChat": "VideoChat",
+    "webinar": "Webinar",
+    "aiDirectory": "AI Directory"
+  },
+  
+  "resources": {
+    "title": "Resources",
+    "documentation": "Documentation",
+    "whitepaper": "Whitepaper",
+    "blog": "Blog",
+    "faq": "FAQ",
+    "support": "Support"
+  },
+  
+  "community": {
+    "title": "Community",
+    "discord": "Discord",
+    "telegram": "Telegram",
+    "twitter": "Twitter",
+    "github": "GitHub",
+    "reddit": "Reddit"
+  },
+  
+  "legal": {
+    "title": "Legal",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "cookies": "Cookie Policy",
+    "disclaimer": "Disclaimer"
+  },
+  
+  "copyright": "© 2024 Unified AI. All rights reserved.",
+  "tagline": "Building the infrastructure for the agentic internet.",
+  "newsletter": {
+    "title": "Stay Updated",
+    "description": "Get the latest updates on protocol development",
+    "placeholder": "Enter your email",
+    "subscribe": "Subscribe",
+    "success": "Successfully subscribed!",
+    "error": "Please enter a valid email"
+  }
+}
