@@ -8,6 +8,7 @@ import { GlowingCard } from '@/components/ui/glowing-card';
 import { IOChatInterface } from '@/components/ui/IOChatInterface';
 import MainLayout from '@/components/layout/MainLayout';
 import IOSubscriptionPlans from '@/components/io/IOSubscriptionPlans';
+import IOPricingTable from '@/components/io/IOPricingTable';
 
 export default function IOPage() {
   const [ref, inView] = useInView({
@@ -220,6 +221,11 @@ export default function IOPage() {
             {/* IO Subscription Plans */}
             <motion.div variants={itemVariants} className="mb-16">
               <IOSubscriptionPlans />
+            </motion.div>
+
+            {/* Comprehensive Pricing Table */}
+            <motion.div variants={itemVariants} className="mb-16">
+              <IOPricingTable />
             </motion.div>
 
             {/* Try IO */}
