@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Performance optimizations
-  swcMinify: true,
   poweredByHeader: false,
   compress: true,
   generateEtags: false,
@@ -22,7 +21,6 @@ const nextConfig: NextConfig = {
 
   // Experimental features
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['framer-motion', 'lucide-react'],
   },
 
