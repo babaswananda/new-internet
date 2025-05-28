@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { GlowingCard } from '@/components/ui/glowing-card';
 import { IOChatInterface } from '@/components/ui/IOChatInterface';
 import MainLayout from '@/components/layout/MainLayout';
-import { HeaderText } from '@/utils/normalBold';
+import IOSubscriptionPlans from '@/components/io/IOSubscriptionPlans';
 
 export default function IOPage() {
   const [ref, inView] = useInView({
@@ -46,23 +46,65 @@ export default function IOPage() {
             animate={inView ? "visible" : "hidden"}
             className="max-w-6xl mx-auto"
           >
-            {/* Header */}
+            {/* Header - Updated with SaaS positioning */}
             <motion.div variants={itemVariants} className="text-center mb-16">
+              <div className="mb-6">
+                <span className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-full text-sm font-medium border border-purple-500/30 mb-6">
+                  🚀 Intelligent Operator - The AI Stack for Operators
+                </span>
+              </div>
+
               <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
-                  IO
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-pink-200">
+                  Own the Tools.
+                </span>
+                <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
+                  Run the System.
+                </span>
+                <br />
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-orange-400">
+                  Become the Intelligence.
                 </span>
               </h1>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6 text-white">
-                <HeaderText>Your Intelligent Operator</HeaderText>
-              </h2>
-              <p className="text-xl text-gray-300 mb-4">
-                The AI that runs your AI. Command your entire digital ecosystem.
+
+              <p className="text-xl text-gray-300 mb-8 max-w-4xl mx-auto">
+                .IO replaces your entire subscription stack — from ChatGPT to Midjourney to RunwayML —
+                and gives you browser-native control, full autonomy, and operator-level monetization.
               </p>
-              <p className="text-lg text-gray-400 max-w-4xl mx-auto">
-                IO is the next evolution of AI interaction. Not just a chatbot, but your personal
-                Intelligent Operator that manages agents, orchestrates workflows, and commands your digital life.
-              </p>
+
+              {/* Value Replacement Preview */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 max-w-3xl mx-auto">
+                <div className="text-center p-4 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-xl">
+                  <div className="text-sm text-gray-400 mb-1">ChatGPT Plus</div>
+                  <div className="text-lg font-bold text-red-400 line-through">$20</div>
+                  <div className="text-green-400 text-sm">✅ Included</div>
+                </div>
+                <div className="text-center p-4 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-xl">
+                  <div className="text-sm text-gray-400 mb-1">Midjourney</div>
+                  <div className="text-lg font-bold text-red-400 line-through">$30</div>
+                  <div className="text-green-400 text-sm">✅ Included</div>
+                </div>
+                <div className="text-center p-4 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-xl">
+                  <div className="text-sm text-gray-400 mb-1">RunwayML</div>
+                  <div className="text-lg font-bold text-red-400 line-through">$40</div>
+                  <div className="text-green-400 text-sm">✅ Included</div>
+                </div>
+                <div className="text-center p-4 bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-xl">
+                  <div className="text-sm text-gray-400 mb-1">Zapier Pro</div>
+                  <div className="text-lg font-bold text-red-400 line-through">$50</div>
+                  <div className="text-green-400 text-sm">✅ Included</div>
+                </div>
+              </div>
+
+              <div className="text-center mb-8">
+                <div className="text-2xl font-bold text-purple-400 mb-2">
+                  All that — for less than a Spotify subscription.
+                </div>
+                <div className="text-gray-400">
+                  Starting at $15/month. Handle owners get Builder tier FREE.
+                </div>
+              </div>
             </motion.div>
 
             {/* IO Expansions */}
@@ -175,6 +217,11 @@ export default function IOPage() {
               </GlowingCard>
             </motion.div>
 
+            {/* IO Subscription Plans */}
+            <motion.div variants={itemVariants} className="mb-16">
+              <IOSubscriptionPlans />
+            </motion.div>
+
             {/* Try IO */}
             <motion.div variants={itemVariants} className="text-center">
               <div className="flex flex-col md:flex-row justify-center gap-4">
@@ -195,13 +242,15 @@ export default function IOPage() {
                     ENTER IO PORTAL
                   </motion.button>
                 </Link>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-12 py-6 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-2xl rounded-lg hover:bg-white/10 transition-colors"
-                >
-                  DEPLOY YOUR IO
-                </motion.button>
+                <Link href="/ai-agents">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-12 py-6 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-2xl rounded-lg hover:bg-white/10 transition-colors"
+                  >
+                    BROWSE AI AGENTS
+                  </motion.button>
+                </Link>
               </div>
             </motion.div>
           </motion.div>
