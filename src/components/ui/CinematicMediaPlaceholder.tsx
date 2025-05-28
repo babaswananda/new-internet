@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback, memo } from 'react';
 import { motion, useInView, useAnimation, AnimatePresence } from 'framer-motion';
 import { Play, Pause, Volume2, VolumeX, Eye, Film, Image as ImageIcon, Zap } from 'lucide-react';
 
@@ -21,7 +21,7 @@ interface CinematicMediaPlaceholderProps {
   onMediaReady?: (mediaUrl: string) => void;
 }
 
-const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = ({
+const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = memo(({
   id,
   title,
   description,
@@ -120,7 +120,7 @@ const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = ({
   };
 
   // Get aspect ratio class
-  const getAspectRatioClass = () => {
+  const getAspectRatioClass = useCallback(() => {
     const ratios = {
       '16:9': 'aspect-video',
       '4:3': 'aspect-[4/3]',
@@ -128,7 +128,20 @@ const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = ({
       '21:9': 'aspect-[21/9]'
     };
     return ratios[aspectRatio] || ratios['16:9'];
-  };
+  }, [aspectRatio]);
+
+  // Event handlers
+  const handleHoverStart = useCallback(() => setIsHovered(true), []);
+  const handleHoverEnd = useCallback(() => setIsHovered(false), []);
+  const handleClick = useCallback(() => setShowDetails(!showDetails), [showDetails]);
+  const handlePlayToggle = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPlaying(!isPlaying);
+  }, [isPlaying]);
+  const handleMuteToggle = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsMuted(!isMuted);
+  }, [isMuted]);
 
   return (
     <motion.div
@@ -137,9 +150,9 @@ const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = ({
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       className={`relative group cursor-pointer ${className}`}
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      onClick={() => setShowDetails(!showDetails)}
+      onHoverStart={handleHoverStart}
+      onHoverEnd={handleHoverEnd}
+      onClick={handleClick}
     >
       {/* Main Media Container */}
       <motion.div
@@ -237,10 +250,7 @@ const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = ({
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className="p-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsPlaying(!isPlaying);
-                  }}
+                  onClick={handlePlayToggle}
                 >
                   {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                 </motion.button>
@@ -249,10 +259,7 @@ const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = ({
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
                   className="p-2 bg-white/20 backdrop-blur-sm rounded-lg text-white hover:bg-white/30 transition-colors"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setIsMuted(!isMuted);
-                  }}
+                  onClick={handleMuteToggle}
                 >
                   {isMuted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
                 </motion.button>
@@ -300,6 +307,8 @@ const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = ({
       </AnimatePresence>
     </motion.div>
   );
-};
+});
+
+CinematicMediaPlaceholder.displayName = 'CinematicMediaPlaceholder';
 
 export default CinematicMediaPlaceholder;

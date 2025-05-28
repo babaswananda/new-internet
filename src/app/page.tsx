@@ -1,6 +1,6 @@
 'use client';
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useMemo } from 'react';
 import dynamic from 'next/dynamic';
 import MainLayout from '@/components/layout/MainLayout';
 
@@ -11,15 +11,30 @@ import ScrollTriggeredCarousel from '@/components/ui/ScrollTriggeredCarousel';
 import ParallaxDeck from '@/components/ui/ParallaxDeck';
 
 // Dynamically import sections for performance
-const IOSection = dynamic(() => import('@/components/sections/IOSection'), { ssr: false });
-const AITokensITOSection = dynamic(() => import('@/components/sections/AITokensITOSection'), { ssr: false });
-const ClaimHandleSection = dynamic(() => import('@/components/sections/ClaimHandleSection'), { ssr: false });
-const NewsletterSection = dynamic(() => import('@/components/sections/NewsletterSection'), { ssr: false });
-const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), { ssr: false });
+const IOSection = dynamic(() => import('@/components/sections/IOSection'), {
+  ssr: false,
+  loading: () => <div className="h-20 bg-black animate-pulse" />
+});
+const AITokensITOSection = dynamic(() => import('@/components/sections/AITokensITOSection'), {
+  ssr: false,
+  loading: () => <div className="h-20 bg-black animate-pulse" />
+});
+const ClaimHandleSection = dynamic(() => import('@/components/sections/ClaimHandleSection'), {
+  ssr: false,
+  loading: () => <div className="h-20 bg-black animate-pulse" />
+});
+const NewsletterSection = dynamic(() => import('@/components/sections/NewsletterSection'), {
+  ssr: false,
+  loading: () => <div className="h-20 bg-black animate-pulse" />
+});
+const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), {
+  ssr: false,
+  loading: () => <div className="h-20 bg-black animate-pulse" />
+});
 
 export default function Home() {
-  // Core Products Carousel Data
-  const coreProductsData = [
+  // Memoized data structures for performance
+  const coreProductsData = useMemo(() => [
     {
       id: 'io-operator',
       title: 'IO: Your Intelligent Operator',
@@ -48,10 +63,10 @@ export default function Home() {
         priority: 'high' as const
       }
     }
-  ];
+  ], []);
 
   // Protocol Stack Parallax Data
-  const protocolStackData = [
+  const protocolStackData = useMemo(() => [
     {
       id: 'ai-agents-goldmine',
       title: 'AI Agents: The Real Goldmine',
@@ -176,7 +191,7 @@ export default function Home() {
       },
       gradient: 'from-purple-600 to-violet-600'
     }
-  ];
+  ], []);
 
   return (
     <MainLayout>
