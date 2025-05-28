@@ -1,5 +1,5 @@
 'use client'
-import { Waitlist } from '@clerk/nextjs'
+// import { Waitlist } from '@clerk/nextjs'
 import Link from 'next/link'
 
 import { motion } from 'framer-motion'
@@ -7,80 +7,15 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { Badge } from '@/components/ui/badge'
+import ParticleBackground from '@/components/ui/particle-background'
+import Header from '@/components/layout/Header'
+import Footer from '@/components/layout/Footer'
 
-function ElegantShape({
-  className,
-  delay = 0,
-  width = 400,
-  height = 100,
-  rotate = 0,
-  gradient = 'from-white/[0.08]',
-}: {
-  className?: string
-  delay?: number
-  width?: number
-  height?: number
-  rotate?: number
-  gradient?: string
-}) {
-  return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        y: -150,
-        rotate: rotate - 15,
-      }}
-      animate={{
-        opacity: 1,
-        y: 0,
-        rotate: rotate,
-      }}
-      transition={{
-        duration: 2.4,
-        delay,
-        ease: [0.23, 0.86, 0.39, 0.96],
-        opacity: { duration: 1.2 },
-      }}
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      className={cn('absolute', className)}
-    >
-      <motion.div
-        animate={{
-          y: [0, 15, 0],
-        }}
-        transition={{
-          duration: 12,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: 'easeInOut',
-        }}
-        style={{
-          width,
-          height,
-        }}
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        className="relative"
-      >
-        <div
-          className={cn(
-            'absolute inset-0 rounded-full',
-            'bg-gradient-to-r to-transparent',
-            gradient,
-            'backdrop-blur-[2px] border-2 border-white/[0.15]',
-            'shadow-[0_8px_32px_0_rgba(255,255,255,0.1)]',
-            'after:absolute after:inset-0 after:rounded-full',
-            'after:bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.2),transparent_70%)]'
-          )}
-        />
-      </motion.div>
-    </motion.div>
-  )
-}
+// Removed old ElegantShape component - using Unified AI particle background instead
 
-const badge = 'By Web Prodigies'
-const title1 = 'Welcome To'
-const title2 = 'Spotlight Premium'
+const badge = 'Powered by Unified AI'
+const title1 = 'Unified AI'
+const title2 = 'Webinar Platform'
 
 export default function HeroGeometric() {
   const fadeUpVariants = {
@@ -97,55 +32,15 @@ export default function HeroGeometric() {
   }
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#030303]">
-      <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/[0.05] via-transparent to-rose-500/[0.05] blur-3xl" />
+    <div className="relative min-h-screen w-full">
+      {/* Particle Background */}
+      <ParticleBackground />
 
-      <div className="absolute inset-0 overflow-hidden">
-        <ElegantShape
-          delay={0.3}
-          width={600}
-          height={140}
-          rotate={12}
-          gradient="from-indigo-500/[0.15]"
-          className="left-[-10%] md:left-[-5%] top-[15%] md:top-[20%]"
-        />
+      {/* Header */}
+      <Header />
 
-        <ElegantShape
-          delay={0.5}
-          width={500}
-          height={120}
-          rotate={-15}
-          gradient="from-rose-500/[0.15]"
-          className="right-[-5%] md:right-[0%] top-[70%] md:top-[75%]"
-        />
-
-        <ElegantShape
-          delay={0.4}
-          width={300}
-          height={80}
-          rotate={-8}
-          gradient="from-violet-500/[0.15]"
-          className="left-[5%] md:left-[10%] bottom-[5%] md:bottom-[10%]"
-        />
-
-        <ElegantShape
-          delay={0.6}
-          width={200}
-          height={60}
-          rotate={20}
-          gradient="from-amber-500/[0.15]"
-          className="right-[15%] md:right-[20%] top-[10%] md:top-[15%]"
-        />
-
-        <ElegantShape
-          delay={0.7}
-          width={150}
-          height={40}
-          rotate={-25}
-          gradient="from-cyan-500/[0.15]"
-          className="left-[20%] md:left-[25%] top-[5%] md:top-[10%]"
-        />
-      </div>
+      {/* Main Content */}
+      <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-16">
 
       <div className="relative z-10 container mx-auto px-4 md:px-6">
         <div className="max-w-3xl mx-auto text-center">
@@ -158,12 +53,9 @@ export default function HeroGeometric() {
             // @ts-ignore
             className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.03] border border-white/[0.08] mb-8 md:mb-12"
           >
-            <Image
-              src="https://kokonutui.com/logo.svg"
-              alt="Kokonut UI"
-              width={20}
-              height={20}
-            />
+            <div className="w-5 h-5 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center">
+              <span className="text-white font-bold text-xs">AI</span>
+            </div>
             <span className="text-sm text-white/60 tracking-wide">{badge}</span>
           </motion.div>
 
@@ -180,7 +72,7 @@ export default function HeroGeometric() {
               <br />
               <span
                 className={cn(
-                  'bg-clip-text text-transparent bg-gradient-to-r from-indigo-300 via-white/90 to-rose-300 '
+                  'bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-white/90 to-pink-400 '
                 )}
               >
                 {title2}
@@ -195,11 +87,22 @@ export default function HeroGeometric() {
             animate="visible"
           >
             <p className="text-base sm:text-lg md:text-xl text-white/40 mb-8 leading-relaxed font-light tracking-wide max-w-xl mx-auto px-4">
-              Crafting exceptional digital experiences through innovative design
-              and cutting-edge technology.
+              Token-gated webinars and live streaming for the agentic internet.
+              Deploy agents, host events, and monetize your expertise.
             </p>
             <div className="flex items-center justify-center flex-col">
-              <Waitlist signInUrl="/sign-in" />
+              <div className="flex flex-col md:flex-row gap-4 justify-center">
+                <Link href="/sign-up">
+                  <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold text-lg rounded-lg hover:from-purple-600 hover:to-pink-600 transition-all">
+                    🚀 Get Started
+                  </button>
+                </Link>
+                <Link href="/sign-in">
+                  <button className="px-8 py-4 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-lg rounded-lg hover:bg-white/10 transition-colors">
+                    🔐 Sign In
+                  </button>
+                </Link>
+              </div>
             </div>
           </motion.div>
 
@@ -213,25 +116,35 @@ export default function HeroGeometric() {
             }}
           >
             <p className="text-muted-foreground/50">
-              This codebase is the property of Web Prodigies LLC and is intended
-              solely for customers who have legally obtained a copy of this
-              codebase. Unauthorized reproduction, distribution, or disclosure
-              of any part of this document is strictly prohibited. Web Prodigies
-              LLC. All rights reserved.
+              Powered by Unified AI - The protocol-grade launchpad for the agent economy.
+              Deploy agents, host webinars, and build the future of digital interaction.
             </p>
-            <Link href="https://webprodigies.com/store/collections/github-codebase">
-              <Badge
-                variant="outline"
-                className="mt-4 text-lg text-primary"
-              >
-                🔥Purchase the codebase by clicking here
-              </Badge>
-            </Link>
+            <div className="flex flex-col md:flex-row gap-4 justify-center mt-6">
+              <Link href="/sign-up">
+                <Badge
+                  variant="outline"
+                  className="text-lg bg-gradient-to-r from-purple-500 to-pink-500 text-white border-purple-500/30 hover:bg-purple-500/20"
+                >
+                  🚀 Create Account
+                </Badge>
+              </Link>
+              <Link href="/webinars">
+                <Badge
+                  variant="outline"
+                  className="text-lg bg-gradient-to-r from-orange-500 to-red-500 text-white border-orange-500/30 hover:bg-orange-500/20"
+                >
+                  🎥 Browse Webinars
+                </Badge>
+              </Link>
+            </div>
           </motion.div>
         </div>
       </div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/80 pointer-events-none" />
+      </div>
+
+      {/* Footer */}
+      <Footer />
     </div>
   )
 }

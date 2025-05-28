@@ -107,6 +107,20 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             </motion.div>
           </Link>
 
+          <Link href="/friends-family">
+            <motion.div
+              className="text-orange-400 hover:text-orange-300 transition-colors tracking-wide uppercase text-sm relative group font-bold animate-pulse"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              🛡️ F&F ROUND
+              <motion.div
+                className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-300"
+                whileHover={{ width: '100%' }}
+              />
+            </motion.div>
+          </Link>
+
           <DropdownNav
             label="Company"
             items={companyItems}
@@ -159,6 +173,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             ))}
             <Link href="/token-flow" className="text-gray-300 hover:text-white py-2 transition-colors">Token Flow</Link>
             <Link href="/ai-tokens" className="text-purple-400 hover:text-pink-400 py-2 transition-colors font-bold animate-pulse">🪙 ITO</Link>
+            <Link href="/friends-family" className="text-orange-400 hover:text-orange-300 py-2 transition-colors font-bold animate-pulse">🛡️ F&F ROUND</Link>
             {companyItems.map((item) => (
               <Link key={item.href} href={item.href} className="text-gray-300 hover:text-white py-2 transition-colors">
                 {item.label}

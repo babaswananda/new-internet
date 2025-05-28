@@ -38,13 +38,13 @@ const LearnAIMadeMeRichPage = () => {
       description: "How to claim your handle and configure your vault for maximum impact"
     },
     {
-      icon: "🤖", 
+      icon: "🤖",
       title: "Deploy Your First Agent",
       description: "Step-by-step agent deployment and configuration"
     },
     {
       icon: "🧰",
-      title: "AI Workflow Stacking", 
+      title: "AI Workflow Stacking",
       description: "Build workflows for output, revenue, and influence"
     },
     {
@@ -74,7 +74,7 @@ const LearnAIMadeMeRichPage = () => {
     {
       title: "Meme Capital + Tokenized Flex",
       description: "How to turn culture into capital and vibes into value",
-      level: "Intermediate", 
+      level: "Intermediate",
       duration: "3 hours"
     },
     {
@@ -220,37 +220,123 @@ const LearnAIMadeMeRichPage = () => {
                 </GlowingCard>
               </motion.div>
 
+              {/* Live Learning Portal */}
+              <motion.div variants={itemVariants} className="mb-16">
+                <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-yellow-500/20">
+                  <h2 className="text-3xl mb-6 text-yellow-400 text-center"><HeaderText>🎓 Live Learning Portal</HeaderText></h2>
+
+                  {/* Course Progress */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div className="bg-black/40 rounded-lg p-6">
+                      <h3 className="text-lg font-bold text-white mb-4">📚 Current Course</h3>
+                      <div className="mb-4">
+                        <div className="flex justify-between text-sm mb-2">
+                          <span className="text-gray-300">Agent Deployment Basics</span>
+                          <span className="text-yellow-400">75% Complete</span>
+                        </div>
+                        <div className="w-full bg-gray-700 rounded-full h-2">
+                          <div className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full" style={{width: '75%'}}></div>
+                        </div>
+                      </div>
+                      <button className="w-full px-4 py-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-lg">
+                        Continue Learning
+                      </button>
+                    </div>
+
+                    <div className="bg-black/40 rounded-lg p-6">
+                      <h3 className="text-lg font-bold text-white mb-4">🏆 Your Progress</h3>
+                      <div className="space-y-3">
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Courses Completed</span>
+                          <span className="text-green-400 font-bold">3/12</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">Certificates Earned</span>
+                          <span className="text-purple-400 font-bold">2</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-gray-300">AI Tokens Earned</span>
+                          <span className="text-yellow-400 font-bold">150</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Live Sessions */}
+                  <div className="mb-8">
+                    <h3 className="text-xl font-bold text-white mb-4">🔴 Live Sessions Today</h3>
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="bg-red-500/20 border border-red-500/30 rounded-lg p-4">
+                        <div className="flex items-center mb-2">
+                          <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse mr-2"></div>
+                          <span className="text-red-400 text-sm font-bold">LIVE NOW</span>
+                        </div>
+                        <h4 className="text-white font-bold">Vault Architecture Deep Dive</h4>
+                        <p className="text-gray-400 text-sm">with Protocol Master</p>
+                        <button className="mt-2 px-3 py-1 bg-red-500 text-white text-sm rounded">Join Live</button>
+                      </div>
+
+                      <div className="bg-blue-500/20 border border-blue-500/30 rounded-lg p-4">
+                        <div className="flex items-center mb-2">
+                          <span className="text-blue-400 text-sm font-bold">2:00 PM PST</span>
+                        </div>
+                        <h4 className="text-white font-bold">Meme Coin Launch Strategy</h4>
+                        <p className="text-gray-400 text-sm">with VibeCoder</p>
+                        <button className="mt-2 px-3 py-1 bg-blue-500 text-white text-sm rounded">Set Reminder</button>
+                      </div>
+
+                      <div className="bg-green-500/20 border border-green-500/30 rounded-lg p-4">
+                        <div className="flex items-center mb-2">
+                          <span className="text-green-400 text-sm font-bold">4:00 PM PST</span>
+                        </div>
+                        <h4 className="text-white font-bold">Agent Monetization Workshop</h4>
+                        <p className="text-gray-400 text-sm">with Industry Tycoon</p>
+                        <button className="mt-2 px-3 py-1 bg-green-500 text-white text-sm rounded">Register</button>
+                      </div>
+                    </div>
+                  </div>
+                </GlowingCard>
+              </motion.div>
+
               {/* CTA Section */}
               <motion.div variants={itemVariants} className="text-center">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-lg"
-                  >
-                    🧠 Operator Crash Course
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-lg"
-                  >
-                    🎓 Launch Your Stack
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg"
-                  >
-                    📥 Claim Your Vault
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="px-6 py-4 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold rounded-lg"
-                  >
-                    📡 Apply for Feature
-                  </motion.button>
+                  <Link href="/learn-aimademerich/crash-course">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-6 py-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-bold rounded-lg w-full"
+                    >
+                      🧠 Operator Crash Course
+                    </motion.button>
+                  </Link>
+                  <Link href="/learn-aimademerich/stack-builder">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-6 py-4 bg-gradient-to-r from-orange-500 to-red-500 text-white font-bold rounded-lg w-full"
+                    >
+                      🎓 Launch Your Stack
+                    </motion.button>
+                  </Link>
+                  <Link href="/claim">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-6 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg w-full"
+                    >
+                      📥 Claim Your Vault
+                    </motion.button>
+                  </Link>
+                  <Link href="/aimademerich">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-6 py-4 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold rounded-lg w-full"
+                    >
+                      📡 Join Community
+                    </motion.button>
+                  </Link>
                 </div>
                 <p className="text-gray-400 text-lg">
                   <HeaderText>Knowledge Equals Protocol This Is How AI Made Them Rich</HeaderText>

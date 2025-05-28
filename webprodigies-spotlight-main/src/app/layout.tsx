@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { ThemeProvider } from '@/providers/theme-provider'
-import { ClerkProvider } from '@clerk/nextjs'
+// import { ClerkProvider } from '@clerk/nextjs'
 import { Manrope } from 'next/font/google'
 import './globals.css'
 import { Toaster } from 'sonner'
@@ -21,13 +21,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <ClerkProvider>
+    // <ClerkProvider>
       <html
         lang="en"
         suppressHydrationWarning
       >
         <body
-          className={`${manrope.variable} antialiased`}
+          className={`${manrope.variable} antialiased bg-black text-white`}
           suppressHydrationWarning
         >
           <ThemeProvider
@@ -40,6 +40,6 @@ export default function RootLayout({
           </ThemeProvider>
         </body>
       </html>
-    </ClerkProvider>
+    // </ClerkProvider>
   )
 }
