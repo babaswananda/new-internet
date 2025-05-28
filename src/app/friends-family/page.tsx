@@ -31,38 +31,36 @@ const FriendsFamilyPage = () => {
     }
   };
 
-  const tiers = [
+  const friendsFamilyTiers = [
     {
-      name: 'Tier 1',
+      amount: '$50',
+      utilityCoin: '5,000 UC + 5% = 5,250 UC',
+      aiTokens: '+ 5,250 AIT bonus',
+      potentialValue: '~$525 (10× on UC) + AIT upside'
+    },
+    {
+      amount: '$100',
+      utilityCoin: '10,000 UC + 10% = 11,000 UC',
+      aiTokens: '+ 11,000 AIT bonus',
+      potentialValue: '~$1,100 (10× on UC) + AIT upside'
+    },
+    {
+      amount: '$250',
+      utilityCoin: '25,000 UC + 15% = 28,750 UC',
+      aiTokens: '+ 28,750 AIT bonus',
+      potentialValue: '~$2,875 (10× on UC) + AIT upside'
+    },
+    {
       amount: '$500',
-      utilityCoin: '1,500',
-      aiTokens: '3,000',
-      bonuses: 'Early access listing',
-      roi: 'Flip tokens post-launch'
+      utilityCoin: '50,000 UC + 20% = 60,000 UC',
+      aiTokens: '+ 60,000 AIT bonus',
+      potentialValue: '~$6,000 (10× on UC) + AIT upside'
     },
     {
-      name: 'Tier 2',
-      amount: '$1,500',
-      utilityCoin: '5,000',
-      aiTokens: '10,000',
-      bonuses: 'Meme coin allocation',
-      roi: 'Resell at public multiplier'
-    },
-    {
-      name: 'Tier 3',
-      amount: '$5,000',
-      utilityCoin: '18,000',
-      aiTokens: '40,000',
-      bonuses: 'Token trading priority',
-      roi: 'DEX pool LP + resell'
-    },
-    {
-      name: 'Tier 4',
-      amount: '$10,000',
-      utilityCoin: '40,000',
-      aiTokens: '100,000',
-      bonuses: '% of meme coin vaults launched',
-      roi: 'Monthly passive returns'
+      amount: '$1,000',
+      utilityCoin: '100,000 UC + 25% = 125,000 UC',
+      aiTokens: '+ 125,000 AIT bonus',
+      potentialValue: '~$12,500 (10× on UC) + AIT upside'
     }
   ];
 
@@ -277,32 +275,71 @@ const FriendsFamilyPage = () => {
               <HeaderText>Tokenomics Overview – UtilityCoin & AI Token</HeaderText>
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-              {tiers.map((tier, index) => (
+            <div className="max-w-5xl mx-auto space-y-6 text-gray-300 mb-12">
+              <p className="text-lg leading-relaxed">
+                UnifiedAI operates on a two-token model to power the ecosystem and reward contributors. Here's a quick overview of each:
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-blue-500/30 rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="text-2xl">🪙</div>
+                    <h3 className="text-xl font-bold text-white">UtilityCoin (UC) – Governance & Utility Token</h3>
+                  </div>
+                  <div className="space-y-3 text-sm">
+                    <p><span className="text-blue-300 font-semibold">Total Supply:</span> 1,000,000,000 tokens (fixed)</p>
+                    <p><span className="text-blue-300 font-semibold">Role:</span> UtilityCoin is the core currency of UnifiedAI. It powers transactions on the network, governs protocol decisions, and can be staked for network rewards. Holding UC is like holding a share in the network's success.</p>
+                    <p><span className="text-blue-300 font-semibold">Early Round Price:</span> $0.01 per UC for early contributors (a steep discount compared to future public pricing)</p>
+                    <p><span className="text-blue-300 font-semibold">Early Allocation:</span> 10% of total supply (100 million UC) is reserved for this Friends & Family + Whale round</p>
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-green-900/30 to-teal-900/30 border border-green-500/30 rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="text-2xl">⚡</div>
+                    <h3 className="text-xl font-bold text-white">AI Token (AIT) – AI Service & Reward Token</h3>
+                  </div>
+                  <div className="space-y-3 text-sm">
+                    <p><span className="text-green-300 font-semibold">Total Supply:</span> 5,000,000,000 tokens (with a portion released gradually as the network grows)</p>
+                    <p><span className="text-green-300 font-semibold">Role:</span> AI Tokens fuel the usage of AI services on the platform – think of AIT as the credits consumed when AI agents run tasks or exchange data. AIT is also earned by AI service providers.</p>
+                    <p><span className="text-green-300 font-semibold">Distribution to Early Backers:</span> Early contributors receive AIT tokens as a bonus on top of their UC allocation</p>
+                    <p><span className="text-green-300 font-semibold">Value:</span> AIT initial internal valuation is on par with UC for this round, i.e. $0.01 each, but it's given as a bonus – effectively extra value for you at no additional cost!</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-500/30 rounded-lg p-6 mt-8">
+                <p className="text-lg text-center text-white font-semibold">
+                  <span className="text-purple-300">In summary:</span> Contributing now gets you two kinds of tokens – UC (the stake in the platform) and AIT (the transacting energy of the platform). You gain governance influence and a store of value in UC, plus the utility tokens that will be in demand as AI services proliferate.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
+              {friendsFamilyTiers.map((tier, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className={`bg-black/30 backdrop-blur-sm border rounded-lg p-6 cursor-pointer transition-all ${
-                    selectedTier === tier.name
+                    selectedTier === tier.amount
                       ? 'border-purple-500 bg-purple-500/10'
                       : 'border-white/10 hover:border-purple-500/50'
                   }`}
-                  onClick={() => setSelectedTier(tier.name)}
+                  onClick={() => setSelectedTier(tier.amount)}
                 >
                   <div className="text-center">
-                    <h3 className="text-xl font-bold text-white mb-2">{tier.name}</h3>
+                    <h3 className="text-xl font-bold text-white mb-2">Tier {index + 1}</h3>
                     <div className="text-3xl font-bold text-purple-400 mb-4">{tier.amount}</div>
                     <div className="space-y-2 text-sm">
                       <div className="text-gray-300">
-                        <span className="font-medium">{tier.utilityCoin}</span> UtilityCoin
+                        <span className="font-medium">{tier.utilityCoin}</span>
                       </div>
                       <div className="text-gray-300">
-                        <span className="font-medium">{tier.aiTokens}</span> AI Tokens
+                        <span className="font-medium">{tier.aiTokens}</span>
                       </div>
-                      <div className="text-purple-300 text-xs mt-3">{tier.bonuses}</div>
-                      <div className="text-green-400 text-xs font-medium">{tier.roi}</div>
+                      <div className="text-green-400 text-xs font-medium mt-3">{tier.potentialValue}</div>
                     </div>
                   </div>
                 </motion.div>
@@ -332,10 +369,10 @@ const FriendsFamilyPage = () => {
                     <div className="text-3xl font-bold text-orange-400 mb-4">{tier.amount}</div>
                     <div className="space-y-2 text-sm">
                       <div className="text-gray-300">
-                        <span className="font-medium">{tier.utilityCoin}</span> UtilityCoin
+                        <span className="font-medium">{tier.utilityCoin}</span>
                       </div>
                       <div className="text-gray-300">
-                        <span className="font-medium">{tier.aiTokens}</span> AI Tokens
+                        <span className="font-medium">{tier.aiTokens}</span>
                       </div>
                       <div className="text-orange-300 text-xs mt-3">{tier.bonuses}</div>
                       <div className="text-green-400 text-xs font-medium">{tier.roi}</div>
@@ -393,7 +430,7 @@ const FriendsFamilyPage = () => {
                     src="/images/cashapp-qr.png"
                     alt="Cash App QR Code"
                     className="w-full h-full object-contain"
-                    onError={(e) => {
+                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                       // Fallback if image doesn't load
                       e.currentTarget.style.display = 'none';
                       const fallback = e.currentTarget.nextElementSibling as HTMLElement;
@@ -425,7 +462,7 @@ const FriendsFamilyPage = () => {
                     src="/images/lightning-qr.png"
                     alt="Lightning Network QR Code"
                     className="w-full h-full object-contain"
-                    onError={(e) => {
+                    onError={(e: React.SyntheticEvent<HTMLImageElement>) => {
                       // Fallback if image doesn't load
                       e.currentTarget.style.display = 'none';
                       const fallback = e.currentTarget.nextElementSibling as HTMLElement;

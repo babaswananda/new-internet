@@ -23,6 +23,7 @@ const FreeHandleProgramSection = dynamic(() => import('@/components/sections/Fre
 const OperatorEconomySection = dynamic(() => import('@/components/sections/OperatorEconomySection'), { ssr: false });
 const ClaimHandleSection = dynamic(() => import('@/components/sections/ClaimHandleSection'), { ssr: false });
 const NewsletterSection = dynamic(() => import('@/components/sections/NewsletterSection'), { ssr: false });
+const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), { ssr: false });
 
 // Other sections not in the main flow
 const DashboardSection = dynamic(() => import('@/components/sections/DashboardSection'), { ssr: false });
@@ -145,6 +146,14 @@ export default function Home() {
         <div className="relative">
           <SpaceParticlesBackground particleCount={180} color="purple" speed="medium" depth={true} interactive={true} />
           <NewsletterSection />
+        </div>
+      </Suspense>
+
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        {/* 12.7. FAQ Section */}
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={160} color="cyan" speed="slow" depth={true} interactive={true} />
+          <FAQSection />
         </div>
       </Suspense>
 

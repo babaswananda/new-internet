@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 import MainLayout from '@/components/layout/MainLayout';
 import { GlowingCard } from '@/components/ui/glowing-card';
@@ -193,11 +194,61 @@ const LearnAIMadeMeRichPage = () => {
                 </GlowingCard>
               </motion.div>
 
+              {/* Research Library */}
+              <motion.div variants={itemVariants} className="mb-16">
+                <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-cyan-500/20">
+                  <h2 className="text-3xl mb-6 text-cyan-400 text-center"><HeaderText>📚 Protocol Academy Research</HeaderText></h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                    <div className="bg-black/40 rounded-lg p-6 border border-purple-500/20">
+                      <div className="text-3xl mb-4 text-center">📄</div>
+                      <h3 className="text-lg font-bold text-purple-400 mb-3 text-center">Unified AI Whitepaper</h3>
+                      <p className="text-gray-300 text-sm text-center mb-4">
+                        Complete protocol specification and technical architecture
+                      </p>
+                      <div className="text-center">
+                        <a href="/downloads/unified-ai-whitepaper.pdf" className="text-purple-300 hover:text-purple-200 text-sm" download>
+                          📥 Download PDF
+                        </a>
+                      </div>
+                    </div>
+                    <div className="bg-black/40 rounded-lg p-6 border border-blue-500/20">
+                      <div className="text-3xl mb-4 text-center">🪙</div>
+                      <h3 className="text-lg font-bold text-blue-400 mb-3 text-center">Tokenomics Deep Dive</h3>
+                      <p className="text-gray-300 text-sm text-center mb-4">
+                        Three-token economy design and economic modeling
+                      </p>
+                      <div className="text-center">
+                        <a href="/downloads/tokenomics-paper.pdf" className="text-blue-300 hover:text-blue-200 text-sm" download>
+                          📥 Download PDF
+                        </a>
+                      </div>
+                    </div>
+                    <div className="bg-black/40 rounded-lg p-6 border border-green-500/20">
+                      <div className="text-3xl mb-4 text-center">📊</div>
+                      <h3 className="text-lg font-bold text-green-400 mb-3 text-center">Competitive Analysis</h3>
+                      <p className="text-gray-300 text-sm text-center mb-4">
+                        Strategic positioning vs SingularityNET, Fetch.ai, Ocean Protocol
+                      </p>
+                      <div className="text-center">
+                        <a href="/downloads/competitive-analysis.pdf" className="text-green-300 hover:text-green-200 text-sm" download>
+                          📥 Download PDF
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <a href="/blog" className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white rounded-lg transition-all">
+                      📚 Complete Research Library
+                    </a>
+                  </div>
+                </GlowingCard>
+              </motion.div>
+
               {/* Case Studies */}
               <motion.div variants={itemVariants} className="mb-16">
                 <GlowingCard className="bg-black/30 backdrop-blur-sm p-8 rounded-lg border border-green-500/20">
                   <h2 className="text-3xl mb-6 text-green-400 text-center"><HeaderText>Real Case Studies</HeaderText></h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
                     <div>
                       <h3 className="text-xl mb-4 text-white"><HeaderText>Featured Success Stories</HeaderText></h3>
                       <ul className="space-y-3 text-gray-300">
@@ -205,6 +256,8 @@ const LearnAIMadeMeRichPage = () => {
                         <li>• The vault that generated 1M+ impressions</li>
                         <li>• From zero to aimademerich feed in 30 days</li>
                         <li>• Building a MemeCoin empire with AI</li>
+                        <li>• Protocol mastery: $100K in 90 days</li>
+                        <li>• Ecosystem partnerships that 10x'd revenue</li>
                       </ul>
                     </div>
                     <div>
@@ -214,8 +267,30 @@ const LearnAIMadeMeRichPage = () => {
                         <li>• Behind-the-scenes strategy breakdowns</li>
                         <li>• Common mistakes and how to avoid them</li>
                         <li>• Advanced tactics for scaling success</li>
+                        <li>• Market analysis and competitive positioning</li>
+                        <li>• Technical deep dives and architecture</li>
                       </ul>
                     </div>
+                  </div>
+
+                  {/* Educational Content Links */}
+                  <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <a href="/blog/introducing-unified-ai-protocol" className="bg-black/40 rounded-lg p-4 border border-purple-500/20 hover:border-purple-500/40 transition-all text-center">
+                      <div className="text-2xl mb-2">📖</div>
+                      <div className="text-white font-medium text-sm">Protocol Introduction</div>
+                    </a>
+                    <a href="/blog/under-the-hood-tech-behind-unified-ai" className="bg-black/40 rounded-lg p-4 border border-blue-500/20 hover:border-blue-500/40 transition-all text-center">
+                      <div className="text-2xl mb-2">🔧</div>
+                      <div className="text-white font-medium text-sm">Technical Deep Dive</div>
+                    </a>
+                    <a href="/blog/tokenomics-deep-dive" className="bg-black/40 rounded-lg p-4 border border-yellow-500/20 hover:border-yellow-500/40 transition-all text-center">
+                      <div className="text-2xl mb-2">🪙</div>
+                      <div className="text-white font-medium text-sm">Token Economics</div>
+                    </a>
+                    <a href="/blog/competitive-analysis-ai-blockchain" className="bg-black/40 rounded-lg p-4 border border-green-500/20 hover:border-green-500/40 transition-all text-center">
+                      <div className="text-2xl mb-2">📊</div>
+                      <div className="text-white font-medium text-sm">Market Analysis</div>
+                    </a>
                   </div>
                 </GlowingCard>
               </motion.div>

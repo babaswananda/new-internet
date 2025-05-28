@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 interface FormField {
   value: string;
@@ -33,7 +33,7 @@ export const validators = {
   required: (value: string) => {
     return value.trim() === '' ? 'This field is required' : undefined;
   },
-  
+
   email: (value: string) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (value && !emailRegex.test(value)) {
@@ -41,21 +41,21 @@ export const validators = {
     }
     return undefined;
   },
-  
+
   minLength: (min: number) => (value: string) => {
     if (value && value.length < min) {
       return `Must be at least ${min} characters long`;
     }
     return undefined;
   },
-  
+
   maxLength: (max: number) => (value: string) => {
     if (value && value.length > max) {
       return `Must be no more than ${max} characters long`;
     }
     return undefined;
   },
-  
+
   phone: (value: string) => {
     const phoneRegex = /^[\+]?[1-9][\d]{0,15}$/;
     if (value && !phoneRegex.test(value.replace(/\s/g, ''))) {
@@ -63,7 +63,7 @@ export const validators = {
     }
     return undefined;
   },
-  
+
   url: (value: string) => {
     try {
       if (value) new URL(value);
@@ -72,7 +72,7 @@ export const validators = {
       return 'Please enter a valid URL';
     }
   },
-  
+
   // Combine multiple validators
   combine: (...validators: Array<(value: string) => string | undefined>) => (value: string) => {
     for (const validator of validators) {
@@ -94,14 +94,14 @@ export function useForm<T extends Record<string, any>>(
   const validateField = useCallback((field: keyof T): boolean => {
     const value = String(values[field] || '');
     const fieldConfig = config?.[field];
-    
+
     let error: string | undefined;
 
     // Check required
     if (fieldConfig?.required && validators.required(value)) {
       error = validators.required(value);
     }
-    
+
     // Check custom validator
     if (!error && fieldConfig?.validator) {
       error = fieldConfig.validator(value);
@@ -117,7 +117,7 @@ export function useForm<T extends Record<string, any>>(
 
   const validateForm = useCallback(): boolean => {
     if (!config) return true;
-    
+
     let isValid = true;
     const newErrors: Partial<Record<keyof T, string>> = {};
 
@@ -125,14 +125,14 @@ export function useForm<T extends Record<string, any>>(
       const fieldKey = field as keyof T;
       const value = String(values[fieldKey] || '');
       const fieldConfig = config[fieldKey];
-      
+
       let error: string | undefined;
 
       // Check required
       if (fieldConfig?.required && validators.required(value)) {
         error = validators.required(value);
       }
-      
+
       // Check custom validator
       if (!error && fieldConfig?.validator) {
         error = fieldConfig.validator(value);
@@ -191,7 +191,7 @@ export function useForm<T extends Record<string, any>>(
   const handleSubmit = useCallback((onSubmit: (values: T) => Promise<void> | void) => {
     return async (e: React.FormEvent) => {
       e.preventDefault();
-      
+
       if (!validateForm()) {
         return;
       }
