@@ -15,6 +15,8 @@ import IOSection from '@/components/sections/IOSection';
 import ClaimHandleSection from '@/components/sections/ClaimHandleSection';
 import NewsletterSection from '@/components/sections/NewsletterSection';
 import FAQSection from '@/components/sections/FAQSection';
+import CinematicHeroBanner from '@/components/ui/CinematicHeroBanner';
+import { homePageSlides } from '@/data/cinematicSlides';
 
 export default function Home() {
   // Memoized data structures for performance optimization
@@ -166,11 +168,16 @@ export default function Home() {
 
   return (
     <MainLayout>
-      {/* Hero Section with Cinematic Background */}
-      <div className="relative">
-        <SpaceParticlesBackground particleCount={300} color="purple" speed="slow" depth={true} interactive={true} />
-        <ImprovedHeroSection />
-      </div>
+      {/* Cinematic Hero Banner */}
+      <CinematicHeroBanner
+        slides={homePageSlides}
+        autoPlay={true}
+        autoPlayInterval={10000}
+        height="100vh"
+        showControls={true}
+        showIndicators={true}
+        enableParallax={true}
+      />
 
       {/* Core Products Carousel */}
       <Suspense fallback={<div className="h-20 bg-black" />}>

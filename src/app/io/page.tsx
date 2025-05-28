@@ -10,6 +10,8 @@ import MainLayout from '@/components/layout/MainLayout';
 import IOSubscriptionPlans from '@/components/io/IOSubscriptionPlans';
 import IOPricingTable from '@/components/io/IOPricingTable';
 import CinematicMediaPlaceholder from '@/components/ui/CinematicMediaPlaceholder';
+import CinematicHeroBanner from '@/components/ui/CinematicHeroBanner';
+import { innerPageSlides } from '@/data/cinematicSlides';
 
 export default function IOPage() {
   const [ref, inView] = useInView({
@@ -39,6 +41,17 @@ export default function IOPage() {
 
   return (
     <MainLayout>
+      {/* Cinematic Hero Banner */}
+      <CinematicHeroBanner
+        slides={innerPageSlides.io}
+        autoPlay={true}
+        autoPlayInterval={12000}
+        height="80vh"
+        showControls={false}
+        showIndicators={false}
+        enableParallax={true}
+      />
+
       <section className="relative min-h-screen w-full py-24 overflow-hidden">
         <div className="container mx-auto px-4 relative z-10">
           <motion.div

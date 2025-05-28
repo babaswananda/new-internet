@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cinematic Video Placeholder</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .container {
+            text-align: center;
+            z-index: 10;
+        }
+        .title {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #8b5cf6, #3b82f6, #06b6d4);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            background: rgba(139, 92, 246, 0.6);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(139, 92, 246, 0.5); }
+            to { text-shadow: 0 0 30px rgba(139, 92, 246, 0.8), 0 0 40px rgba(59, 130, 246, 0.5); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-100px) rotate(180deg); opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <h1 class="title">CINEMATIC PLACEHOLDER</h1>
+        <p class="subtitle">Epic video content coming soon...</p>
+        <p style="font-size: 0.9rem; opacity: 0.6;">This will be replaced with stunning 4K cinematic footage</p>
+    </div>
+
+    <script>
+        // Create floating particles
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.width = particle.style.height = Math.random() * 10 + 5 + 'px';
+            particle.style.animationDuration = Math.random() * 3 + 3 + 's';
+            particle.style.animationDelay = Math.random() * 2 + 's';
+            document.getElementById('particles').appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 6000);
+        }
+
+        setInterval(createParticle, 300);
+    </script>
+</body>
+</html>
