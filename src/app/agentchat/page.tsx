@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import MainLayout from '@/components/layout/MainLayout';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import CinematicMediaPlaceholder from '@/components/ui/CinematicMediaPlaceholder';
 
 const AgentChatPage = () => {
   const containerVariants = {
@@ -52,6 +53,30 @@ const AgentChatPage = () => {
                   accessible through a conversational interface. Manage your agents, deploy your stack,
                   and run your digital life from one unified chat experience.
                 </p>
+
+                {/* AgentChat Interface Demo */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="mt-12"
+                >
+                  <CinematicMediaPlaceholder
+                    id="agentchat-interface-demo"
+                    title="AgentChat Interface Demo"
+                    description="Interactive chat interface showing agent deployment, management, and real-time orchestration"
+                    type="video"
+                    duration="30s"
+                    resolution="4K"
+                    category="agents"
+                    priority="high"
+                    aspectRatio="16:9"
+                    className="max-w-4xl mx-auto"
+                    showControls={true}
+                    autoPlay={false}
+                    overlay={true}
+                  />
+                </motion.div>
               </motion.div>
 
               {/* Features Grid */}

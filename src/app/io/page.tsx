@@ -9,6 +9,7 @@ import { IOChatInterface } from '@/components/ui/IOChatInterface';
 import MainLayout from '@/components/layout/MainLayout';
 import IOSubscriptionPlans from '@/components/io/IOSubscriptionPlans';
 import IOPricingTable from '@/components/io/IOPricingTable';
+import CinematicMediaPlaceholder from '@/components/ui/CinematicMediaPlaceholder';
 
 export default function IOPage() {
   const [ref, inView] = useInView({
@@ -106,6 +107,25 @@ export default function IOPage() {
                   Starting at $15/month. Handle owners get Builder tier FREE.
                 </div>
               </div>
+
+              {/* Hero Demo Video */}
+              <motion.div variants={itemVariants} className="mb-8">
+                <CinematicMediaPlaceholder
+                  id="io-hero-demo"
+                  title="IO in Action"
+                  description="Watch IO orchestrate multiple AI agents, manage protocols, and optimize your digital presence in real-time"
+                  type="video"
+                  duration="45s"
+                  resolution="4K"
+                  category="products"
+                  priority="high"
+                  aspectRatio="21:9"
+                  className="max-w-5xl mx-auto"
+                  showControls={true}
+                  autoPlay={false}
+                  overlay={true}
+                />
+              </motion.div>
             </motion.div>
 
             {/* IO Expansions */}

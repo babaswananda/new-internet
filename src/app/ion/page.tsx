@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import MainLayout from '@/components/layout/MainLayout';
 import { GlowingCard } from '@/components/ui/glowing-card';
+import CinematicMediaPlaceholder from '@/components/ui/CinematicMediaPlaceholder';
 
 const IONPage = () => {
   const containerVariants = {
@@ -51,6 +52,30 @@ const IONPage = () => {
                   ION turns the Agentic Web into a cognitive web. The protocol that gives agents meaning,
                   context, and the ability to understand where they belong in the digital ecosystem.
                 </p>
+
+                {/* ION Network Visualization */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="mt-12"
+                >
+                  <CinematicMediaPlaceholder
+                    id="ion-network-visualization"
+                    title="ION Network Visualization"
+                    description="Interconnected nodes pulsing with data, semantic relationships forming and evolving in 3D space"
+                    type="video"
+                    duration="20s"
+                    resolution="4K"
+                    category="protocol"
+                    priority="high"
+                    aspectRatio="16:9"
+                    className="max-w-5xl mx-auto"
+                    showControls={false}
+                    autoPlay={true}
+                    overlay={false}
+                  />
+                </motion.div>
               </motion.div>
 
               {/* ION Meaning */}

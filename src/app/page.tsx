@@ -4,161 +4,198 @@ import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import MainLayout from '@/components/layout/MainLayout';
 
-// Only load the hero section immediately
+// Core components
 import ImprovedHeroSection from '@/components/sections/ImprovedHeroSection';
 import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
+import ScrollTriggeredCarousel from '@/components/ui/ScrollTriggeredCarousel';
+import ParallaxDeck from '@/components/ui/ParallaxDeck';
 
-// Dynamically import all other sections with no SSR to improve performance
+// Dynamically import sections for performance
 const IOSection = dynamic(() => import('@/components/sections/IOSection'), { ssr: false });
 const AITokensITOSection = dynamic(() => import('@/components/sections/AITokensITOSection'), { ssr: false });
-const WhatIsUnifiedAISection = dynamic(() => import('@/components/sections/WhatIsUnifiedAISection'), { ssr: false });
-const AgentChatSection = dynamic(() => import('@/components/sections/AgentChatSection'), { ssr: false });
-const AlphaRouterSection = dynamic(() => import('@/components/sections/AlphaRouterSection'), { ssr: false });
-const OntologyNetworkSection = dynamic(() => import('@/components/sections/OntologyNetworkSection'), { ssr: false });
-const PreOrderHardwareSection = dynamic(() => import('@/components/sections/PreOrderHardwareSection'), { ssr: false });
-const AIDirectoryMarketplaceSection = dynamic(() => import('@/components/sections/AIDirectoryMarketplaceSection'), { ssr: false });
-const AIDatacentersSection = dynamic(() => import('@/components/sections/AIDatacentersSection'), { ssr: false });
-const VibeCoderSection = dynamic(() => import('@/components/sections/VibeCoderSection'), { ssr: false });
-const FreeHandleProgramSection = dynamic(() => import('@/components/sections/FreeHandleProgramSection'), { ssr: false });
-const OperatorEconomySection = dynamic(() => import('@/components/sections/OperatorEconomySection'), { ssr: false });
 const ClaimHandleSection = dynamic(() => import('@/components/sections/ClaimHandleSection'), { ssr: false });
 const NewsletterSection = dynamic(() => import('@/components/sections/NewsletterSection'), { ssr: false });
 const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), { ssr: false });
 
-// Other sections not in the main flow
-const DashboardSection = dynamic(() => import('@/components/sections/DashboardSection'), { ssr: false });
-const AgentOSSection = dynamic(() => import('@/components/sections/AgentOSSection'), { ssr: false });
-const ADKSection = dynamic(() => import('@/components/sections/ADKSection'), { ssr: false });
-const A2ASection = dynamic(() => import('@/components/sections/A2ASection'), { ssr: false });
-const MCPSection = dynamic(() => import('@/components/sections/MCPSection'), { ssr: false });
-const ParallelProcessingSection = dynamic(() => import('@/components/sections/ParallelProcessingSection'), { ssr: false });
-const VibeCodingSection = dynamic(() => import('@/components/sections/VibeCodingSection'), { ssr: false });
-const MarketplaceSection = dynamic(() => import('@/components/sections/MarketplaceSection'), { ssr: false });
-const AIVAChatSection = dynamic(() => import('@/components/sections/AIVAChatSection'), { ssr: false });
-const MapSection = dynamic(() => import('@/components/sections/MapSection'), { ssr: false });
-const ComingSoonSection = dynamic(() => import('@/components/sections/ComingSoonSection'), { ssr: false });
-
 export default function Home() {
+  // Core Products Carousel Data
+  const coreProductsData = [
+    {
+      id: 'io-operator',
+      title: 'IO: Your Intelligent Operator',
+      description: 'The central AI that manages your entire digital ecosystem. Deploy agents, manage vaults, and orchestrate your presence in the Agentic Internet.',
+      component: <IOSection />,
+      media: {
+        id: 'io-dashboard',
+        title: 'IO Dashboard Visualization',
+        description: 'Interactive dashboard showing IO managing multiple AI agents and protocols',
+        type: 'video' as const,
+        category: 'products' as const,
+        priority: 'high' as const
+      }
+    },
+    {
+      id: 'ai-tokens-ito',
+      title: 'AI Tokens ITO',
+      description: 'Join the official token offering. Get AI Tokens, UtilityCoin, and early access to the protocol economy with exclusive benefits.',
+      component: <AITokensITOSection />,
+      media: {
+        id: 'ito-countdown',
+        title: 'AI Tokens ITO Countdown',
+        description: 'Urgency visualization with particle effects and token allocation display',
+        type: 'video' as const,
+        category: 'tokens' as const,
+        priority: 'high' as const
+      }
+    }
+  ];
+
+  // Protocol Stack Parallax Data
+  const protocolStackData = [
+    {
+      id: 'agentchat',
+      title: 'AgentChat: The AI Superapp',
+      description: 'Deploy, manage, and monetize AI agents through an intuitive chat interface. Your gateway to the Agentic Internet.',
+      content: (
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="text-gray-300">Deploy AI agents instantly</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+            <span className="text-gray-300">Monetize through conversations</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
+            <span className="text-gray-300">Integrate with any platform</span>
+          </div>
+        </div>
+      ),
+      media: {
+        id: 'agentchat-demo',
+        title: 'AgentChat Interface Demo',
+        description: 'Interactive chat interface showing agent deployment and management',
+        type: 'video' as const,
+        category: 'agents' as const,
+        priority: 'high' as const
+      },
+      gradient: 'from-blue-600 to-cyan-600'
+    },
+    {
+      id: 'alpharouter',
+      title: 'AlphaRouter: Intelligence Routing',
+      description: 'Automatically route requests to the best AI models and agents. Optimize performance, cost, and results across the entire AI ecosystem.',
+      content: (
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+            <span className="text-gray-300">Smart model selection</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+            <span className="text-gray-300">Cost optimization</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+            <span className="text-gray-300">Performance monitoring</span>
+          </div>
+        </div>
+      ),
+      media: {
+        id: 'alpharouter-flow',
+        title: 'AlphaRouter Flow Visualization',
+        description: 'Data flow showing intelligent routing between AI models and agents',
+        type: 'animation' as const,
+        category: 'protocol' as const,
+        priority: 'high' as const
+      },
+      gradient: 'from-green-600 to-emerald-600'
+    },
+    {
+      id: 'ion-network',
+      title: 'ION: Intelligent Ontology Network',
+      description: 'The semantic backbone that connects all AI agents and protocols. Create intelligent relationships and enable autonomous collaboration.',
+      content: (
+        <div className="space-y-4">
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
+            <span className="text-gray-300">Semantic relationships</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
+            <span className="text-gray-300">Agent collaboration</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
+            <span className="text-gray-300">Knowledge graphs</span>
+          </div>
+        </div>
+      ),
+      media: {
+        id: 'ion-network-viz',
+        title: 'ION Network Visualization',
+        description: 'Interconnected nodes showing semantic relationships and data flows',
+        type: 'video' as const,
+        category: 'protocol' as const,
+        priority: 'high' as const
+      },
+      gradient: 'from-purple-600 to-violet-600'
+    }
+  ];
+
   return (
     <MainLayout>
-      {/* Main Hero Section - Load immediately */}
-      <ImprovedHeroSection />
+      {/* Hero Section with Cinematic Background */}
+      <div className="relative">
+        <SpaceParticlesBackground particleCount={300} color="purple" speed="slow" depth={true} interactive={true} />
+        <ImprovedHeroSection />
+      </div>
 
-      {/* Load all other sections with Suspense for better performance */}
+      {/* Core Products Carousel */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 2. IO: Your Intelligent Operator */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="blue" speed="slow" depth={true} interactive={true} />
-          <IOSection />
+          <SpaceParticlesBackground particleCount={200} color="blue" speed="medium" depth={true} interactive={true} />
+          <ScrollTriggeredCarousel
+            items={coreProductsData}
+            title="Core Products"
+            subtitle="The foundation of your Agentic Internet experience"
+            autoAdvance={true}
+            showProgress={true}
+          />
         </div>
       </Suspense>
 
+      {/* Protocol Stack Parallax Deck */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 2.5. AI Tokens ITO - Official Token Offering */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={250} color="purple" speed="medium" depth={true} interactive={true} />
-          <AITokensITOSection />
+          <SpaceParticlesBackground particleCount={180} color="mixed" speed="slow" depth={true} interactive={true} />
+          <ParallaxDeck
+            cards={protocolStackData}
+            title="Protocol Stack"
+            subtitle="The intelligent infrastructure powering the new internet"
+          />
         </div>
       </Suspense>
 
+      {/* Newsletter Section */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 3. Every Handle is a Function Section */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={150} color="purple" speed="medium" depth={true} interactive={true} />
-          <WhatIsUnifiedAISection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 4. AgentChat: The AI Superapp */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="cyan" speed="slow" depth={true} interactive={true} />
-          <AgentChatSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 5. AlphaRouter: The Carrier of Intelligence */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="green" speed="medium" depth={true} interactive={true} />
-          <AlphaRouterSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 6. Ontology Network Protocol */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={150} color="orange" speed="slow" depth={true} interactive={true} />
-          <OntologyNetworkSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 7. Pre-Order Hardware */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="pink" speed="medium" depth={true} interactive={true} />
-          <PreOrderHardwareSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 8. AI Directory + AI Marketplace */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={170} color="purple" speed="medium" depth={true} interactive={true} />
-          <AIDirectoryMarketplaceSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 9. AI Datacenters + GPU Cloud */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={170} color="cyan" speed="medium" depth={true} interactive={true} />
-          <AIDatacentersSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 10. VibeCoder + VibeCoding */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="yellow" speed="medium" depth={true} interactive={true} />
-          <VibeCoderSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 11. Free Handle Program */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={160} color="mixed" speed="slow" depth={true} interactive={true} />
-          <FreeHandleProgramSection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 12. Operator Economy + DevCommunity */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={150} color="red" speed="medium" depth={true} interactive={true} />
-          <OperatorEconomySection />
-        </div>
-      </Suspense>
-
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 12.5. Newsletter Subscription */}
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={180} color="purple" speed="medium" depth={true} interactive={true} />
           <NewsletterSection />
         </div>
       </Suspense>
 
+      {/* FAQ Section */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 12.7. FAQ Section */}
         <div className="relative">
-          <SpaceParticlesBackground particleCount={160} color="cyan" speed="slow" depth={true} interactive={true} />
+          <SpaceParticlesBackground particleCount={120} color="cyan" speed="slow" depth={true} interactive={true} />
           <FAQSection />
         </div>
       </Suspense>
 
+      {/* Final CTA */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        {/* 13. Claim Your Handle - Final CTA */}
         <div className="relative">
           <SpaceParticlesBackground particleCount={200} color="mixed" speed="slow" depth={true} interactive={true} />
           <ClaimHandleSection />

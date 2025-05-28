@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, useAnimation, AnimatePresence } from 'framer-motion';
 import { HeaderText } from '@/utils/normalBold';
 import Link from 'next/link';
+import CinematicMediaPlaceholder from '@/components/ui/CinematicMediaPlaceholder';
 
 const HeroSection: React.FC = () => {
   // State for interactive elements
@@ -138,6 +139,22 @@ const HeroSection: React.FC = () => {
       <div className="absolute inset-0" style={{ zIndex: -1 }}>
         <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/20 to-black hero-gradient">
           {/* Gradient background for the hero section */}
+        </div>
+
+        {/* Cinematic Hero Media Placeholder */}
+        <div className="absolute inset-0 opacity-30">
+          <CinematicMediaPlaceholder
+            id="hero-awakening"
+            title="The Awakening"
+            description="AI consciousness emerging from digital void with neural networks and energy flows"
+            type="video"
+            duration="30s"
+            resolution="4K"
+            category="hero"
+            priority="high"
+            aspectRatio="21:9"
+            className="w-full h-full"
+          />
         </div>
 
         {/* Animated grid background */}

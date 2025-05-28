@@ -172,7 +172,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             {/* Mobile menu items */}
             <Link href="/" className="text-gray-300 hover:text-white py-2 transition-colors">Home</Link>
             {productItems.map((item) => (
-              <Link key={item.href} href={item.href} className="text-gray-300 hover:text-white py-2 transition-colors">
+              <Link key={item.href} href={item.href} className={`${item.color} hover:opacity-80 py-2 transition-colors`}>
                 {item.label}
               </Link>
             ))}
