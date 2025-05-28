@@ -131,6 +131,8 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             items={companyItems}
           />
 
+          <NavLink href="/documentation">📚 DOCS</NavLink>
+
           {/* 🌍 SOVEREIGN LANGUAGE SWITCHER */}
           <LanguageSwitcher variant="header" />
         </nav>
@@ -189,6 +191,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                 {item.label}
               </Link>
             ))}
+            <Link href="/documentation" className="text-blue-400 hover:text-blue-300 py-2 transition-colors">📚 Documentation</Link>
             <Link href="/claim" className="w-full">
               <motion.button
                 whileHover={{ scale: 1.05 }}

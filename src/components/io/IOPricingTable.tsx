@@ -79,20 +79,26 @@ export default function IOPricingTable() {
                   <th className="text-center p-6">
                     <div className="text-center">
                       <div className="text-lg font-bold text-white">I.O. Starter</div>
-                      <div className="text-sm text-gray-400">$20/mo</div>
+                      <div className="text-sm text-gray-400">$20/mo or $180/yr</div>
+                      <div className="text-xs text-green-400 font-medium">Monthly: First month gets 3 months</div>
+                      <div className="text-xs text-blue-400 font-medium">Yearly: 25% off + bonus tokens</div>
                     </div>
                   </th>
                   <th className="text-center p-6">
                     <div className="text-center">
                       <div className="text-lg font-bold text-white">I.O. Builder</div>
-                      <div className="text-sm text-gray-400">$50/mo</div>
+                      <div className="text-sm text-gray-400">$50/mo or $450/yr</div>
                       <div className="text-xs text-purple-400 font-medium">Most Popular</div>
+                      <div className="text-xs text-green-400 font-medium">Monthly: First month gets 3 months</div>
+                      <div className="text-xs text-blue-400 font-medium">Yearly: 25% off + bonus tokens</div>
                     </div>
                   </th>
                   <th className="text-center p-6">
                     <div className="text-center">
                       <div className="text-lg font-bold text-white">I.O. Master</div>
-                      <div className="text-sm text-gray-400">$150/mo</div>
+                      <div className="text-sm text-gray-400">$150/mo or $1,350/yr</div>
+                      <div className="text-xs text-green-400 font-medium">Monthly: First month gets 3 months</div>
+                      <div className="text-xs text-blue-400 font-medium">Yearly: 25% off + bonus tokens</div>
                     </div>
                   </th>
                 </tr>
@@ -132,7 +138,7 @@ export default function IOPricingTable() {
           <p className="text-gray-400 text-center mb-8">
             Any plan can add additional tokens as needed:
           </p>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {tokenAddOns.map((addon, index) => (
               <motion.div
@@ -149,7 +155,7 @@ export default function IOPricingTable() {
               </motion.div>
             ))}
           </div>
-          
+
           <p className="text-sm text-gray-500 text-center mt-6">
             Note: AI Agents and Super Agents consume tokens per use. You can buy more at any time from your dashboard or stake vaults for ongoing yield.
           </p>
@@ -164,7 +170,17 @@ export default function IOPricingTable() {
         >
           <div className="bg-gray-900/50 backdrop-blur-sm border border-purple-500/20 rounded-xl p-6">
             <div className="text-2xl mb-3">🌱</div>
-            <h3 className="text-xl font-bold text-white mb-3">I.O. Starter – $20/mo</h3>
+            <h3 className="text-xl font-bold text-white mb-3">I.O. Starter</h3>
+            <div className="grid grid-cols-1 gap-3 mb-4">
+              <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+                <p className="text-green-400 text-sm font-semibold">Monthly: $20/mo</p>
+                <p className="text-gray-300 text-xs">First month gets 3 months, then monthly billing</p>
+              </div>
+              <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
+                <p className="text-blue-400 text-sm font-semibold">Yearly: $180/yr (25% off)</p>
+                <p className="text-gray-300 text-xs">+ 10,000 bonus AI Tokens + priority support</p>
+              </div>
+            </div>
             <p className="text-gray-400 mb-4">
               Perfect for solo creators or AI curious users. Access to core Operator tools, limited AI usage via manual top-ups.
             </p>
@@ -178,7 +194,17 @@ export default function IOPricingTable() {
 
           <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 backdrop-blur-sm border border-purple-400/30 rounded-xl p-6">
             <div className="text-2xl mb-3">🚀</div>
-            <h3 className="text-xl font-bold text-white mb-3">I.O. Builder – $50/mo</h3>
+            <h3 className="text-xl font-bold text-white mb-3">I.O. Builder</h3>
+            <div className="grid grid-cols-1 gap-3 mb-4">
+              <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+                <p className="text-green-400 text-sm font-semibold">Monthly: $50/mo</p>
+                <p className="text-gray-300 text-xs">First month gets 3 months, then monthly billing</p>
+              </div>
+              <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
+                <p className="text-blue-400 text-sm font-semibold">Yearly: $450/yr (25% off)</p>
+                <p className="text-gray-300 text-xs">+ 50,000 bonus AI Tokens + premium support</p>
+              </div>
+            </div>
             <p className="text-gray-400 mb-4">
               Includes deployable agents, basic meme coin access, vault starter tier, and domain handle discounts.
             </p>
@@ -192,7 +218,17 @@ export default function IOPricingTable() {
 
           <div className="bg-gray-900/50 backdrop-blur-sm border border-purple-500/20 rounded-xl p-6">
             <div className="text-2xl mb-3">🧠</div>
-            <h3 className="text-xl font-bold text-white mb-3">I.O. Master – $150/mo</h3>
+            <h3 className="text-xl font-bold text-white mb-3">I.O. Master</h3>
+            <div className="grid grid-cols-1 gap-3 mb-4">
+              <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-3">
+                <p className="text-green-400 text-sm font-semibold">Monthly: $150/mo</p>
+                <p className="text-gray-300 text-xs">First month gets 3 months, then monthly billing</p>
+              </div>
+              <div className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-3">
+                <p className="text-blue-400 text-sm font-semibold">Yearly: $1,350/yr (25% off)</p>
+                <p className="text-gray-300 text-xs">+ 200,000 bonus AI Tokens + white-glove support</p>
+              </div>
+            </div>
             <p className="text-gray-400 mb-4">
               Full throttle. All AI agents, Super Agent unlocks, meme coin vaults, token launch tools, and DAO participation.
             </p>
@@ -221,7 +257,7 @@ export default function IOPricingTable() {
           <p className="text-purple-400 font-semibold mb-8">
             Choose your level. Mint your agent. Launch your protocol.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -230,7 +266,7 @@ export default function IOPricingTable() {
             >
               Start with I.O. Builder
             </motion.button>
-            
+
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

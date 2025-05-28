@@ -38,6 +38,270 @@ export default function AIAgentsPage() {
       {/* Hero Section */}
       <AIAgentHero />
 
+      {/* Industry-Specific Agents Goldmine Section */}
+      <section className="py-20 bg-gradient-to-b from-black via-yellow-950/10 to-black">
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-6xl mx-auto"
+          >
+            {/* Header */}
+            <div className="text-center mb-16">
+              <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent">
+                The Real Goldmine
+              </h2>
+              <p className="text-xl text-gray-300 max-w-4xl mx-auto mb-8">
+                Industry-specific AI agents that target overlooked verticals, unsolved problems, and underserved operators.
+                <span className="text-yellow-400 font-semibold"> Forget generic chatbots — this is where the deep money lives.</span>
+              </p>
+            </div>
+
+            {/* Strategy Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/30 rounded-2xl p-8 mb-16"
+            >
+              <h3 className="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-3">
+                🧠 STRATEGY:
+              </h3>
+              <p className="text-lg text-gray-300 mb-6">
+                We focus on agents that solve real pain, not just chat.
+              </p>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {[
+                  'Unserved industries',
+                  'Cash flow problems',
+                  'Manual labor bottlenecks',
+                  'Repeatable time-sucks',
+                  'Specialized knowledge gaps',
+                  'Legacy systems screaming for an upgrade'
+                ].map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    className="flex items-center gap-3"
+                  >
+                    <span className="text-green-400 text-lg">✅</span>
+                    <span className="text-gray-300">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Industry Categories */}
+            <div className="space-y-12">
+              <h3 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-orange-400 to-red-400 bg-clip-text text-transparent">
+                🔥 INDUSTRY-SPECIFIC AGENT CATEGORIES + KILLER USE CASES
+              </h3>
+
+              {/* Industry Grid */}
+              <div className="grid gap-8">
+                {/* Healthcare */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  className="bg-black/40 backdrop-blur-sm border border-blue-500/20 rounded-xl p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-4xl">🏥</span>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-blue-400 mb-2">HEALTHCARE</h4>
+                      <h5 className="text-lg font-semibold text-white mb-3">Agent: Health Intake Optimizer</h5>
+                      <ul className="text-gray-300 space-y-1 mb-3">
+                        <li>• Auto-collects patient history pre-visit</li>
+                        <li>• Standardizes insurance data submission</li>
+                        <li>• Flags risk factors for provider review</li>
+                      </ul>
+                      <p className="text-yellow-400 font-semibold">💡 Built for clinics, not hospitals. Private practice cash cows.</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Accounting/Tax */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 }}
+                  className="bg-black/40 backdrop-blur-sm border border-green-500/20 rounded-xl p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-4xl">🧾</span>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-green-400 mb-2">ACCOUNTING / TAX</h4>
+                      <h5 className="text-lg font-semibold text-white mb-3">Agent: Solo Hustler TaxBot</h5>
+                      <ul className="text-gray-300 space-y-1 mb-3">
+                        <li>• Built for creators, freelancers, crypto traders</li>
+                        <li>• Categorizes receipts, exports IRS-ready docs</li>
+                        <li>• AI audit-prep & crypto wallet integration</li>
+                      </ul>
+                      <p className="text-yellow-400 font-semibold">💡 TurboTax ain't doing this.</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Real Estate */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 }}
+                  className="bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-xl p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-4xl">🏘️</span>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-purple-400 mb-2">REAL ESTATE</h4>
+                      <h5 className="text-lg font-semibold text-white mb-3">Agent: Follow-Up Fiend</h5>
+                      <ul className="text-gray-300 space-y-1 mb-3">
+                        <li>• Texts + emails leads automatically</li>
+                        <li>• Pulls property data into listing pages</li>
+                        <li>• Books calls, syncs to calendar</li>
+                      </ul>
+                      <p className="text-yellow-400 font-semibold">💡 For agents who suck at follow-up (aka most of them).</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Education */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 }}
+                  className="bg-black/40 backdrop-blur-sm border border-cyan-500/20 rounded-xl p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-4xl">🎓</span>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-cyan-400 mb-2">EDUCATION</h4>
+                      <h5 className="text-lg font-semibold text-white mb-3">Agent: AI TA (Teaching Assistant)</h5>
+                      <ul className="text-gray-300 space-y-1 mb-3">
+                        <li>• Answers student questions in your teaching style</li>
+                        <li>• Auto-generates lesson reviews, quizzes, learning plans</li>
+                        <li>• Works in Google Docs, Sheets, PDFs</li>
+                      </ul>
+                      <p className="text-yellow-400 font-semibold">💡 For course creators, homeschoolers, micro-academies.</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Ecommerce */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.4 }}
+                  className="bg-black/40 backdrop-blur-sm border border-pink-500/20 rounded-xl p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-4xl">🛍️</span>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-pink-400 mb-2">ECOMMERCE / DTC BRANDS</h4>
+                      <h5 className="text-lg font-semibold text-white mb-3">Agent: UGC Comment Sniper</h5>
+                      <ul className="text-gray-300 space-y-1 mb-3">
+                        <li>• Responds to social comments 24/7</li>
+                        <li>• Turns fans into buyers, buyers into affiliates</li>
+                        <li>• Writes in your brand voice + emojis</li>
+                      </ul>
+                      <p className="text-yellow-400 font-semibold">💡 High-volume dropshippers NEED this.</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Coaches/Consultants */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 }}
+                  className="bg-black/40 backdrop-blur-sm border border-orange-500/20 rounded-xl p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-4xl">🎙️</span>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-orange-400 mb-2">COACHES / CONSULTANTS</h4>
+                      <h5 className="text-lg font-semibold text-white mb-3">Agent: Session Syncer</h5>
+                      <ul className="text-gray-300 space-y-1 mb-3">
+                        <li>• Auto-transcribes Zoom calls</li>
+                        <li>• Summarizes action items + next steps</li>
+                        <li>• Delivers personalized follow-up emails</li>
+                      </ul>
+                      <p className="text-yellow-400 font-semibold">💡 Make $300/hr feel like $1,000/hr.</p>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* Blue-Collar */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.6 }}
+                  className="bg-black/40 backdrop-blur-sm border border-yellow-500/20 rounded-xl p-6"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="text-4xl">🧑‍🔧</span>
+                    <div className="flex-1">
+                      <h4 className="text-xl font-bold text-yellow-400 mb-2">BLUE-COLLAR / TRADES</h4>
+                      <h5 className="text-lg font-semibold text-white mb-3">Agent: Quote Crusher</h5>
+                      <ul className="text-gray-300 space-y-1 mb-3">
+                        <li>• Collects job info via SMS</li>
+                        <li>• Auto-generates estimates with materials + labor</li>
+                        <li>• Sends branded quotes with click-to-book</li>
+                      </ul>
+                      <p className="text-yellow-400 font-semibold">💡 Plumbers, HVAC, contractors = overlooked goldmine.</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Bonus Niche Examples */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mt-16 bg-gradient-to-r from-red-500/10 to-pink-500/10 border border-red-500/30 rounded-2xl p-8"
+              >
+                <h4 className="text-2xl font-bold text-red-400 mb-6 flex items-center gap-3">
+                  🧵 BONUS: HYPER-SPECIFIC NICHE EXAMPLES
+                </h4>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {[
+                    '"LawyerBot" for immigration cases',
+                    '"ChurchOps" for service planning + donation flows',
+                    '"AI Pastor" with voice sermons & Bible Q&A',
+                    '"Tattoo AI Assistant" for appointment setup & art uploads',
+                    '"Salon SchedulerBot" w/ reminders + reviews + referrals',
+                    '"Car Lot Closer" that text-sells used cars like a street shark',
+                    '"Short-Term Rental AI" to manage Airbnbs via WhatsApp'
+                  ].map((example, index) => (
+                    <motion.div
+                      key={example}
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      className="bg-black/40 backdrop-blur-sm border border-red-500/20 rounded-lg p-4"
+                    >
+                      <span className="text-gray-300 text-sm">• {example}</span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Top Agents Preview */}
       <section className="py-16 bg-gray-900/30">
         <div className="container mx-auto px-6">

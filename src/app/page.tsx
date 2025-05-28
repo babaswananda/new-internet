@@ -53,34 +53,68 @@ export default function Home() {
   // Protocol Stack Parallax Data
   const protocolStackData = [
     {
-      id: 'agentchat',
-      title: 'AgentChat: The AI Superapp',
-      description: 'Deploy, manage, and monetize AI agents through an intuitive chat interface. Your gateway to the Agentic Internet.',
+      id: 'ai-agents-goldmine',
+      title: 'AI Agents: The Real Goldmine',
+      description: 'Industry-specific AI agents that target overlooked verticals, unsolved problems, and underserved operators. Forget generic chatbots — this is where the deep money lives.',
       content: (
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-            <span className="text-gray-300">Deploy AI agents instantly</span>
+        <div className="space-y-6">
+          <div className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 border border-yellow-500/20 rounded-lg p-4">
+            <h4 className="text-yellow-400 font-bold mb-3">🧠 STRATEGY:</h4>
+            <p className="text-gray-300 text-sm mb-3">We focus on agents that solve real pain, not just chat.</p>
+            <div className="grid grid-cols-2 gap-2 text-xs">
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Unserved industries</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Cash flow problems</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Manual labor bottlenecks</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-green-400">✅</span>
+                <span className="text-gray-300">Specialized knowledge gaps</span>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-            <span className="text-gray-300">Monetize through conversations</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <div className="w-3 h-3 bg-pink-500 rounded-full"></div>
-            <span className="text-gray-300">Integrate with any platform</span>
+
+          <div className="space-y-3">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🏥</span>
+              <div>
+                <h5 className="text-blue-400 font-semibold">Health Intake Optimizer</h5>
+                <p className="text-gray-400 text-sm">Auto-collects patient history, standardizes insurance data</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🧾</span>
+              <div>
+                <h5 className="text-green-400 font-semibold">Solo Hustler TaxBot</h5>
+                <p className="text-gray-400 text-sm">For creators, freelancers, crypto traders</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">🏘️</span>
+              <div>
+                <h5 className="text-purple-400 font-semibold">Follow-Up Fiend</h5>
+                <p className="text-gray-400 text-sm">Real estate agents who suck at follow-up</p>
+              </div>
+            </div>
           </div>
         </div>
       ),
       media: {
-        id: 'agentchat-demo',
-        title: 'AgentChat Interface Demo',
-        description: 'Interactive chat interface showing agent deployment and management',
+        id: 'industry-agents-showcase',
+        title: 'Industry-Specific Agents Showcase',
+        description: 'Specialized AI agents working across healthcare, finance, real estate, and blue-collar industries',
         type: 'video' as const,
         category: 'agents' as const,
         priority: 'high' as const
       },
-      gradient: 'from-blue-600 to-cyan-600'
+      gradient: 'from-yellow-600 to-orange-600'
     },
     {
       id: 'alpharouter',

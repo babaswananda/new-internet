@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GlowingCard } from '@/components/ui/glowing-card';
 import { TLDName, ProductName, HeaderText } from '@/utils/normalBold';
+import Link from 'next/link';
 
 const IOSection = () => {
   const [activeDefinition, setActiveDefinition] = useState(0);
@@ -242,20 +243,24 @@ const IOSection = () => {
 
           {/* CTA */}
           <motion.div variants={itemVariants} className="text-center">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-12 py-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-2xl rounded-lg shadow-lg shadow-blue-500/20 mr-4"
-            >
-              DEPLOY YOUR IO
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="px-12 py-6 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-2xl rounded-lg hover:bg-white/10 transition-colors"
-            >
-              EXPLORE COMMANDS
-            </motion.button>
+            <Link href="/io">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-12 py-6 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-2xl rounded-lg shadow-lg shadow-blue-500/20 mr-4"
+              >
+                DEPLOY YOUR IO
+              </motion.button>
+            </Link>
+            <Link href="/documentation/io-dashboard">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-12 py-6 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-2xl rounded-lg hover:bg-white/10 transition-colors"
+              >
+                VIEW DOCUMENTATION
+              </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>
