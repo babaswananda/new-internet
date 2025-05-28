@@ -33,63 +33,47 @@ const FriendsFamilyPage = () => {
 
   const tiers = [
     {
-      name: 'Day One',
-      amount: '$50',
-      utilityCoin: '100',
-      aiTokens: '500',
-      bonuses: 'Meme Coin Presale Access',
-      roi: 'Hold + Use on platform'
-    },
-    {
-      name: 'Early Bird',
-      amount: '$150',
-      utilityCoin: '400',
-      aiTokens: '1,200',
-      bonuses: 'Handle + Agent Starter Pack',
-      roi: 'Flip later at 3x–5x'
-    },
-    {
-      name: 'Insider',
+      name: 'Tier 1',
       amount: '$500',
       utilityCoin: '1,500',
       aiTokens: '3,000',
-      bonuses: 'Vault + Meme Coin Allocations',
-      roi: 'Build AI bots → earn'
+      bonuses: 'Early access listing',
+      roi: 'Flip tokens post-launch'
     },
     {
-      name: 'OG Backer',
+      name: 'Tier 2',
       amount: '$1,500',
       utilityCoin: '5,000',
       aiTokens: '10,000',
-      bonuses: 'Full vault access, builder tools, meme drops',
-      roi: 'Passive earnings + resale'
+      bonuses: 'Meme coin allocation',
+      roi: 'Resell at public multiplier'
+    },
+    {
+      name: 'Tier 3',
+      amount: '$5,000',
+      utilityCoin: '18,000',
+      aiTokens: '40,000',
+      bonuses: 'Token trading priority',
+      roi: 'DEX pool LP + resell'
+    },
+    {
+      name: 'Tier 4',
+      amount: '$10,000',
+      utilityCoin: '40,000',
+      aiTokens: '100,000',
+      bonuses: '% of meme coin vaults launched',
+      roi: 'Monthly passive returns'
     }
   ];
 
   const whaleTiers = [
     {
-      name: 'Operator Node',
-      amount: '$5,000',
-      utilityCoin: '18,000',
-      aiTokens: '40,000',
-      bonuses: 'Deploy agents at scale, earn from DEX fees',
-      roi: 'Launch protocol services'
-    },
-    {
-      name: 'Protocol Syndicate',
-      amount: '$10,000',
-      utilityCoin: '40,000',
-      aiTokens: '100,000',
-      bonuses: '% of meme coins launched, royalty on DEX activity',
-      roi: 'Passive DEX royalty + handle resale'
-    },
-    {
-      name: 'Sovereign Round',
-      amount: '$25,000+',
+      name: 'Tier 5',
+      amount: '$25,000',
       utilityCoin: '100,000',
       aiTokens: '300,000',
-      bonuses: 'White-labeled vault, alpha router privileges',
-      roi: 'Private licensing deals + multi-chain rollout'
+      bonuses: 'White-labeled node, protocol cut',
+      roi: 'Monthly passive returns'
     }
   ];
 
@@ -177,13 +161,21 @@ const FriendsFamilyPage = () => {
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <HeaderText className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
-                Claim Your Spot Before We Go Public
+                The Crypto IPO of Unified AI
               </HeaderText>
             </h1>
 
-            <div className="max-w-3xl mx-auto space-y-4 text-lg text-gray-300">
-              <p className="font-medium">This isn't equity. It's not a donation.</p>
-              <p>It's access. It's upside. It's <span className="text-purple-400 font-bold">digital oil for the new internet.</span></p>
+            <div className="max-w-4xl mx-auto space-y-4 text-lg text-gray-300">
+              <p className="text-xl font-medium text-white">This is not a donation. This is not a platform subscription.</p>
+              <p className="text-xl font-bold text-purple-300">This is a tokenized IPO round before the public launch.</p>
+
+              <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 border border-orange-500/30 rounded-lg p-6 mt-6">
+                <p className="text-lg text-gray-200 leading-relaxed">
+                  You're getting in at the price <span className="text-orange-300 font-semibold">before anyone else sees it</span>.<br/>
+                  Before the site goes live. Before the press hits.<br/>
+                  <span className="text-white font-bold">You get tokens that resell, vaults that earn, and assets that grow.</span>
+                </p>
+              </div>
             </div>
           </div>
 
@@ -195,10 +187,10 @@ const FriendsFamilyPage = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                { icon: '🪙', title: 'UtilityCoin', desc: 'Protocol base layer — think BTC for our ecosystem' },
-                { icon: '⚡', title: 'AI Tokens', desc: 'Power every vault, agent, and product' },
-                { icon: '🚀', title: 'Meme Coin Access', desc: 'Early allocation in viral microeconomies' },
-                { icon: '🛠️', title: 'Agent Builder Tools', desc: 'Deploy your own AI services and monetize' }
+                { icon: '💰', title: 'Pre-Public Tokens', desc: 'UtilityCoin + AI Tokens at launch pricing' },
+                { icon: '📈', title: 'Resale Liquidity', desc: 'Built-in demand when pairs go live' },
+                { icon: '🏦', title: 'Vault Royalties', desc: 'Optional passive earnings from protocol activity' },
+                { icon: '⚡', title: 'Genesis Ledger', desc: 'Permanent protocol tier status' }
               ].map((item, index) => (
                 <motion.div
                   key={index}
@@ -218,7 +210,7 @@ const FriendsFamilyPage = () => {
           {/* Contribution Tiers */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-white mb-8 text-center">
-              <HeaderText>Friends Family Track</HeaderText>
+              <HeaderText>Contribution Tiers (Investor-Focused Only)</HeaderText>
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -254,7 +246,7 @@ const FriendsFamilyPage = () => {
             </div>
 
             <h2 className="text-3xl font-bold text-white mb-8 text-center">
-              <HeaderText>Whale Contributor Track</HeaderText>
+              <HeaderText>Premium Tier</HeaderText>
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -503,31 +495,31 @@ const FriendsFamilyPage = () => {
           {/* Real World Examples */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-white mb-8 text-center">
-              <HeaderText>How This Looks in Real Life</HeaderText>
+              <HeaderText>Real World ROI Examples (Non-Operator)</HeaderText>
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
-                  name: 'Marcus',
-                  tier: 'Insider Tier - $500',
-                  story: 'Claims ai.wellnesscoach and uses AI Tokens to deploy 3 personal bots. His "Breathwork Agent" gets 1k+ users via TikTok.',
-                  result: '"I spent $500, now it earns me $25/day passively."',
-                  roi: 'ROI within 30 days → token resale x3'
+                  name: 'Jade',
+                  tier: 'Tier 2 - $1,500',
+                  story: 'Buys in at Tier 2. Receives 5,000 UtilityCoin, 10,000 AI Tokens. Doesn\'t touch them.',
+                  result: 'Public listing goes live 3 weeks later — token price 4x. Jade flips her 5,000 UtilityCoin for $6,000.',
+                  roi: '✅ 4x return in under 30 days'
                 },
                 {
-                  name: 'Sarah',
-                  tier: 'OG Backer - $1,500',
-                  story: 'Launches two meme coins with her early UtilityCoin. Flips one on Pump.Fun (viral drop = 18x).',
-                  result: '"My $1,500 turned into $9,000 in 60 days. I still have agents running."',
-                  roi: 'Token resale + affiliate earnings'
+                  name: 'Kamal',
+                  tier: 'Tier 4 - $10,000',
+                  story: 'Gets early vault shares + allocations. Chooses to stake 25% of tokens in meme coin vaults. Vaults launch, tokens rotate.',
+                  result: 'Collects royalties every time new coins are minted using his initial pool. Resells rest of tokens for a 3.5x flip.',
+                  roi: '✅ Passive + resale: $38,500 ROI in 45 days'
                 },
                 {
-                  name: 'Dre',
-                  tier: 'Whale Tier - $10,000',
-                  story: 'Receives early syndicate-level access to meme coins. Claims 15 handles in key categories.',
-                  result: '"I didn\'t just back it. I operate from inside it."',
-                  roi: 'Projected $100k+ MRR within 6 months'
+                  name: 'Dion',
+                  tier: 'Tier 5 - $25,000',
+                  story: 'Private white-label agreement. Earns 1.5% on all vault activity under his "investor node". Plus early access to 5 viral meme drops before they hit Pump.Fun.',
+                  result: 'Still holding 60% of tokens. Already cleared $62,000 in liquidity earnings.',
+                  roi: '✅ Upside still climbing'
                 }
               ].map((example, index) => (
                 <motion.div
@@ -556,16 +548,21 @@ const FriendsFamilyPage = () => {
 
           {/* Final CTA */}
           <div className="text-center">
-            <div className="bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 rounded-lg p-8 max-w-3xl mx-auto">
-              <h2 className="text-2xl font-bold text-white mb-4">
-                <HeaderText>You're not just buying in</HeaderText>
+            <div className="bg-gradient-to-r from-orange-500/20 to-red-500/20 border border-orange-500/30 rounded-lg p-8 max-w-4xl mx-auto">
+              <h2 className="text-3xl font-bold text-white mb-6">
+                <HeaderText>This isn't your average meme coin drop.</HeaderText>
               </h2>
-              <p className="text-gray-300 mb-6">
-                You're becoming part of the protocol layer of AI-powered digital life.
-                This round is private. Next round is public. Next price is higher.
+              <p className="text-xl text-gray-200 mb-6 leading-relaxed">
+                It's your position in the next digital oil pipeline.<br/>
+                <span className="text-orange-300 font-semibold">You control the mint, the platform, the vaults, and the resell gates.</span>
               </p>
-              <div className="text-purple-400 font-bold text-lg">
-                Clock's ticking. ⏰
+              <div className="bg-black/50 border border-white/20 rounded-lg p-6 mb-6">
+                <p className="text-lg text-white font-medium mb-2">
+                  This round is private. Next round is public. Next price is higher.
+                </p>
+                <p className="text-orange-400 font-bold text-xl">
+                  Clock's ticking. ⏰
+                </p>
               </div>
             </div>
           </div>
