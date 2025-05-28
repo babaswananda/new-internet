@@ -6,29 +6,40 @@ import { Language, getCurrentMarket, getCurrency, getTierName, getPaymentMethods
 // 🌍 ENHANCED TRANSLATION HOOK FOR SOVEREIGN POSITIONING
 export function useTranslation(namespace?: string) {
   const { t, i18n } = useI18nTranslation(namespace);
-  
+
   const currentLanguage = i18n.language as Language;
   const currentMarket = getCurrentMarket(currentLanguage);
-  
+
+  // Provide fallback values if currentMarket is undefined
+  const safeMarket = currentMarket || {
+    currency: 'USD',
+    region: 'Global',
+    rtl: false,
+    tierName: 'Founding Backer',
+    paymentMethods: ['BTC'],
+    culturalTone: 'sovereign',
+    investorType: 'institutional'
+  };
+
   return {
     t,
     i18n,
     language: currentLanguage,
-    market: currentMarket,
+    market: safeMarket,
     currency: getCurrency(currentLanguage),
     tierName: getTierName(currentLanguage),
     paymentMethods: getPaymentMethods(currentLanguage),
-    isRTL: currentMarket.rtl,
-    region: currentMarket.region,
-    culturalTone: currentMarket.culturalTone,
-    investorType: currentMarket.investorType,
-    
+    isRTL: safeMarket.rtl,
+    region: safeMarket.region,
+    culturalTone: safeMarket.culturalTone,
+    investorType: safeMarket.investorType,
+
     // Convenience methods for common translations
     nav: (key: string) => t(key, { ns: 'navigation' }),
     hero: (key: string) => t(key, { ns: 'hero' }),
     investment: (key: string) => t(key, { ns: 'investment' }),
     common: (key: string) => t(key, { ns: 'common' }),
-    
+
     // Format currency amounts based on locale
     formatCurrency: (amount: number) => {
       const currency = getCurrency(currentLanguage);
@@ -39,12 +50,12 @@ export function useTranslation(namespace?: string) {
         maximumFractionDigits: 0,
       }).format(amount);
     },
-    
+
     // Format numbers with locale-specific separators
     formatNumber: (number: number) => {
       return new Intl.NumberFormat(currentLanguage).format(number);
     },
-    
+
     // Get culturally appropriate greeting
     getGreeting: () => {
       const greetings = {
@@ -63,7 +74,7 @@ export function useTranslation(namespace?: string) {
       };
       return greetings[currentLanguage] || greetings.en;
     },
-    
+
     // Get culturally appropriate call-to-action tone
     getCTATone: () => {
       const tones = {
@@ -74,7 +85,7 @@ export function useTranslation(namespace?: string) {
         precision: 'Execute Strategic Entry',
         opportunity: 'Capture the Opportunity'
       };
-      return tones[currentMarket.culturalTone] || tones.sovereign;
+      return tones[safeMarket.culturalTone] || tones.sovereign;
     }
   };
 }

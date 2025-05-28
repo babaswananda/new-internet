@@ -135,6 +135,9 @@ export const marketConfig = {
 } as const;
 
 export type Language = keyof typeof languages;
+export type MarketConfig = typeof marketConfig[Language];
+export type CulturalTone = 'sovereign' | 'community' | 'technology' | 'institutional' | 'precision' | 'opportunity';
+export type InvestorType = 'institutional' | 'retail-plus' | 'whale';
 
 export const defaultNS = 'common';
 export const fallbackLng: Language = 'en';
@@ -180,7 +183,17 @@ i18n
   });
 
 // 🎯 UTILITY FUNCTIONS FOR SOVEREIGN POSITIONING
-export const getCurrentMarket = (language: Language) => marketConfig[language];
+const defaultMarket = {
+  currency: 'USD',
+  region: 'Global',
+  rtl: false,
+  tierName: 'Founding Backer',
+  paymentMethods: ['BTC'] as const,
+  culturalTone: 'sovereign' as CulturalTone,
+  investorType: 'institutional' as InvestorType
+};
+
+export const getCurrentMarket = (language: Language) => marketConfig[language] || defaultMarket;
 export const isRTL = (language: Language) => marketConfig[language]?.rtl || false;
 export const getCurrency = (language: Language) => marketConfig[language]?.currency || 'USD';
 export const getTierName = (language: Language) => marketConfig[language]?.tierName || 'Founding Backer';
