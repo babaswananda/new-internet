@@ -12,7 +12,8 @@ import ParallaxDeck from '@/components/ui/ParallaxDeck';
 
 // Import sections directly for better reliability
 import IOSection from '@/components/sections/IOSection';
-import AIFactorySection from '@/components/sections/AIFactorySection';
+import CoreProductsSlide from '@/components/sections/CoreProductsSlide';
+import ProtocolStackSlide from '@/components/sections/ProtocolStackSlide';
 import ClaimHandleSection from '@/components/sections/ClaimHandleSection';
 import NewsletterSection from '@/components/sections/NewsletterSection';
 import FAQSection from '@/components/sections/FAQSection';
@@ -193,7 +194,174 @@ export default function Home() {
         </div>
       </Suspense>
 
+      {/* Built On Section */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative py-12 px-4">
+          <div className="max-w-4xl mx-auto text-center">
+            <p className="text-lg text-gray-400 leading-relaxed">
+              Built on revolutionary AI infrastructure that powers the next generation of intelligent applications,
+              from autonomous agents to real-time model routing, creating a unified ecosystem where AI works seamlessly together.
+            </p>
+          </div>
+        </div>
+      </Suspense>
 
+      {/* Core Products Slide - POW! */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <CoreProductsSlide />
+      </Suspense>
+
+      {/* Protocol Stack Slide - POW! */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <ProtocolStackSlide />
+      </Suspense>
+
+      {/* AI Marketplace Section */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={200} color="purple" speed="medium" depth={true} interactive={true} />
+          <div className="py-20 px-4">
+            <div className="max-w-6xl mx-auto text-center">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">AI Marketplace</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+                The new creator economy where AI agents are bought, sold, and deployed across industries
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
+                  <div className="text-4xl mb-4">🤖</div>
+                  <h3 className="text-xl font-bold text-white mb-3">Deploy Agents</h3>
+                  <p className="text-gray-300">Launch intelligent agents across various business functions</p>
+                </div>
+                <div className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
+                  <div className="text-4xl mb-4">💰</div>
+                  <h3 className="text-xl font-bold text-white mb-3">Monetize Intelligence</h3>
+                  <p className="text-gray-300">Create revenue streams from your AI agent creations</p>
+                </div>
+                <div className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6">
+                  <div className="text-4xl mb-4">🔄</div>
+                  <h3 className="text-xl font-bold text-white mb-3">Remix & Fork</h3>
+                  <p className="text-gray-300">Build upon existing agents with collaborative development</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Suspense>
+
+      {/* AI Directory Section */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={180} color="cyan" speed="medium" depth={true} interactive={true} />
+          <div className="py-20 px-4">
+            <div className="max-w-6xl mx-auto text-center">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">AI Directory</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+                Discover and access the world's largest collection of AI tools, agents, and services
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {["🔍 Search & Discovery", "⭐ Ratings & Reviews", "🏷️ Smart Categories", "🔗 Easy Integration"].map((feature, index) => (
+                  <div key={index} className="bg-black/30 backdrop-blur-sm border border-cyan-500/20 rounded-lg p-4">
+                    <p className="text-white font-medium">{feature}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Suspense>
+
+      {/* Handle Registry Section */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={160} color="cyan" speed="slow" depth={true} interactive={true} />
+          <div className="py-20 px-4">
+            <div className="max-w-6xl mx-auto text-center">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">Handle Registry</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+                Secure your digital identity with protocol-native handles for the Agentic Internet
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-6">
+                  <div className="text-4xl mb-4">🆔</div>
+                  <h3 className="text-xl font-bold text-white mb-3">Universal Identity</h3>
+                  <p className="text-gray-300">One handle across all AI platforms and services</p>
+                </div>
+                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-6">
+                  <div className="text-4xl mb-4">🔐</div>
+                  <h3 className="text-xl font-bold text-white mb-3">Cryptographically Secured</h3>
+                  <p className="text-gray-300">Your identity is protected by advanced cryptography</p>
+                </div>
+                <div className="bg-black/30 backdrop-blur-sm border border-green-500/20 rounded-lg p-6">
+                  <div className="text-4xl mb-4">💎</div>
+                  <h3 className="text-xl font-bold text-white mb-3">Valuable Asset</h3>
+                  <p className="text-gray-300">Handles appreciate in value as the network grows</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Suspense>
+
+      {/* Hardware Pre-order Section */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={140} color="purple" speed="medium" depth={true} interactive={true} />
+          <div className="py-20 px-4">
+            <div className="max-w-6xl mx-auto text-center">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">Hardware Pre-order</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+                Next-generation AI hardware devices designed for the Agentic Internet
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { name: ".AIPhone", icon: "📱", desc: "AI-native smartphone" },
+                  { name: ".AIPods", icon: "🎧", desc: "Intelligent audio devices" },
+                  { name: ".AIGlasses", icon: "👓", desc: "Augmented reality AI" },
+                  { name: ".AIEmail", icon: "📧", desc: "Hardware email device" }
+                ].map((device, index) => (
+                  <div key={index} className="bg-black/30 backdrop-blur-sm border border-orange-500/20 rounded-lg p-6">
+                    <div className="text-4xl mb-4">{device.icon}</div>
+                    <h3 className="text-xl font-bold text-white mb-2">{device.name}</h3>
+                    <p className="text-gray-300 text-sm">{device.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Suspense>
+
+      {/* AI Made Me Rich Merch Community Section */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={120} color="blue" speed="slow" depth={true} interactive={true} />
+          <div className="py-20 px-4">
+            <div className="max-w-6xl mx-auto text-center">
+              <h2 className="text-5xl md:text-6xl font-bold text-white mb-8">AI Made Me Rich</h2>
+              <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12">
+                Join the community of AI entrepreneurs and showcase your success with exclusive merchandise
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="bg-black/30 backdrop-blur-sm border border-yellow-500/20 rounded-lg p-6">
+                  <div className="text-4xl mb-4">👕</div>
+                  <h3 className="text-xl font-bold text-white mb-3">Exclusive Merch</h3>
+                  <p className="text-gray-300">Limited edition apparel and accessories</p>
+                </div>
+                <div className="bg-black/30 backdrop-blur-sm border border-yellow-500/20 rounded-lg p-6">
+                  <div className="text-4xl mb-4">🏆</div>
+                  <h3 className="text-xl font-bold text-white mb-3">Success Stories</h3>
+                  <p className="text-gray-300">Share your AI entrepreneurship journey</p>
+                </div>
+                <div className="bg-black/30 backdrop-blur-sm border border-yellow-500/20 rounded-lg p-6">
+                  <div className="text-4xl mb-4">🤝</div>
+                  <h3 className="text-xl font-bold text-white mb-3">Community Access</h3>
+                  <p className="text-gray-300">Connect with fellow AI entrepreneurs</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Suspense>
 
       {/* Protocol Stack Parallax Deck */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
