@@ -3,13 +3,17 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { HeaderText } from '@/components/ui/header-text';
-import ParticleBackground from '@/components/ui/particle-background';
+import MainLayout from '@/components/layout/MainLayout';
+import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 
 export default function IntroducingUnifiedAIPage() {
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      <ParticleBackground />
-      
+    <MainLayout>
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <SpaceParticlesBackground particleCount={300} color="purple" speed="slow" depth={true} interactive={true} />
+      </div>
+
       {/* Article Header */}
       <div className="relative z-10 py-20 px-4">
         <div className="max-w-4xl mx-auto">
@@ -25,11 +29,11 @@ export default function IntroducingUnifiedAIPage() {
               <span className="text-gray-400">8 min read</span>
               <span className="text-gray-400">January 15, 2024</span>
             </div>
-            
+
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <HeaderText>Introducing the Unified AI Protocol – Solving AI's Trust Gap</HeaderText>
             </h1>
-            
+
             <p className="text-xl text-gray-300 leading-relaxed mb-8">
               An educational overview of how Unified AI combines AI services with decentralized identity to empower users and democratize access to advanced AI.
             </p>
@@ -37,7 +41,7 @@ export default function IntroducingUnifiedAIPage() {
             <div className="flex items-center gap-4 mb-8">
               <span className="text-gray-400">By Unified AI Team</span>
               <div className="flex gap-2">
-                <a 
+                <a
                   href="/downloads/unified-ai-whitepaper.pdf"
                   className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all"
                   download
@@ -57,17 +61,17 @@ export default function IntroducingUnifiedAIPage() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 mb-16">
         <div className="bg-black/20 backdrop-blur-sm border border-purple-500/10 rounded-lg p-8">
           <div className="prose prose-invert prose-purple max-w-none">
-            
+
             <h2 className="text-2xl font-bold text-white mb-4">The Problem: AI's Trust Gap</h2>
             <p className="text-gray-300 mb-6">
-              Today's AI landscape is fragmented and controlled by a handful of tech giants. Users have no control over their data, 
-              no unified identity across AI services, and no way to truly own their AI interactions. This creates a fundamental trust gap 
+              Today's AI landscape is fragmented and controlled by a handful of tech giants. Users have no control over their data,
+              no unified identity across AI services, and no way to truly own their AI interactions. This creates a fundamental trust gap
               that limits AI's potential to serve humanity.
             </p>
 
             <h2 className="text-2xl font-bold text-white mb-4">The Solution: Unified AI Protocol</h2>
             <p className="text-gray-300 mb-6">
-              Unified AI Protocol solves this by creating the missing infrastructure layer that unifies AI services with decentralized identity. 
+              Unified AI Protocol solves this by creating the missing infrastructure layer that unifies AI services with decentralized identity.
               Think of it as the "internet protocol for AI" - enabling seamless, secure, and user-controlled interactions across any AI service.
             </p>
 
@@ -81,14 +85,14 @@ export default function IntroducingUnifiedAIPage() {
 
             <h2 className="text-2xl font-bold text-white mb-4">Real-World Example: AI Assistant Marketplace</h2>
             <p className="text-gray-300 mb-6">
-              Imagine an AI assistant marketplace where your unified ID carries your preferences securely across all services. 
-              You could seamlessly switch between different AI models, maintain conversation history, and earn tokens for contributing 
+              Imagine an AI assistant marketplace where your unified ID carries your preferences securely across all services.
+              You could seamlessly switch between different AI models, maintain conversation history, and earn tokens for contributing
               valuable data - all while maintaining complete control over your digital identity.
             </p>
 
             <h2 className="text-2xl font-bold text-white mb-4">Why This Matters Now</h2>
             <p className="text-gray-300 mb-6">
-              As AI becomes more central to our daily lives, the need for user-controlled, interoperable AI infrastructure becomes critical. 
+              As AI becomes more central to our daily lives, the need for user-controlled, interoperable AI infrastructure becomes critical.
               Unified AI Protocol provides the foundation for an AI-native internet where users, not corporations, control their AI destiny.
             </p>
 
@@ -110,7 +114,7 @@ export default function IntroducingUnifiedAIPage() {
 
             <h2 className="text-2xl font-bold text-white mb-4">Getting Started</h2>
             <p className="text-gray-300 mb-6">
-              Ready to be part of the AI-native internet? Start by claiming your handle, exploring our developer documentation, 
+              Ready to be part of the AI-native internet? Start by claiming your handle, exploring our developer documentation,
               or joining our community to help shape the future of decentralized AI.
             </p>
 
@@ -152,13 +156,13 @@ export default function IntroducingUnifiedAIPage() {
 
       {/* Back to Blog */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 mb-16 text-center">
-        <Link 
+        <Link
           href="/blog"
           className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 rounded-lg transition-all"
         >
           ← Back to Research Library
         </Link>
       </div>
-    </div>
+    </MainLayout>
   );
 }

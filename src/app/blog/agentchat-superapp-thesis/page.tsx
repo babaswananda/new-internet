@@ -3,14 +3,18 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { HeaderText } from '@/components/ui/header-text';
-import ParticleBackground from '@/components/ui/particle-background';
+import MainLayout from '@/components/layout/MainLayout';
+import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 import CinematicMediaPlaceholder from '@/components/ui/CinematicMediaPlaceholder';
 
 export default function AgentChatThesisPage() {
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      <ParticleBackground />
-      
+    <MainLayout>
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <SpaceParticlesBackground particleCount={300} color="purple" speed="slow" depth={true} interactive={true} />
+      </div>
+
       {/* Article Header */}
       <div className="relative z-10 py-20 px-4">
         <div className="max-w-4xl mx-auto">
@@ -32,11 +36,11 @@ export default function AgentChatThesisPage() {
                 🖼️ Images
               </span>
             </div>
-            
+
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <HeaderText>AgentChat: The Superapp Thesis for AI-Native Communication</HeaderText>
             </h1>
-            
+
             <p className="text-xl text-gray-300 leading-relaxed mb-8">
               Why AgentChat represents the future of human-AI interaction - combining chat, agents, and protocols into one unified interface.
             </p>
@@ -44,7 +48,7 @@ export default function AgentChatThesisPage() {
             <div className="flex items-center gap-4 mb-8">
               <span className="text-gray-400">By Product Team</span>
               <div className="flex gap-2">
-                <a 
+                <a
                   href="/downloads/agentchat-thesis.pdf"
                   className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all"
                   download
@@ -77,18 +81,18 @@ export default function AgentChatThesisPage() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 mb-16">
         <div className="bg-black/20 backdrop-blur-sm border border-purple-500/10 rounded-lg p-8">
           <div className="prose prose-invert prose-purple max-w-none">
-            
+
             <h2 className="text-2xl font-bold text-white mb-4">The Superapp Moment for AI</h2>
             <p className="text-gray-300 mb-6">
-              We're at the iPhone moment for AI interfaces. Just as the smartphone consolidated multiple devices into one, 
-              AgentChat consolidates the entire AI experience into a single, powerful interface. This isn't just another chat app - 
+              We're at the iPhone moment for AI interfaces. Just as the smartphone consolidated multiple devices into one,
+              AgentChat consolidates the entire AI experience into a single, powerful interface. This isn't just another chat app -
               it's the operating system for human-AI collaboration.
             </p>
 
             <h2 className="text-2xl font-bold text-white mb-4">Why Chat is the Universal Interface</h2>
             <p className="text-gray-300 mb-6">
-              Chat has become the universal language of digital interaction. From customer service to team collaboration, 
-              from social media to AI assistants - chat is how humans naturally communicate with both people and machines. 
+              Chat has become the universal language of digital interaction. From customer service to team collaboration,
+              from social media to AI assistants - chat is how humans naturally communicate with both people and machines.
               AgentChat leverages this familiarity while adding the power of AI agents and protocol integration.
             </p>
 
@@ -114,8 +118,8 @@ export default function AgentChatThesisPage() {
 
             <h2 className="text-2xl font-bold text-white mb-4">The Agent Economy Integration</h2>
             <p className="text-gray-300 mb-6">
-              AgentChat isn't just a chat interface - it's the gateway to the entire agent economy. Users can discover, 
-              deploy, and interact with AI agents directly through chat. Whether you need a coding assistant, a creative 
+              AgentChat isn't just a chat interface - it's the gateway to the entire agent economy. Users can discover,
+              deploy, and interact with AI agents directly through chat. Whether you need a coding assistant, a creative
               collaborator, or a business advisor, AgentChat connects you instantly.
             </p>
 
@@ -141,7 +145,7 @@ export default function AgentChatThesisPage() {
 
             <h2 className="text-2xl font-bold text-white mb-4">The Technical Architecture</h2>
             <p className="text-gray-300 mb-6">
-              AgentChat is built on a microservices architecture that scales infinitely. Each component - from message routing 
+              AgentChat is built on a microservices architecture that scales infinitely. Each component - from message routing
               to agent orchestration to protocol integration - is designed for maximum performance and reliability.
             </p>
 
@@ -159,8 +163,8 @@ export default function AgentChatThesisPage() {
 
             <h2 className="text-2xl font-bold text-white mb-4">The Future of Communication</h2>
             <p className="text-gray-300 mb-6">
-              AgentChat represents more than just a product - it's a vision for how humans and AI will collaborate in the future. 
-              As AI agents become more sophisticated and numerous, we need interfaces that can handle this complexity while 
+              AgentChat represents more than just a product - it's a vision for how humans and AI will collaborate in the future.
+              As AI agents become more sophisticated and numerous, we need interfaces that can handle this complexity while
               remaining simple and intuitive for users.
             </p>
 
@@ -202,13 +206,13 @@ export default function AgentChatThesisPage() {
 
       {/* Back to Blog */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 mb-16 text-center">
-        <Link 
+        <Link
           href="/blog"
           className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 rounded-lg transition-all"
         >
           ← Back to Research Library
         </Link>
       </div>
-    </div>
+    </MainLayout>
   );
 }

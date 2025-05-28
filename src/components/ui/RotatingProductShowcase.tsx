@@ -14,6 +14,13 @@ interface Product {
 
 const products: Product[] = [
   {
+    name: 'AI FACTORY™',
+    href: '/ai-factory',
+    description: 'Build, automate, and scale with AI',
+    icon: '',
+    gradient: 'from-white to-gray-100'
+  },
+  {
     name: 'AI AGENTS',
     href: '/ai-agents',
     description: 'Deploy, discover, and monetize autonomous AI agents',

@@ -12,6 +12,7 @@ import ParallaxDeck from '@/components/ui/ParallaxDeck';
 
 // Import sections directly for better reliability
 import IOSection from '@/components/sections/IOSection';
+import AIFactorySection from '@/components/sections/AIFactorySection';
 import ClaimHandleSection from '@/components/sections/ClaimHandleSection';
 import NewsletterSection from '@/components/sections/NewsletterSection';
 import FAQSection from '@/components/sections/FAQSection';

@@ -32,6 +32,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   }, []);
 
   const productItems: NavItem[] = [
+    { href: '/ai-factory', label: 'AI Factory™', description: 'Build, automate, and scale with AI', color: 'text-orange-400' },
     { href: '/agentchat', label: 'AgentChat', description: 'AI-powered chat interface', color: 'text-blue-400' },
     { href: '/agentos', label: 'AGENT OS', description: 'Operating system for AI agents', color: 'text-cyan-400' },
     { href: '/ai-agents', label: 'AI Agents', description: 'Deploy & monetize AI agents', color: 'text-purple-400' },
@@ -59,7 +60,6 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     { href: '/partners', label: 'Partners', description: 'Strategic partnerships', color: 'text-gray-300' },
     { href: '/press', label: 'Press', description: 'Media resources and news', color: 'text-gray-300' },
     { href: '/investors', label: 'Investors', description: 'Investment information', color: 'text-gray-300' },
-    { href: '/retailers', label: 'Retail Partners', description: 'Retail partnership program', color: 'text-green-400' },
     { href: '/contact', label: 'Contact', description: 'Get in touch with us', color: 'text-gray-300' }
   ];
 

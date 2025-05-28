@@ -25,24 +25,25 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
     {
       title: 'Products',
       links: [
-        { href: '/agentchat', label: 'AgentChat', color: 'text-blue-400' },
-        { href: '/agentos', label: 'AGENT OS', color: 'text-cyan-400' },
-        { href: '/alpharouter', label: 'AlphaRouter', color: 'text-purple-400' },
-        { href: '/io', label: 'IO', color: 'text-pink-400' },
-        { href: '/ion', label: 'ION', color: 'text-orange-400' },
-        { href: '/aidirectory', label: 'AI Directory', color: 'text-green-400' },
-        { href: '/vibecoder', label: 'VibeCoder', color: 'text-yellow-400' },
-        { href: '/adk', label: 'ADK', color: 'text-teal-400' }
+        { href: '/ai-factory', label: 'AI Factory™', color: 'text-gray-300' },
+        { href: '/agentchat', label: 'AgentChat', color: 'text-gray-300' },
+        { href: '/agentos', label: 'AGENT OS', color: 'text-gray-300' },
+        { href: '/alpharouter', label: 'AlphaRouter', color: 'text-gray-300' },
+        { href: '/io', label: 'IO', color: 'text-gray-300' },
+        { href: '/ion', label: 'ION', color: 'text-gray-300' },
+        { href: '/aidirectory', label: 'AI Directory', color: 'text-gray-300' },
+        { href: '/vibecoder', label: 'VibeCoder', color: 'text-gray-300' },
+        { href: '/adk', label: 'ADK', color: 'text-gray-300' }
       ]
     },
     {
       title: 'Protocols',
       links: [
-        { href: '/textme', label: '.TextMe', color: 'text-green-400' },
-        { href: '/videochat', label: '.VideoChat', color: 'text-blue-400' },
-        { href: '/webinar', label: '.Webinar', color: 'text-orange-400' },
-        { href: '/aimademerich', label: 'AIMadeMeRich', color: 'text-yellow-400' },
-        { href: '/learn-aimademerich', label: 'Learn.AIMadeMeRich', color: 'text-green-400' }
+        { href: '/textme', label: '.TextMe', color: 'text-gray-300' },
+        { href: '/videochat', label: '.VideoChat', color: 'text-gray-300' },
+        { href: '/webinar', label: '.Webinar', color: 'text-gray-300' },
+        { href: '/aimademerich', label: 'AIMadeMeRich', color: 'text-gray-300' },
+        { href: '/learn-aimademerich', label: 'Learn.AIMadeMeRich', color: 'text-gray-300' }
       ]
     },
     {
@@ -52,19 +53,20 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
         { href: '/partners', label: 'Partners', color: 'text-gray-300' },
         { href: '/press', label: 'Press', color: 'text-gray-300' },
         { href: '/investors', label: 'Investors', color: 'text-gray-300' },
+        { href: '/retailers', label: 'Retail Partners', color: 'text-gray-300' },
         { href: '/contact', label: 'Contact', color: 'text-gray-300' },
-        { href: '/token-flow', label: 'Token Flow', color: 'text-blue-400' },
-        { href: '/ai-tokens', label: 'get.poweredbyai', color: 'text-purple-400' }
+        { href: '/token-flow', label: 'Token Flow', color: 'text-gray-300' },
+        { href: '/ai-tokens', label: 'get.poweredbyai', color: 'text-gray-300' }
       ]
     },
     {
       title: 'Resources',
       links: [
-        { href: '/blog', label: 'Research Library', color: 'text-orange-400' },
-        { href: '/handle-registry', label: 'Handle Registry', color: 'text-cyan-400' },
-        { href: '/preorder', label: 'Hardware', color: 'text-red-400' },
-        { href: '/merch-store', label: 'Merch Store', color: 'text-indigo-400' },
-        { href: '/ai-tokens', label: '🪙 ITO', color: 'text-purple-400' }
+        { href: '/blog', label: 'Research Library', color: 'text-gray-300' },
+        { href: '/handle-registry', label: 'Handle Registry', color: 'text-gray-300' },
+        { href: '/preorder', label: 'Hardware', color: 'text-gray-300' },
+        { href: '/merch-store', label: 'Merch Store', color: 'text-gray-300' },
+        { href: '/ai-tokens', label: '🪙 ITO', color: 'text-gray-300' }
       ]
     }
   ];

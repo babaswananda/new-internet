@@ -7,6 +7,26 @@ import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 import { HeaderText } from '@/components/ui/header-text';
 import Link from 'next/link';
 
+interface ServiceAgent {
+  name: string;
+  description: string;
+  icon: string;
+}
+
+interface ServiceStack {
+  title: string;
+  icon: string;
+  agents: ServiceAgent[];
+  useCase: string;
+}
+
+interface PricingTier {
+  name: string;
+  price: number;
+  features: string[];
+  popular?: boolean;
+}
+
 interface Product {
   id: string;
   name: string;
@@ -125,6 +145,92 @@ const tierPackages = [
     ],
     popular: false
   }
+];
+
+const serviceStacks: ServiceStack[] = [
+  {
+    title: "🔧 OPERATIONS + SUPPLY CHAIN",
+    icon: "📦",
+    agents: [
+      { name: "Inventory Manager AI", description: "Predict demand, track SKUs, and optimize reordering", icon: "📦" },
+      { name: "Supply Chain Strategist", description: "Recommend local/overseas sourcing options", icon: "🛫" },
+      { name: "Manufacturing Coordinator", description: "Interface with OEMs, schedule production windows", icon: "🏭" },
+      { name: "Warehousing Router", description: "Automate storage logistics, fulfillment, and restocks", icon: "📤" }
+    ],
+    useCase: "A boutique clothing brand uses the AI to compare 4 factories, predict delivery time, and plan next month's launch with zero manual calls."
+  },
+  {
+    title: "🛠️ DESIGN + CREATIVE",
+    icon: "🎨",
+    agents: [
+      { name: "Fashion Designer AI", description: "Generate new designs, colorways, and drops", icon: "👗" },
+      { name: "Product Designer", description: "Concept, render, and iterate on new product lines", icon: "🪑" },
+      { name: "Copy & Content Agent", description: "Product descriptions, blogs, emails, and ad copy", icon: "✍️" },
+      { name: "Branding Suite", description: "Logo, packaging mockups, font systems, tagline explorer", icon: "🎨" }
+    ],
+    useCase: "A cosmetics brand creates 10 new packaging concepts in under 15 minutes and tests which performs best in-store using AI mockups."
+  },
+  {
+    title: "📈 MARKETING + CUSTOMER GROWTH",
+    icon: "📲",
+    agents: [
+      { name: "Campaign Planner", description: "Launches multi-channel promos w/ copy + visuals", icon: "📅" },
+      { name: "UGC Curator Agent", description: "Pulls top social videos from fans, adds CTAs", icon: "📲" },
+      { name: "SEO/Ad Bot", description: "Writes optimized blog posts and paid ad copy", icon: "🔍" },
+      { name: "AI Content Studio", description: "Generates images, videos, and memes for drops", icon: "📸" }
+    ],
+    useCase: "A sneaker shop runs a weekly drop campaign generated entirely by AI: posters, captions, videos, and email blasts."
+  },
+  {
+    title: "🧑‍💼 TEAM + OPERATIONS",
+    icon: "👥",
+    agents: [
+      { name: "Hiring Agent", description: "Writes job posts, filters resumes, automates interviews", icon: "👥" },
+      { name: "HR Bot", description: "Contracts, onboarding, training flows", icon: "🧾" },
+      { name: "Finance Coach", description: "Breaks down P&L sheets, forecasts burn, gives runway tips", icon: "📊" },
+      { name: "Executive Assistant", description: "Manages meetings, reminders, summaries", icon: "🗓️" }
+    ],
+    useCase: "A store owner hires 3 new part-time staff, trains them, and sets up their daily tasks — all without an HR department."
+  },
+  {
+    title: "🌍 TRADE SHOWS + EXPANSION",
+    icon: "🏢",
+    agents: [
+      { name: "Booth Designer", description: "3D mockups + layout for vendor setups", icon: "🏢" },
+      { name: "Pitch Deck Agent", description: "Builds decks for retail partners or buyers", icon: "🤝" },
+      { name: "Export Navigator", description: "Guides through cross-border e-com and B2B deals", icon: "🌎" },
+      { name: "Licensing Advisor", description: "Finds permits, regulations, and certifications needed", icon: "🛂" }
+    ],
+    useCase: "A wellness brand launches into Japan with AI-generated localization, compliance checks, and trade partner pitch decks."
+  }
+];
+
+const aiServiceTiers: PricingTier[] = [
+  {
+    name: "💼 Starter",
+    price: 99,
+    features: ["5 core agents (design + ops)", "30 credits", "Basic support"],
+    popular: false
+  },
+  {
+    name: "🚀 Pro",
+    price: 249,
+    features: ["15 agents", "Image/video generation", "Branded reports", "Priority support"],
+    popular: true
+  },
+  {
+    name: "🏢 Enterprise",
+    price: 749,
+    features: ["Unlimited access", "Dedicated agent builder", "API integrations", "Custom dashboard"],
+    popular: false
+  }
+];
+
+const targetBusinessTypes = [
+  "Fashion boutiques", "Furniture & interior stores", "Hair salons / barbershops",
+  "Wellness spas / clinics", "Ethnic grocery & cultural specialty stores", "Pop-up shops",
+  "Local manufacturers", "Print shops / DTG services", "Resellers / vendors / drop shippers",
+  "Coffee shops + coworking spaces"
 ];
 
 export default function RetailersPage() {
@@ -286,7 +392,7 @@ export default function RetailersPage() {
         <h2 className="text-4xl font-bold text-center text-white mb-12">
           <HeaderText>🔥 Retailer Package Tiers</HeaderText>
         </h2>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {tierPackages.map((tier, index) => (
             <motion.div
@@ -334,6 +440,158 @@ export default function RetailersPage() {
               >
                 {selectedTier === tier.id ? 'Selected' : 'Select Package'}
               </button>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* AI-as-a-Service Section */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 mb-16">
+        <div className="text-center mb-16">
+          <h2 className="text-5xl font-bold text-white mb-6">
+            <HeaderText>🧠 UNIFIED AI FOR RETAILERS</HeaderText>
+          </h2>
+          <p className="text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed mb-8">
+            <span className="font-bold">AI-as-a-Service.</span> <span className="font-normal">To.</span> <span className="font-bold">Run.</span> <span className="font-normal">Your.</span> <span className="font-bold">Entire.</span> <span className="font-normal">Store.</span>
+          </p>
+          <p className="text-lg text-gray-400 max-w-3xl mx-auto mb-4">
+            Automate operations. Upgrade decision-making. Reduce overhead. Launch faster. Sell smarter.
+          </p>
+          <p className="text-lg text-purple-300 max-w-3xl mx-auto">
+            Unified AI is not just a tool — it's your invisible team.
+          </p>
+        </div>
+
+        {/* Service Stacks */}
+        <div className="space-y-12">
+          {serviceStacks.map((stack, index) => (
+            <motion.div
+              key={stack.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-8"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <span className="text-4xl">{stack.icon}</span>
+                <h3 className="text-2xl font-bold text-white">{stack.title}</h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                {stack.agents.map((agent, agentIndex) => (
+                  <div key={agentIndex} className="bg-white/5 rounded-lg p-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xl">{agent.icon}</span>
+                      <h4 className="font-semibold text-white text-sm">{agent.name}</h4>
+                    </div>
+                    <p className="text-gray-400 text-xs leading-relaxed">{agent.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/20 rounded-lg p-6">
+                <h4 className="text-white font-semibold mb-2">Use Case:</h4>
+                <p className="text-gray-300 text-sm italic">{stack.useCase}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* AI Service Pricing */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 mb-16">
+        <h2 className="text-4xl font-bold text-center text-white mb-12">
+          <HeaderText>💵 AI Service Pricing for Retailers</HeaderText>
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+          {aiServiceTiers.map((tier, index) => (
+            <motion.div
+              key={tier.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className={`relative bg-black/30 backdrop-blur-sm border rounded-lg p-6 hover:border-purple-500/50 transition-all ${
+                tier.popular ? 'border-purple-500/50 ring-2 ring-purple-500/20' : 'border-purple-500/20'
+              }`}
+            >
+              {tier.popular && (
+                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                    MOST POPULAR
+                  </span>
+                </div>
+              )}
+
+              <div className="text-center mb-6">
+                <h3 className="text-2xl font-bold text-white mb-4">{tier.name}</h3>
+                <div className="text-4xl font-bold text-purple-400 mb-2">${tier.price}<span className="text-lg text-gray-400">/mo</span></div>
+              </div>
+
+              <div className="space-y-3 mb-6">
+                {tier.features.map((feature, idx) => (
+                  <div key={idx} className="flex items-center gap-2">
+                    <span className="text-green-400">✓</span>
+                    <span className="text-gray-300 text-sm">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <button className="w-full py-3 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 rounded-lg transition-all font-medium">
+                Choose {tier.name.split(' ')[1]}
+              </button>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Target Business Types */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 mb-16">
+        <h2 className="text-4xl font-bold text-center text-white mb-12">
+          <HeaderText>🎯 Target Business Types</HeaderText>
+        </h2>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          {targetBusinessTypes.map((business, index) => (
+            <motion.div
+              key={business}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: index * 0.05 }}
+              className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/20 rounded-lg p-4 text-center hover:border-purple-500/50 transition-all"
+            >
+              <p className="text-white text-sm font-medium">{business}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      {/* Distribution Flow */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 mb-16">
+        <h2 className="text-4xl font-bold text-center text-white mb-12">
+          <HeaderText>🔗 Distribution / Onboarding Flow</HeaderText>
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+          {[
+            { step: "1", title: "Rep Offers", desc: "In-store AI transformation kit" },
+            { step: "2", title: "Choose Pack", desc: "Starter pack or custom mix" },
+            { step: "3", title: "Deploy", desc: "Agents trained on your ops" },
+            { step: "4", title: "Go Live", desc: "Dashboard live within 72 hours" },
+            { step: "5", title: "Revenue", desc: "Monthly share on every agent" }
+          ].map((item, index) => (
+            <motion.div
+              key={item.step}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="text-center"
+            >
+              <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white text-xl font-bold mx-auto mb-4">
+                {item.step}
+              </div>
+              <h3 className="text-white font-semibold mb-2">{item.title}</h3>
+              <p className="text-gray-400 text-sm">{item.desc}</p>
             </motion.div>
           ))}
         </div>

@@ -8,6 +8,76 @@ import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 
 const blogPosts = [
   {
+    id: 'physical-ai-factories-infrastructure',
+    title: 'Physical AI Factories: The Future of Manufacturing',
+    excerpt: 'Beyond software - we build and deploy real AI factories with prefab container systems, digital twin infrastructure, and edge computing deployment.',
+    category: 'Infrastructure Deep Dive',
+    readTime: '20 min read',
+    publishDate: '2024-12-12',
+    featured: true,
+    tags: ['Physical Infrastructure', 'AI Factories', 'Digital Twins', 'Edge Computing'],
+    author: 'AI Factory Infrastructure Team',
+    downloadLink: '/downloads/physical-ai-factory-specs.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'ai-factory-comprehensive-business-suite',
+    title: 'AI Factory™: Your Complete Business Transformation Suite',
+    excerpt: 'Introducing AI Factory™ - the comprehensive suite of 16+ AI tools designed to automate operations, enhance creativity, and drive unprecedented business growth.',
+    category: 'Product Deep Dive',
+    readTime: '12 min read',
+    publishDate: '2024-12-15',
+    featured: true,
+    tags: ['AI Factory', 'Business Suite', 'Automation', 'Digital Transformation'],
+    author: 'AI Factory Team',
+    downloadLink: '/downloads/ai-factory-suite-guide.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'ai-agents-marketplace-economy',
+    title: 'The AI Agents Marketplace: The New Creator Economy',
+    excerpt: 'How AI agents are creating a trillion-dollar creator economy where anyone can build, deploy, and monetize intelligent agents across the Unified AI ecosystem.',
+    category: 'Marketplace Analysis',
+    readTime: '15 min read',
+    publishDate: '2024-12-10',
+    featured: true,
+    tags: ['AI Agents', 'Creator Economy', 'Marketplace', 'Monetization'],
+    author: 'Marketplace Research Team',
+    downloadLink: '/downloads/ai-agents-marketplace-report.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'alpharouter-intelligent-model-routing',
+    title: 'AlphaRouter: Intelligent Model Routing at Scale',
+    excerpt: 'Deep dive into AlphaRouter\'s revolutionary approach to AI model routing, optimization, and parallel processing that powers the entire Unified AI ecosystem.',
+    category: 'Technical Deep Dive',
+    readTime: '18 min read',
+    publishDate: '2024-12-08',
+    featured: false,
+    tags: ['AlphaRouter', 'Model Routing', 'Optimization', 'Infrastructure'],
+    author: 'AlphaRouter Engineering Team',
+    downloadLink: '/downloads/alpharouter-technical-spec.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'vibecoder-ai-development-platform',
+    title: 'VibeCoder: AI-Powered Development Revolution',
+    excerpt: 'VibeCoder transforms software development with AI-assisted coding, intelligent debugging, and collaborative development environments that adapt to your coding style.',
+    category: 'Development Platform',
+    readTime: '14 min read',
+    publishDate: '2024-12-05',
+    featured: false,
+    tags: ['VibeCoder', 'AI Development', 'Coding Assistant', 'Collaboration'],
+    author: 'VibeCoder Development Team',
+    downloadLink: '/downloads/vibecoder-developer-guide.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
     id: 'introducing-unified-ai-protocol',
     title: 'Introducing the Unified AI Protocol – Solving AI\'s Trust Gap',
     excerpt: 'An educational overview of how Unified AI combines AI services with decentralized identity to empower users and democratize access to advanced AI.',
@@ -509,6 +579,6 @@ export default function BlogPage() {
           </div>
         </div>
       </div>
-    </div>
+    </MainLayout>
   );
 }

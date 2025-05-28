@@ -69,13 +69,13 @@ const FOMOTicker: React.FC = () => {
 
   return (
     <div
-      className="bg-gradient-to-r from-blue-900 via-black to-purple-900 text-white py-1 overflow-hidden border-b border-blue-500/30"
+      className="bg-gradient-to-r from-red-900 via-black to-green-900 text-white py-1 overflow-hidden border-b border-red-500/30"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <div className="relative flex items-center">
         {/* "Launch Live" label */}
-        <div className="hidden md:flex items-center justify-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 font-bold text-xs uppercase tracking-wider z-10 ml-4">
+        <div className="hidden md:flex items-center justify-center bg-gradient-to-r from-red-600 to-green-600 text-white px-3 py-1 font-bold text-xs uppercase tracking-wider z-10 ml-4">
           <span className="animate-pulse mr-1">🚀</span> Launch Live
         </div>
 
@@ -102,7 +102,7 @@ const FOMOTicker: React.FC = () => {
                 className="inline-flex items-center text-sm font-medium flex-shrink-0"
               >
                 <span className="mx-6">{message}</span>
-                <span className="text-blue-400 mx-3">•</span>
+                <span className="text-green-400 mx-3">•</span>
               </div>
             ))}
           </motion.div>

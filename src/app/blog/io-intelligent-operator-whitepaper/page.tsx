@@ -3,14 +3,18 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { HeaderText } from '@/components/ui/header-text';
-import ParticleBackground from '@/components/ui/particle-background';
+import MainLayout from '@/components/layout/MainLayout';
+import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 import CinematicMediaPlaceholder from '@/components/ui/CinematicMediaPlaceholder';
 
 export default function IOWhitepaperPage() {
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      <ParticleBackground />
-      
+    <MainLayout>
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <SpaceParticlesBackground particleCount={300} color="purple" speed="slow" depth={true} interactive={true} />
+      </div>
+
       {/* Article Header */}
       <div className="relative z-10 py-20 px-4">
         <div className="max-w-4xl mx-auto">
@@ -32,11 +36,11 @@ export default function IOWhitepaperPage() {
                 🖼️ Images
               </span>
             </div>
-            
+
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <HeaderText>IO: The Intelligent Operator - Your Personal AI Operating System</HeaderText>
             </h1>
-            
+
             <p className="text-xl text-gray-300 leading-relaxed mb-8">
               Complete technical specification of IO - the AI agent that manages your entire digital life across all platforms and protocols.
             </p>
@@ -44,7 +48,7 @@ export default function IOWhitepaperPage() {
             <div className="flex items-center gap-4 mb-8">
               <span className="text-gray-400">By IO Development Team</span>
               <div className="flex gap-2">
-                <a 
+                <a
                   href="/downloads/io-whitepaper.pdf"
                   className="px-6 py-2 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all"
                   download
@@ -77,18 +81,18 @@ export default function IOWhitepaperPage() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 mb-16">
         <div className="bg-black/20 backdrop-blur-sm border border-purple-500/10 rounded-lg p-8">
           <div className="prose prose-invert prose-purple max-w-none">
-            
+
             <h2 className="text-2xl font-bold text-white mb-4">Executive Summary</h2>
             <p className="text-gray-300 mb-6">
-              IO (Intelligent Operator) represents the next evolution in personal AI assistance. Unlike traditional chatbots or 
-              simple automation tools, IO is a comprehensive AI operating system that understands your goals, preferences, and 
+              IO (Intelligent Operator) represents the next evolution in personal AI assistance. Unlike traditional chatbots or
+              simple automation tools, IO is a comprehensive AI operating system that understands your goals, preferences, and
               workflows across all digital platforms. It doesn't just respond to commands - it proactively manages your digital life.
             </p>
 
             <h2 className="text-2xl font-bold text-white mb-4">The Problem: Digital Fragmentation</h2>
             <p className="text-gray-300 mb-6">
-              Modern digital life is fragmented across dozens of apps, platforms, and services. We spend countless hours switching 
-              between tools, managing workflows, and trying to keep everything synchronized. This fragmentation creates inefficiency, 
+              Modern digital life is fragmented across dozens of apps, platforms, and services. We spend countless hours switching
+              between tools, managing workflows, and trying to keep everything synchronized. This fragmentation creates inefficiency,
               stress, and missed opportunities.
             </p>
 
@@ -106,7 +110,7 @@ export default function IOWhitepaperPage() {
 
             <h2 className="text-2xl font-bold text-white mb-4">IO's Core Architecture</h2>
             <p className="text-gray-300 mb-6">
-              IO is built on a multi-layered architecture that combines advanced AI reasoning with deep platform integrations. 
+              IO is built on a multi-layered architecture that combines advanced AI reasoning with deep platform integrations.
               At its core, IO maintains a persistent understanding of your digital identity, preferences, and goals.
             </p>
 
@@ -132,7 +136,7 @@ export default function IOWhitepaperPage() {
 
             <h2 className="text-2xl font-bold text-white mb-4">Key Capabilities</h2>
             <p className="text-gray-300 mb-6">
-              IO goes far beyond simple task automation. It understands context, learns from your behavior, and proactively 
+              IO goes far beyond simple task automation. It understands context, learns from your behavior, and proactively
               suggests optimizations to your workflows and life patterns.
             </p>
 
@@ -158,20 +162,20 @@ export default function IOWhitepaperPage() {
 
             <h2 className="text-2xl font-bold text-white mb-4">Technical Implementation</h2>
             <p className="text-gray-300 mb-6">
-              IO leverages cutting-edge AI models, including large language models, computer vision, and specialized reasoning 
-              engines. The system is designed for privacy-first operation, with most processing happening locally or in 
+              IO leverages cutting-edge AI models, including large language models, computer vision, and specialized reasoning
+              engines. The system is designed for privacy-first operation, with most processing happening locally or in
               encrypted cloud environments.
             </p>
 
             <h3 className="text-xl font-bold text-white mb-3">Privacy & Security</h3>
             <p className="text-gray-300 mb-6">
-              Your data never leaves your control. IO uses advanced encryption, federated learning, and zero-knowledge 
+              Your data never leaves your control. IO uses advanced encryption, federated learning, and zero-knowledge
               architectures to ensure your personal information remains private while still enabling powerful AI capabilities.
             </p>
 
             <h2 className="text-2xl font-bold text-white mb-4">Use Cases & Applications</h2>
             <p className="text-gray-300 mb-6">
-              IO adapts to your specific needs and workflows. Whether you're a creator, entrepreneur, developer, or professional, 
+              IO adapts to your specific needs and workflows. Whether you're a creator, entrepreneur, developer, or professional,
               IO learns your patterns and optimizes accordingly.
             </p>
 
@@ -189,7 +193,7 @@ export default function IOWhitepaperPage() {
 
             <h2 className="text-2xl font-bold text-white mb-4">The Future of Personal AI</h2>
             <p className="text-gray-300 mb-6">
-              IO represents just the beginning of truly intelligent personal AI systems. As the technology evolves, IO will 
+              IO represents just the beginning of truly intelligent personal AI systems. As the technology evolves, IO will
               become even more proactive, predictive, and integrated into every aspect of digital life.
             </p>
 
@@ -231,13 +235,13 @@ export default function IOWhitepaperPage() {
 
       {/* Back to Blog */}
       <div className="relative z-10 max-w-4xl mx-auto px-4 mb-16 text-center">
-        <Link 
+        <Link
           href="/blog"
           className="inline-flex items-center gap-2 px-6 py-3 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 rounded-lg transition-all"
         >
           ← Back to Research Library
         </Link>
       </div>
-    </div>
+    </MainLayout>
   );
 }

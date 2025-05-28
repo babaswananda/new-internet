@@ -2,7 +2,8 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import ParticleBackground from '@/components/ui/particle-background';
+import MainLayout from '@/components/layout/MainLayout';
+import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 import { HeaderText } from '@/utils/normalBold';
 
 const FriendsFamilyPage = () => {
@@ -77,8 +78,11 @@ const FriendsFamilyPage = () => {
 
   if (!isUnlocked) {
     return (
-      <div className="relative min-h-screen w-full overflow-hidden">
-        <ParticleBackground />
+      <MainLayout>
+        {/* Background */}
+        <div className="fixed inset-0 z-0">
+          <SpaceParticlesBackground particleCount={300} color="purple" speed="slow" depth={true} interactive={true} />
+        </div>
 
         <div className="relative z-10 flex items-center justify-center min-h-screen px-4">
           <motion.div
@@ -135,13 +139,16 @@ const FriendsFamilyPage = () => {
             </div>
           </motion.div>
         </div>
-      </div>
+      </MainLayout>
     );
   }
 
   return (
-    <div className="relative min-h-screen w-full overflow-hidden">
-      <ParticleBackground />
+    <MainLayout>
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <SpaceParticlesBackground particleCount={300} color="purple" speed="slow" depth={true} interactive={true} />
+      </div>
 
       <div className="relative z-10 container mx-auto px-4 py-16">
         <motion.div
@@ -669,7 +676,7 @@ const FriendsFamilyPage = () => {
           </div>
         </motion.div>
       </div>
-    </div>
+    </MainLayout>
   );
 };
 

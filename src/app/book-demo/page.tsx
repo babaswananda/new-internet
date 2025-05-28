@@ -3,7 +3,8 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { HeaderText } from '@/components/ui/header-text';
-import ParticleBackground from '@/components/ui/particle-background';
+import MainLayout from '@/components/layout/MainLayout';
+import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 
 export default function BookDemoPage() {
   const [selectedDemo, setSelectedDemo] = useState('');
@@ -54,14 +55,17 @@ export default function BookDemoPage() {
   ];
 
   const timeSlots = [
-    '9:00 AM PST', '10:00 AM PST', '11:00 AM PST', '1:00 PM PST', 
+    '9:00 AM PST', '10:00 AM PST', '11:00 AM PST', '1:00 PM PST',
     '2:00 PM PST', '3:00 PM PST', '4:00 PM PST', '5:00 PM PST'
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      <ParticleBackground />
-      
+    <MainLayout>
+      {/* Background */}
+      <div className="fixed inset-0 z-0">
+        <SpaceParticlesBackground particleCount={300} color="purple" speed="slow" depth={true} interactive={true} />
+      </div>
+
       {/* Hero Section */}
       <div className="relative z-10 py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -108,14 +112,14 @@ export default function BookDemoPage() {
                   {demo.duration}
                 </span>
               </div>
-              
+
               <p className="text-gray-300 mb-4">{demo.description}</p>
-              
+
               <div className="mb-4">
                 <h4 className="text-sm font-bold text-purple-400 mb-2">Target Audience:</h4>
                 <p className="text-gray-400 text-sm">{demo.audience}</p>
               </div>
-              
+
               <div>
                 <h4 className="text-sm font-bold text-purple-400 mb-2">What's Included:</h4>
                 <ul className="text-gray-400 text-sm space-y-1">
@@ -135,7 +139,7 @@ export default function BookDemoPage() {
           <h2 className="text-3xl font-bold text-white mb-8 text-center">
             <HeaderText>Schedule Your Demo</HeaderText>
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Contact Information */}
             <div>
@@ -151,7 +155,7 @@ export default function BookDemoPage() {
                     placeholder="Enter your full name"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-white font-medium mb-2">Email Address *</label>
                   <input
@@ -162,7 +166,7 @@ export default function BookDemoPage() {
                     placeholder="your.email@company.com"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-white font-medium mb-2">Phone Number</label>
                   <input
@@ -173,7 +177,7 @@ export default function BookDemoPage() {
                     placeholder="+1 (555) 123-4567"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-white font-medium mb-2">Company</label>
                   <input
@@ -184,7 +188,7 @@ export default function BookDemoPage() {
                     placeholder="Your company name"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-white font-medium mb-2">Role/Title</label>
                   <select
@@ -204,7 +208,7 @@ export default function BookDemoPage() {
                 </div>
               </div>
             </div>
-            
+
             {/* Demo Details */}
             <div>
               <h3 className="text-xl font-bold text-white mb-6">Demo Details</h3>
@@ -218,7 +222,7 @@ export default function BookDemoPage() {
                     placeholder="Describe your specific use case or what you'd like to learn about..."
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-white font-medium mb-2">Implementation Timeline</label>
                   <select
@@ -234,7 +238,7 @@ export default function BookDemoPage() {
                     <option value="research">Research phase</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label className="block text-white font-medium mb-2">Budget Range (Optional)</label>
                   <select
@@ -251,7 +255,7 @@ export default function BookDemoPage() {
                     <option value="enterprise">Enterprise (Custom)</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label className="block text-white font-medium mb-2">Preferred Time Slots</label>
                   <div className="grid grid-cols-2 gap-2">
@@ -268,7 +272,7 @@ export default function BookDemoPage() {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-8 text-center">
             <button
               onClick={() => {
@@ -318,6 +322,6 @@ export default function BookDemoPage() {
           </div>
         </div>
       </div>
-    </div>
+    </MainLayout>
   );
 }
