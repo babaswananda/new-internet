@@ -1,28 +1,30 @@
 'use client';
 
-import React, { Suspense, useMemo } from 'react';
-import dynamic from 'next/dynamic';
+import React, { Suspense, useMemo, useState } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 
 // Core components
-import ImprovedHeroSection from '@/components/sections/ImprovedHeroSection';
 import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
-import ScrollTriggeredCarousel from '@/components/ui/ScrollTriggeredCarousel';
 import ParallaxDeck from '@/components/ui/ParallaxDeck';
 
 // Import sections directly for better reliability
 import IOSection from '@/components/sections/IOSection';
-import CoreProductsSlide from '@/components/sections/CoreProductsSlide';
-import ProtocolStackSlide from '@/components/sections/ProtocolStackSlide';
-import ClaimHandleSection from '@/components/sections/ClaimHandleSection';
 import NewsletterSection from '@/components/sections/NewsletterSection';
 import FAQSection from '@/components/sections/FAQSection';
-import FinalCTASection from '@/components/sections/FinalCTASection';
+import AIDirectoryMarketplaceSection from '@/components/sections/AIDirectoryMarketplaceSection';
+import AgentOSSection from '@/components/sections/AgentOSSection';
+import DashboardSection from '@/components/sections/DashboardSection';
+import WhitepaperCarousel from '@/components/sections/WhitepaperCarousel';
+
+
 import CinematicHeroBanner from '@/components/ui/CinematicHeroBanner';
+import CinematicPreloader from '@/components/ui/CinematicPreloader';
 import { homePageSlides } from '@/data/cinematicSlides';
 import RotatingProductShowcase from '@/components/ui/RotatingProductShowcase';
 
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+
   // Memoized data structures for performance optimization
   const coreProductsData = useMemo(() => [
     {
@@ -260,15 +262,24 @@ export default function Home() {
   ], []);
 
   return (
-    <MainLayout>
-      {/* Cinematic Hero Banner */}
+    <>
+      {/* Cinematic Preloader */}
+      {isLoading && (
+        <CinematicPreloader
+          onComplete={() => setIsLoading(false)}
+          duration={2500}
+        />
+      )}
+
+      <MainLayout>
+        {/* Cinematic Hero Banner */}
       <CinematicHeroBanner
         slides={homePageSlides}
         autoPlay={true}
-        autoPlayInterval={10000}
+        autoPlayInterval={8000}
         height="100vh"
-        showControls={true}
-        showIndicators={true}
+        showControls={false}
+        showIndicators={false}
         enableParallax={true}
       />
 
@@ -294,6 +305,63 @@ export default function Home() {
           </div>
         </div>
       </Suspense>
+
+      {/* AI Directory Marketplace - ACTUAL SECTION FROM INVENTORY */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={200} color="cyan" speed="medium" depth={true} interactive={true} />
+          <AIDirectoryMarketplaceSection />
+        </div>
+      </Suspense>
+
+      {/* Agent OS - ACTUAL SECTION FROM INVENTORY */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={220} color="blue" speed="medium" depth={true} interactive={true} />
+          <AgentOSSection />
+        </div>
+      </Suspense>
+
+      {/* Dashboard Section - ACTUAL SECTION FROM INVENTORY */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={180} color="purple" speed="slow" depth={true} interactive={true} />
+          <DashboardSection />
+        </div>
+      </Suspense>
+
+      {/* AI Directory Marketplace - ACTUAL SECTION FROM INVENTORY */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <AIDirectoryMarketplaceSection />
+      </Suspense>
+
+      {/* Agent OS - ACTUAL SECTION FROM INVENTORY */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <AgentOSSection />
+      </Suspense>
+
+      {/* Dashboard Section - ACTUAL SECTION FROM INVENTORY */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <DashboardSection />
+      </Suspense>
+
+      {/* White Papers and Research Papers - SECURE DIGITAL REVEALS */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={100} color="purple" speed="slow" depth={true} interactive={true} />
+          <WhitepaperCarousel />
+        </div>
+      </Suspense>
+
+      {/* White Papers and Research Papers - SECURE DIGITAL REVEALS */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={100} color="purple" speed="slow" depth={true} interactive={true} />
+          <WhitepaperCarousel />
+        </div>
+      </Suspense>
+
+
 
       {/* Protocol Stack Parallax Deck */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
@@ -384,10 +452,61 @@ export default function Home() {
         </div>
       </Suspense>
 
-      {/* Final CTA with Retro Grid */}
+      {/* Hardware Pre-sale Section - ON TOP */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
-        <FinalCTASection />
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={120} color="purple" speed="slow" depth={true} interactive={true} />
+          <div className="py-20 px-4">
+            <div className="max-w-6xl mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">🔥 Hardware Pre-sale</h2>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto mb-12">
+                Next-generation AI hardware devices designed for the Agentic Internet
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+                {[
+                  { name: ".AIPhone", icon: "📱", desc: "AI-native smartphone", price: "$999" },
+                  { name: ".AIPods", icon: "🎧", desc: "Intelligent audio devices", price: "$299" },
+                  { name: ".AIGlasses", icon: "👓", desc: "Augmented reality AI", price: "$1,499" },
+                  { name: ".AIEmail", icon: "📧", desc: "Hardware email device", price: "$199" }
+                ].map((device, index) => (
+                  <div key={index} className="bg-black/30 backdrop-blur-sm border border-purple-500/20 rounded-lg p-6 hover:border-purple-500/50 transition-all group">
+                    <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">{device.icon}</div>
+                    <h4 className="text-xl font-bold text-white mb-2">{device.name}</h4>
+                    <p className="text-gray-300 text-sm mb-3">{device.desc}</p>
+                    <p className="text-purple-400 font-bold">{device.price}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </Suspense>
-    </MainLayout>
+
+      {/* Final CTA with Agentic Wording - BOTTOM */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={100} color="blue" speed="slow" depth={true} interactive={true} />
+          <div className="py-20 px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-8">
+                Ready to explore the future?
+              </h2>
+              <p className="text-xl text-gray-300 mb-12">
+                Join the Agentic Internet revolution and become an Intelligent Operator.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg hover:shadow-purple-500/30 transition-all">
+                  Get Started
+                </button>
+                <button className="px-8 py-4 border border-white/20 text-white font-bold rounded-lg hover:bg-white/10 transition-all">
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Suspense>
+      </MainLayout>
+    </>
   );
 }
