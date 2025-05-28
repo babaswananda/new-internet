@@ -136,9 +136,12 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="hidden md:block px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all"
+              className="hidden md:block px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all relative overflow-hidden group"
             >
-              get.poweredbyai
+              <span className="relative z-10">Get Powered by A.I.</span>
+              {/* Glowing edge effect */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+              <div className="absolute inset-0.5 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500"></div>
             </motion.button>
           </Link>
           <Link href="/claim">
@@ -200,9 +203,12 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-full px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all mb-2"
+                className="w-full px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/40 transition-all mb-2 relative overflow-hidden group"
               >
-                get.poweredbyai
+                <span className="relative z-10">Get Powered by A.I.</span>
+                {/* Glowing edge effect */}
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-400 to-pink-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                <div className="absolute inset-0.5 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500"></div>
               </motion.button>
             </Link>
             <Link href="/claim" className="w-full">
