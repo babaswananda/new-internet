@@ -11,16 +11,26 @@ import { motion } from 'framer-motion';
  */
 const FOMOTicker: React.FC = () => {
   const [animate, setAnimate] = useState(true);
-  const [duration, setDuration] = useState(30); // Sped up from 60 to 30 seconds
+  const [duration, setDuration] = useState(12); // Much faster - 12 seconds
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // AI Tokens ITO launch messages
+  // Unified AI Launch messages
   const messages = [
-    "🚨 AI Tokens ITO LIVE → Claim Handle • Stake Vault • Pre-Order Devices at activate.unifiedai",
-    "📦 Deploy Your Stack at io.unifiedai → Your Agent. Your Interface. Your Internet.",
-    "🧠 Discover & Stake Upcoming Agents → explore.aiagents",
-    "💸 AI Made Me Rich Is LIVE → Real Wins • Token Flex • Meme Capital → join.aimademerich",
-    "🎓 Learn How It All Works → Step-by-Step Operator Playbook → learn.aimademerich"
+    "📰 LIVE TICKER — UNIFIED AI LAUNCH NOW LIVE",
+    "🌐 UnifiedAI.io officially launches global platform access",
+    "⚡ Every handle comes with FREE Unified AI subscription",
+    "🎨 Generate images, videos, and deploy agents in one click",
+    "🚀 New AI-powered tools released: Chat Designer, Art Creator, Video Generator",
+    "🧠 Businesses now offering Unified AI as a customer service upgrade",
+    "🎟️ Unified AI subscription gift cards now available at select retailers",
+    "🔒 Early users locked into Founders Pricing for life",
+    "🛠️ Real-time agent deployment dashboard now live",
+    "🎤 Ambassadors program begins onboarding 100+ creators & operators",
+    "📦 Merch drop & limited vaults now shipping to premium members",
+    "📈 AI adoption just got decentralized — and culture-coded",
+    "🔥 Ambassador Kit now available → Earn revenue share + custom AI agents",
+    "🛍️ Retail partners can now offer AI subscriptions to customers",
+    "👑 Elite Ambassador program for $10K+/mo creators launching soon"
   ];
 
   // Pause animation on hover
@@ -29,11 +39,11 @@ const FOMOTicker: React.FC = () => {
 
   // Calculate animation duration based on content length
   const calculateDuration = () => {
-    if (!containerRef.current) return 60; // Much slower base duration
+    if (!containerRef.current) return 12; // Fast base duration
     const contentWidth = containerRef.current.scrollWidth;
-    // Slower speed: more time for longer content
-    // Use a much slower multiplier for better readability
-    return Math.max(60, (contentWidth / 50)); // Slower calculation
+    // Fast speed: less time for content to scroll
+    // Use a faster multiplier for quicker movement
+    return Math.max(8, (contentWidth / 200)); // Much faster calculation
   };
 
   // Update duration when component mounts and content is ready
@@ -64,9 +74,9 @@ const FOMOTicker: React.FC = () => {
       onMouseLeave={handleMouseLeave}
     >
       <div className="relative flex items-center">
-        {/* "ITO Live" label */}
+        {/* "Launch Live" label */}
         <div className="hidden md:flex items-center justify-center bg-gradient-to-r from-purple-600 to-pink-600 text-white px-3 py-1 font-bold text-xs uppercase tracking-wider z-10 ml-4">
-          <span className="animate-pulse mr-1">🪙</span> ITO Live Now
+          <span className="animate-pulse mr-1">🚀</span> Launch Live
         </div>
 
         {/* Ticker content */}
@@ -105,7 +115,7 @@ const FOMOTicker: React.FC = () => {
             whileTap={{ scale: 0.95 }}
             className="bg-gradient-to-r from-purple-500 to-pink-600 text-white text-xs font-bold py-1 px-4 rounded-sm mr-4 uppercase tracking-wider"
           >
-            🪙 Join ITO
+            🚀 Join Launch
           </motion.button>
         </div>
       </div>

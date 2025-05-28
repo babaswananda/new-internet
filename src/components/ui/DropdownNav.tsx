@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 
@@ -17,49 +17,107 @@ interface DropdownNavProps {
   className?: string;
 }
 
-const DropdownNav: React.FC<DropdownNavProps> = ({ label, items, className = '' }) => {
+const DropdownNav: React.FC<DropdownNavProps> = React.memo(({ label, items, className = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [dropdownPosition, setDropdownPosition] = useState<'bottom' | 'top'>('bottom');
+  const [maxHeight, setMaxHeight] = useState<number>(400);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLDivElement>(null);
 
-  const dropdownVariants = {
+  // Calculate optimal dropdown position and height based on viewport
+  const calculateDropdownPosition = useCallback(() => {
+    if (!triggerRef.current) return;
+
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const viewportHeight = window.innerHeight;
+    const spaceBelow = viewportHeight - triggerRect.bottom;
+    const spaceAbove = triggerRect.top;
+
+    // Determine position based on available space
+    const shouldShowAbove = spaceBelow < 300 && spaceAbove > spaceBelow;
+    setDropdownPosition(shouldShowAbove ? 'top' : 'bottom');
+
+    // Calculate max height to prevent overflow
+    const availableSpace = shouldShowAbove ? spaceAbove - 20 : spaceBelow - 20;
+    const calculatedMaxHeight = Math.min(Math.max(availableSpace, 200), 500);
+    setMaxHeight(calculatedMaxHeight);
+  }, []);
+
+  // Update position on scroll and resize
+  useEffect(() => {
+    if (isOpen) {
+      calculateDropdownPosition();
+
+      const handleResize = () => calculateDropdownPosition();
+      const handleScroll = () => calculateDropdownPosition();
+
+      window.addEventListener('resize', handleResize);
+      window.addEventListener('scroll', handleScroll, { passive: true });
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [isOpen, calculateDropdownPosition]);
+
+  // Lightweight animation variants optimized for performance
+  const dropdownVariants = useMemo(() => ({
     hidden: {
       opacity: 0,
-      y: -10,
-      scale: 0.95,
+      y: dropdownPosition === 'bottom' ? -4 : 4,
+      scale: 0.99,
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.2,
+        duration: 0.12,
         ease: "easeOut",
       },
     },
     exit: {
       opacity: 0,
-      y: -10,
-      scale: 0.95,
+      y: dropdownPosition === 'bottom' ? -4 : 4,
+      scale: 0.99,
       transition: {
-        duration: 0.15,
+        duration: 0.08,
         ease: "easeIn",
       },
     },
-  };
+  }), [dropdownPosition]);
 
-  const itemVariants = {
-    hidden: { opacity: 0, x: -10 },
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      transition: {
-        delay: i * 0.05,
-        duration: 0.2,
-      },
-    }),
-  };
+  // Minimal item animations for optimal performance
+  const itemVariants = useMemo(() => ({
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  }), []);
+
+  // Handle dropdown open/close with position calculation
+  const handleDropdownToggle = useCallback((open: boolean) => {
+    if (open) {
+      calculateDropdownPosition();
+    }
+    setIsOpen(open);
+  }, [calculateDropdownPosition]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isOpen]);
 
   return (
-    <div 
+    <div
       className={`relative ${className}`}
       onMouseEnter={() => setIsOpen(true)}
       onMouseLeave={() => setIsOpen(false)}
@@ -71,10 +129,10 @@ const DropdownNav: React.FC<DropdownNavProps> = ({ label, items, className = '' 
         whileTap={{ scale: 0.95 }}
       >
         {label}
-        <svg 
+        <svg
           className={`ml-1 w-4 h-4 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
-          fill="none" 
-          stroke="currentColor" 
+          fill="none"
+          stroke="currentColor"
           viewBox="0 0 24 24"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -116,10 +174,10 @@ const DropdownNav: React.FC<DropdownNavProps> = ({ label, items, className = '' 
                           </div>
                         )}
                       </div>
-                      <svg 
-                        className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors mt-0.5" 
-                        fill="none" 
-                        stroke="currentColor" 
+                      <svg
+                        className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors mt-0.5"
+                        fill="none"
+                        stroke="currentColor"
                         viewBox="0 0 24 24"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

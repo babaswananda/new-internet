@@ -50,8 +50,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     { href: '/textme', label: '.TextMe', description: 'Messaging protocol of the Agentic Internet', color: 'text-green-400' },
     { href: '/videochat', label: '.VideoChat', description: 'Face-to-face agent intelligence', color: 'text-blue-400' },
     { href: '/webinar', label: '.Webinar', description: 'Token-gated events and broadcasts', color: 'text-orange-400' },
-    { href: '/aimademerich', label: 'AIMadeMeRich', description: 'Viral feed showcase for AI success stories', color: 'text-yellow-400' },
-    { href: '/learn-aimademerich', label: 'Learn.AIMadeMeRich', description: 'Protocol academy for operators', color: 'text-green-400' }
+    { href: '/aimademerich', label: 'AIMadeMeRich', description: 'Success stories & learning academy', color: 'text-yellow-400' }
   ];
 
   const companyItems: NavItem[] = [
@@ -96,31 +95,15 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             items={protocolItems}
           />
 
-          <NavLink href="/token-flow">{nav('tokenFlow')}</NavLink>
-
-          <Link href="/ai-tokens">
+          <Link href="/auth">
             <motion.div
-              className="text-purple-400 hover:text-pink-400 transition-colors tracking-wide uppercase text-sm relative group font-bold animate-pulse"
+              className="text-purple-400 hover:text-pink-400 transition-colors tracking-wide uppercase text-sm relative group font-bold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {nav('ito')}
+              🔒 SIGN IN
               <motion.div
                 className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-500 to-pink-500 group-hover:w-full transition-all duration-300"
-                whileHover={{ width: '100%' }}
-              />
-            </motion.div>
-          </Link>
-
-          <Link href="/friends-family">
-            <motion.div
-              className="text-orange-400 hover:text-orange-300 transition-colors tracking-wide uppercase text-sm relative group font-bold animate-pulse"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              🛡️ F&F ROUND
-              <motion.div
-                className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-orange-500 to-red-500 group-hover:w-full transition-all duration-300"
                 whileHover={{ width: '100%' }}
               />
             </motion.div>
@@ -131,6 +114,8 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             items={companyItems}
           />
 
+          <NavLink href="/blog">📰 RESEARCH</NavLink>
+
           <NavLink href="/documentation">📚 DOCS</NavLink>
 
           {/* 🌍 SOVEREIGN LANGUAGE SWITCHER */}
@@ -138,6 +123,15 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
         </nav>
 
         <div className="flex items-center space-x-4">
+          <Link href="/ai-tokens">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="hidden md:block px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all"
+            >
+              get.poweredbyai
+            </motion.button>
+          </Link>
           <Link href="/claim">
             <motion.button
               whileHover={{ scale: 1.05 }}
@@ -183,15 +177,23 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
                 {item.label}
               </Link>
             ))}
-            <Link href="/token-flow" className="text-gray-300 hover:text-white py-2 transition-colors">Token Flow</Link>
-            <Link href="/ai-tokens" className="text-purple-400 hover:text-pink-400 py-2 transition-colors font-bold animate-pulse">🪙 ITO</Link>
-            <Link href="/friends-family" className="text-orange-400 hover:text-orange-300 py-2 transition-colors font-bold animate-pulse">🛡️ F&F ROUND</Link>
+            <Link href="/auth" className="text-purple-400 hover:text-pink-400 py-2 transition-colors font-bold">🔒 Sign In</Link>
             {companyItems.map((item) => (
               <Link key={item.href} href={item.href} className="text-gray-300 hover:text-white py-2 transition-colors">
                 {item.label}
               </Link>
             ))}
+            <Link href="/blog" className="text-orange-400 hover:text-orange-300 py-2 transition-colors">📰 Research</Link>
             <Link href="/documentation" className="text-blue-400 hover:text-blue-300 py-2 transition-colors">📚 Documentation</Link>
+            <Link href="/ai-tokens" className="w-full">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full px-4 py-2 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg shadow-purple-500/20 hover:shadow-purple-500/30 transition-all mb-2"
+              >
+                get.poweredbyai
+              </motion.button>
+            </Link>
             <Link href="/claim" className="w-full">
               <motion.button
                 whileHover={{ scale: 1.05 }}

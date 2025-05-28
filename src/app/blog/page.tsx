@@ -16,7 +16,23 @@ const blogPosts = [
     featured: true,
     tags: ['AI', 'Blockchain', 'Identity', 'Protocol'],
     author: 'Unified AI Team',
-    downloadLink: '/downloads/unified-ai-whitepaper.pdf'
+    downloadLink: '/downloads/unified-ai-whitepaper.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'agentchat-superapp-thesis',
+    title: 'AgentChat: The Superapp Thesis for AI-Native Communication',
+    excerpt: 'Why AgentChat represents the future of human-AI interaction - combining chat, agents, and protocols into one unified interface.',
+    category: 'Product Thesis',
+    readTime: '10 min read',
+    publishDate: '2024-01-20',
+    featured: true,
+    tags: ['AgentChat', 'Superapp', 'UI/UX', 'Product'],
+    author: 'Product Team',
+    downloadLink: '/downloads/agentchat-thesis.pdf',
+    hasVideo: true,
+    hasImages: true
   },
   {
     id: 'under-the-hood-tech-behind-unified-ai',
@@ -28,7 +44,37 @@ const blogPosts = [
     featured: true,
     tags: ['Technical', 'Architecture', 'DID', 'Smart Contracts'],
     author: 'Technical Team',
-    downloadLink: '/downloads/technical-specification.pdf'
+    downloadLink: '/downloads/technical-specification.pdf',
+    hasVideo: false,
+    hasImages: true
+  },
+  {
+    id: 'alpharouter-intelligent-model-routing',
+    title: 'AlphaRouter: Intelligent Model Routing for the AI Economy',
+    excerpt: 'How AlphaRouter optimizes AI model selection, routing, and cost efficiency across the entire Unified AI ecosystem.',
+    category: 'Technical Deep Dive',
+    readTime: '9 min read',
+    publishDate: '2024-01-28',
+    featured: true,
+    tags: ['AlphaRouter', 'Routing', 'Optimization', 'Infrastructure'],
+    author: 'Infrastructure Team',
+    downloadLink: '/downloads/alpharouter-spec.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'io-intelligent-operator-whitepaper',
+    title: 'IO: The Intelligent Operator - Your Personal AI Operating System',
+    excerpt: 'Complete technical specification of IO - the AI agent that manages your entire digital life across all platforms and protocols.',
+    category: 'Product Whitepaper',
+    readTime: '14 min read',
+    publishDate: '2024-02-05',
+    featured: true,
+    tags: ['IO', 'Agent', 'Operating System', 'Automation'],
+    author: 'IO Development Team',
+    downloadLink: '/downloads/io-whitepaper.pdf',
+    hasVideo: true,
+    hasImages: true
   },
   {
     id: 'tokenomics-deep-dive',
@@ -40,7 +86,23 @@ const blogPosts = [
     featured: true,
     tags: ['Tokenomics', 'Economics', 'Utility', 'Governance'],
     author: 'Economics Team',
-    downloadLink: '/downloads/tokenomics-paper.pdf'
+    downloadLink: '/downloads/tokenomics-paper.pdf',
+    hasVideo: false,
+    hasImages: true
+  },
+  {
+    id: 'ion-intelligent-ontology-network',
+    title: 'ION: Intelligent Ontology Network - Semantic AI Infrastructure',
+    excerpt: 'Deep dive into ION protocol - how semantic tagging and ontology agents create intelligent data relationships across the AI ecosystem.',
+    category: 'Protocol Specification',
+    readTime: '11 min read',
+    publishDate: '2024-02-15',
+    featured: false,
+    tags: ['ION', 'Ontology', 'Semantic', 'Data'],
+    author: 'Protocol Research Team',
+    downloadLink: '/downloads/ion-protocol-spec.pdf',
+    hasVideo: false,
+    hasImages: true
   },
   {
     id: 'competitive-analysis-ai-blockchain',
@@ -52,7 +114,9 @@ const blogPosts = [
     featured: false,
     tags: ['Competition', 'Strategy', 'Market', 'Positioning'],
     author: 'Research Team',
-    downloadLink: '/downloads/competitive-analysis.pdf'
+    downloadLink: '/downloads/competitive-analysis.pdf',
+    hasVideo: false,
+    hasImages: true
   },
   {
     id: 'handle-registry-specification',
@@ -64,7 +128,23 @@ const blogPosts = [
     featured: false,
     tags: ['Identity', 'DID', 'Registry', 'Technical'],
     author: 'Protocol Team',
-    downloadLink: '/downloads/handle-registry-spec.pdf'
+    downloadLink: '/downloads/handle-registry-spec.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'agentos-operating-system-future',
+    title: 'AGENT OS: The Operating System for the Agent Economy',
+    excerpt: 'Vision paper on AGENT OS - how we\'re building the foundational layer for AI agents to interact, transact, and evolve autonomously.',
+    category: 'Vision Paper',
+    readTime: '13 min read',
+    publishDate: '2024-03-01',
+    featured: false,
+    tags: ['AGENT OS', 'Operating System', 'Agents', 'Future'],
+    author: 'Vision Team',
+    downloadLink: '/downloads/agentos-vision.pdf',
+    hasVideo: true,
+    hasImages: true
   },
   {
     id: 'ecosystem-partnerships-use-cases',
@@ -76,11 +156,159 @@ const blogPosts = [
     featured: false,
     tags: ['Partnerships', 'Use Cases', 'Ecosystem', 'DeFi'],
     author: 'Business Development',
-    downloadLink: '/downloads/ecosystem-overview.pdf'
+    downloadLink: '/downloads/ecosystem-overview.pdf',
+    hasVideo: false,
+    hasImages: true
+  },
+  {
+    id: 'vibecoder-ai-development-platform',
+    title: 'VibeCoder: AI-Powered Development for the Culture',
+    excerpt: 'How VibeCoder democratizes software development through AI-assisted coding, making development accessible to creators and entrepreneurs.',
+    category: 'Product Deep Dive',
+    readTime: '8 min read',
+    publishDate: '2024-03-10',
+    featured: false,
+    tags: ['VibeCoder', 'Development', 'AI Coding', 'Accessibility'],
+    author: 'VibeCoder Team',
+    downloadLink: '/downloads/vibecoder-overview.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'ai-agents-marketplace-economy',
+    title: 'AI Agents Marketplace: The New Creator Economy',
+    excerpt: 'Exploring the AI Agents marketplace - how creators can build, deploy, and monetize AI agents while building sustainable digital businesses.',
+    category: 'Marketplace Analysis',
+    readTime: '12 min read',
+    publishDate: '2024-03-15',
+    featured: false,
+    tags: ['Marketplace', 'Agents', 'Creator Economy', 'Monetization'],
+    author: 'Marketplace Team',
+    downloadLink: '/downloads/agents-marketplace.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'ambassador-program-thesis',
+    title: 'Ambassador Program: Culture-First AI Adoption Strategy',
+    excerpt: 'The strategic thesis behind our Ambassador program - how cultural operators drive authentic AI adoption and build sustainable communities.',
+    category: 'Strategy Paper',
+    readTime: '9 min read',
+    publishDate: '2024-03-20',
+    featured: false,
+    tags: ['Ambassadors', 'Culture', 'Adoption', 'Community'],
+    author: 'Community Strategy Team',
+    downloadLink: '/downloads/ambassador-thesis.pdf',
+    hasVideo: false,
+    hasImages: true
+  },
+  {
+    id: 'retail-partner-framework',
+    title: 'Retail Partner Framework: AI as a Service Extension',
+    excerpt: 'How any business can offer AI subscriptions and services to their customers - turning AI into a new revenue stream and customer value proposition.',
+    category: 'Business Framework',
+    readTime: '10 min read',
+    publishDate: '2024-03-25',
+    featured: false,
+    tags: ['Retail', 'Partnerships', 'B2B', 'Revenue'],
+    author: 'Business Development',
+    downloadLink: '/downloads/retail-framework.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'google-a2a-anthropic-mcp-integration',
+    title: 'Google A2A & Anthropic MCP: Building the Agent Communication Layer',
+    excerpt: 'Technical analysis of integrating Google\'s Agent-to-Agent protocol and Anthropic\'s MCP support within Unified AI infrastructure.',
+    category: 'Integration Analysis',
+    readTime: '11 min read',
+    publishDate: '2024-03-28',
+    featured: false,
+    tags: ['Google A2A', 'Anthropic MCP', 'Integration', 'Protocols'],
+    author: 'Integration Team',
+    downloadLink: '/downloads/a2a-mcp-integration.pdf',
+    hasVideo: false,
+    hasImages: true
+  },
+  {
+    id: 'hardware-ecosystem-aiphone-aipods',
+    title: 'Hardware Ecosystem: AIPhone, AIPods, and the Physical AI Layer',
+    excerpt: 'Vision for Unified AI hardware - how AIPhone, AIPods, and AIGlasses create seamless AI experiences in the physical world.',
+    category: 'Hardware Vision',
+    readTime: '12 min read',
+    publishDate: '2024-04-01',
+    featured: false,
+    tags: ['Hardware', 'AIPhone', 'AIPods', 'Physical AI'],
+    author: 'Hardware Team',
+    downloadLink: '/downloads/hardware-vision.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'aimademerich-success-stories',
+    title: 'AIMadeMeRich: Success Stories from the AI Economy',
+    excerpt: 'Real stories from users who built wealth and success using Unified AI tools - from creators to entrepreneurs to developers.',
+    category: 'Success Stories',
+    readTime: '7 min read',
+    publishDate: '2024-04-05',
+    featured: false,
+    tags: ['Success Stories', 'AIMadeMeRich', 'Case Studies', 'Results'],
+    author: 'Community Team',
+    downloadLink: '/downloads/success-stories.pdf',
+    hasVideo: true,
+    hasImages: true
+  },
+  {
+    id: 'protocol-governance-dao-structure',
+    title: 'Protocol Governance: DAO Structure and Community Decision Making',
+    excerpt: 'How Unified AI governance works - from token voting to community proposals to protocol upgrades and ecosystem development.',
+    category: 'Governance',
+    readTime: '13 min read',
+    publishDate: '2024-04-10',
+    featured: false,
+    tags: ['Governance', 'DAO', 'Voting', 'Community'],
+    author: 'Governance Team',
+    downloadLink: '/downloads/governance-structure.pdf',
+    hasVideo: false,
+    hasImages: true
+  },
+  {
+    id: 'future-of-ai-internet-thesis',
+    title: 'The Future of AI Internet: A 10-Year Vision',
+    excerpt: 'Our comprehensive thesis on how AI will reshape the internet - from agent economies to semantic web to decentralized intelligence.',
+    category: 'Future Vision',
+    readTime: '18 min read',
+    publishDate: '2024-04-15',
+    featured: false,
+    tags: ['Future', 'Vision', 'AI Internet', 'Long-term'],
+    author: 'Research & Vision Team',
+    downloadLink: '/downloads/ai-internet-thesis.pdf',
+    hasVideo: true,
+    hasImages: true
   }
 ];
 
-const categories = ['All', 'Protocol Education', 'Technical Deep Dive', 'Ecosystem Spotlight', 'Industry Analysis', 'Tokenomics'];
+const categories = [
+  'All',
+  'Protocol Education',
+  'Product Thesis',
+  'Technical Deep Dive',
+  'Product Whitepaper',
+  'Tokenomics',
+  'Protocol Specification',
+  'Market Analysis',
+  'Vision Paper',
+  'Ecosystem Spotlight',
+  'Product Deep Dive',
+  'Marketplace Analysis',
+  'Strategy Paper',
+  'Business Framework',
+  'Integration Analysis',
+  'Hardware Vision',
+  'Success Stories',
+  'Governance',
+  'Future Vision'
+];
 
 export default function BlogPage() {
   return (
@@ -127,6 +355,16 @@ export default function BlogPage() {
                   {post.category}
                 </span>
                 <span className="text-gray-400 text-sm">{post.readTime}</span>
+                {post.hasVideo && (
+                  <span className="px-2 py-1 bg-red-500/20 text-red-300 text-xs rounded border border-red-500/30">
+                    📹 Video
+                  </span>
+                )}
+                {post.hasImages && (
+                  <span className="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded border border-blue-500/30">
+                    🖼️ Images
+                  </span>
+                )}
               </div>
 
               <h3 className="text-xl font-bold text-white mb-3 line-clamp-2">
@@ -198,12 +436,22 @@ export default function BlogPage() {
             >
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex-1">
-                  <div className="flex items-center gap-3 mb-2">
+                  <div className="flex items-center gap-3 mb-2 flex-wrap">
                     <span className="px-3 py-1 bg-purple-500/20 text-purple-300 text-sm rounded-full">
                       {post.category}
                     </span>
                     <span className="text-gray-400 text-sm">{post.readTime}</span>
                     <span className="text-gray-400 text-sm">{post.publishDate}</span>
+                    {post.hasVideo && (
+                      <span className="px-2 py-1 bg-red-500/20 text-red-300 text-xs rounded border border-red-500/30">
+                        📹 Video
+                      </span>
+                    )}
+                    {post.hasImages && (
+                      <span className="px-2 py-1 bg-blue-500/20 text-blue-300 text-xs rounded border border-blue-500/30">
+                        🖼️ Images
+                      </span>
+                    )}
                   </div>
 
                   <h3 className="text-2xl font-bold text-white mb-2">

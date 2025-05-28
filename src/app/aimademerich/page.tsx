@@ -11,6 +11,7 @@ import { FeatureCard } from '@/components/ui/cards';
 
 const AIMadeMeRichPage = () => {
   const [activeTab, setActiveTab] = useState('trending');
+  const [activeSection, setActiveSection] = useState('stories'); // stories or academy
 
   const trendingPosts = [
     {

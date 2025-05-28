@@ -33,7 +33,7 @@ const ScrollToTopButton: React.FC = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="fixed bottom-8 left-8 z-50 p-3 rounded-sm bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-purple-500/20 border border-white/10 backdrop-blur-sm focus:outline-none"
+          className="fixed bottom-8 left-20 z-50 p-3 rounded-sm bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-purple-500/20 border border-white/10 backdrop-blur-sm focus:outline-none"
           onClick={scrollToTop}
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}

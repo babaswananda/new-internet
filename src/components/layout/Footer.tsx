@@ -53,12 +53,14 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
         { href: '/press', label: 'Press', color: 'text-gray-300' },
         { href: '/investors', label: 'Investors', color: 'text-gray-300' },
         { href: '/contact', label: 'Contact', color: 'text-gray-300' },
-        { href: '/token-flow', label: 'Token Flow', color: 'text-blue-400' }
+        { href: '/token-flow', label: 'Token Flow', color: 'text-blue-400' },
+        { href: '/ai-tokens', label: 'get.poweredbyai', color: 'text-purple-400' }
       ]
     },
     {
       title: 'Resources',
       links: [
+        { href: '/blog', label: 'Research Library', color: 'text-orange-400' },
         { href: '/handle-registry', label: 'Handle Registry', color: 'text-cyan-400' },
         { href: '/preorder', label: 'Hardware', color: 'text-red-400' },
         { href: '/merch-store', label: 'Merch Store', color: 'text-indigo-400' },

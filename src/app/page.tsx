@@ -17,6 +17,7 @@ import NewsletterSection from '@/components/sections/NewsletterSection';
 import FAQSection from '@/components/sections/FAQSection';
 import CinematicHeroBanner from '@/components/ui/CinematicHeroBanner';
 import { homePageSlides } from '@/data/cinematicSlides';
+import RotatingProductShowcase from '@/components/ui/RotatingProductShowcase';
 
 export default function Home() {
   // Memoized data structures for performance optimization
@@ -178,6 +179,17 @@ export default function Home() {
         showIndicators={true}
         enableParallax={true}
       />
+
+      {/* Rotating Product Showcase - Flash Billboard */}
+      <RotatingProductShowcase />
+
+      {/* IO Section - Amazing Visuals */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={250} color="purple" speed="slow" depth={true} interactive={true} />
+          <IOSection />
+        </div>
+      </Suspense>
 
       {/* Core Products Carousel */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
