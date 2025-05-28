@@ -19,102 +19,45 @@ interface DropdownNavProps {
 
 const DropdownNav: React.FC<DropdownNavProps> = React.memo(({ label, items, className = '' }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [dropdownPosition, setDropdownPosition] = useState<'bottom' | 'top'>('bottom');
-  const [maxHeight, setMaxHeight] = useState<number>(400);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
 
-  // Calculate optimal dropdown position and height based on viewport
-  const calculateDropdownPosition = useCallback(() => {
-    if (!triggerRef.current) return;
-
-    const triggerRect = triggerRef.current.getBoundingClientRect();
-    const viewportHeight = window.innerHeight;
-    const spaceBelow = viewportHeight - triggerRect.bottom;
-    const spaceAbove = triggerRect.top;
-
-    // Determine position based on available space
-    const shouldShowAbove = spaceBelow < 300 && spaceAbove > spaceBelow;
-    setDropdownPosition(shouldShowAbove ? 'top' : 'bottom');
-
-    // Calculate max height to prevent overflow
-    const availableSpace = shouldShowAbove ? spaceAbove - 20 : spaceBelow - 20;
-    const calculatedMaxHeight = Math.min(Math.max(availableSpace, 200), 500);
-    setMaxHeight(calculatedMaxHeight);
-  }, []);
-
-  // Update position on scroll and resize
-  useEffect(() => {
-    if (isOpen) {
-      calculateDropdownPosition();
-
-      const handleResize = () => calculateDropdownPosition();
-      const handleScroll = () => calculateDropdownPosition();
-
-      window.addEventListener('resize', handleResize);
-      window.addEventListener('scroll', handleScroll, { passive: true });
-
-      return () => {
-        window.removeEventListener('resize', handleResize);
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }
-  }, [isOpen, calculateDropdownPosition]);
-
-  // Lightweight animation variants optimized for performance
+  // Optimized animation variants
   const dropdownVariants = useMemo(() => ({
     hidden: {
       opacity: 0,
-      y: dropdownPosition === 'bottom' ? -4 : 4,
-      scale: 0.99,
+      y: -8,
+      scale: 0.98,
     },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.12,
+        duration: 0.15,
         ease: "easeOut",
       },
     },
     exit: {
       opacity: 0,
-      y: dropdownPosition === 'bottom' ? -4 : 4,
-      scale: 0.99,
+      y: -8,
+      scale: 0.98,
       transition: {
-        duration: 0.08,
+        duration: 0.1,
         ease: "easeIn",
       },
     },
-  }), [dropdownPosition]);
-
-  // Minimal item animations for optimal performance
-  const itemVariants = useMemo(() => ({
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
   }), []);
 
-  // Handle dropdown open/close with position calculation
-  const handleDropdownToggle = useCallback((open: boolean) => {
-    if (open) {
-      calculateDropdownPosition();
-    }
-    setIsOpen(open);
-  }, [calculateDropdownPosition]);
-
-  // Close dropdown on outside click
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsOpen(false);
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener('mousedown', handleClickOutside);
-      return () => document.removeEventListener('mousedown', handleClickOutside);
-    }
-  }, [isOpen]);
+  // Simplified item animations
+  const itemVariants = useMemo(() => ({
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.1,
+      },
+    },
+  }), []);
 
   return (
     <div
@@ -147,13 +90,14 @@ const DropdownNav: React.FC<DropdownNavProps> = React.memo(({ label, items, clas
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            ref={dropdownRef}
             variants={dropdownVariants}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="absolute top-full left-0 mt-2 w-80 bg-black/95 backdrop-blur-md border border-white/10 rounded-lg shadow-xl z-50"
+            className="absolute top-full left-0 mt-2 w-80 max-h-96 bg-black/95 backdrop-blur-md border border-white/10 rounded-lg shadow-xl z-50 overflow-hidden"
           >
-            <div className="p-4">
+            <div className="p-4 overflow-y-auto max-h-80">
               {items.map((item, index) => (
                 <motion.div
                   key={item.href}
@@ -165,17 +109,17 @@ const DropdownNav: React.FC<DropdownNavProps> = React.memo(({ label, items, clas
                   <Link href={item.href}>
                     <div className="flex items-start p-3 rounded-lg hover:bg-white/5 transition-colors group">
                       <div className="flex-1">
-                        <div className={`font-medium text-sm ${item.color || 'text-white'} group-hover:text-white transition-colors`}>
+                        <div className={`font-medium text-sm ${item.color || 'text-white'} group-hover:text-white transition-colors break-words`}>
                           {item.label}
                         </div>
                         {item.description && (
-                          <div className="text-xs text-gray-400 mt-1 group-hover:text-gray-300 transition-colors">
+                          <div className="text-xs text-gray-400 mt-1 group-hover:text-gray-300 transition-colors break-words">
                             {item.description}
                           </div>
                         )}
                       </div>
                       <svg
-                        className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors mt-0.5"
+                        className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors mt-0.5 flex-shrink-0"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -192,6 +136,6 @@ const DropdownNav: React.FC<DropdownNavProps> = React.memo(({ label, items, clas
       </AnimatePresence>
     </div>
   );
-};
+});
 
 export default DropdownNav;
