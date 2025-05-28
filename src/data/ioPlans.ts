@@ -27,15 +27,9 @@ export interface IOPlan {
     description: string;
   }[];
   limitations?: string[];
-  // NEW: Launch Pass Features
-  tokenAllocation?: {
-    aiTokens: number;
-    utilityCoin: number;
-  };
-  vaultAccess?: 'none' | 'limited' | 'basic' | 'standard' | 'high-yield';
-  roiPath?: string;
+  // Launch features (non-token)
   perks?: string[];
-  isLaunchPass?: boolean;
+  isEarlyAccess?: boolean;
 }
 
 // 🚀 INTELLIGENT OPERATOR LAUNCH PASS - Hybrid Subscription + Investment Model
@@ -174,7 +168,7 @@ export const launchPasses: LaunchPass[] = [
   }
 ];
 
-// Updated pricing structure based on the comprehensive tier system
+// Updated pricing structure - Public Launch Ready
 export const ioPlans: IOPlan[] = [
   {
     id: 'io-starter',
@@ -183,19 +177,14 @@ export const ioPlans: IOPlan[] = [
     period: 'monthly',
     badge: 'Essential',
     description: 'Perfect for solo creators or AI curious users',
-    isLaunchPass: false,
-    tokenAllocation: {
-      aiTokens: 0,
-      utilityCoin: 0
-    },
-    vaultAccess: 'none',
-    roiPath: 'Access to core Operator tools, limited AI usage via manual top-ups',
+    isEarlyAccess: false,
     perks: [
       '✅ Unified AI Account',
       '✅ Base Agents (I.O. Tools)',
       '🎨 Generate basic art & video',
       '🛠️ Browser-native command-line UI',
-      '📚 Access to documentation'
+      '📚 Access to documentation',
+      '🔒 Early Access Pricing Lock'
     ],
     features: [
       '🧠 Full conversational agent access',
@@ -238,23 +227,16 @@ export const ioPlans: IOPlan[] = [
     period: 'monthly',
     badge: 'Most Popular',
     description: 'For creators and brand-builders ready to deploy AI agents',
-    isLaunchPass: false,
-    tokenAllocation: {
-      aiTokens: 1000,
-      utilityCoin: 250
-    },
-    vaultAccess: 'basic',
-    roiPath: 'Deploy agents, earn revenue, compound through vault staking',
+    isEarlyAccess: true,
     perks: [
       '✅ Everything in Starter',
       '✅ Deploy up to 3 AI Agents',
-      '🔒 Limited Super Agent access',
-      '🪙 Presale access to meme coins',
-      '🏦 Basic vault access',
+      '🔒 Advanced Agent access',
       '🏷️ 10% handle name discount',
-      '🎁 Occasional token airdrops',
-      '✅ Genesis Ledger listing',
-      '✅ Creator earnings pool'
+      '✅ Creator earnings pool',
+      '🔒 Early Access Pricing Lock',
+      '🎨 Advanced .GenerateArt features',
+      '🎬 Enhanced .VideoGenerator access'
     ],
     features: [
       '🧠 Unlimited conversational intelligence',
@@ -290,24 +272,18 @@ export const ioPlans: IOPlan[] = [
     price: 150,
     period: 'monthly',
     badge: 'Full Access',
-    description: 'For entrepreneurs, whales, and protocol-level thinkers',
-    isLaunchPass: true,
-    tokenAllocation: {
-      aiTokens: 5000,
-      utilityCoin: 2500
-    },
-    vaultAccess: 'high-yield',
-    roiPath: 'Full protocol access, governance rights, unlimited earning potential',
+    description: 'For entrepreneurs and power users who need unlimited access',
+    isEarlyAccess: true,
     perks: [
       '✅ Everything in Builder',
       '✅ Unlimited AI Agents + Super Agents',
-      '🚀 Full meme coin launchpad access',
-      '🏦 Premium Vault access + royalty system',
       '🏷️ 100% handle discounts (FREE)',
-      '🗳️ Voting rights & protocol governance',
-      '📋 Genesis Ledger priority listing',
+      '📋 Priority support and features',
       '💰 Exclusive earnings pool access',
-      '🎁 Guaranteed token airdrops'
+      '🔒 Lifetime Early Access Pricing Lock',
+      '🎨 Professional .GenerateArt suite',
+      '🎬 4K .VideoGenerator access',
+      '🤖 Advanced Agent customization'
     ],
     features: [
       '🧠 Unlimited conversational intelligence',
@@ -339,63 +315,6 @@ export const ioPlans: IOPlan[] = [
     ],
     powerUps: [
       { name: 'White-Label Intelligence', price: 'Custom', description: 'Build your own operator UI & agent stack' },
-      { name: 'Enterprise API Access', price: 'Custom', description: 'Full API access for custom integrations' }
-    ]
-  },
-  {
-    id: 'founding-operator',
-    name: 'Founding Operator',
-    price: 500,
-    period: 'yearly',
-    badge: 'Genesis',
-    description: 'Maximum stake in the protocol with founding-level benefits and ROI exposure',
-    isLaunchPass: true,
-    tokenAllocation: {
-      aiTokens: 10000,
-      utilityCoin: 5000
-    },
-    vaultAccess: 'high-yield',
-    roiPath: 'Stake, flip, royalties, protocol profit sharing, resale rights',
-    perks: [
-      '🔒 Lifetime pricing lock — never pay more',
-      '🎯 Custom handle creation rights',
-      '📋 Genesis Ledger founder status',
-      '🎭 Exclusive meme coin allocations',
-      '💰 High-yield vault access',
-      '🔄 Full token resale rights',
-      '👑 Protocol governance participation',
-      '🚀 Early launchpad drops',
-      '💎 Future vault + protocol profit exposure'
-    ],
-    features: [
-      '🧠 Unlimited conversational intelligence',
-      '🎨 Professional AI art generation',
-      '🎬 4K video generation suite',
-      '🛠️ Advanced command-line tools',
-      '🔐 Unlimited vault access',
-      '🌐 Enterprise agent deployment',
-      '🔄 Advanced agent remixing',
-      '💰 Full revenue optimization',
-      '🎭 Meme coin generation tools',
-      '🤖 White-label intelligence',
-      '📊 Advanced analytics dashboard'
-    ],
-    limits: {
-      chat: 'Unlimited conversations',
-      artGenerations: '100 artworks/month',
-      videoMinutes: '30 4K videos/month',
-      agents: 'Unlimited deployed agents',
-      vaults: 'Unlimited monetization vaults'
-    },
-    replacedServices: [
-      { service: 'ChatGPT Plus', typicalPrice: '$20', included: true },
-      { service: 'Midjourney Pro', typicalPrice: '$30', included: true },
-      { service: 'RunwayML Pro', typicalPrice: '$40+', included: true },
-      { service: 'Zapier Teams', typicalPrice: '$100+', included: true },
-      { service: 'AI Dev Tools', typicalPrice: '$1000+', included: true }
-    ],
-    powerUps: [
-      { name: 'White-Labeled Intelligence', price: 'Custom', description: 'Build your own operator UI & agent stack' },
       { name: 'Enterprise API Access', price: 'Custom', description: 'Full API access for custom integrations' }
     ]
   },
@@ -457,8 +376,8 @@ export const ioFeatures = {
       icon: '🛠️'
     },
     {
-      name: 'Token Integration',
-      description: 'Monetization vaults and AI remixing capabilities',
+      name: 'Monetization Tools',
+      description: 'Revenue sharing and AI content monetization',
       icon: '🔐'
     },
     {
@@ -499,8 +418,8 @@ export const targetUsers = [
   },
   {
     type: 'Creators',
-    benefit: 'Tokenized community, content vaults, media drops',
-    useCase: 'Monetize AI-generated content and build token-gated communities'
+    benefit: 'AI content generation, community building, media creation',
+    useCase: 'Monetize AI-generated content and build engaged communities'
   },
   {
     type: 'Founders',
@@ -509,8 +428,8 @@ export const targetUsers = [
   },
   {
     type: 'Investors',
-    benefit: 'White-label your vaults + token-gated intelligence hubs',
-    useCase: 'Create investment-focused AI tools and communities'
+    benefit: 'White-label AI tools + intelligence hubs',
+    useCase: 'Create investment-focused AI tools and analytics platforms'
   }
 ];
 

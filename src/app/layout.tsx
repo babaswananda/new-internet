@@ -8,17 +8,39 @@ import I18nProvider from "@/components/providers/I18nProvider";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap',
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap',
+  preload: true,
 });
 
 export const metadata: Metadata = {
-  title: "Unified AI I/O | The New Map of the New Internet",
-  description: "Unified AI is the control layer of decentralized intelligence. The protocol-grade launchpad for the agent economy.",
-  keywords: "AI, Crypto, Protocol, AgentOS, Agent Dev Kit, ADK, AI Token",
+  title: "Unified AI | The Agentic Internet Protocol",
+  description: "Deploy, manage, and monetize AI agents across the decentralized web. Join the Agentic Internet with handle-based identity, vault economics, and intelligent operator infrastructure.",
+  keywords: "AI agents, blockchain, decentralized web, artificial intelligence, crypto, DeFi, Web3, automation, Unified AI, Agentic Internet",
+  authors: [{ name: "Unified AI Protocol" }],
+  creator: "Unified AI Protocol",
+  publisher: "Unified AI Protocol",
+  robots: "index, follow",
+  openGraph: {
+    title: "Unified AI | The Agentic Internet Protocol",
+    description: "Deploy, manage, and monetize AI agents across the decentralized web.",
+    url: "https://unified-ai-protocol-babaswanandas-projects.vercel.app",
+    siteName: "Unified AI Protocol",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Unified AI | The Agentic Internet Protocol",
+    description: "Deploy, manage, and monetize AI agents across the decentralized web.",
+  },
+  viewport: "width=device-width, initial-scale=1",
+  themeColor: "#8B5CF6",
 };
 
 export default function RootLayout({

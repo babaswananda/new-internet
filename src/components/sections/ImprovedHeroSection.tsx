@@ -35,15 +35,16 @@ const ImprovedHeroSectionComponent: React.FC = () => {
 
   const heroContentSets = [
     {
-      // Slide 1: The Core Message
-      heading: "Unified AI",
-      subtitle: "\"We didn't build a platform. We built the internet. From the .commandline up.\"",
-      bubbleText: "Forget dashboards. You now run your future from a slash.",
-      bubbleColor: "from-blue-500 to-purple-500",
+      // Slide 1: The Launch Announcement
+      heading: "Unified AI is NOW LIVE",
+      subtitle: "The AI stack that replaces your entire subscription suite. Professional tools, early access pricing.",
+      bubbleText: "✅ .GenerateArt ✅ .VideoGenerator ✅ Agent Deployment ✅ Early Access Pricing",
+      bubbleColor: "from-green-500 to-blue-500",
       bulletPoints: [
-        "Where your handle is your hub.",
-        "Your vault is your stack.",
-        "And your agent is your OS."
+        "🎨 Professional AI art generation (replaces Midjourney)",
+        "🎬 4K video creation suite (replaces RunwayML)",
+        "🤖 Deploy and monetize AI agents",
+        "🔒 Early users get lifetime pricing lock"
       ]
     },
     {
@@ -91,7 +92,7 @@ const ImprovedHeroSectionComponent: React.FC = () => {
       bulletPoints: [
         "Discover any agent, any function, any creator",
         "Sell agents, tools, templates, prompt packs",
-        "Token-gate drops and support modules"
+        "Monetize your AI creations and expertise"
       ]
     },
     {
@@ -151,9 +152,9 @@ const ImprovedHeroSectionComponent: React.FC = () => {
         <motion.div variants={containerVariants} initial="hidden" animate="visible" className="max-w-6xl mx-auto">
           {/* Badge */}
           <motion.div variants={itemVariants} className="mb-6" style={getParallaxStyle(0.5)}>
-            <div className="inline-block bg-gradient-to-r from-blue-500 to-purple-500 p-[1px] rounded-full">
+            <div className="inline-block bg-gradient-to-r from-green-500 to-blue-500 p-[1px] rounded-full">
               <div className="bg-black/80 backdrop-blur-sm px-4 py-1 rounded-full">
-                <span className="text-white text-sm font-medium tracking-wider uppercase">Genesis Window closes in: 71:59:04</span>
+                <span className="text-white text-sm font-medium tracking-wider uppercase">🚀 NOW LIVE • Early Access Pricing Available</span>
               </div>
             </div>
           </motion.div>
@@ -232,31 +233,31 @@ const ImprovedHeroSectionComponent: React.FC = () => {
 
           {/* CTA buttons */}
           <motion.div variants={itemVariants} className="flex flex-wrap gap-4" style={getParallaxStyle(1.5)}>
-            <Link href="#claim-handle">
+            <Link href="/io">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-bold text-lg rounded-lg shadow-lg shadow-blue-500/20"
+                className="px-8 py-4 bg-gradient-to-r from-green-500 to-blue-500 text-white font-bold text-lg rounded-lg shadow-lg shadow-green-500/20"
               >
-                CLAIM YOUR HANDLE
+                🚀 START FREE TRIAL
               </motion.button>
             </Link>
-            <Link href="#agentchat">
+            <Link href="/claim">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-white/5 border border-white/20 backdrop-blur-sm text-white font-bold text-lg rounded-lg hover:bg-white/10 transition-colors"
               >
-                START YOUR STACK
+                CLAIM YOUR HANDLE
               </motion.button>
             </Link>
-            <Link href="#alpharouter">
+            <Link href="/documentation">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="px-8 py-4 bg-black border border-white/20 backdrop-blur-sm text-white font-bold text-lg rounded-lg hover:bg-white/10 transition-colors"
               >
-                VIEW ROUTER ARCHITECTURE
+                VIEW DOCUMENTATION
               </motion.button>
             </Link>
           </motion.div>

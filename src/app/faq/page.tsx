@@ -23,22 +23,16 @@ export default function FAQPage() {
       description: 'Technical specifications and implementation'
     },
     {
-      id: 'tokenomics',
-      title: 'Tokenomics',
-      icon: '🪙',
-      description: 'Token economy and financial aspects'
+      id: 'pricing',
+      title: 'Pricing',
+      icon: '💳',
+      description: 'Subscription plans and pricing information'
     },
     {
       id: 'partnerships',
       title: 'Partnerships',
       icon: '🤝',
       description: 'Integration and partnership opportunities'
-    },
-    {
-      id: 'investment',
-      title: 'Investment',
-      icon: '💰',
-      description: 'Investment opportunities and token offerings'
     }
   ];
 
@@ -87,28 +81,6 @@ export default function FAQPage() {
         answer: 'We use a multi-chain architecture with Cosmos-based consensus for high throughput. The Handle Registry can process thousands of identity resolutions per second, while AI service calls are routed through optimized endpoints. We employ layer-2 solutions for microtransactions and implement caching strategies for frequently accessed data. The system is designed to scale to millions of users and thousands of AI services.'
       }
     ],
-    tokenomics: [
-      {
-        id: 'three-token-system',
-        question: 'How does the three-token economy work?',
-        answer: 'Our ecosystem uses: (1) UtilityCoin (UC) - the base protocol token for governance and staking, (2) AI Tokens (AIT) - execution gas for AI service calls and rewards, (3) Meme Coins - viral fuel for community engagement and marketing. This creates a balanced economy where UC provides stability, AIT drives usage, and Meme Coins enable viral growth and community participation.'
-      },
-      {
-        id: 'token-utility',
-        question: 'What can I do with Unified AI tokens?',
-        answer: 'UtilityCoin: Stake for governance voting, pay for premium handles, earn staking rewards, participate in protocol decisions. AI Tokens: Pay for AI service calls, earn rewards for data contributions, tip AI agents, access premium features. Meme Coins: Participate in viral campaigns, earn from social engagement, access exclusive content, boost visibility in feeds.'
-      },
-      {
-        id: 'earning-tokens',
-        question: 'How can I earn tokens?',
-        answer: 'Multiple earning opportunities: (1) Contribute valuable training data to AI models, (2) Stake UtilityCoin for validation rewards, (3) Provide AI services through the platform, (4) Participate in governance and earn voting rewards, (5) Create viral content for Meme Coin rewards, (6) Refer new users and earn referral bonuses, (7) Participate in community challenges and airdrops.'
-      },
-      {
-        id: 'token-distribution',
-        question: 'How are tokens distributed?',
-        answer: 'UtilityCoin: 40% community rewards, 25% ecosystem development, 20% team/advisors (4-year vest), 15% strategic reserves. AI Tokens: 50% user rewards, 25% AI service providers, 15% ecosystem growth, 10% protocol treasury. Meme Coins: 60% community airdrops, 20% viral campaigns, 15% creator rewards, 5% protocol reserves. All distributions are transparent and auditable on-chain.'
-      }
-    ],
     partnerships: [
       {
         id: 'partnership-types',
@@ -131,26 +103,26 @@ export default function FAQPage() {
         answer: 'Start by scheduling a partnership demo at unifiedai.com/book-demo or contact protocol@io.unifiedai. We\'ll assess your use case, technical requirements, and integration scope. Qualified partners receive access to our partner portal, technical documentation, sandbox environment, and dedicated support team. The process typically takes 1-2 weeks from initial contact to partnership agreement.'
       }
     ],
-    investment: [
+    pricing: [
       {
-        id: 'investment-opportunities',
-        question: 'What investment opportunities are available?',
-        answer: 'We offer multiple investment paths: (1) AI Tokens ITO - 72-hour public token offering with handle reservation utility, (2) Friends & Family Round - Early access with bonus tokens and special pricing, (3) Strategic Investment - Larger allocations for qualified investors, (4) Ecosystem Participation - Earn tokens through platform usage and contributions. Each option has different terms, minimums, and benefits.'
+        id: 'subscription-plans',
+        question: 'What subscription plans are available?',
+        answer: 'We offer three main plans: (1) I.O. Starter ($20/month) - Perfect for solo creators with basic AI tools, art generation, and video creation, (2) I.O. Builder ($50/month) - For creators ready to deploy AI agents with advanced features and handle discounts, (3) I.O. Master ($150/month) - Unlimited access for entrepreneurs with premium features, unlimited agents, and priority support.'
       },
       {
-        id: 'friends-family-round',
-        question: 'How does the Friends & Family round work?',
-        answer: 'Our F&F round offers early access with contribution tiers from $50 to $25,000+. Contributors receive UtilityCoin at $0.01 with bonus percentages (5% at $50 up to 40% at $25k+) plus matching AI Token bonuses. Payments accepted via CashApp and Bitcoin. Contributors get early handle access, governance rights, and potential 10x returns based on public market pricing projections.'
+        id: 'early-access-pricing',
+        question: 'What is Early Access Pricing?',
+        answer: 'Early Access users get lifetime pricing locks - you\'ll never pay more than your initial subscription rate, even as we add new features and increase prices for new users. This includes access to .GenerateArt (replaces Midjourney), .VideoGenerator (replaces RunwayML), unlimited chat, and agent deployment capabilities.'
       },
       {
-        id: 'token-value-accrual',
-        question: 'How do tokens accrue value?',
-        answer: 'Token value grows through: (1) Network usage driving demand for AI Tokens, (2) UtilityCoin staking reducing circulating supply, (3) Handle registry growth increasing utility demand, (4) Partnership integrations expanding user base, (5) Governance participation creating holding incentives, (6) Deflationary mechanisms through token burns, (7) Revenue sharing from platform fees to token holders.'
+        id: 'free-trial',
+        question: 'Is there a free trial available?',
+        answer: 'Yes! We offer a free trial that includes limited access to our core features: basic chat functionality, sample art generation, and exploration of our agent marketplace. You can upgrade to any paid plan at any time to unlock full features and early access pricing.'
       },
       {
-        id: 'investment-risks',
-        question: 'What are the investment risks?',
-        answer: 'Key risks include: (1) Regulatory uncertainty in crypto/AI sectors, (2) Technology adoption challenges, (3) Competition from established AI platforms, (4) Market volatility affecting token prices, (5) Technical risks in smart contract implementation, (6) Partnership execution risks. We mitigate through legal compliance, technical audits, strong partnerships, and transparent communication. Invest only what you can afford to lose.'
+        id: 'payment-methods',
+        question: 'What payment methods do you accept?',
+        answer: 'We accept all major credit cards, PayPal, and cryptocurrency payments. For enterprise customers, we also offer invoice billing and custom payment terms. All subscriptions include automatic billing with the ability to cancel anytime.'
       }
     ]
   };
@@ -158,7 +130,7 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-black text-white relative overflow-hidden">
       <ParticleBackground />
-      
+
       {/* Hero Section */}
       <div className="relative z-10 py-20 px-4">
         <div className="max-w-6xl mx-auto text-center">
@@ -263,19 +235,19 @@ export default function FAQPage() {
             Can't find what you're looking for? Our team is here to help with personalized answers and detailed explanations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
+            <a
               href="/book-demo"
               className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white rounded-lg transition-all"
             >
               📅 Schedule Demo
             </a>
-            <a 
+            <a
               href="/contact"
               className="px-6 py-3 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 rounded-lg transition-all"
             >
               💬 Contact Support
             </a>
-            <a 
+            <a
               href="mailto:support@io.unifiedai"
               className="px-6 py-3 bg-purple-600/20 hover:bg-purple-600/30 text-purple-300 border border-purple-500/30 rounded-lg transition-all"
             >
@@ -303,9 +275,9 @@ export default function FAQPage() {
             <div className="text-2xl mb-2">🆔</div>
             <div className="text-white font-medium">Handle Registry</div>
           </a>
-          <a href="/ai-tokens" className="p-4 bg-black/20 backdrop-blur-sm border border-purple-500/20 rounded-lg hover:border-purple-500/40 transition-all text-center">
-            <div className="text-2xl mb-2">🪙</div>
-            <div className="text-white font-medium">Tokenomics</div>
+          <a href="/io" className="p-4 bg-black/20 backdrop-blur-sm border border-purple-500/20 rounded-lg hover:border-purple-500/40 transition-all text-center">
+            <div className="text-2xl mb-2">🚀</div>
+            <div className="text-white font-medium">Start Free Trial</div>
           </a>
         </div>
       </div>

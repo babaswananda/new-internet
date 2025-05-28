@@ -12,13 +12,12 @@ import ParallaxDeck from '@/components/ui/ParallaxDeck';
 
 // Import sections directly for better reliability
 import IOSection from '@/components/sections/IOSection';
-import AITokensITOSection from '@/components/sections/AITokensITOSection';
 import ClaimHandleSection from '@/components/sections/ClaimHandleSection';
 import NewsletterSection from '@/components/sections/NewsletterSection';
 import FAQSection from '@/components/sections/FAQSection';
 
 export default function Home() {
-  // Memoized data structures for performance
+  // Memoized data structures for performance optimization
   const coreProductsData = useMemo(() => [
     {
       id: 'io-operator',
@@ -34,20 +33,7 @@ export default function Home() {
         priority: 'high' as const
       }
     },
-    {
-      id: 'ai-tokens-ito',
-      title: 'AI Tokens ITO',
-      description: 'Join the official token offering. Get AI Tokens, UtilityCoin, and early access to the protocol economy with exclusive benefits.',
-      component: <AITokensITOSection />,
-      media: {
-        id: 'ito-countdown',
-        title: 'AI Tokens ITO Countdown',
-        description: 'Urgency visualization with particle effects and token allocation display',
-        type: 'video' as const,
-        category: 'tokens' as const,
-        priority: 'high' as const
-      }
-    }
+
   ], []);
 
   // Protocol Stack Parallax Data
