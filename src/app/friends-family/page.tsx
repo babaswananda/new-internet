@@ -156,61 +156,125 @@ const FriendsFamilyPage = () => {
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-pink-500/20 border border-purple-500/30 mb-6">
               <span className="text-2xl">🛡️</span>
-              <span className="text-purple-300 font-medium">Friends & Family Round</span>
+              <span className="text-purple-300 font-medium">Friends & Family + Whale Investors</span>
             </div>
 
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               <HeaderText className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-400">
-                The Crypto IPO of Unified AI
+                UnifiedAI Early Contributor Round
               </HeaderText>
             </h1>
 
-            <div className="max-w-4xl mx-auto space-y-4 text-lg text-gray-300">
-              <p className="text-xl font-medium text-white">This is not a donation. This is not a platform subscription.</p>
-              <p className="text-xl font-bold text-purple-300">This is a tokenized IPO round before the public launch.</p>
+            <div className="max-w-5xl mx-auto space-y-6 text-lg text-gray-300">
+              <p className="text-xl font-medium text-white leading-relaxed">
+                Be among the first to back the AI‑native internet. UnifiedAI is opening an exclusive Friends & Family + Early Whale Contributor round – a unique chance for our close community and crypto-native investors to secure UtilityCoin & AI Tokens at ground-floor prices with high upside potential.
+              </p>
 
-              <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 border border-orange-500/30 rounded-lg p-6 mt-6">
-                <p className="text-lg text-gray-200 leading-relaxed">
-                  You're getting in at the price <span className="text-orange-300 font-semibold">before anyone else sees it</span>.<br/>
-                  Before the site goes live. Before the press hits.<br/>
-                  <span className="text-white font-bold">You get tokens that resell, vaults that earn, and assets that grow.</span>
+              <p className="text-lg text-gray-200">
+                Don't miss the opportunity to get in early on <span className="text-purple-300 font-semibold">"the protocol rails for the AI-native internet"</span>, and gain access and benefits before the public launch.
+              </p>
+
+              <div className="bg-gradient-to-r from-orange-900/50 to-red-900/50 border border-orange-500/30 rounded-lg p-6 mt-8">
+                <p className="text-xl text-white font-bold text-center mb-4">
+                  🚀 Contribute Now – Secure Your Early Stake
+                </p>
+                <p className="text-center text-orange-300">
+                  (CashApp & BTC accepted)
                 </p>
               </div>
             </div>
           </div>
 
-          {/* What You're Getting */}
+          {/* Why UnifiedAI */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-white mb-8 text-center">
-              <HeaderText>What You're Getting</HeaderText>
+              <HeaderText>Why UnifiedAI? – Building the AI‑Native Internet Rails</HeaderText>
             </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[
-                { icon: '💰', title: 'Pre-Public Tokens', desc: 'UtilityCoin + AI Tokens at launch pricing' },
-                { icon: '📈', title: 'Resale Liquidity', desc: 'Built-in demand when pairs go live' },
-                { icon: '🏦', title: 'Vault Royalties', desc: 'Optional passive earnings from protocol activity' },
-                { icon: '⚡', title: 'Genesis Ledger', desc: 'Permanent protocol tier status' }
-              ].map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-black/30 backdrop-blur-sm border border-white/10 rounded-lg p-6 text-center"
-                >
-                  <div className="text-4xl mb-4">{item.icon}</div>
-                  <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.desc}</p>
-                </motion.div>
-              ))}
+            <div className="max-w-5xl mx-auto space-y-6 text-gray-300">
+              <p className="text-lg leading-relaxed">
+                UnifiedAI is building the foundational protocol rails for the AI-native internet. In simple terms, we're creating the blockchain-based infrastructure that will let AI agents, services, and users interact and transact seamlessly in a decentralized network. This is akin to laying down the highways for a future where AI is as ubiquitous as websites – and you have a chance to own a piece of those rails.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+                <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-blue-500/30 rounded-lg p-6">
+                  <div className="text-2xl mb-3">🌐</div>
+                  <h3 className="text-lg font-semibold text-white mb-3">Visionary Platform</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    UnifiedAI combines blockchain and AI to enable a unified ecosystem where AI services can be published, discovered, and monetized securely. Think of it as the <span className="text-blue-300 font-semibold">"Ethereum for AI networks"</span>, powering the next generation of AI-driven dApps, autonomous agents, and marketplaces.
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-green-900/30 to-teal-900/30 border border-green-500/30 rounded-lg p-6">
+                  <div className="text-2xl mb-3">🚀</div>
+                  <h3 className="text-lg font-semibold text-white mb-3">First-Mover Advantage</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    By backing us now, you're positioning yourself at the forefront of a potential breakthrough. Early supporters of projects like Ethereum and Solana bought in at pennies, before those platforms soared in adoption. <span className="text-green-300 font-semibold">UnifiedAI aims for similar transformative impact</span> in the AI+crypto space.
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 border border-orange-500/30 rounded-lg p-6">
+                  <div className="text-2xl mb-3">💎</div>
+                  <h3 className="text-lg font-semibold text-white mb-3">Early Access & Upside</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Friends, family, and early believers will gain access to our platform and tokens before anyone else. You're not just funding an idea – you're becoming a founding participant in an emerging protocol. <span className="text-orange-300 font-semibold">As the network grows, so does the potential value of your stake.</span>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          {/* Contribution Tiers */}
+          {/* Why Contribute Early */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-white mb-8 text-center">
-              <HeaderText>Contribution Tiers (Investor-Focused Only)</HeaderText>
+              <HeaderText>Why Contribute Early? – High-ROI Opportunity</HeaderText>
+            </h2>
+
+            <div className="max-w-5xl mx-auto space-y-6 text-gray-300">
+              <p className="text-lg leading-relaxed">
+                Early contributors are the lifeblood of UnifiedAI. To reward your trust, we're offering generous terms and a strategic position that could translate to significant returns:
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                <div className="bg-gradient-to-br from-green-900/30 to-emerald-900/30 border border-green-500/30 rounded-lg p-6">
+                  <div className="text-2xl mb-3">💰</div>
+                  <h3 className="text-lg font-semibold text-white mb-3">Ground-Floor Token Prices</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    This round offers the lowest price these tokens will ever be. Early pricing means even moderate future price growth can yield outsized ROI. <span className="text-green-300 font-semibold">(For perspective, Ethereum's earliest backers bought ETH at ~$0.30 – by 2025 ETH traded over $2,500+, an 8000x+ increase. Early Binance investors got BNB at $0.15 – it later exceeded $600.)</span>
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-purple-900/30 to-pink-900/30 border border-purple-500/30 rounded-lg p-6">
+                  <div className="text-2xl mb-3">🎁</div>
+                  <h3 className="text-lg font-semibold text-white mb-3">Exclusive Bonuses</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    Early contributors receive bonus token allocations and perks not available in later rounds. We believe those who support us at inception deserve extra rewards – from bonus tokens to premium access.
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-orange-900/30 to-red-900/30 border border-orange-500/30 rounded-lg p-6">
+                  <div className="text-2xl mb-3">⏰</div>
+                  <h3 className="text-lg font-semibold text-white mb-3">Limited Availability</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    This Friends & Family + Whale round is invite-only and capped. That means your stake is early and rare. <span className="text-orange-300 font-semibold">By the time the public hears about UnifiedAI, your entry price and bonuses will be unrivaled.</span>
+                  </p>
+                </div>
+
+                <div className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 border border-blue-500/30 rounded-lg p-6">
+                  <div className="text-2xl mb-3">🚀</div>
+                  <h3 className="text-lg font-semibold text-white mb-3">Strategic Upside in AI + Crypto</h3>
+                  <p className="text-gray-300 text-sm leading-relaxed">
+                    The intersection of AI and blockchain is poised to explode. By contributing now, you're effectively getting equity in the protocol layer of the AI economy. <span className="text-blue-300 font-semibold">Imagine being an early investor in the "internet of AI"</span> – that's the window of opportunity we're opening.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Tokenomics Overview */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-white mb-8 text-center">
+              <HeaderText>Tokenomics Overview – UtilityCoin & AI Token</HeaderText>
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
