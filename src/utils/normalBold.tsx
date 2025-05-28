@@ -3,24 +3,43 @@ import React from 'react';
 /**
  * Utility function for HEADERS - normalBOLD styling without italics
  * Alternates between normal and bold words for headers
- * Preserves emojis with proper z-index
+ * Preserves emojis with proper z-index and prevents splitting
  */
 export const normalBoldHeader = (text: string): React.ReactNode => {
-  const words = text.split(' ');
+  // Enhanced emoji regex to catch all emoji variants
+  const emojiRegex = /[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]|[\u{1F900}-\u{1F9FF}]|[\u{1FA70}-\u{1FAFF}]/gu;
+
+  // Split text while preserving emojis
+  const parts = text.split(/(\s+)/).filter(part => part.length > 0);
+  let wordIndex = 0;
 
   return (
     <span className="relative z-20">
-      {words.map((word, index) => {
-        // Check if word contains emoji
-        const hasEmoji = /[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u.test(word);
+      {parts.map((part, index) => {
+        // If it's whitespace, just return it
+        if (/^\s+$/.test(part)) {
+          return <span key={index}>{part}</span>;
+        }
+
+        // Check if part contains emoji
+        const hasEmoji = emojiRegex.test(part);
+
+        // If it has emoji, don't apply font styling to preserve emoji rendering
+        if (hasEmoji) {
+          return (
+            <span key={index} className="relative z-30 inline-block">
+              {part}
+            </span>
+          );
+        }
+
+        // Apply alternating font weight to non-emoji words
+        const fontClass = wordIndex % 2 === 0 ? 'font-normal' : 'font-bold';
+        wordIndex++;
 
         return (
-          <span
-            key={index}
-            className={`${index % 2 === 0 ? 'font-normal' : 'font-bold'} ${hasEmoji ? 'relative z-30' : ''}`}
-          >
-            {word}
-            {index < words.length - 1 ? ' ' : ''}
+          <span key={index} className={fontClass}>
+            {part}
           </span>
         );
       })}

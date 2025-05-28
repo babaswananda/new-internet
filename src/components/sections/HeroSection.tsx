@@ -33,12 +33,12 @@ const HeroSection: React.FC = () => {
     };
   }, []);
 
-  // Auto-rotate through key points
+  // Auto-rotate through key points (optimized for performance)
   useEffect(() => {
     if (!isHovering) {
       const interval = setInterval(() => {
         setActiveIndex((prev) => (prev + 1) % 4);
-      }, 3000);
+      }, 5000); // Slower rotation for better loading performance
 
       return () => clearInterval(interval);
     }

@@ -158,20 +158,7 @@ export default function RotatingProductShowcase() {
             </AnimatePresence>
           </div>
 
-          {/* Simple Indicators */}
-          <div className="flex justify-center gap-2 mt-8">
-            {products.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'bg-white scale-125'
-                    : 'bg-white/30 hover:bg-white/50'
-                }`}
-              />
-            ))}
-          </div>
+          {/* Indicators removed for cleaner UI */}
 
           {/* CTA */}
           <motion.div
