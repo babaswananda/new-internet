@@ -10,27 +10,12 @@ import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 import ScrollTriggeredCarousel from '@/components/ui/ScrollTriggeredCarousel';
 import ParallaxDeck from '@/components/ui/ParallaxDeck';
 
-// Dynamically import sections for performance
-const IOSection = dynamic(() => import('@/components/sections/IOSection'), {
-  ssr: false,
-  loading: () => <div className="h-20 bg-black animate-pulse" />
-});
-const AITokensITOSection = dynamic(() => import('@/components/sections/AITokensITOSection'), {
-  ssr: false,
-  loading: () => <div className="h-20 bg-black animate-pulse" />
-});
-const ClaimHandleSection = dynamic(() => import('@/components/sections/ClaimHandleSection'), {
-  ssr: false,
-  loading: () => <div className="h-20 bg-black animate-pulse" />
-});
-const NewsletterSection = dynamic(() => import('@/components/sections/NewsletterSection'), {
-  ssr: false,
-  loading: () => <div className="h-20 bg-black animate-pulse" />
-});
-const FAQSection = dynamic(() => import('@/components/sections/FAQSection'), {
-  ssr: false,
-  loading: () => <div className="h-20 bg-black animate-pulse" />
-});
+// Import sections directly for better reliability
+import IOSection from '@/components/sections/IOSection';
+import AITokensITOSection from '@/components/sections/AITokensITOSection';
+import ClaimHandleSection from '@/components/sections/ClaimHandleSection';
+import NewsletterSection from '@/components/sections/NewsletterSection';
+import FAQSection from '@/components/sections/FAQSection';
 
 export default function Home() {
   // Memoized data structures for performance

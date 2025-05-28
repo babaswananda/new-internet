@@ -3,15 +3,30 @@
 import React, { Suspense } from 'react';
 import dynamic from 'next/dynamic';
 import { FABItem } from '@/types';
+import Header from './Header';
+import Footer from './Footer';
 
-// Dynamically import components to improve performance
-const Header = dynamic(() => import('./Header'), { ssr: false });
-const Footer = dynamic(() => import('./Footer'), { ssr: false });
-const FloatingActionButton = dynamic(() => import('../ui/FloatingActionButton'), { ssr: false });
-const FOMOTicker = dynamic(() => import('../ui/FOMOTicker'), { ssr: false });
-const ScrollToTopButton = dynamic(() => import('../ui/ScrollToTopButton'), { ssr: false });
-const AIMadeMeRichIcon = dynamic(() => import('../ui/AIMadeMeRichIcon'), { ssr: false });
-const FloatingIOAgent = dynamic(() => import('../ui/FloatingIOAgent'), { ssr: false });
+// Dynamically import non-critical components only
+const FloatingActionButton = dynamic(() => import('../ui/FloatingActionButton'), {
+  ssr: false,
+  loading: () => null
+});
+const FOMOTicker = dynamic(() => import('../ui/FOMOTicker'), {
+  ssr: false,
+  loading: () => <div className="h-7 bg-black" />
+});
+const ScrollToTopButton = dynamic(() => import('../ui/ScrollToTopButton'), {
+  ssr: false,
+  loading: () => null
+});
+const AIMadeMeRichIcon = dynamic(() => import('../ui/AIMadeMeRichIcon'), {
+  ssr: false,
+  loading: () => null
+});
+const FloatingIOAgent = dynamic(() => import('../ui/FloatingIOAgent'), {
+  ssr: false,
+  loading: () => null
+});
 
 interface MainLayoutProps {
   children: React.ReactNode;
@@ -214,15 +229,11 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
 
       {/* FOMO Ticker for investors */}
       <div className="fixed top-0 left-0 right-0 z-[60]">
-        <Suspense fallback={<div className="h-7 bg-black" />}>
-          <FOMOTicker />
-        </Suspense>
+        <FOMOTicker />
       </div>
 
       {/* Header */}
-      <Suspense fallback={<div className="h-20 bg-black/70" />}>
-        <Header />
-      </Suspense>
+      <Header />
 
       {/* Main Content */}
       <main className="flex-1 relative z-10">
@@ -230,9 +241,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       </main>
 
       {/* Footer */}
-      <Suspense fallback={<div className="h-64 bg-black/90" />}>
-        <Footer />
-      </Suspense>
+      <Footer />
 
       {/* Floating Action Button - IO Chat */}
       <Suspense fallback={null}>
