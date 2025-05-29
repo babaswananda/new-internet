@@ -56,7 +56,12 @@ export default function RootLayout({
       >
         <RemoveNextJSBadge />
         <I18nProvider>
-          {children}
+          <div className="min-h-screen bg-black flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-4xl font-bold text-white mb-4">🔒 SITE OFFLINE</h1>
+              <p className="text-gray-400">This site is completely unavailable.</p>
+            </div>
+          </div>
         </I18nProvider>
       </body>
     </html>
