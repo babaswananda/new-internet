@@ -54,14 +54,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       return;
     }
 
-    // Check if user is already authenticated
-    const authStatus = sessionStorage.getItem('isAuthenticated');
-    if (authStatus === 'true') {
-      setIsAuthenticated(true);
-      return;
-    }
-
-    // FORCE LOGOUT FOR TESTING - Clear any existing authentication
+    // FORCE LOGOUT FOR TESTING - Always clear authentication
     sessionStorage.removeItem('isAuthenticated');
     sessionStorage.removeItem('authEmail');
     setIsAuthenticated(false);
