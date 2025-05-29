@@ -185,15 +185,10 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
           clearInterval(interval);
           setTimeout(() => {
             setIsComplete(true);
-            // Check if we should show whitepaper after preloader
-            const shouldShowWhitepaper = window.location.search.includes('whitepaper') ||
-                                       localStorage.getItem('showWhitepaper') === 'true';
-
-            if (shouldShowWhitepaper) {
+            // Always redirect to whitepaper after preloader
+            setTimeout(() => {
               window.location.href = '/whitepaper';
-            } else {
-              setTimeout(onComplete, 500);
-            }
+            }, 500);
           }, 500);
           return 100;
         }
@@ -379,9 +374,24 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="mb-8"
                 >
-                  <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                  {/* ORIGINAL SCREEN 2 - Rotating text with font cycling */}
+                  <motion.h1
+                    className="text-4xl md:text-6xl font-black mb-4 text-white"
+                    style={{
+                      fontFamily: fonts[fontCycleIndex],
+                      color: colors[fontCycleIndex % colors.length]
+                    }}
+                    animate={{
+                      scale: [1, 1.05, 1],
+                      rotate: [0, 1, -1, 0]
+                    }}
+                    transition={{
+                      duration: 0.3,
+                      ease: "easeInOut"
+                    }}
+                  >
                     Welcome to the New Internet
-                  </h1>
+                  </motion.h1>
                   <p className="text-xl text-gray-300 mb-2">
                     Loading AI Agents
                   </p>

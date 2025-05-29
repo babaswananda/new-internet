@@ -36,6 +36,10 @@ export default function WhitepaperLanding() {
       setShowLogin(false);
       setMysteryLevel(prev => prev + 1);
       setDiscoveredSecrets(prev => new Set([...prev, 'access_granted']));
+      // Redirect to main site after successful login
+      setTimeout(() => {
+        window.location.href = '/';
+      }, 1000);
     }
   };
 
