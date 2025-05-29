@@ -8,7 +8,7 @@ import IOSection from '@/components/sections/IOSection';
 import AIDirectoryMarketplaceSection from '@/components/sections/AIDirectoryMarketplaceSection';
 import AgentOSSection from '@/components/sections/AgentOSSection';
 import OperatorEconomySection from '@/components/sections/OperatorEconomySection';
-import InvestmentOfferingSection from '@/components/sections/InvestmentOfferingSection';
+import PreOrderHardwareSection from '@/components/sections/PreOrderHardwareSection';
 import DashboardSection from '@/components/sections/DashboardSection';
 import WhitepaperCarousel from '@/components/sections/WhitepaperCarousel';
 
@@ -55,11 +55,11 @@ export default function Home() {
         </div>
       </Suspense>
 
-      {/* Investment Offering */}
+      {/* PreOrder Hardware */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
         <div className="relative">
           <SpaceParticlesBackground particleCount={180} color="gold" speed="slow" depth={true} interactive={true} />
-          <InvestmentOfferingSection />
+          <PreOrderHardwareSection />
         </div>
       </Suspense>
 
