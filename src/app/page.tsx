@@ -31,19 +31,19 @@ export default function Home() {
         </div>
       </Suspense>
 
-      {/* AI Directory Marketplace */}
-      <Suspense fallback={<div className="h-20 bg-black" />}>
-        <div className="relative">
-          <SpaceParticlesBackground particleCount={200} color="cyan" speed="medium" depth={true} interactive={true} />
-          <AIDirectoryMarketplaceSection />
-        </div>
-      </Suspense>
-
       {/* Agent OS Section */}
       <Suspense fallback={<div className="h-20 bg-black" />}>
         <div className="relative">
           <SpaceParticlesBackground particleCount={60} color="blue" speed="slow" depth={false} interactive={false} />
           <AgentOSSection />
+        </div>
+      </Suspense>
+
+      {/* AI Directory Marketplace */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={200} color="cyan" speed="medium" depth={true} interactive={true} />
+          <AIDirectoryMarketplaceSection />
         </div>
       </Suspense>
 
