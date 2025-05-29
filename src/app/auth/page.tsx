@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import MainLayout from '@/components/layout/MainLayout';
 import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 import { HeaderText } from '@/components/ui/header-text';
 
@@ -36,10 +35,12 @@ export default function AuthPage() {
       await new Promise(resolve => setTimeout(resolve, 2000));
 
       if (isLogin) {
-        setMessage('✅ Login successful! Redirecting to dashboard...');
-        // Simulate redirect to dashboard
+        setMessage('✅ Login successful! Redirecting to homepage...');
+        // Set authentication and redirect to homepage
+        sessionStorage.setItem('isAuthenticated', 'true');
+        sessionStorage.setItem('authEmail', formData.email);
         setTimeout(() => {
-          window.location.href = '/io';
+          window.location.href = '/';
         }, 1500);
       } else {
         setMessage('✅ Account created successfully! Please check your email to verify.');
@@ -59,7 +60,7 @@ export default function AuthPage() {
   };
 
   return (
-    <MainLayout>
+    <div className="min-h-screen bg-black">
       {/* Background */}
       <div className="fixed inset-0 z-0">
         <SpaceParticlesBackground particleCount={200} color="purple" speed="slow" depth={true} interactive={true} />
@@ -298,6 +299,6 @@ export default function AuthPage() {
         </motion.div>
         </div>
       </div>
-    </MainLayout>
+    </div>
   );
 }

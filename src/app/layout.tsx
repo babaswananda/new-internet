@@ -4,6 +4,7 @@ import "./globals.css";
 import "./remove-nextjs-logo.css";
 import RemoveNextJSBadge from "@/components/utils/RemoveNextJSBadge";
 import I18nProvider from "@/components/providers/I18nProvider";
+import AuthProvider from "@/components/providers/AuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,7 +56,9 @@ export default function RootLayout({
       >
         <RemoveNextJSBadge />
         <I18nProvider>
-          {children}
+          <AuthProvider>
+            {children}
+          </AuthProvider>
         </I18nProvider>
       </body>
     </html>
