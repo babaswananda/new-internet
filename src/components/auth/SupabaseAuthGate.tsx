@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { supabase, hasValidCredentials } from '@/lib/supabase';
 import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
+import { GlowingCard } from '@/components/ui/glowing-card';
 
 const SupabaseAuthGate: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -85,13 +86,9 @@ const SupabaseAuthGate: React.FC = () => {
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full max-w-md relative"
+          className="w-full max-w-md"
         >
-          {/* Glowing effect */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
-          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-2xl blur-md opacity-20"></div>
-
-          <div className="relative bg-black/90 backdrop-blur-xl border border-purple-500/40 rounded-2xl p-8 shadow-2xl">
+          <GlowingCard className="bg-black/90 backdrop-blur-xl border border-purple-500/40 rounded-2xl p-8 shadow-2xl">
             {/* Header */}
             <div className="text-center mb-8">
               <motion.div
@@ -219,7 +216,7 @@ const SupabaseAuthGate: React.FC = () => {
             >
               Secure authentication powered by Supabase
             </motion.div>
-          </div>
+          </GlowingCard>
         </motion.div>
       </div>
 
