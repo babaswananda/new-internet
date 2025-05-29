@@ -17,16 +17,23 @@ import WhitepaperCarousel from '@/components/sections/WhitepaperCarousel';
 import PreOrderHardwareSection from '@/components/sections/PreOrderHardwareSection';
 import OperatorEconomySection from '@/components/sections/OperatorEconomySection';
 
-
 import NewHeroSlider from '@/components/ui/NewHeroSlider';
 import CinematicPreloader from '@/components/ui/CinematicPreloader';
+import LoginGate from '@/components/auth/LoginGate';
 import { homePageSlides } from '@/data/cinematicSlides';
 import RotatingProductShowcase from '@/components/ui/RotatingProductShowcase';
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
+    // Check if user is already authenticated
+    const authStatus = sessionStorage.getItem('isAuthenticated');
+    if (authStatus === 'true') {
+      setIsAuthenticated(true);
+    }
+
     // Only show preloader on first visit in this session
     const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
     if (!hasSeenPreloader) {
@@ -67,9 +74,14 @@ export default function Home() {
         />
       )}
 
-      {/* Main Content - ONLY SHOWS AFTER PRELOADER COMPLETES */}
-      {!isLoading && (
-        <MainLayout>
+      {/* Login Gate - SHOWS AFTER PRELOADER IF NOT AUTHENTICATED */}
+      {!isLoading && !isAuthenticated && (
+        <LoginGate onAuthenticated={() => setIsAuthenticated(true)} />
+      )}
+
+      {/* Main Content - ONLY SHOWS AFTER AUTHENTICATION */}
+      {!isLoading && isAuthenticated && (
+        <MainLayout onLogout={() => setIsAuthenticated(false)}>
         {/* NEW HERO SLIDER - NO MORE ISSUES! */}
         <NewHeroSlider />
 

@@ -30,9 +30,10 @@ const FloatingIOAgent = dynamic(() => import('../ui/FloatingIOAgent'), {
 
 interface MainLayoutProps {
   children: React.ReactNode;
+  onLogout?: () => void;
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({ children, onLogout }) => {
   // FAB action items - Comprehensive navigation
   const fabItems: FABItem[] = [
     // Core Platform
@@ -273,7 +274,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       </div>
 
       {/* Header */}
-      <Header />
+      <Header onLogout={onLogout} />
 
       {/* Main Content */}
       <main className="flex-1 relative z-10 pt-24">
