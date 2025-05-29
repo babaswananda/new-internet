@@ -27,50 +27,43 @@ interface AuthProviderProps {
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const [showPreloader, setShowPreloader] = useState(false);
   const [shouldRedirect, setShouldRedirect] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
-    // Don't protect the auth page itself
-    if (pathname === '/auth') {
-      return;
-    }
+    const initializeAuth = async () => {
+      // Don't protect the auth page itself
+      if (pathname === '/auth') {
+        setIsLoading(false);
+        return;
+      }
 
-    // Check URL for force logout parameter
-    const urlParams = new URLSearchParams(window.location.search);
-    const forceLogout = urlParams.get('logout');
-
-    if (forceLogout === 'true') {
-      // Force logout and clear URL parameter
+      // FORCE CLEAR ALL AUTH DATA FOR TESTING
       sessionStorage.removeItem('isAuthenticated');
       sessionStorage.removeItem('authEmail');
-      sessionStorage.removeItem('hasSeenPreloader'); // Also clear preloader flag
+      sessionStorage.removeItem('hasSeenPreloader');
+
+      // Set initial state
       setIsAuthenticated(false);
-      setShouldRedirect(true);
-      // Clean URL
-      window.history.replaceState({}, document.title, window.location.pathname);
-      return;
-    }
 
-    // FORCE LOGOUT FOR TESTING - Always clear authentication and preloader
-    sessionStorage.removeItem('isAuthenticated');
-    sessionStorage.removeItem('authEmail');
-    sessionStorage.removeItem('hasSeenPreloader'); // Force preloader to show every time
-    setIsAuthenticated(false);
+      // Check if this is homepage and should show preloader
+      const isHomepage = pathname === '/';
 
-    // Only show preloader on first visit in this session AND on homepage
-    const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
-    const isHomepage = pathname === '/';
+      if (isHomepage) {
+        // Show preloader on homepage
+        setShowPreloader(true);
+        setIsLoading(false);
+      } else {
+        // Redirect to auth for all other pages
+        setIsLoading(false);
+        setShouldRedirect(true);
+      }
+    };
 
-    if (!hasSeenPreloader && isHomepage) {
-      setShowPreloader(true);
-    } else {
-      // If not authenticated and not showing preloader, redirect to auth
-      setShouldRedirect(true);
-    }
+    initializeAuth();
   }, [pathname]);
 
   const login = () => {
@@ -91,7 +84,18 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     logout,
   };
 
-  // Show preloader only on homepage first visit
+  // Show loading state
+  if (isLoading) {
+    return (
+      <AuthContext.Provider value={contextValue}>
+        <div className="min-h-screen bg-black flex items-center justify-center">
+          <div className="text-white">Loading...</div>
+        </div>
+      </AuthContext.Provider>
+    );
+  }
+
+  // Show preloader on homepage
   if (showPreloader) {
     return (
       <AuthContext.Provider value={contextValue}>
@@ -99,6 +103,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           onComplete={() => {
             setShowPreloader(false);
             sessionStorage.setItem('hasSeenPreloader', 'true');
+            // After preloader, redirect to auth
+            setShouldRedirect(true);
           }}
           duration={2500}
         />
