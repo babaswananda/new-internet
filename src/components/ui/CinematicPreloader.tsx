@@ -263,78 +263,108 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="w-full h-screen flex items-center justify-center relative"
+                  className="w-full h-screen flex items-center justify-center relative bg-white"
                 >
-                  {/* Terminal scrolling lines background */}
-                  <div className="absolute inset-0 overflow-hidden">
-                    {Array.from({ length: 20 }).map((_, i) => (
+                  {/* Clean minimal background - like screen 2 */}
+                  <div className="absolute inset-0">
+                    {/* Subtle animated lines - minimal like screen 2 */}
+                    {Array.from({ length: 3 }).map((_, i) => (
                       <motion.div
                         key={i}
-                        className="absolute w-full h-px bg-gray-200 opacity-20"
-                        style={{ top: `${i * 5}%` }}
-                        initial={{ x: '-100%' }}
-                        animate={{ x: '100%' }}
+                        className="absolute w-full h-px bg-black opacity-10"
+                        style={{ top: `${30 + i * 20}%` }}
+                        initial={{ scaleX: 0 }}
+                        animate={{ scaleX: [0, 1, 0] }}
                         transition={{
                           duration: 3,
-                          delay: i * 0.1,
+                          delay: i * 0.5,
                           repeat: Infinity,
-                          ease: "linear"
+                          ease: "easeInOut"
                         }}
                       />
                     ))}
                   </div>
 
-                  {/* Terminal boot sequence - CENTERED with BOLD font like hero rotating text */}
-                  <div className="relative z-10 text-black text-center max-w-6xl mx-auto px-4">
+                  {/* Clean centered content - matching screen 2 aesthetic */}
+                  <div className="relative z-10 text-black text-center max-w-4xl mx-auto px-4">
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                      className="text-gray-600 text-3xl md:text-4xl mb-8 font-black"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.3, duration: 0.8 }}
+                      className="space-y-8"
                     >
-                      powered by
-                    </motion.div>
+                      {/* Minimal header */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.5 }}
+                        className="text-gray-500 text-lg font-normal tracking-wide"
+                      >
+                        powered by
+                      </motion.div>
 
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: "auto" }}
-                      transition={{ duration: 0.6, delay: 0.5 }}
-                      className="overflow-hidden mx-auto"
-                    >
-                      <div className="text-4xl md:text-6xl lg:text-7xl font-black space-y-4 flex flex-col items-center">
-                        <div className="flex items-center justify-center">
-                          <span className="font-black">.AgentOS/</span>
-                          <motion.span
-                            animate={{ opacity: [1, 0] }}
-                            transition={{ duration: 0.8, repeat: Infinity }}
-                            className="ml-1 text-gray-400"
-                          >
-                            |
-                          </motion.span>
-                        </div>
-                        <div className="text-gray-400 text-2xl md:text-3xl font-black">+</div>
-                        <div className="flex items-center justify-center">
-                          <span className="font-black">.AlphaRouter/</span>
-                          <motion.span
-                            animate={{ opacity: [1, 0] }}
-                            transition={{ duration: 0.8, repeat: Infinity, delay: 0.2 }}
-                            className="ml-1 text-gray-400"
-                          >
-                            |
-                          </motion.span>
-                        </div>
-                        <div className="text-gray-400 text-2xl md:text-3xl font-black">+</div>
-                        <div className="flex items-center justify-center">
-                          <span className="font-black">.commandline/</span>
-                          <motion.span
-                            animate={{ opacity: [1, 0] }}
-                            transition={{ duration: 0.8, repeat: Infinity, delay: 0.4 }}
-                            className="ml-1 text-gray-400"
-                          >
-                            |
-                          </motion.span>
-                        </div>
-                      </div>
+                      {/* Clean typography stack - like screen 2 */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.8 }}
+                        className="space-y-6"
+                      >
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 1.0, duration: 0.6 }}
+                          className="text-3xl md:text-5xl font-light text-black"
+                        >
+                          AgentOS
+                        </motion.div>
+
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 1.3 }}
+                          className="text-gray-400 text-xl font-light"
+                        >
+                          +
+                        </motion.div>
+
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 1.6, duration: 0.6 }}
+                          className="text-3xl md:text-5xl font-light text-black"
+                        >
+                          AlphaRouter
+                        </motion.div>
+
+                        <motion.div
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ delay: 1.9 }}
+                          className="text-gray-400 text-xl font-light"
+                        >
+                          +
+                        </motion.div>
+
+                        <motion.div
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: 2.2, duration: 0.6 }}
+                          className="text-3xl md:text-5xl font-light text-black"
+                        >
+                          commandline
+                        </motion.div>
+                      </motion.div>
+
+                      {/* Minimal cursor indicator */}
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 1, 0] }}
+                        transition={{ delay: 2.5, duration: 1, repeat: Infinity }}
+                        className="text-gray-400 text-2xl font-light"
+                      >
+                        _
+                      </motion.div>
                     </motion.div>
                   </div>
                 </motion.div>
