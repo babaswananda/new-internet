@@ -283,19 +283,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
       {/* Footer */}
       <Footer />
 
-      {/* Floating Action Button - IO Chat */}
-      <Suspense fallback={null}>
-        <FloatingActionButton
-          items={fabItems}
-          position="bottom-right"
-          mainIcon={
-            <div className="flex items-center justify-center">
-              <span className="text-white font-bold text-lg">IO</span>
-            </div>
-          }
-          mainColor="from-purple-500 to-pink-500"
-        />
-      </Suspense>
+
 
       {/* Scroll to Top Button */}
       <Suspense fallback={null}>

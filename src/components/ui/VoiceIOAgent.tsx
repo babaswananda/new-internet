@@ -48,8 +48,9 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
 
         recognitionRef.current.onresult = (event) => {
           const transcript = event.results[0][0].transcript;
+          console.log('Speech recognition result:', transcript); // Debug log
           setInputText(transcript);
-          handleSendMessage(transcript, true);
+          // Don't auto-send, let user review first
         };
 
         recognitionRef.current.onend = () => {
@@ -72,6 +73,23 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
+  // Listen for messages from the AI voice input iframe
+  useEffect(() => {
+    const handleMessage = (event: MessageEvent) => {
+      // Only accept messages from 21st.dev
+      if (event.origin !== 'https://21st.dev') return;
+
+      // Handle voice input results
+      if (event.data && event.data.type === 'voice-input' && event.data.transcript) {
+        setInputText(event.data.transcript);
+        handleSendMessage(event.data.transcript, true);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
+
   const startListening = () => {
     if (recognitionRef.current && !isListening) {
       setIsListening(true);
@@ -87,21 +105,43 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
   };
 
   const speakText = (text: string) => {
-    if (synthRef.current && voiceEnabled) {
-      // Cancel any ongoing speech
-      synthRef.current.cancel();
-      
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = 0.9;
-      utterance.pitch = 1.1;
-      utterance.volume = 0.8;
-      
-      utterance.onstart = () => setIsSpeaking(true);
-      utterance.onend = () => setIsSpeaking(false);
-      utterance.onerror = () => setIsSpeaking(false);
+    console.log('speakText called with:', text);
+    console.log('voiceEnabled:', voiceEnabled);
+    console.log('synthRef.current:', synthRef.current);
 
-      synthRef.current.speak(utterance);
+    if (!voiceEnabled) {
+      console.log('Voice not enabled');
+      return;
     }
+
+    if (!synthRef.current) {
+      console.log('Speech synthesis not available');
+      return;
+    }
+
+    // Cancel any ongoing speech
+    synthRef.current.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.rate = 0.9;
+    utterance.pitch = 1.1;
+    utterance.volume = 0.8;
+
+    utterance.onstart = () => {
+      console.log('Speech started');
+      setIsSpeaking(true);
+    };
+    utterance.onend = () => {
+      console.log('Speech ended');
+      setIsSpeaking(false);
+    };
+    utterance.onerror = (e) => {
+      console.error('Speech error:', e);
+      setIsSpeaking(false);
+    };
+
+    console.log('About to speak utterance');
+    synthRef.current.speak(utterance);
   };
 
   const stopSpeaking = () => {
@@ -113,47 +153,47 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
 
   const getAIResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
-    
+
     // Handle registry questions
     if (lowerMessage.includes('handle') || lowerMessage.includes('registry') || lowerMessage.includes('claim')) {
       return "Great question about handles! The Handle Registry is your universal AI identity. You can claim handles like @yourname.ai for $50-500+ depending on the tier. Visit /claim to get started, or check out /handle-registry for technical details. Each handle gives you identity across all AI services!";
     }
-    
+
     // Handle tokenomics questions
     if (lowerMessage.includes('token') || lowerMessage.includes('coin') || lowerMessage.includes('price') || lowerMessage.includes('buy')) {
       return "Our three-token economy includes UtilityCoin (UC) for governance, AI Tokens (AIT) for execution gas, and Meme Coins for viral growth. Check out our Friends & Family round at /friends-family for early access, or visit /ai-tokens for full tokenomics details!";
     }
-    
+
     // Handle technical questions
     if (lowerMessage.includes('technical') || lowerMessage.includes('api') || lowerMessage.includes('integrate') || lowerMessage.includes('developer')) {
       return "For technical information, check out our comprehensive documentation at /blog for research papers, /learn-aimademerich for the Protocol Academy, or /book-demo to schedule a technical deep dive with our team. We have SDKs for JavaScript, Python, Go, and mobile platforms!";
     }
-    
+
     // Handle partnership questions
     if (lowerMessage.includes('partner') || lowerMessage.includes('business') || lowerMessage.includes('enterprise') || lowerMessage.includes('integrate')) {
       return "Excellent! We offer multiple partnership tiers including technical integrations, strategic alliances, and enterprise solutions. Visit /partners for details or /book-demo to schedule a partnership discussion. We complement existing AI platforms rather than compete!";
     }
-    
+
     // Handle investment questions
     if (lowerMessage.includes('invest') || lowerMessage.includes('funding') || lowerMessage.includes('round') || lowerMessage.includes('money')) {
       return "We have several investment opportunities! Our Friends & Family round offers early access with bonus tokens, and our AI Tokens ITO provides public access. Visit /friends-family for F&F details or /investors for comprehensive investment information. ROI projections look very promising!";
     }
-    
+
     // Handle demo/meeting requests
     if (lowerMessage.includes('demo') || lowerMessage.includes('meeting') || lowerMessage.includes('call') || lowerMessage.includes('schedule')) {
       return "I'd love to help you schedule a demo! We offer Protocol Overview (30min), Technical Deep Dive (45min), Tokenomics Workshop (60min), and Enterprise Integration sessions. Visit /book-demo to choose your preferred demo type and schedule a time that works for you!";
     }
-    
+
     // Handle general questions
     if (lowerMessage.includes('what is') || lowerMessage.includes('explain') || lowerMessage.includes('about')) {
       return "Unified AI Protocol is the missing infrastructure layer that unifies AI services with decentralized identity. Think of it as the 'internet protocol for AI' - enabling seamless, secure interactions across any AI service with one universal identity. Check out /about for our full story!";
     }
-    
+
     // Handle FAQ requests
     if (lowerMessage.includes('faq') || lowerMessage.includes('questions') || lowerMessage.includes('help')) {
       return "I can help with that! We have a comprehensive FAQ at /faq covering General, Technical, Tokenomics, Partnerships, and Investment questions. You can also browse our research library at /blog or learn through our Protocol Academy at /learn-aimademerich!";
     }
-    
+
     // Default response
     return "Thanks for your question! I'm here to help with anything about Unified AI Protocol. You can ask me about handles, tokens, partnerships, technical details, or investment opportunities. For comprehensive information, check out /faq, /blog, or /book-demo to speak with our team directly!";
   };
@@ -161,6 +201,8 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
   const handleSendMessage = (text?: string, isVoiceInput?: boolean) => {
     const messageText = text || inputText.trim();
     if (!messageText) return;
+
+    console.log('Sending message:', messageText); // Debug log
 
     // Add user message
     const userMessage: Message = {
@@ -175,9 +217,11 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
     setInputText('');
     setIsTyping(true);
 
-    // Simulate typing delay and get AI response
+    // Get AI response immediately
     setTimeout(() => {
       const aiResponse = getAIResponse(messageText);
+      console.log('AI Response:', aiResponse); // Debug log
+
       const agentMessage: Message = {
         id: (Date.now() + 1).toString(),
         type: 'agent',
@@ -190,9 +234,10 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
 
       // Speak the response if voice is enabled
       if (voiceEnabled) {
+        console.log('Speaking response'); // Debug log
         speakText(aiResponse);
       }
-    }, 1000 + Math.random() * 1000);
+    }, 500); // Reduced delay
   };
 
   if (!isOpen) return null;
@@ -261,7 +306,7 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
               </div>
             </div>
           ))}
-          
+
           {isTyping && (
             <div className="flex justify-start">
               <div className="bg-gray-800 text-gray-100 p-3 rounded-lg">
@@ -276,8 +321,22 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
           <div ref={messagesEndRef} />
         </div>
 
-        {/* Input */}
+        {/* AI Voice Input Integration */}
         <div className="p-4 border-t border-purple-500/20">
+          <div className="mb-4">
+            <iframe
+              src="https://21st.dev/kokonutd/ai-voice-input/default"
+              className="w-full h-32 rounded-lg border border-purple-500/30 bg-black/50"
+              title="AI Voice Input"
+              allow="microphone"
+              style={{
+                background: 'transparent',
+                border: '1px solid rgba(168, 85, 247, 0.3)',
+                borderRadius: '8px'
+              }}
+            />
+          </div>
+
           <div className="flex items-center gap-2">
             <input
               type="text"
@@ -288,22 +347,22 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
               className="flex-1 px-3 py-2 bg-black/50 border border-purple-500/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500 text-sm"
             />
             <button
+              onClick={isListening ? stopListening : startListening}
+              className={`p-2 rounded-lg transition-all ${
+                isListening
+                  ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse'
+                  : 'bg-blue-500 hover:bg-blue-600 text-white'
+              }`}
+              title={isListening ? 'Stop listening' : 'Start voice input'}
+            >
+              {isListening ? '🔴' : '🎤'}
+            </button>
+            <button
               onClick={() => handleSendMessage()}
               disabled={!inputText.trim()}
               className="p-2 bg-purple-500 hover:bg-purple-600 disabled:bg-gray-600 disabled:cursor-not-allowed text-white rounded-lg transition-all"
             >
               📤
-            </button>
-            <button
-              onClick={isListening ? stopListening : startListening}
-              className={`p-2 rounded-lg transition-all ${
-                isListening 
-                  ? 'bg-red-500 hover:bg-red-600 text-white animate-pulse' 
-                  : 'bg-green-500 hover:bg-green-600 text-white'
-              }`}
-              title={isListening ? 'Stop listening' : 'Start voice input'}
-            >
-              🎤
             </button>
             {isSpeaking && (
               <button
@@ -316,7 +375,7 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
             )}
           </div>
           <p className="text-xs text-gray-400 mt-2 text-center">
-            Type your question or click 🎤 to speak
+            Use the AI voice input above or type your question below
           </p>
         </div>
       </motion.div>

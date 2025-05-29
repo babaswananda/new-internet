@@ -31,9 +31,19 @@ const SpaceParticlesBackgroundComponent: React.FC<SpaceParticlesBackgroundProps>
 }) => {
   // Only run on client side
   const [isMounted, setIsMounted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setIsMounted(true);
+
+    // Mobile detection
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
   const containerRef = useRef<HTMLDivElement>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -59,7 +69,7 @@ const SpaceParticlesBackgroundComponent: React.FC<SpaceParticlesBackgroundProps>
 
   // Handle mouse movement for interactive effects
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!interactive) return;
+    if (!optimizedInteractive) return;
 
     const { left, top } = containerRef.current?.getBoundingClientRect() || { left: 0, top: 0 };
     const x = e.clientX - left;
@@ -107,12 +117,18 @@ const SpaceParticlesBackgroundComponent: React.FC<SpaceParticlesBackgroundProps>
 
   const { min: minDuration, max: maxDuration } = getSpeedValues();
 
+  // Mobile-optimized particle count
+  const optimizedParticleCount = isMobile ? Math.min(particleCount / 2, 30) : particleCount;
+  const optimizedInteractive = isMobile ? false : interactive;
+  const optimizedDepth = isMobile ? false : depth;
+  const optimizedTinyParticles = isMobile ? false : tinyParticles;
+
   // Generate particles
-  const particles = Array.from({ length: particleCount }).map((_, index) => {
+  const particles = Array.from({ length: optimizedParticleCount }).map((_, index) => {
     // Random positions
     const x = Math.random() * 100; // percentage of container width
     const y = Math.random() * 100; // percentage of container height
-    const z = depth ? Math.random() : 0.5; // depth position (0 to 1)
+    const z = optimizedDepth ? Math.random() : 0.5; // depth position (0 to 1)
 
     // Random movement parameters
     const duration = minDuration + Math.random() * (maxDuration - minDuration);
@@ -130,7 +146,7 @@ const SpaceParticlesBackgroundComponent: React.FC<SpaceParticlesBackgroundProps>
     const normalizedDistance = Math.min(distance / maxDistance, 1);
 
     // Calculate repulsion effect (stronger when closer)
-    const repulsionStrength = isHovering && interactive ? (1 - normalizedDistance) * 30 : 0;
+    const repulsionStrength = isHovering && optimizedInteractive ? (1 - normalizedDistance) * 30 : 0;
     const angle = Math.atan2(dy, dx);
 
     const translateX = repulsionStrength * Math.cos(angle);
@@ -171,7 +187,7 @@ const SpaceParticlesBackgroundComponent: React.FC<SpaceParticlesBackgroundProps>
   });
 
   // Generate tiny white particles in the background
-  const tinyWhiteParticles = tinyParticles ? Array.from({ length: 200 }).map((_, index) => {
+  const tinyWhiteParticles = optimizedTinyParticles ? Array.from({ length: isMobile ? 50 : 200 }).map((_, index) => {
     // Random positions
     const x = Math.random() * 100; // percentage of container width
     const y = Math.random() * 100; // percentage of container height

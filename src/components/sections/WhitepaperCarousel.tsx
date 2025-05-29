@@ -21,7 +21,7 @@ const whitepapers: Whitepaper[] = [
   {
     id: 'unified-ai-protocol',
     title: 'Unified AI Protocol',
-    description: 'The foundational architecture for the Agentic Internet, defining how AI agents communicate and collaborate.',
+    description: 'The foundational architecture for the Agentic Internet, defining how AI agents communicate and collaborate across platforms.',
     category: 'Protocol',
     pages: 47,
     downloadUrl: '/whitepapers/unified-ai-protocol.pdf',
@@ -44,9 +44,9 @@ const whitepapers: Whitepaper[] = [
   },
   {
     id: 'agentic-economics',
-    title: 'Agentic Economics',
+    title: 'Agentic Economics Research',
     description: 'Economic models and tokenomics for AI agent marketplaces and the creator economy.',
-    category: 'Economics',
+    category: 'Research',
     pages: 28,
     downloadUrl: '/whitepapers/agentic-economics.pdf',
     securityLevel: 'restricted',
@@ -57,7 +57,7 @@ const whitepapers: Whitepaper[] = [
   {
     id: 'ion-protocol',
     title: 'ION Protocol Deep Dive',
-    description: 'Intelligent Ontology Network architecture for semantic AI agent communication.',
+    description: 'Intelligent Ontology Network architecture for semantic AI agent communication and knowledge sharing.',
     category: 'Technical',
     pages: 56,
     downloadUrl: '/whitepapers/ion-protocol.pdf',
@@ -69,7 +69,7 @@ const whitepapers: Whitepaper[] = [
   {
     id: 'security-framework',
     title: 'Security Framework',
-    description: 'Cryptographic security protocols and threat models for the Agentic Internet.',
+    description: 'Cryptographic security protocols and threat models for the Agentic Internet infrastructure.',
     category: 'Security',
     pages: 41,
     downloadUrl: '/whitepapers/security-framework.pdf',
@@ -77,6 +77,42 @@ const whitepapers: Whitepaper[] = [
     releaseDate: '2024-03-15',
     version: 'v2.5',
     icon: '🔐'
+  },
+  {
+    id: 'ai-agent-architecture',
+    title: 'AI Agent Architecture',
+    description: 'Comprehensive research on autonomous AI agent design patterns and deployment strategies.',
+    category: 'Research',
+    pages: 63,
+    downloadUrl: '/whitepapers/ai-agent-architecture.pdf',
+    securityLevel: 'public',
+    releaseDate: '2024-04-01',
+    version: 'v1.0',
+    icon: '🤖'
+  },
+  {
+    id: 'decentralized-intelligence',
+    title: 'Decentralized Intelligence',
+    description: 'Research paper on distributed AI systems and collective intelligence networks.',
+    category: 'Research',
+    pages: 38,
+    downloadUrl: '/whitepapers/decentralized-intelligence.pdf',
+    securityLevel: 'public',
+    releaseDate: '2024-04-15',
+    version: 'v1.2',
+    icon: '🌐'
+  },
+  {
+    id: 'quantum-ai-protocols',
+    title: 'Quantum AI Protocols',
+    description: 'Cutting-edge research on quantum computing integration with AI agent networks.',
+    category: 'Research',
+    pages: 52,
+    downloadUrl: '/whitepapers/quantum-ai-protocols.pdf',
+    securityLevel: 'restricted',
+    releaseDate: '2024-05-01',
+    version: 'v0.9',
+    icon: '⚛️'
   }
 ];
 
@@ -85,21 +121,24 @@ const WhitepaperCarousel: React.FC = () => {
   const [isRevealing, setIsRevealing] = useState<string | null>(null);
   const [revealedPapers, setRevealedPapers] = useState<Set<string>>(new Set());
 
+  const cardsPerSlide = 3;
+  const totalSlides = Math.ceil(whitepapers.length / cardsPerSlide);
+
   // Auto-advance carousel
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % whitepapers.length);
-    }, 6000);
+      setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    }, 8000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [totalSlides]);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % whitepapers.length);
+    setCurrentIndex((prev) => (prev + 1) % totalSlides);
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + whitepapers.length) % whitepapers.length);
+    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
   };
 
   const handleReveal = (paperId: string) => {
@@ -131,24 +170,16 @@ const WhitepaperCarousel: React.FC = () => {
   return (
     <div className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
+        {/* Header - STATIC */}
         <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-5xl md:text-6xl font-bold text-white mb-6"
-          >
-            📄 White Papers and Research Papers
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-xl text-gray-300 max-w-3xl mx-auto"
-          >
-            Explore the technical foundations and research behind the Agentic Internet
-          </motion.p>
+          <h2 className="text-5xl md:text-6xl font-bold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500">
+              📄 Research Library
+            </span>
+          </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            Comprehensive white papers and research documents exploring the technical foundations, protocols, and innovations behind the Agentic Internet.
+          </p>
         </div>
 
         {/* Carousel Container */}
@@ -175,94 +206,76 @@ const WhitepaperCarousel: React.FC = () => {
               animate={{ x: `-${currentIndex * 100}%` }}
               transition={{ duration: 0.8, ease: "easeInOut" }}
             >
-              {whitepapers.map((paper, index) => (
-                <div key={paper.id} className="w-full flex-shrink-0 px-4">
-                  <motion.div
-                    className={`relative p-8 rounded-2xl backdrop-blur-sm border ${getSecurityColor(paper.securityLevel)} overflow-hidden group cursor-pointer`}
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.3 }}
-                    onClick={() => !revealedPapers.has(paper.id) && handleReveal(paper.id)}
-                  >
-                    {/* Security Layer Overlay */}
-                    <AnimatePresence>
-                      {!revealedPapers.has(paper.id) && (
+              {Array.from({ length: totalSlides }).map((_, slideIndex) => (
+                <div key={slideIndex} className="w-full flex-shrink-0 px-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {whitepapers
+                      .slice(slideIndex * cardsPerSlide, (slideIndex + 1) * cardsPerSlide)
+                      .map((paper) => (
                         <motion.div
-                          className="absolute inset-0 bg-gradient-to-br from-black/80 via-gray-900/60 to-black/80 backdrop-blur-sm z-10 flex items-center justify-center"
-                          exit={{ opacity: 0, scale: 1.1 }}
-                          transition={{ duration: 2, ease: "easeOut" }}
+                          key={paper.id}
+                          className={`relative p-6 rounded-lg backdrop-blur-sm border ${getSecurityColor(paper.securityLevel)} overflow-hidden group cursor-pointer bg-white shadow-lg`}
+                          style={{
+                            width: '280px',
+                            height: '360px', // 8.5:11 ratio approximation
+                            aspectRatio: '8.5/11'
+                          }}
+                          whileHover={{ scale: 1.02, rotateY: 5 }}
+                          transition={{ duration: 0.3 }}
                         >
-                          {isRevealing === paper.id ? (
-                            <motion.div
-                              className="text-center"
-                              initial={{ scale: 0.8, opacity: 0 }}
-                              animate={{ scale: 1, opacity: 1 }}
-                              transition={{ duration: 0.5 }}
-                            >
-                              <div className="w-16 h-16 mx-auto mb-4 rounded-full border-4 border-purple-500 border-t-transparent animate-spin"></div>
-                              <p className="text-white font-semibold">Decrypting...</p>
-                            </motion.div>
-                          ) : (
-                            <motion.div
-                              className="text-center"
-                              whileHover={{ scale: 1.1 }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center">
-                                {getSecurityIcon(paper.securityLevel)}
-                              </div>
-                              <p className="text-white font-semibold mb-2">Secure Document</p>
-                              <p className="text-gray-300 text-sm">Click to reveal</p>
-                            </motion.div>
-                          )}
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
 
-                    {/* Content */}
-                    <div className="relative z-0">
-                      <div className="flex items-start justify-between mb-6">
-                        <div className="flex items-center gap-4">
-                          <div className="text-4xl">{paper.icon}</div>
-                          <div>
-                            <h3 className="text-2xl font-bold text-white mb-2">{paper.title}</h3>
-                            <div className="flex items-center gap-4 text-sm text-gray-400">
-                              <span className="px-2 py-1 rounded bg-purple-500/20 text-purple-300">{paper.category}</span>
-                              <span>{paper.pages} pages</span>
-                              <span>{paper.version}</span>
-                            </div>
+
+                    {/* Paper Content */}
+                    <div className="relative z-0 h-full flex flex-col text-black">
+                      {/* Paper Header */}
+                      <div className="border-b border-gray-200 pb-3 mb-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-2xl">{paper.icon}</span>
+                          <span className="text-xs text-gray-500 uppercase tracking-wide">{paper.category}</span>
+                        </div>
+                        <h3 className="text-lg font-bold text-black leading-tight">{paper.title}</h3>
+                        <div className="flex items-center gap-3 text-xs text-gray-600 mt-1">
+                          <span>{paper.pages} pages</span>
+                          <span>•</span>
+                          <span>{paper.version}</span>
+                          <span>•</span>
+                          <span className="capitalize">{paper.securityLevel}</span>
+                        </div>
+                      </div>
+
+                      {/* Paper Abstract */}
+                      <div className="flex-1 mb-4">
+                        <p className="text-sm text-gray-700 leading-relaxed">
+                          {paper.description}
+                        </p>
+                      </div>
+
+                      {/* Paper Footer */}
+                      <div className="border-t border-gray-200 pt-3">
+                        <div className="flex items-center justify-between">
+                          <div className="text-xs text-gray-500">
+                            {new Date(paper.releaseDate).toLocaleDateString()}
                           </div>
+                          <motion.button
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="px-3 py-1 bg-black text-white text-xs font-medium rounded hover:bg-gray-800 transition-all"
+                          >
+                            Download
+                          </motion.button>
                         </div>
-                        <div className="flex items-center gap-2">
-                          {getSecurityIcon(paper.securityLevel)}
-                          <span className="text-xs text-gray-400 capitalize">{paper.securityLevel}</span>
-                        </div>
-                      </div>
-
-                      <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                        {paper.description}
-                      </p>
-
-                      <div className="flex items-center justify-between">
-                        <div className="text-sm text-gray-400">
-                          Released: {new Date(paper.releaseDate).toLocaleDateString()}
-                        </div>
-                        <motion.button
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-purple-500/30 transition-all"
-                        >
-                          Download PDF
-                        </motion.button>
                       </div>
                     </div>
 
-                    {/* Digital Grid Pattern */}
-                    <div className="absolute inset-0 opacity-5 pointer-events-none">
-                      <div className="w-full h-full" style={{
-                        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-                      }}></div>
-                    </div>
-                  </motion.div>
+                          {/* Digital Grid Pattern */}
+                          <div className="absolute inset-0 opacity-5 pointer-events-none">
+                            <div className="w-full h-full" style={{
+                              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+                            }}></div>
+                          </div>
+                        </motion.div>
+                      ))}
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -270,7 +283,7 @@ const WhitepaperCarousel: React.FC = () => {
 
           {/* Indicators */}
           <div className="flex justify-center gap-2 mt-8">
-            {whitepapers.map((_, index) => (
+            {Array.from({ length: totalSlides }).map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}

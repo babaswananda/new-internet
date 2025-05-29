@@ -77,8 +77,8 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-white">
-              UNIFIED AI I/O
+            <span className="text-white">
+              UNIFIED AI <span className="text-2xl">🤖</span>
             </span>
           </motion.div>
         </Link>
@@ -123,7 +123,7 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
 
           <NavLink href="/models">🤖 MODELS</NavLink>
 
-          <NavLink href="/docs">📚 DOCS</NavLink>
+          <NavLink href="/documentation">📚 DOCS</NavLink>
 
           <NavLink href="/support">🛟 SUPPORT</NavLink>
 
@@ -136,26 +136,43 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="hidden md:block px-2 py-1 text-gray-900 font-semibold text-xs rounded border transition-all relative overflow-hidden group"
+              className="hidden md:block px-3 py-2 text-gray-900 font-bold text-xs rounded-md border transition-all relative overflow-hidden group"
               style={{
-                background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 25%, #dee2e6 50%, #ced4da 75%, #adb5bd 100%)',
-                borderColor: '#6c757d',
-                boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.1)'
+                background: 'linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 15%, #d0d0d0 30%, #c8c8c8 45%, #b8b8b8 60%, #a8a8a8 75%, #989898 90%, #888888 100%)',
+                borderColor: '#666666',
+                boxShadow: `
+                  inset 0 2px 4px rgba(255,255,255,0.9),
+                  inset 0 -2px 4px rgba(0,0,0,0.2),
+                  0 2px 8px rgba(0,0,0,0.15),
+                  0 0 0 1px rgba(255,255,255,0.3)
+                `,
+                textShadow: '0 1px 1px rgba(255,255,255,0.8)'
               }}
             >
               <span className="relative z-10 flex items-center gap-1">
                 <span className="text-xs">⚡</span>
                 Get Powered by A.I.
               </span>
-              {/* GPU chip pattern */}
-              <div className="absolute inset-0 opacity-20">
-                <div className="absolute inset-1 border border-gray-400/30 rounded-sm"></div>
-                <div className="absolute top-1 left-1 w-0.5 h-0.5 bg-gray-600 rounded-full"></div>
-                <div className="absolute top-1 right-1 w-0.5 h-0.5 bg-gray-600 rounded-full"></div>
-                <div className="absolute bottom-1 left-1 w-0.5 h-0.5 bg-gray-600 rounded-full"></div>
-                <div className="absolute bottom-1 right-1 w-0.5 h-0.5 bg-gray-600 rounded-full"></div>
-                {/* Circuit lines */}
-                <div className="absolute top-2 left-2 right-2 h-px bg-gray-500/30"></div>
+
+              {/* Stainless Steel Chip Pattern */}
+              <div className="absolute inset-0 opacity-30">
+                {/* Main chip border */}
+                <div className="absolute inset-1 border border-gray-500/40 rounded-sm bg-gradient-to-br from-gray-300/20 to-gray-600/20"></div>
+
+                {/* Corner connection points */}
+                <div className="absolute top-1 left-1 w-1 h-1 bg-gray-700 rounded-full shadow-inner"></div>
+                <div className="absolute top-1 right-1 w-1 h-1 bg-gray-700 rounded-full shadow-inner"></div>
+                <div className="absolute bottom-1 left-1 w-1 h-1 bg-gray-700 rounded-full shadow-inner"></div>
+                <div className="absolute bottom-1 right-1 w-1 h-1 bg-gray-700 rounded-full shadow-inner"></div>
+
+                {/* Circuit traces */}
+                <div className="absolute top-2 left-3 right-3 h-px bg-gradient-to-r from-transparent via-gray-600/50 to-transparent"></div>
+                <div className="absolute bottom-2 left-3 right-3 h-px bg-gradient-to-r from-transparent via-gray-600/50 to-transparent"></div>
+                <div className="absolute left-2 top-3 bottom-3 w-px bg-gradient-to-b from-transparent via-gray-600/50 to-transparent"></div>
+                <div className="absolute right-2 top-3 bottom-3 w-px bg-gradient-to-b from-transparent via-gray-600/50 to-transparent"></div>
+
+                {/* Central processing unit indicator */}
+                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gradient-to-br from-gray-400 to-gray-600 rounded-sm shadow-inner"></div>
                 <div className="absolute bottom-2 left-2 right-2 h-px bg-gray-500/30"></div>
               </div>
               {/* Glowing edge effect on hover */}
@@ -215,30 +232,49 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
             ))}
             <Link href="/blog" className="text-orange-400 hover:text-orange-300 py-2 transition-colors">📰 Research</Link>
             <Link href="/models" className="text-cyan-400 hover:text-cyan-300 py-2 transition-colors">🤖 Models</Link>
-            <Link href="/docs" className="text-blue-400 hover:text-blue-300 py-2 transition-colors">📚 Documentation</Link>
+            <Link href="/documentation" className="text-blue-400 hover:text-blue-300 py-2 transition-colors">📚 Documentation</Link>
             <Link href="/support" className="text-green-400 hover:text-green-300 py-2 transition-colors">🛟 Support</Link>
             <Link href="/ai-tokens" className="w-full">
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full px-2 py-1 text-gray-900 font-semibold text-xs rounded border transition-all mb-2 relative overflow-hidden group"
+                className="w-full px-3 py-2 text-gray-900 font-bold text-xs rounded-md border transition-all mb-2 relative overflow-hidden group"
                 style={{
-                  background: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 25%, #dee2e6 50%, #ced4da 75%, #adb5bd 100%)',
-                  borderColor: '#6c757d',
-                  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.1)'
+                  background: 'linear-gradient(145deg, #f0f0f0 0%, #e8e8e8 15%, #d0d0d0 30%, #c8c8c8 45%, #b8b8b8 60%, #a8a8a8 75%, #989898 90%, #888888 100%)',
+                  borderColor: '#666666',
+                  boxShadow: `
+                    inset 0 2px 4px rgba(255,255,255,0.9),
+                    inset 0 -2px 4px rgba(0,0,0,0.2),
+                    0 2px 8px rgba(0,0,0,0.15),
+                    0 0 0 1px rgba(255,255,255,0.3)
+                  `,
+                  textShadow: '0 1px 1px rgba(255,255,255,0.8)'
                 }}
               >
                 <span className="relative z-10 flex items-center justify-center gap-1">
                   <span className="text-xs">⚡</span>
                   Get Powered by A.I.
                 </span>
-                {/* GPU chip pattern */}
-                <div className="absolute inset-0 opacity-20">
-                  <div className="absolute inset-1 border border-gray-400/30 rounded-sm"></div>
-                  <div className="absolute top-1 left-1 w-0.5 h-0.5 bg-gray-600 rounded-full"></div>
-                  <div className="absolute top-1 right-1 w-0.5 h-0.5 bg-gray-600 rounded-full"></div>
-                  <div className="absolute bottom-1 left-1 w-0.5 h-0.5 bg-gray-600 rounded-full"></div>
-                  <div className="absolute bottom-1 right-1 w-0.5 h-0.5 bg-gray-600 rounded-full"></div>
+
+                {/* Stainless Steel Chip Pattern - Mobile */}
+                <div className="absolute inset-0 opacity-30">
+                  {/* Main chip border */}
+                  <div className="absolute inset-1 border border-gray-500/40 rounded-sm bg-gradient-to-br from-gray-300/20 to-gray-600/20"></div>
+
+                  {/* Corner connection points */}
+                  <div className="absolute top-1 left-1 w-1 h-1 bg-gray-700 rounded-full shadow-inner"></div>
+                  <div className="absolute top-1 right-1 w-1 h-1 bg-gray-700 rounded-full shadow-inner"></div>
+                  <div className="absolute bottom-1 left-1 w-1 h-1 bg-gray-700 rounded-full shadow-inner"></div>
+                  <div className="absolute bottom-1 right-1 w-1 h-1 bg-gray-700 rounded-full shadow-inner"></div>
+
+                  {/* Circuit traces */}
+                  <div className="absolute top-2 left-3 right-3 h-px bg-gradient-to-r from-transparent via-gray-600/50 to-transparent"></div>
+                  <div className="absolute bottom-2 left-3 right-3 h-px bg-gradient-to-r from-transparent via-gray-600/50 to-transparent"></div>
+                  <div className="absolute left-2 top-3 bottom-3 w-px bg-gradient-to-b from-transparent via-gray-600/50 to-transparent"></div>
+                  <div className="absolute right-2 top-3 bottom-3 w-px bg-gradient-to-b from-transparent via-gray-600/50 to-transparent"></div>
+
+                  {/* Central processing unit indicator */}
+                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gradient-to-br from-gray-400 to-gray-600 rounded-sm shadow-inner"></div>
                 </div>
                 {/* Glowing edge effect on hover */}
                 <div className="absolute -inset-0.5 rounded bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-75 transition-opacity duration-300 blur-sm -z-10"></div>

@@ -61,23 +61,56 @@ export default function CinematicHeroBanner({
     return () => clearInterval(interval);
   }, [isPlaying, slides.length, autoPlayInterval]);
 
-  // Video control
+  // Video control with better error handling
   useEffect(() => {
     if (videoRef.current) {
+      const video = videoRef.current;
+
+      const handleLoadedData = () => {
+        setIsLoaded(true);
+        if (isPlaying) {
+          video.play().catch(() => {
+            // Silently handle autoplay failures
+            setIsPlaying(false);
+          });
+        }
+      };
+
+      const handleError = () => {
+        setIsLoaded(true); // Still show content even if video fails
+      };
+
+      video.addEventListener('loadeddata', handleLoadedData);
+      video.addEventListener('error', handleError);
+
+      return () => {
+        video.removeEventListener('loadeddata', handleLoadedData);
+        video.removeEventListener('error', handleError);
+      };
+    }
+  }, [currentSlide]);
+
+  // Separate effect for play/pause control
+  useEffect(() => {
+    if (videoRef.current && isLoaded) {
       if (isPlaying) {
-        videoRef.current.play();
+        videoRef.current.play().catch(() => {
+          setIsPlaying(false);
+        });
       } else {
         videoRef.current.pause();
       }
     }
-  }, [isPlaying, currentSlide]);
+  }, [isPlaying, isLoaded]);
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
+    setIsLoaded(false); // Reset loading state for new slide
   };
 
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+    setIsLoaded(false); // Reset loading state for new slide
   };
 
   const togglePlayPause = () => {
@@ -174,18 +207,23 @@ export default function CinematicHeroBanner({
                 src={currentSlideData.src}
                 poster={currentSlideData.poster}
                 className="w-full h-full object-cover"
-                autoPlay={isPlaying}
+                autoPlay={false} // Controlled by useEffect
                 muted={isMuted}
                 loop
                 playsInline
+                preload="metadata"
+                onLoadStart={() => setIsLoaded(false)}
                 onLoadedData={() => setIsLoaded(true)}
+                onError={() => setIsLoaded(true)}
               />
             ) : (
               <img
                 src={currentSlideData.src}
                 alt={currentSlideData.title}
                 className="w-full h-full object-cover"
+                onLoadStart={() => setIsLoaded(false)}
                 onLoad={() => setIsLoaded(true)}
+                onError={() => setIsLoaded(true)}
               />
             )}
           </motion.div>

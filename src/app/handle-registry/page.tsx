@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { GlowingCard } from '@/components/ui/glowing-card';
@@ -15,6 +15,10 @@ export default function HandleRegistryPage() {
   });
 
   const [selectedTier, setSelectedTier] = useState('developer');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedTLD, setSelectedTLD] = useState('.ai');
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -42,11 +46,22 @@ export default function HandleRegistryPage() {
       title: 'Developer Handles',
       subtitle: 'Human Identity Layer',
       description: 'Real human users — builders, creators, architects, sovereign operators.',
-      pricing: 'Premium',
-      pricingDesc: 'Reflects scarcity, human uniqueness, and reputational staking. $50–$500+',
+      pricing: '$5-50/year',
+      pricingDesc: 'Your identity in the agentic internet. Premium names up to $500. Build your empire.',
       color: 'from-blue-500 to-cyan-500',
       borderColor: 'border-blue-500/20',
-      tlds: ['.aideveloper', '.devagency', '.vibecoder', '.chiefvibeofficer', '.aioperator', '.commandline', '.codebunker'],
+      tlds: [
+        '.aideveloper', '.vibecoder', '.chiefvibeofficer', '.aioperator', '.commandline', '.codebunker',
+        '.designarchitect', '.devcontainer', '.devcontainers', '.devvault', '.devkeys', '.devfleet',
+        '.devpaths', '.devstructure', '.agencydev', '.sourcemap', '.codeledger', '.codexplant',
+        '.codefilm', '.chatcode', '.mygpt', '.spatialio', '.voicenode', '.vibebrowsing', '.mcpagency',
+        '.mcpoptimization', '.mcpapi', '.mcphost', '.mcptools', '.uicomponents', '.smartdash',
+        '.devkit', '.operatingsystem', '.techcompany', '.businessmachines', '.creatorsagency',
+        '.techvillage', '.blacktechexchange', '.blacktechmarket', '.blacktechhub', '.stackideas',
+        '.instalinks', '.digitalspaces', '.webinar', '.clientspro', '.clientmetrics', '.connectauth',
+        '.filmbase', '.actortraining', '.storeofknowledge', '.positionstrader', '.startupinvestor',
+        '.investoralerts', '.daoinvestor', '.followatrade', '.tradinglive'
+      ],
       useCases: [
         'Developer vaults and dashboards',
         'Git-based repo linking or VibeCode integration',
@@ -61,11 +76,19 @@ export default function HandleRegistryPage() {
       title: 'Agent Handles',
       subtitle: 'AI Identity Layer',
       description: 'AI agents, AI avatars, autonomous bots, and deployed service agents.',
-      pricing: 'Subsidized',
-      pricingDesc: 'Agent handles are priced low for scale. Starting at $1–$5/handle.',
+      pricing: '$0.10-5/month',
+      pricingDesc: 'Every agent deserves an identity. Volume discounts. Barely-a-thought pricing.',
       color: 'from-purple-500 to-pink-500',
       borderColor: 'border-purple-500/20',
-      tlds: ['.aiagents', '.aiavatars', '.agentGPT', '.botstack', '.aibackend', '.agentflow'],
+      tlds: [
+        '.aiagents', '.aiavatars', '.agentGPT', '.botstack', '.aibackend', '.agentflow',
+        '.superagents', '.smarteragents', '.remoteagents', '.remoteagent', '.agentmemory', '.agentertainment',
+        '.talktomyagents', '.callmyagent', '.humanoidai', '.metrobot', '.nanobrand', '.divinegpt',
+        '.llmsgpt', '.creditgpt', '.interngpt', '.gptneo', '.gptforall', '.lawyergpt', '.comgpt',
+        '.llmgpt', '.nlpgpt', '.semanticai', '.webllm', '.edullm', '.chatbuddyai', '.ninjachat',
+        '.vibechat', '.bot', '.ai', '.auto', '.smart', '.intelligent', '.neural', '.machine', '.robot',
+        '.assistant', '.helper', '.agent', '.automation', '.cognitive', '.learning', '.mind'
+      ],
       useCases: [
         'Named agents with task-specific functionality',
         'Chatbots, workflow agents, commerce agents',
@@ -80,11 +103,15 @@ export default function HandleRegistryPage() {
       title: 'Endpoint Handles',
       subtitle: 'Infrastructure Layer',
       description: 'Invisible endpoints, API routers, routing nodes, reverse proxies, ephemeral agents.',
-      pricing: 'Volume-based',
-      pricingDesc: 'Compute-tier pricing like proxies or VPN endpoints. $0.01/hr usage.',
+      pricing: '$0.001-0.10/hour',
+      pricingDesc: 'Invisible but essential. Usage-based pricing. Scale without thinking.',
       color: 'from-green-500 to-teal-500',
       borderColor: 'border-green-500/20',
-      tlds: ['.router', '.endpoint', '.nodeid', '.accesslayer', '.transmit', '.resolve'],
+      tlds: [
+        '.router', '.endpoint', '.nodeid', '.accesslayer', '.transmit', '.resolve',
+        '.network', '.cloud', '.server', '.host', '.node', '.api', '.gateway', '.proxy',
+        '.infrastructure', '.protocol', '.service', '.compute', '.edge', '.mesh', '.link'
+      ],
       useCases: [
         'Internal routing for agent-to-agent comms',
         'Load balancing, request delegation, ephemeral instances',
@@ -99,8 +126,8 @@ export default function HandleRegistryPage() {
       title: 'Session Handles',
       subtitle: 'Expiring, Disposable IDs',
       description: 'Temporary identities for conversations, customer service, and anonymous execution.',
-      pricing: 'Burn-priced',
-      pricingDesc: 'Like API tokens. Expire after 1h/24h/7d. Keeps namespace clean.',
+      pricing: '$0.001-1/session',
+      pricingDesc: 'Use it, burn it, move on. Keeps namespace clean. Anonymous by design.',
       color: 'from-orange-500 to-red-500',
       borderColor: 'border-orange-500/20',
       tlds: ['.session', '.temp', '.anon', '.chat', '.ephemeral', '.disposable'],
@@ -163,14 +190,17 @@ export default function HandleRegistryPage() {
                   </span>
                 </h1>
                 <p className="text-xl md:text-2xl text-gray-300 mb-8">
-                  <HeaderText>Official Handle Registration Framework</HeaderText>
+                  <HeaderText>Carriers of the New Internet</HeaderText>
                 </p>
                 <div className="max-w-4xl mx-auto space-y-4">
                   <p className="text-lg text-yellow-400 font-bold">
-                    Handles are not usernames.
+                    The DNS of the Agentic Internet
                   </p>
                   <p className="text-lg text-gray-300">
-                    They are protocol-native identities tied to vaults, agents, and intelligence flows.
+                    Protocol-native identities for humans, AI agents, infrastructure, and sessions. Deploy agents as easily as sending an email.
+                  </p>
+                  <p className="text-base text-purple-400 font-semibold">
+                    "The cost should never be the reason someone doesn't deploy an agent"
                   </p>
                 </div>
               </motion.div>
@@ -295,58 +325,74 @@ export default function HandleRegistryPage() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-blue-500/20">
                     <h3 className="text-xl font-bold text-blue-400 mb-4">Solo Builder</h3>
-                    <div className="text-3xl font-bold text-white mb-2">$99</div>
+                    <div className="text-3xl font-bold text-white mb-2">$25<span className="text-lg text-gray-400">/year</span></div>
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center text-gray-300 text-sm">
                         <span className="mr-2 text-green-400">•</span>
-                        1 human handle
+                        1 Developer Handle (.aideveloper)
                       </div>
                       <div className="flex items-center text-gray-300 text-sm">
                         <span className="mr-2 text-green-400">•</span>
-                        10 agent handles
+                        10 Agent Handles (any TLD)
+                      </div>
+                      <div className="flex items-center text-gray-300 text-sm">
+                        <span className="mr-2 text-green-400">•</span>
+                        100 Session credits
                       </div>
                     </div>
-                    <p className="text-gray-400 text-sm">Ideal for: Indie Dev</p>
+                    <p className="text-gray-400 text-sm">Perfect for: Personal projects & learning</p>
                   </GlowingCard>
 
                   <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-purple-500/20">
                     <h3 className="text-xl font-bold text-purple-400 mb-4">Startup Stack</h3>
-                    <div className="text-3xl font-bold text-white mb-2">$299</div>
+                    <div className="text-3xl font-bold text-white mb-2">$99<span className="text-lg text-gray-400">/year</span></div>
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center text-gray-300 text-sm">
                         <span className="mr-2 text-green-400">•</span>
-                        1 human handle
+                        1 Developer Handle (premium TLD)
                       </div>
                       <div className="flex items-center text-gray-300 text-sm">
                         <span className="mr-2 text-green-400">•</span>
-                        50 agent handles
+                        50 Agent Handles
                       </div>
                       <div className="flex items-center text-gray-300 text-sm">
                         <span className="mr-2 text-green-400">•</span>
-                        10 endpoints
+                        10 Endpoint Handles
+                      </div>
+                      <div className="flex items-center text-gray-300 text-sm">
+                        <span className="mr-2 text-green-400">•</span>
+                        1,000 Session credits
                       </div>
                     </div>
-                    <p className="text-gray-400 text-sm">Ideal for: Early-Stage Projects</p>
+                    <p className="text-gray-400 text-sm">Perfect for: Growing businesses & agencies</p>
                   </GlowingCard>
 
                   <GlowingCard className="bg-black/30 backdrop-blur-sm p-6 rounded-lg border border-green-500/20">
-                    <h3 className="text-xl font-bold text-green-400 mb-4">Protocol Operator</h3>
-                    <div className="text-3xl font-bold text-white mb-2">$999</div>
+                    <h3 className="text-xl font-bold text-green-400 mb-4">Enterprise Empire</h3>
+                    <div className="text-3xl font-bold text-white mb-2">$299<span className="text-lg text-gray-400">/year</span></div>
                     <div className="space-y-2 mb-6">
                       <div className="flex items-center text-gray-300 text-sm">
                         <span className="mr-2 text-green-400">•</span>
-                        3 human handles
+                        3 Developer Handles
                       </div>
                       <div className="flex items-center text-gray-300 text-sm">
                         <span className="mr-2 text-green-400">•</span>
-                        250 agent handles
+                        200 Agent Handles
                       </div>
                       <div className="flex items-center text-gray-300 text-sm">
                         <span className="mr-2 text-green-400">•</span>
-                        50 endpoints
+                        50 Endpoint Handles
+                      </div>
+                      <div className="flex items-center text-gray-300 text-sm">
+                        <span className="mr-2 text-green-400">•</span>
+                        10,000 Session credits
+                      </div>
+                      <div className="flex items-center text-gray-300 text-sm">
+                        <span className="mr-2 text-green-400">•</span>
+                        White-label options
                       </div>
                     </div>
-                    <p className="text-gray-400 text-sm">Ideal for: Protocol/Infra Teams</p>
+                    <p className="text-gray-400 text-sm">Perfect for: Enterprises & protocol teams</p>
                   </GlowingCard>
                 </div>
                 <p className="text-center text-gray-400 mt-6">

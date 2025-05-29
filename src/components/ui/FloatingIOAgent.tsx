@@ -28,7 +28,7 @@ const FloatingIOAgent: React.FC = () => {
 
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY > lastScrollY && currentScrollY > 100) {
         // Scrolling down
         setIsVisible(false);
@@ -36,7 +36,7 @@ const FloatingIOAgent: React.FC = () => {
         // Scrolling up
         setIsVisible(true);
       }
-      
+
       lastScrollY = currentScrollY;
     };
 
@@ -116,13 +116,13 @@ const FloatingIOAgent: React.FC = () => {
                     </motion.div>
                   ) : (
                     <motion.div
-                      key="io"
+                      key="ai"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
                       className="text-white font-bold text-lg"
                     >
-                      IO
+                      🤖
                     </motion.div>
                   )}
                 </AnimatePresence>

@@ -70,9 +70,11 @@ const AgentOSSection: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-5xl font-bold mb-8 text-center"
+            className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 text-center"
           >
-            AgentOS
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500">
+              AgentOS
+            </span>
           </motion.h2>
 
           <motion.p

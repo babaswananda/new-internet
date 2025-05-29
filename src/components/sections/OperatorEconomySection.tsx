@@ -42,9 +42,11 @@ const OperatorEconomySection: React.FC = () => {
         >
           <motion.h2
             variants={itemVariants}
-            className="text-4xl md:text-6xl font-bold mb-8 text-center"
+            className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 text-center"
           >
-            OPERATOR ECONOMY + .DEVCOMMUNITY
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500">
+              OPERATOR ECONOMY + .DEVCOMMUNITY
+            </span>
           </motion.h2>
 
           <motion.p
