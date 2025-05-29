@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { supabase } from '@/lib/supabase';
+import { supabase, hasValidCredentials } from '@/lib/supabase';
 import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 
 const SupabaseAuthGate: React.FC = () => {
@@ -17,13 +17,20 @@ const SupabaseAuthGate: React.FC = () => {
     setLoading(true);
     setMessage('');
 
+    // Check if Supabase is configured
+    if (!hasValidCredentials()) {
+      setMessage('❌ Supabase credentials not configured. Please check your .env.local file.');
+      setLoading(false);
+      return;
+    }
+
     try {
       if (isLogin) {
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
-        
+
         if (error) {
           setMessage(`❌ ${error.message}`);
         } else {
@@ -34,7 +41,7 @@ const SupabaseAuthGate: React.FC = () => {
           email,
           password,
         });
-        
+
         if (error) {
           setMessage(`❌ ${error.message}`);
         } else {

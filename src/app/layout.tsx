@@ -3,7 +3,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./remove-nextjs-logo.css";
 import RemoveNextJSBadge from "@/components/utils/RemoveNextJSBadge";
-import I18nProvider from "@/components/providers/I18nProvider";
 import SupabaseAuthProvider from "@/components/providers/SupabaseAuthProvider";
 
 const geistSans = Geist({
@@ -40,7 +39,11 @@ export const metadata: Metadata = {
     title: "Unified AI | The Agentic Internet Protocol",
     description: "Deploy, manage, and monetize AI agents across the decentralized web.",
   },
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
   themeColor: "#8B5CF6",
 };
 
@@ -55,11 +58,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased text-white`}
       >
         <RemoveNextJSBadge />
-        <I18nProvider>
-          <SupabaseAuthProvider>
-            {children}
-          </SupabaseAuthProvider>
-        </I18nProvider>
+        <SupabaseAuthProvider>
+          {children}
+        </SupabaseAuthProvider>
       </body>
     </html>
   );
