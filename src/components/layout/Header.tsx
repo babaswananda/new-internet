@@ -108,15 +108,11 @@ const Header: React.FC<HeaderProps> = ({ className = '', onLogout }) => {
                 await signOut();
                 onLogout?.();
               }}
-              className="text-green-400 hover:text-red-400 transition-colors tracking-wide uppercase text-sm relative group font-bold"
+              className="bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black px-4 py-2 rounded-lg font-bold tracking-wide uppercase text-sm relative group transition-all hover:shadow-lg hover:shadow-orange-500/30"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               👋 SIGN OUT
-              <motion.div
-                className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-red-500 group-hover:w-full transition-all duration-300"
-                whileHover={{ width: '100%' }}
-              />
             </motion.button>
           ) : (
             <Link href="/auth">
@@ -252,7 +248,7 @@ const Header: React.FC<HeaderProps> = ({ className = '', onLogout }) => {
                   await signOut();
                   onLogout?.();
                 }}
-                className="text-green-400 hover:text-red-400 py-2 transition-colors font-bold text-left"
+                className="bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black px-4 py-2 rounded-lg font-bold transition-all hover:shadow-lg hover:shadow-orange-500/30 text-left"
               >
                 👋 Sign Out
               </button>

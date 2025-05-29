@@ -116,7 +116,7 @@ const SupabaseAuthGate: React.FC = () => {
                 onClick={() => setIsLogin(true)}
                 className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
                   isLogin
-                    ? 'bg-purple-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black shadow-lg font-bold'
                     : 'text-gray-400 hover:text-white'
                 }`}
               >
@@ -126,7 +126,7 @@ const SupabaseAuthGate: React.FC = () => {
                 onClick={() => setIsLogin(false)}
                 className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-all ${
                   !isLogin
-                    ? 'bg-purple-600 text-white shadow-lg'
+                    ? 'bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black shadow-lg font-bold'
                     : 'text-gray-400 hover:text-white'
                 }`}
               >
@@ -191,7 +191,7 @@ const SupabaseAuthGate: React.FC = () => {
                 disabled={loading}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
+                className="w-full py-3 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold rounded-lg shadow-lg hover:shadow-orange-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
               >
                 {loading ? (
                   <div className="flex items-center justify-center gap-2">
