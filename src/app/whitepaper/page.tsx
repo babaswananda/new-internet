@@ -31,25 +31,6 @@ export default function WhitepaperLanding() {
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
-  // Scroll refs and triggers
-  const { scrollYProgress } = useScroll();
-  const heroRef = useRef(null);
-  const dropRef = useRef(null);
-  const whitepaperRef = useRef(null);
-  const trilogyRef = useRef(null);
-  const deploymentRef = useRef(null);
-  const ctaRef = useRef(null);
-
-  const heroInView = useInView(heroRef, { threshold: 0.3 });
-  const dropInView = useInView(dropRef, { threshold: 0.3 });
-  const whitepaperInView = useInView(whitepaperRef, { threshold: 0.3 });
-  const trilogyInView = useInView(trilogyRef, { threshold: 0.3 });
-  const deploymentInView = useInView(deploymentRef, { threshold: 0.3 });
-  const ctaInView = useInView(ctaRef, { threshold: 0.3 });
-
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
-
   const handleLogin = () => {
     if (password === 'operator' || password === 'vault' || password === 'protocol') {
       setShowLogin(false);
