@@ -9,6 +9,7 @@ import { headerSlideDown } from '@/utils/animations';
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
 import LogoutButton from '@/components/auth/LogoutButton';
 import { useNavigationTranslation } from '@/hooks/useTranslation';
+import { useAuth } from '@/components/providers/SupabaseAuthProvider';
 
 // Dynamically import DropdownNav to improve performance
 const DropdownNav = dynamic(() => import('../ui/DropdownNav'), { ssr: false });
@@ -21,22 +22,8 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ className = '', onLogout }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { nav } = useNavigationTranslation();
-
-  // Check authentication status
-  useEffect(() => {
-    const checkAuth = () => {
-      const authStatus = sessionStorage.getItem('isAuthenticated');
-      setIsAuthenticated(authStatus === 'true');
-    };
-
-    checkAuth();
-    // Listen for storage changes (in case user logs out in another tab)
-    window.addEventListener('storage', checkAuth);
-
-    return () => window.removeEventListener('storage', checkAuth);
-  }, []);
+  const { user, signOut } = useAuth();
 
   // Handle scroll effect for header
   useEffect(() => {
@@ -115,13 +102,22 @@ const Header: React.FC<HeaderProps> = ({ className = '', onLogout }) => {
             items={protocolItems}
           />
 
-          {isAuthenticated ? (
-            <LogoutButton
-              onLogout={() => {
-                setIsAuthenticated(false);
+          {user ? (
+            <motion.button
+              onClick={async () => {
+                await signOut();
                 onLogout?.();
               }}
-            />
+              className="text-green-400 hover:text-red-400 transition-colors tracking-wide uppercase text-sm relative group font-bold"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              👋 SIGN OUT
+              <motion.div
+                className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-green-500 to-red-500 group-hover:w-full transition-all duration-300"
+                whileHover={{ width: '100%' }}
+              />
+            </motion.button>
           ) : (
             <Link href="/auth">
               <motion.div
@@ -250,7 +246,19 @@ const Header: React.FC<HeaderProps> = ({ className = '', onLogout }) => {
                 {item.label}
               </Link>
             ))}
-            <Link href="/auth" className="text-purple-400 hover:text-pink-400 py-2 transition-colors font-bold">🔒 Sign In</Link>
+            {user ? (
+              <button
+                onClick={async () => {
+                  await signOut();
+                  onLogout?.();
+                }}
+                className="text-green-400 hover:text-red-400 py-2 transition-colors font-bold text-left"
+              >
+                👋 Sign Out
+              </button>
+            ) : (
+              <Link href="/auth" className="text-purple-400 hover:text-pink-400 py-2 transition-colors font-bold">🔒 Sign In</Link>
+            )}
             {companyItems.map((item) => (
               <Link key={item.href} href={item.href} className="text-gray-300 hover:text-white py-2 transition-colors">
                 {item.label}
