@@ -47,6 +47,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       // Force logout and clear URL parameter
       sessionStorage.removeItem('isAuthenticated');
       sessionStorage.removeItem('authEmail');
+      sessionStorage.removeItem('hasSeenPreloader'); // Also clear preloader flag
       setIsAuthenticated(false);
       setShouldRedirect(true);
       // Clean URL
@@ -54,9 +55,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       return;
     }
 
-    // FORCE LOGOUT FOR TESTING - Always clear authentication
+    // FORCE LOGOUT FOR TESTING - Always clear authentication and preloader
     sessionStorage.removeItem('isAuthenticated');
     sessionStorage.removeItem('authEmail');
+    sessionStorage.removeItem('hasSeenPreloader'); // Force preloader to show every time
     setIsAuthenticated(false);
 
     // Only show preloader on first visit in this session AND on homepage
