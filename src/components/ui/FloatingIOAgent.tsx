@@ -99,8 +99,8 @@ const FloatingIOAgent: React.FC = () => {
                 whileTap={{ scale: 0.95 }}
                 className={`w-16 h-16 rounded-full shadow-2xl flex items-center justify-center transition-all duration-300 ${
                   isOpen
-                    ? 'bg-gradient-to-r from-red-500 to-pink-500'
-                    : 'bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600'
+                    ? 'bg-gradient-to-r from-red-500 to-orange-500'
+                    : 'bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 hover:from-green-500 hover:via-yellow-600 hover:to-orange-600'
                 }`}
               >
                 <AnimatePresence mode="wait">
@@ -167,14 +167,14 @@ const FloatingIOAgent: React.FC = () => {
                   <motion.button
                     whileHover={{ scale: 1.05, x: -5 }}
                     onClick={() => window.location.href = '/claim'}
-                    className="bg-black/80 backdrop-blur-sm border border-purple-500/30 text-purple-400 px-3 py-2 rounded-lg text-xs font-medium hover:bg-purple-500/10 transition-all"
+                    className="bg-black/80 backdrop-blur-sm border border-yellow-500/30 text-yellow-400 px-3 py-2 rounded-lg text-xs font-medium hover:bg-yellow-500/10 transition-all"
                   >
                     🆔 Claim Handle
                   </motion.button>
                   <motion.button
                     whileHover={{ scale: 1.05, x: -5 }}
                     onClick={() => window.location.href = '/faq'}
-                    className="bg-black/80 backdrop-blur-sm border border-blue-500/30 text-blue-400 px-3 py-2 rounded-lg text-xs font-medium hover:bg-blue-500/10 transition-all"
+                    className="bg-black/80 backdrop-blur-sm border border-orange-500/30 text-orange-400 px-3 py-2 rounded-lg text-xs font-medium hover:bg-orange-500/10 transition-all"
                   >
                     ❓ FAQ
                   </motion.button>

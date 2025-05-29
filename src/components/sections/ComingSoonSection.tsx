@@ -392,7 +392,7 @@ const ComingSoonSection: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               variants={pulseVariants}
               animate="pulse"
-              className="px-8 py-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg font-bold text-lg shadow-lg shadow-purple-500/20"
+              className="px-8 py-4 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 rounded-lg font-bold text-black text-lg shadow-lg shadow-orange-500/20"
             >
               View Plans
             </motion.button>

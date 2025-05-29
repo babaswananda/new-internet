@@ -88,10 +88,10 @@ const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = memo
 
   const glowVariants = {
     idle: {
-      boxShadow: '0 0 20px rgba(139, 92, 246, 0.3)',
+      boxShadow: '0 0 20px rgba(249, 115, 22, 0.3)',
     },
     hover: {
-      boxShadow: '0 0 40px rgba(139, 92, 246, 0.6), 0 0 80px rgba(139, 92, 246, 0.3)',
+      boxShadow: '0 0 40px rgba(249, 115, 22, 0.6), 0 0 80px rgba(234, 179, 8, 0.3)',
       transition: { duration: 0.3 }
     }
   };
@@ -99,12 +99,12 @@ const CinematicMediaPlaceholder: React.FC<CinematicMediaPlaceholderProps> = memo
   // Get category-specific styling
   const getCategoryStyle = () => {
     const styles = {
-      hero: 'from-purple-900/20 via-blue-900/20 to-black/40',
-      agents: 'from-blue-900/20 via-purple-900/20 to-pink-900/20',
-      protocol: 'from-green-900/20 via-blue-900/20 to-purple-900/20',
-      tokens: 'from-yellow-900/20 via-orange-900/20 to-red-900/20',
-      products: 'from-gray-900/20 via-blue-900/20 to-purple-900/20',
-      future: 'from-purple-900/20 via-pink-900/20 to-blue-900/20'
+      hero: 'from-green-900/20 via-yellow-900/20 to-orange-900/20',
+      agents: 'from-green-900/20 via-yellow-900/20 to-orange-900/20',
+      protocol: 'from-green-900/20 via-yellow-900/20 to-orange-900/20',
+      tokens: 'from-yellow-900/20 via-orange-900/20 to-green-900/20',
+      products: 'from-orange-900/20 via-green-900/20 to-yellow-900/20',
+      future: 'from-green-900/20 via-yellow-900/20 to-orange-900/20'
     };
     return styles[category] || styles.hero;
   };

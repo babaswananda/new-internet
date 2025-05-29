@@ -58,9 +58,9 @@ const ParallaxDeck: React.FC<ParallaxDeckProps> = ({
       opacity: 1,
       y: 0,
       rotateX: 0,
-      transition: { 
-        duration: 0.8, 
-        ease: [0.25, 0.4, 0.25, 1] 
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.4, 0.25, 1]
       }
     }
   };
@@ -83,7 +83,7 @@ const ParallaxDeck: React.FC<ParallaxDeckProps> = ({
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <motion.div 
+        <motion.div
           variants={cardVariants}
           className="text-center mb-16"
         >
@@ -131,7 +131,7 @@ const ParallaxDeck: React.FC<ParallaxDeckProps> = ({
                       {card.description}
                     </p>
                   </div>
-                  
+
                   <div className="space-y-4">
                     {card.content}
                   </div>
@@ -141,8 +141,8 @@ const ParallaxDeck: React.FC<ParallaxDeckProps> = ({
                 <motion.div
                   className={`relative ${isEven ? 'md:order-2' : 'md:order-1'}`}
                   whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
-                  initial={{ 
-                    opacity: 0, 
+                  initial={{
+                    opacity: 0,
                     x: isEven ? 50 : -50,
                     rotateY: isEven ? 15 : -15
                   }}
@@ -150,7 +150,7 @@ const ParallaxDeck: React.FC<ParallaxDeckProps> = ({
                 >
                   {/* Card Background */}
                   <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${card.gradient} opacity-20 blur-xl`} />
-                  
+
                   {/* Media Container */}
                   <div className="relative bg-black/40 backdrop-blur-sm border border-purple-500/20 rounded-2xl p-6">
                     {card.media ? (
@@ -209,7 +209,7 @@ const ParallaxDeck: React.FC<ParallaxDeckProps> = ({
           className="text-center mt-20"
         >
           <motion.div
-            className="inline-block p-8 bg-gradient-to-r from-purple-900/30 to-pink-900/30 backdrop-blur-sm border border-purple-500/20 rounded-2xl"
+            className="inline-block p-8 bg-gradient-to-r from-green-900/30 to-orange-900/30 backdrop-blur-sm border border-orange-500/20 rounded-2xl"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
@@ -220,7 +220,7 @@ const ParallaxDeck: React.FC<ParallaxDeckProps> = ({
               Join the Agentic Internet revolution and become an Intelligent Operator.
             </p>
             <motion.button
-              className="px-8 py-3 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl font-bold text-white shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+              className="px-8 py-3 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 rounded-xl font-bold text-black shadow-lg hover:shadow-orange-500/25 transition-all duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

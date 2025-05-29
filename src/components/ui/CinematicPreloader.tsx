@@ -185,7 +185,15 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
           clearInterval(interval);
           setTimeout(() => {
             setIsComplete(true);
-            setTimeout(onComplete, 500);
+            // Check if we should show whitepaper after preloader
+            const shouldShowWhitepaper = window.location.search.includes('whitepaper') ||
+                                       localStorage.getItem('showWhitepaper') === 'true';
+
+            if (shouldShowWhitepaper) {
+              window.location.href = '/whitepaper';
+            } else {
+              setTimeout(onComplete, 500);
+            }
           }, 500);
           return 100;
         }

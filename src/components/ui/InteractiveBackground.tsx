@@ -75,12 +75,12 @@ const InteractiveBackgroundComponent: React.FC<InteractiveBackgroundProps> = ({
 
   // Get color values
   const getColorClass = (index: number) => {
-    if (color === 'blue') return 'bg-blue-500';
-    if (color === 'purple') return 'bg-purple-500';
-    if (color === 'cyan') return 'bg-cyan-500';
+    if (color === 'blue') return 'bg-green-500';
+    if (color === 'purple') return 'bg-yellow-500';
+    if (color === 'cyan') return 'bg-orange-500';
 
-    // Mixed colors - distribute evenly
-    const colors = ['bg-blue-500', 'bg-purple-500', 'bg-cyan-500', 'bg-indigo-500'];
+    // Mixed colors - distribute evenly with AgentOS gradient colors
+    const colors = ['bg-green-500', 'bg-yellow-500', 'bg-orange-500', 'bg-green-400'];
     return colors[index % colors.length];
   };
 
@@ -149,14 +149,14 @@ const InteractiveBackgroundComponent: React.FC<InteractiveBackgroundProps> = ({
       onMouseLeave={() => setIsHovering(false)}
     >
       {/* Base gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-blue-950/5 to-black"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-green-950/5 to-black"></div>
 
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] bg-center opacity-10"></div>
 
       {/* Glow effects */}
       <motion.div
-        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-blue-500/10 blur-[100px]"
+        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-green-500/10 blur-[100px]"
         animate={{
           scale: [1, 1.2, 1],
           opacity: [0.1, 0.15, 0.1],
@@ -169,7 +169,7 @@ const InteractiveBackgroundComponent: React.FC<InteractiveBackgroundProps> = ({
       />
 
       <motion.div
-        className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-purple-500/10 blur-[100px]"
+        className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] rounded-full bg-orange-500/10 blur-[100px]"
         animate={{
           scale: [1.2, 1, 1.2],
           opacity: [0.1, 0.15, 0.1],

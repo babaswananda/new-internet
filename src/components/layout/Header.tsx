@@ -80,6 +80,14 @@ const Header: React.FC<HeaderProps> = ({ className = '', onLogout }) => {
             className="text-xl font-bold tracking-wider"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={(e) => {
+              // Secret whitepaper access - triple click
+              if (e.detail === 3) {
+                e.preventDefault();
+                localStorage.setItem('showWhitepaper', 'true');
+                window.location.href = '/whitepaper';
+              }
+            }}
           >
             <span className="text-white">
               UNIFIED AI <span className="text-2xl">🤖</span>

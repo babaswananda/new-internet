@@ -35,15 +35,15 @@ const SectionBackground: React.FC<SectionBackgroundProps> = ({
   // Get color classes
   const getColorClass = () => {
     switch (color) {
-      case 'blue': return 'from-blue-500/20 to-blue-900/5';
-      case 'purple': return 'from-purple-500/20 to-purple-900/5';
-      case 'pink': return 'from-pink-500/20 to-pink-900/5';
-      case 'red': return 'from-red-500/20 to-red-900/5';
+      case 'blue': return 'from-green-500/20 to-green-900/5';
+      case 'purple': return 'from-yellow-500/20 to-yellow-900/5';
+      case 'pink': return 'from-orange-500/20 to-orange-900/5';
+      case 'red': return 'from-orange-500/20 to-orange-900/5';
       case 'orange': return 'from-orange-500/20 to-orange-900/5';
       case 'green': return 'from-green-500/20 to-green-900/5';
-      case 'teal': return 'from-teal-500/20 to-teal-900/5';
-      case 'cyan': return 'from-cyan-500/20 to-cyan-900/5';
-      default: return 'from-blue-500/20 to-blue-900/5';
+      case 'teal': return 'from-green-500/20 to-green-900/5';
+      case 'cyan': return 'from-yellow-500/20 to-yellow-900/5';
+      default: return 'from-green-500/20 to-green-900/5';
     }
   };
 

@@ -39,8 +39,8 @@ const FinalCTASection: React.FC = () => {
       backfaceVisibility: 'hidden'
     }}>
       {/* RetroGrid container with animation direction set to false for correct direction */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <RetroGrid angle={45} className="!opacity-100" />
+      <div className="absolute inset-0 flex items-center justify-center z-0">
+        <RetroGrid angle={45} className="!opacity-60" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10"> {/* Content on top with z-10 */}
@@ -61,7 +61,7 @@ const FinalCTASection: React.FC = () => {
                 <HeaderText>THE FUTURE IS</HeaderText>
               </span>
             </h1>
-            <h2 className="text-6xl md:text-8xl lg:text-9xl font-black bg-gradient-to-r from-purple-400 via-pink-400 to-cyan-400 bg-clip-text text-transparent leading-none">
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-black bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 bg-clip-text text-transparent leading-none">
               AGENTIC
             </h2>
           </motion.div>
@@ -89,9 +89,9 @@ const FinalCTASection: React.FC = () => {
           >
             <Link href="/io">
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(139, 92, 246, 0.4)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(249, 115, 22, 0.4)' }}
                 whileTap={{ scale: 0.95 }}
-                className="px-12 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-xl rounded-lg shadow-2xl hover:from-purple-700 hover:to-pink-700 transition-all duration-300"
+                className="px-12 py-4 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold text-xl rounded-lg shadow-2xl hover:from-green-500 hover:via-yellow-600 hover:to-orange-600 transition-all duration-300"
               >
                 🚀 Start Your Free Trial
               </motion.button>

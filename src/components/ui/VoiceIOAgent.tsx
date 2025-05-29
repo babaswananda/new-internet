@@ -151,7 +151,33 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
     }
   };
 
-  const getAIResponse = (userMessage: string): string => {
+  const getAIResponse = async (userMessage: string): Promise<string> => {
+    try {
+      // Try to get response from our AI API first
+      const response = await fetch('http://localhost:8000/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: userMessage,
+          voice_enabled: voiceEnabled
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        return data.response;
+      }
+    } catch (error) {
+      console.log('API not available, using fallback responses');
+    }
+
+    // Fallback to local responses if API is not available
+    return getLocalAIResponse(userMessage);
+  };
+
+  const getLocalAIResponse = (userMessage: string): string => {
     const lowerMessage = userMessage.toLowerCase();
 
     // Handle registry questions
@@ -217,25 +243,39 @@ const VoiceIOAgent: React.FC<VoiceIOAgentProps> = ({ isOpen, onClose }) => {
     setInputText('');
     setIsTyping(true);
 
-    // Get AI response immediately
-    setTimeout(() => {
-      const aiResponse = getAIResponse(messageText);
-      console.log('AI Response:', aiResponse); // Debug log
+    // Get AI response
+    setTimeout(async () => {
+      try {
+        const aiResponse = await getAIResponse(messageText);
+        console.log('AI Response:', aiResponse); // Debug log
 
-      const agentMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        type: 'agent',
-        content: aiResponse,
-        timestamp: new Date()
-      };
+        const agentMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          type: 'agent',
+          content: aiResponse,
+          timestamp: new Date()
+        };
 
-      setMessages(prev => [...prev, agentMessage]);
-      setIsTyping(false);
+        setMessages(prev => [...prev, agentMessage]);
+        setIsTyping(false);
 
-      // Speak the response if voice is enabled
-      if (voiceEnabled) {
-        console.log('Speaking response'); // Debug log
-        speakText(aiResponse);
+        // Speak the response if voice is enabled
+        if (voiceEnabled) {
+          console.log('Speaking response'); // Debug log
+          speakText(aiResponse);
+        }
+      } catch (error) {
+        console.error('Error getting AI response:', error);
+        setIsTyping(false);
+
+        // Add error message
+        const errorMessage: Message = {
+          id: (Date.now() + 1).toString(),
+          type: 'agent',
+          content: "I'm having trouble processing your request right now. Please try again or visit /support for assistance.",
+          timestamp: new Date()
+        };
+        setMessages(prev => [...prev, errorMessage]);
       }
     }, 500); // Reduced delay
   };
