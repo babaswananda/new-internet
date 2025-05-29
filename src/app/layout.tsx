@@ -56,9 +56,7 @@ export default function RootLayout({
       >
         <RemoveNextJSBadge />
         <I18nProvider>
-          <AuthProvider>
-            {children}
-          </AuthProvider>
+          {children}
         </I18nProvider>
       </body>
     </html>
