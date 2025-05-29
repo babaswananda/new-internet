@@ -28,12 +28,25 @@ export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // FORCE LOGOUT FOR TESTING - Clear any existing authentication
-    sessionStorage.removeItem('isAuthenticated');
-    sessionStorage.removeItem('authEmail');
+    // Check URL for force logout parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const forceLogout = urlParams.get('logout');
 
-    // Always require fresh login for testing
-    setIsAuthenticated(false);
+    if (forceLogout === 'true') {
+      // Force logout and clear URL parameter
+      sessionStorage.removeItem('isAuthenticated');
+      sessionStorage.removeItem('authEmail');
+      setIsAuthenticated(false);
+      // Clean URL
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } else {
+      // FORCE LOGOUT FOR TESTING - Clear any existing authentication
+      sessionStorage.removeItem('isAuthenticated');
+      sessionStorage.removeItem('authEmail');
+
+      // Always require fresh login for testing
+      setIsAuthenticated(false);
+    }
 
     // Only show preloader on first visit in this session
     const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
