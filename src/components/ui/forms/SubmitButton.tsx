@@ -28,13 +28,13 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({
   const getVariantStyles = () => {
     switch (variant) {
       case 'primary':
-        return 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/20';
+        return 'bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black shadow-lg shadow-orange-500/20 font-bold';
       case 'secondary':
         return 'bg-gradient-to-r from-gray-600 to-gray-700 text-white shadow-lg shadow-gray-500/20';
       case 'outline':
         return 'bg-white/5 border border-white/20 text-white hover:bg-white/10';
       default:
-        return 'bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg shadow-blue-500/20';
+        return 'bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black shadow-lg shadow-orange-500/20 font-bold';
     }
   };
 
