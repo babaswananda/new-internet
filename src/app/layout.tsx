@@ -4,7 +4,7 @@ import "./globals.css";
 import "./remove-nextjs-logo.css";
 import RemoveNextJSBadge from "@/components/utils/RemoveNextJSBadge";
 import I18nProvider from "@/components/providers/I18nProvider";
-import AuthProvider from "@/components/providers/AuthProvider";
+import SupabaseAuthProvider from "@/components/providers/SupabaseAuthProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,12 +56,9 @@ export default function RootLayout({
       >
         <RemoveNextJSBadge />
         <I18nProvider>
-          <div className="min-h-screen bg-black flex items-center justify-center">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-white mb-4">🔒 SITE OFFLINE</h1>
-              <p className="text-gray-400">This site is completely unavailable.</p>
-            </div>
-          </div>
+          <SupabaseAuthProvider>
+            {children}
+          </SupabaseAuthProvider>
         </I18nProvider>
       </body>
     </html>
