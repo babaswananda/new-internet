@@ -28,11 +28,12 @@ export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    // Check if user is already authenticated
-    const authStatus = sessionStorage.getItem('isAuthenticated');
-    if (authStatus === 'true') {
-      setIsAuthenticated(true);
-    }
+    // FORCE LOGOUT FOR TESTING - Clear any existing authentication
+    sessionStorage.removeItem('isAuthenticated');
+    sessionStorage.removeItem('authEmail');
+
+    // Always require fresh login for testing
+    setIsAuthenticated(false);
 
     // Only show preloader on first visit in this session
     const hasSeenPreloader = sessionStorage.getItem('hasSeenPreloader');
