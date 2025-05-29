@@ -4,8 +4,12 @@ import React, { Suspense } from 'react';
 import MainLayout from '@/components/layout/MainLayout';
 import SpaceParticlesBackground from '@/components/ui/SpaceParticlesBackground';
 import NewHeroSlider from '@/components/ui/NewHeroSlider';
+import IOSection from '@/components/sections/IOSection';
+import AIDirectoryMarketplaceSection from '@/components/sections/AIDirectoryMarketplaceSection';
 import AgentOSSection from '@/components/sections/AgentOSSection';
 import OperatorEconomySection from '@/components/sections/OperatorEconomySection';
+import InvestmentOfferingSection from '@/components/sections/InvestmentOfferingSection';
+import DashboardSection from '@/components/sections/DashboardSection';
 import WhitepaperCarousel from '@/components/sections/WhitepaperCarousel';
 
 export default function Home() {
@@ -16,6 +20,22 @@ export default function Home() {
         <div className="relative">
           <SpaceParticlesBackground particleCount={100} color="mixed" speed="medium" depth={true} interactive={true} />
           <NewHeroSlider />
+        </div>
+      </Suspense>
+
+      {/* Hello IO Section */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={80} color="pink" speed="slow" depth={true} interactive={true} />
+          <IOSection />
+        </div>
+      </Suspense>
+
+      {/* AI Directory Marketplace */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={200} color="cyan" speed="medium" depth={true} interactive={true} />
+          <AIDirectoryMarketplaceSection />
         </div>
       </Suspense>
 
@@ -32,6 +52,22 @@ export default function Home() {
         <div className="relative">
           <SpaceParticlesBackground particleCount={60} color="mixed" speed="slow" depth={false} interactive={false} />
           <OperatorEconomySection />
+        </div>
+      </Suspense>
+
+      {/* Investment Offering */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={180} color="gold" speed="slow" depth={true} interactive={true} />
+          <InvestmentOfferingSection />
+        </div>
+      </Suspense>
+
+      {/* Dashboard Preview */}
+      <Suspense fallback={<div className="h-20 bg-black" />}>
+        <div className="relative">
+          <SpaceParticlesBackground particleCount={120} color="green" speed="medium" depth={true} interactive={true} />
+          <DashboardSection />
         </div>
       </Suspense>
 
