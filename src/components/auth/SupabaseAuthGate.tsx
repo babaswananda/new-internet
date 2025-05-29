@@ -62,14 +62,36 @@ const SupabaseAuthGate: React.FC = () => {
         <SpaceParticlesBackground particleCount={200} color="purple" speed="slow" depth={true} interactive={true} />
       </div>
 
+      {/* Retro Grid Background - Bottom */}
+      <div className="fixed bottom-0 left-0 right-0 h-1/2 z-0 overflow-hidden">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+            transform: 'perspective(500px) rotateX(45deg)',
+            transformOrigin: 'center bottom'
+          }}
+        ></div>
+        {/* Gradient fade to blend with particles */}
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-black/20 to-black/60"></div>
+      </div>
+
       <div className="relative z-10 min-h-screen flex items-center justify-center py-20 px-4">
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="w-full max-w-md"
+          className="w-full max-w-md relative"
         >
-          <div className="bg-black/80 backdrop-blur-xl border border-purple-500/30 rounded-2xl p-8 shadow-2xl">
+          {/* Glowing effect */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-2xl blur-lg opacity-30 animate-pulse"></div>
+          <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-2xl blur-md opacity-20"></div>
+
+          <div className="relative bg-black/90 backdrop-blur-xl border border-purple-500/40 rounded-2xl p-8 shadow-2xl">
             {/* Header */}
             <div className="text-center mb-8">
               <motion.div
@@ -77,13 +99,16 @@ const SupabaseAuthGate: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <h1 className="text-3xl font-bold mb-2">
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400">
-                    Unified AI
+                <h1 className="text-3xl font-bold mb-3 tracking-wider">
+                  <span className="text-white">
+                    UNIFIED AI <span className="text-4xl">🤖</span>
                   </span>
                 </h1>
-                <p className="text-gray-400 text-sm">
+                <p className="text-gray-400 text-sm mb-1">
                   🔒 Secure Access Portal
+                </p>
+                <p className="text-gray-500 text-xs italic font-mono">
+                  "Where Intelligence Meets Infrastructure"
                 </p>
               </motion.div>
             </div>
@@ -169,7 +194,7 @@ const SupabaseAuthGate: React.FC = () => {
                 disabled={loading}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg hover:shadow-purple-500/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-lg shadow-lg hover:shadow-purple-500/50 transition-all disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden group"
               >
                 {loading ? (
                   <div className="flex items-center justify-center gap-2">
@@ -179,6 +204,9 @@ const SupabaseAuthGate: React.FC = () => {
                 ) : (
                   isLogin ? 'Sign In' : 'Create Account'
                 )}
+
+                {/* Glowing edge effect on hover */}
+                <div className="absolute -inset-0.5 rounded-lg bg-gradient-to-r from-purple-500 to-pink-500 opacity-0 group-hover:opacity-75 transition-opacity duration-300 blur-sm -z-10"></div>
               </motion.button>
             </motion.form>
 
