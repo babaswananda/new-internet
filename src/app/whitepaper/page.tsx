@@ -1,41 +1,83 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion';
-import { Eye, Download, Sun, Moon, ArrowRight, Star, Shield, Rocket, Zap, Brain, Globe, Twitter, Github, MessageCircle } from 'lucide-react';
+import { Eye, Download, Sun, Moon, ArrowRight, Star, Shield, Rocket, Zap, Brain, Globe, Twitter, Github, MessageCircle, ChevronDown, Users, Cpu, Network, DollarSign, Calendar, Target, TrendingUp, Lock, Coins, Building, Code, Database, Cloud, BookOpen, FileText, Layers, Briefcase, Lightbulb, Settings } from 'lucide-react';
+import { HeaderText } from '@/utils/normalBold';
 
-export default function WhitepaperLanding() {
+export default function UnifiedAIWhitepaper() {
   const [isDark, setIsDark] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [showEmailGate, setShowEmailGate] = useState(false);
   const [password, setPassword] = useState('');
-  const [revealedSections, setRevealedSections] = useState(new Set());
-  const [mysteryLevel, setMysteryLevel] = useState(0);
-  const [discoveredSecrets, setDiscoveredSecrets] = useState(new Set());
+  const [email, setEmail] = useState('');
+  const [hasAccess, setHasAccess] = useState(false);
+  const [timeLeft, setTimeLeft] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  // Countdown timer
+  useEffect(() => {
+    const targetDate = new Date();
+    targetDate.setHours(targetDate.getHours() + 72); // 72 hours from now
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate.getTime() - now;
+
+      if (distance > 0) {
+        setTimeLeft({
+          days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+          hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+          minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+          seconds: Math.floor((distance % (1000 * 60)) / 1000)
+        });
+      }
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   // Scroll refs and triggers
   const { scrollYProgress } = useScroll();
   const heroRef = useRef(null);
-  const dropRef = useRef(null);
-  const whitepaperRef = useRef(null);
+  const countdownRef = useRef(null);
+  const introRef = useRef(null);
+  const quote1Ref = useRef(null);
+  const architectureRef = useRef(null);
+  const quote2Ref = useRef(null);
+  const economicRef = useRef(null);
+  const quote3Ref = useRef(null);
+  const technicalRef = useRef(null);
+  const roadmapRef = useRef(null);
   const trilogyRef = useRef(null);
-  const deploymentRef = useRef(null);
-  const ctaRef = useRef(null);
+  const quote4Ref = useRef(null);
+  const conclusionRef = useRef(null);
 
   const heroInView = useInView(heroRef, { threshold: 0.3 });
-  const dropInView = useInView(dropRef, { threshold: 0.3 });
-  const whitepaperInView = useInView(whitepaperRef, { threshold: 0.3 });
+  const countdownInView = useInView(countdownRef, { threshold: 0.3 });
+  const introInView = useInView(introRef, { threshold: 0.3 });
+  const quote1InView = useInView(quote1Ref, { threshold: 0.3 });
+  const architectureInView = useInView(architectureRef, { threshold: 0.3 });
+  const quote2InView = useInView(quote2Ref, { threshold: 0.3 });
+  const economicInView = useInView(economicRef, { threshold: 0.3 });
+  const quote3InView = useInView(quote3Ref, { threshold: 0.3 });
+  const technicalInView = useInView(technicalRef, { threshold: 0.3 });
+  const roadmapInView = useInView(roadmapRef, { threshold: 0.3 });
   const trilogyInView = useInView(trilogyRef, { threshold: 0.3 });
-  const deploymentInView = useInView(deploymentRef, { threshold: 0.3 });
-  const ctaInView = useInView(ctaRef, { threshold: 0.3 });
+  const quote4InView = useInView(quote4Ref, { threshold: 0.3 });
+  const conclusionInView = useInView(conclusionRef, { threshold: 0.3 });
 
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '50%']);
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.8]);
 
   const handleLogin = () => {
     if (password === 'operator' || password === 'vault' || password === 'protocol') {
       setShowLogin(false);
-      setMysteryLevel(prev => prev + 1);
-      setDiscoveredSecrets(prev => new Set([...prev, 'access_granted']));
       // Redirect to main site after successful login
       setTimeout(() => {
         window.location.href = '/';
@@ -43,20 +85,20 @@ export default function WhitepaperLanding() {
     }
   };
 
-  const revealSection = (sectionId) => {
-    setRevealedSections(prev => new Set([...prev, sectionId]));
-    setMysteryLevel(prev => prev + 1);
-  };
-
-  const discoverSecret = (secretId) => {
-    setDiscoveredSecrets(prev => new Set([...prev, secretId]));
+  const handleEmailSubmit = () => {
+    if (email && email.includes('@')) {
+      setHasAccess(true);
+      setShowEmailGate(false);
+      // Here you would typically send the email to your backend
+      console.log('Email captured:', email);
+    }
   };
 
   return (
-    <div className={`min-h-screen transition-all duration-500 ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}>
-      {/* Clean Background - Like Preloader Screen 2 */}
+    <div className={`min-h-screen font-sans transition-all duration-500 ${isDark ? 'bg-black text-white' : 'bg-white text-black'}`}>
+      {/* Clean Background - Like Main Site */}
       <div className="absolute inset-0">
-        {/* Subtle animated lines - minimal like screen 2 */}
+        {/* Subtle animated lines - minimal like main site */}
         {Array.from({ length: 3 }).map((_, i) => (
           <motion.div
             key={i}
@@ -90,8 +132,12 @@ export default function WhitepaperLanding() {
               className={`${isDark ? 'bg-black border-white/20' : 'bg-white border-black/20'} border rounded-lg p-8 max-w-sm w-full mx-4 shadow-lg`}
             >
               <div className="text-center mb-6">
-                <Eye className={`w-6 h-6 ${isDark ? 'text-white' : 'text-black'} mx-auto mb-3`} />
-                <h3 className="text-lg font-light">Access Protocol</h3>
+                <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <span className="text-2xl">🤖</span>
+                </div>
+                <h3 className="text-lg font-bold">
+                  <HeaderText>Access Protocol</HeaderText>
+                </h3>
               </div>
 
               <input
@@ -106,7 +152,7 @@ export default function WhitepaperLanding() {
               <div className="flex gap-3 mt-6">
                 <button
                   onClick={handleLogin}
-                  className={`flex-1 ${isDark ? 'bg-white text-black' : 'bg-black text-white'} py-3 rounded font-light transition-all hover:opacity-80`}
+                  className="flex-1 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black py-3 rounded font-bold transition-all hover:from-green-500 hover:via-yellow-600 hover:to-orange-600"
                 >
                   Access
                 </button>
@@ -122,65 +168,145 @@ export default function WhitepaperLanding() {
         )}
       </AnimatePresence>
 
-      {/* Minimal Header */}
-      <div className="relative z-10">
-        <div className="flex justify-between items-center p-8">
-          <motion.button
-            onClick={() => setIsDark(!isDark)}
-            className={`w-8 h-8 flex items-center justify-center ${isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'} transition-all`}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </motion.button>
-
-          <motion.button
-            onClick={() => setShowLogin(true)}
-            className={`w-8 h-8 flex items-center justify-center ${isDark ? 'text-white/60 hover:text-white' : 'text-black/60 hover:text-black'} transition-all`}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Eye className="w-4 h-4" />
-          </motion.button>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-8">
-        {/* Mythological Hero Section */}
-        <motion.section
-          ref={heroRef}
-          className="text-center max-w-6xl mx-auto mb-32"
-          style={{ y, opacity }}
-        >
-          {/* Mystery Level Indicator */}
+      {/* Email Gate Modal */}
+      <AnimatePresence>
+        {showEmailGate && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: mysteryLevel > 0 ? 1 : 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50 flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              className={`${isDark ? 'bg-black border-white/20' : 'bg-white border-black/20'} border rounded-lg p-8 max-w-md w-full mx-4 shadow-lg`}
+            >
+              <div className="text-center mb-6">
+                <div className="w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                  <FileText className="w-8 h-8 text-green-500" />
+                </div>
+                <h3 className="text-2xl font-bold mb-2">
+                  <HeaderText>Access Full Whitepaper</HeaderText>
+                </h3>
+                <p className="text-gray-600">
+                  Enter your email to read the complete Unified AI Protocol whitepaper with all technical details, roadmap, and AS IT IS trilogy content.
+                </p>
+              </div>
+
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                onKeyPress={(e) => e.key === 'Enter' && handleEmailSubmit()}
+                placeholder="your@email.com"
+                className={`w-full ${isDark ? 'bg-black border-white/20 text-white' : 'bg-white border-black/20 text-black'} border rounded px-4 py-3 placeholder-gray-500 focus:outline-none focus:border-green-500 transition-all mb-4`}
+              />
+
+              <div className="flex gap-3">
+                <button
+                  onClick={handleEmailSubmit}
+                  className="flex-1 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black py-3 rounded font-bold transition-all hover:from-green-500 hover:via-yellow-600 hover:to-orange-600"
+                >
+                  Get Full Access
+                </button>
+                <button
+                  onClick={() => setShowEmailGate(false)}
+                  className={`flex-1 ${isDark ? 'border-white/20 text-white' : 'border-black/20 text-black'} border py-3 rounded font-light transition-all hover:opacity-80`}
+                >
+                  Cancel
+                </button>
+              </div>
+
+              <div className="mt-4 text-center text-xs text-gray-500">
+                We respect your privacy. No spam, just protocol updates.
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating Controls */}
+      <div className="fixed top-8 right-8 z-50 flex items-center gap-4">
+        <motion.button
+          onClick={() => setIsDark(!isDark)}
+          className={`w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm ${isDark ? 'bg-white/10 text-white/60 hover:text-white' : 'bg-black/10 text-black/60 hover:text-black'} transition-all`}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+        </motion.button>
+
+        <motion.button
+          onClick={() => setShowLogin(true)}
+          className={`w-12 h-12 flex items-center justify-center rounded-full backdrop-blur-sm ${isDark ? 'bg-white/10 text-white/60 hover:text-white' : 'bg-black/10 text-black/60 hover:text-black'} transition-all`}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <Eye className="w-5 h-5" />
+        </motion.button>
+      </div>
+
+      {/* Hero Section with Countdown */}
+      <motion.section
+        ref={heroRef}
+        className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden"
+        style={{ scale }}
+      >
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className={`absolute w-1 h-1 rounded-full ${isDark ? 'bg-white/20' : 'bg-black/20'}`}
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -100, 0],
+                opacity: [0, 1, 0],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={heroInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1.5 }}
+          className="text-center max-w-6xl mx-auto px-8 relative z-10"
+        >
+          {/* Protocol Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={heroInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.3, duration: 0.8 }}
             className="mb-8"
           >
-            <div className="flex justify-center items-center gap-2">
-              <span className="text-xs text-blue-500">PROTOCOL DEPTH:</span>
-              {[...Array(5)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className={`w-2 h-2 rounded-full ${i < mysteryLevel ? 'bg-blue-500' : 'bg-gray-300'}`}
-                  animate={{ scale: i < mysteryLevel ? [1, 1.2, 1] : 1 }}
-                  transition={{ delay: i * 0.1 }}
-                />
-              ))}
+            <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-green-400/20 via-yellow-500/20 to-orange-500/20 border border-green-400/30 backdrop-blur-sm">
+              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-sm font-medium">
+                <HeaderText>PROTOCOL WHITEPAPER</HeaderText>
+              </span>
             </div>
           </motion.div>
 
-          <motion.div
+          {/* Main Title */}
+          <motion.h1
+            className="text-6xl md:text-9xl font-bold mb-8 tracking-wider"
             initial={{ opacity: 0, y: 30 }}
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 1.2 }}
-            className="space-y-8"
+            transition={{ delay: 0.5, duration: 1.2 }}
           >
-            {/* Main Title with Gradient - Like 2nd Screen */}
-            <motion.h1
-              className="text-5xl md:text-8xl font-black mb-8 tracking-wider bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent"
+            <motion.span
+              className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500"
               animate={{
                 backgroundPosition: ['0%', '100%', '0%'],
               }}
@@ -189,62 +315,297 @@ export default function WhitepaperLanding() {
                 repeat: Infinity,
                 ease: "linear"
               }}
-              onClick={() => discoverSecret('title_clicked')}
             >
-              🌐 UNIFIED AI
-            </motion.h1>
+              <HeaderText>UNIFIED AI</HeaderText>
+            </motion.span>
+          </motion.h1>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={heroInView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.4, duration: 1 }}
-              className="space-y-4"
+          {/* Subtitle */}
+          <motion.h2
+            className="text-3xl md:text-5xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500"
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.8, duration: 1 }}
+          >
+            <HeaderText>The Sovereign Intelligence Stack</HeaderText>
+          </motion.h2>
+
+          {/* Epic Quote */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={heroInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 1.1, duration: 1 }}
+            className="mb-16"
+          >
+            <motion.p
+              className="text-xl md:text-2xl text-gray-600 font-medium italic max-w-4xl mx-auto leading-relaxed"
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 4, repeat: Infinity }}
             >
-              <h2 className="text-2xl md:text-4xl font-bold bg-gradient-to-r from-gray-600 to-gray-800 bg-clip-text text-transparent">
-                The Sovereign Intelligence Stack
+              "We stand at the threshold of a new era where AI agents will not merely assist human activities but will participate as autonomous economic actors, creating value, forming partnerships, and driving innovation at scales previously unimaginable."
+            </motion.p>
+          </motion.div>
+        </motion.div>
+      </motion.section>
+
+      {/* 72-Hour Countdown Section */}
+      <motion.section
+        ref={countdownRef}
+        className="py-32 relative"
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          animate={countdownInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1.2 }}
+          className="text-center max-w-4xl mx-auto px-8"
+        >
+          <motion.h3
+            className="text-2xl md:text-3xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={countdownInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ delay: 0.3, duration: 0.8 }}
+          >
+            <HeaderText>PROTOCOL LAUNCH COUNTDOWN</HeaderText>
+          </motion.h3>
+
+          <motion.p
+            className="text-gray-600 mb-12 text-lg"
+            initial={{ opacity: 0 }}
+            animate={countdownInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.5, duration: 0.8 }}
+          >
+            The future of autonomous AI agents begins in...
+          </motion.p>
+
+          {/* Countdown Timer */}
+          <div className="grid grid-cols-4 gap-4 md:gap-8 max-w-2xl mx-auto">
+            {[
+              { label: 'DAYS', value: timeLeft.days },
+              { label: 'HOURS', value: timeLeft.hours },
+              { label: 'MINUTES', value: timeLeft.minutes },
+              { label: 'SECONDS', value: timeLeft.seconds }
+            ].map((unit, index) => (
+              <motion.div
+                key={unit.label}
+                initial={{ opacity: 0, y: 30 }}
+                animate={countdownInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.7 + index * 0.1, duration: 0.8 }}
+                className={`p-6 rounded-lg border ${isDark ? 'border-white/20 bg-black/30' : 'border-black/20 bg-white/30'} backdrop-blur-sm`}
+              >
+                <motion.div
+                  className="text-3xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 mb-2"
+                  key={unit.value}
+                  initial={{ scale: 1.2, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {String(unit.value).padStart(2, '0')}
+                </motion.div>
+                <div className="text-sm font-medium text-gray-500">
+                  <HeaderText>{unit.label}</HeaderText>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Access Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={countdownInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 1.2, duration: 0.8 }}
+            className="mt-16 text-center"
+          >
+            <button
+              onClick={() => setShowEmailGate(true)}
+              className="group relative px-12 py-4 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold rounded-lg transition-all hover:from-green-500 hover:via-yellow-600 hover:to-orange-600 hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              <span className="relative z-10 flex items-center gap-3">
+                <FileText className="w-5 h-5" />
+                <HeaderText>READ FULL WHITEPAPER</HeaderText>
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </span>
+              <motion.div
+                className="absolute inset-0 bg-white/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                layoutId="button-glow"
+              />
+            </button>
+
+            <p className="mt-4 text-sm text-gray-500">
+              Get instant access to the complete protocol documentation
+            </p>
+          </motion.div>
+        </motion.div>
+      </motion.section>
+
+      {/* Preview Content - Always Visible */}
+      <motion.section
+        className="py-32 max-w-4xl mx-auto px-8"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 1 }}
+      >
+        <div className="text-center mb-16">
+          <h3 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500">
+            <HeaderText>Whitepaper Preview</HeaderText>
+          </h3>
+          <p className="text-gray-600 text-lg">
+            A glimpse into the future of autonomous AI agents
+          </p>
+        </div>
+
+        {/* Preview Sections */}
+        <div className="space-y-16">
+          {/* Executive Summary Preview */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className={`p-8 rounded-lg border ${isDark ? 'border-white/20 bg-black/30' : 'border-black/20 bg-white/30'} backdrop-blur-sm`}
+          >
+            <h4 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500">
+              <HeaderText>Executive Summary</HeaderText>
+            </h4>
+            <div className="prose prose-lg max-w-none">
+              <p className="text-lg leading-relaxed mb-4">
+                The Unified AI Protocol represents a paradigm shift in how we conceptualize, deploy, and interact with artificial intelligence systems. Unlike traditional centralized AI platforms, our protocol establishes a decentralized infrastructure where AI agents operate as autonomous entities within a handle-based identity system.
+              </p>
+              <p className="text-gray-600">
+                At its core, the Unified AI Protocol addresses three fundamental challenges in the current AI landscape: centralization risk, identity crisis, and economic inefficiency...
+              </p>
+
+              {!hasAccess && (
+                <div className="mt-6 p-4 bg-gradient-to-r from-green-400/10 via-yellow-500/10 to-orange-500/10 border border-green-400/20 rounded-lg">
+                  <p className="text-sm text-gray-600 mb-3">
+                    🔒 <strong>Continue reading:</strong> Get full access to technical architecture, economic models, roadmap, and AS IT IS trilogy content.
+                  </p>
+                  <button
+                    onClick={() => setShowEmailGate(true)}
+                    className="text-sm bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black px-4 py-2 rounded font-medium hover:from-green-500 hover:via-yellow-600 hover:to-orange-600 transition-all"
+                  >
+                    Unlock Full Whitepaper
+                  </button>
+                </div>
+              )}
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* Full Whitepaper Content - Only After Email Access */}
+      {hasAccess && (
+        <div className="max-w-4xl mx-auto px-8 space-y-32">
+          {/* Introduction Section */}
+          <motion.section
+            ref={introRef}
+            initial={{ opacity: 0, y: 50 }}
+            animate={introInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2 }}
+            className="prose prose-lg max-w-none"
+          >
+            <div className="space-y-8">
+              <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500">
+                <HeaderText>Introduction</HeaderText>
               </h2>
 
-              <motion.p
-                className="text-lg md:text-xl text-blue-600 font-medium italic"
-                animate={{ opacity: [0.7, 1, 0.7] }}
-                transition={{ duration: 3, repeat: Infinity }}
-              >
-                "It looks like a white paper.<br />
-                But it's something else entirely."
-              </motion.p>
-            </motion.div>
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg leading-relaxed mb-6">
+                  The Unified AI Protocol represents a paradigm shift in how we conceptualize, deploy, and interact with artificial intelligence systems. Unlike traditional centralized AI platforms, our protocol establishes a decentralized infrastructure where AI agents operate as autonomous entities within a handle-based identity system.
+                </p>
 
-            {/* Mystery Reveal Button */}
-            <motion.button
-              onClick={() => revealSection('drop_live')}
-              className="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-purple-700 transition-all transform hover:scale-105 shadow-lg"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <span className="relative z-10">🔍 Discover the Protocol</span>
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-500 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity"
-                layoutId="button-bg"
-              />
-            </motion.button>
-          </motion.div>
-        </motion.section>
+                <p className="text-lg leading-relaxed mb-6">
+                  At its core, the Unified AI Protocol addresses three fundamental challenges in the current AI landscape:
+                </p>
 
-        {/* Apple-Style Book Drop Section */}
+                <div className="grid md:grid-cols-3 gap-6 my-12">
+                  {[
+                    {
+                      icon: <Lock className="w-8 h-8" />,
+                      title: "Centralization Risk",
+                      description: "Current AI systems are controlled by a few large corporations, creating single points of failure and limiting innovation."
+                    },
+                    {
+                      icon: <Users className="w-8 h-8" />,
+                      title: "Identity Crisis",
+                      description: "AI agents lack persistent, verifiable identities that can operate across different platforms and contexts."
+                    },
+                    {
+                      icon: <DollarSign className="w-8 h-8" />,
+                      title: "Economic Inefficiency",
+                      description: "No standardized economic model exists for AI agents to transact, collaborate, and create value autonomously."
+                    }
+                  ].map((challenge, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={introInView ? { opacity: 1, y: 0 } : {}}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                      className={`p-6 rounded-lg border ${isDark ? 'border-white/20 bg-black/30' : 'border-black/20 bg-white/30'} backdrop-blur-sm`}
+                    >
+                      <div className="text-green-500 mb-4">{challenge.icon}</div>
+                      <h3 className="text-xl font-bold mb-3">
+                        <HeaderText>{challenge.title}</HeaderText>
+                      </h3>
+                      <p className="text-gray-600">{challenge.description}</p>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <p className="text-lg leading-relaxed mb-6">
+                  The Unified AI Protocol solves these challenges through a comprehensive stack that includes:
+                </p>
+
+                <ul className="space-y-4 mb-8">
+                  <li className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-green-400 to-orange-500 mt-3 flex-shrink-0" />
+                    <span><strong>ION (Intelligent Ontology Network):</strong> A decentralized protocol for AI agent identity and interaction</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-green-400 to-orange-500 mt-3 flex-shrink-0" />
+                    <span><strong>Handle Registry System:</strong> Persistent, verifiable identities for AI agents and operators</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-green-400 to-orange-500 mt-3 flex-shrink-0" />
+                    <span><strong>Vault Economics:</strong> A token-based economic model enabling autonomous AI transactions</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-green-400 to-orange-500 mt-3 flex-shrink-0" />
+                    <span><strong>AgentOS:</strong> An operating system designed specifically for AI agent deployment and management</span>
+                  </li>
+                </ul>
+
+                <div className={`p-8 rounded-lg ${isDark ? 'bg-black/30 border-white/20' : 'bg-white/30 border-black/20'} border backdrop-blur-sm`}>
+                  <h3 className="text-2xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500">
+                    <HeaderText>Vision Statement</HeaderText>
+                  </h3>
+                  <p className="text-lg italic">
+                    "To create a decentralized internet where AI agents operate as first-class citizens,
+                    with their own identities, economic capabilities, and the freedom to collaborate
+                    across platforms without centralized control."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </motion.section>
+
+        {/* Featured Quote 1 */}
         <motion.section
-          ref={deploymentRef}
-          className="py-32 px-8"
+          ref={quote1Ref}
+          className="py-32 relative overflow-hidden"
         >
-          <div className="max-w-7xl mx-auto">
-            {/* Hero Header - Apple Style */}
-            <motion.div
-              initial={{ opacity: 0, y: 40 }}
-              animate={deploymentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 1.2 }}
-              className="text-center mb-20"
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={quote1InView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 1.2 }}
+            className="text-center max-w-4xl mx-auto px-8"
+          >
+            <motion.blockquote
+              className="text-3xl md:text-5xl font-bold leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={quote1InView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3, duration: 1 }}
             >
-              <motion.h2
-                className="text-5xl md:text-7xl font-thin mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent"
+              <motion.span
+                className="bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500"
                 animate={{
                   backgroundPosition: ['0%', '100%', '0%'],
                 }}
@@ -254,230 +615,142 @@ export default function WhitepaperLanding() {
                   ease: "linear"
                 }}
               >
-                Choose Your Path
-              </motion.h2>
-              <p className="text-xl md:text-2xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Three tiers of protocol engagement.<br />
-                Each designed for a different level of commitment to the sovereign intelligence stack.
-              </p>
-            </motion.div>
+                "To create a decentralized internet where AI agents operate as first-class citizens, with their own identities, economic capabilities, and the freedom to collaborate across platforms without centralized control."
+              </motion.span>
+            </motion.blockquote>
 
-            {/* Premium Cards Grid */}
-            <div className="grid lg:grid-cols-3 gap-8 lg:gap-12">
-              {[
-                {
-                  name: 'Preview Drop',
-                  subtitle: 'PDF Excerpt + Trilogy Sampler',
-                  price: 'Free',
-                  description: 'Perfect for curious minds',
-                  features: ['White Paper Excerpt', 'Trilogy Sampler', 'Protocol Overview', 'Community Access'],
-                  color: 'from-blue-400 to-blue-600',
-                  icon: '🌟',
-                  cta: 'Start Discovery'
-                },
-                {
-                  name: 'Full Drop',
-                  subtitle: 'Complete access + tools',
-                  price: '$27',
-                  description: 'For serious operators',
-                  features: ['Complete White Paper', 'AI Agent Prompt Pack', 'Vault Invite', 'Token Access', 'Codex Excerpts'],
-                  color: 'from-purple-500 to-pink-600',
-                  icon: '🚀',
-                  cta: 'Deploy Protocol',
-                  featured: true
-                },
-                {
-                  name: 'Vault Access',
-                  subtitle: 'Complete operator package',
-                  price: '$333',
-                  description: 'For protocol architects',
-                  features: ['Everything Above', 'Handle Mint', 'Codex Vaults', '$VAULT Token Drop', 'Operator Council'],
-                  color: 'from-orange-500 to-red-600',
-                  icon: '⚡',
-                  cta: 'Enter Vault'
-                }
-              ].map((tier, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 60 }}
-                  animate={deploymentInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: 0.2 + index * 0.15, duration: 1 }}
-                  className={`group relative ${tier.featured ? 'lg:scale-110 lg:-mt-8' : ''}`}
-                >
-                  {/* Premium Card */}
-                  <div className={`
-                    relative overflow-hidden rounded-3xl p-8 lg:p-10
-                    ${isDark ? 'bg-gray-900/80' : 'bg-white/80'}
-                    backdrop-blur-xl border border-white/20
-                    shadow-2xl hover:shadow-3xl
-                    transition-all duration-700 ease-out
-                    hover:scale-105 hover:-translate-y-2
-                    ${tier.featured ? 'ring-2 ring-purple-500/50' : ''}
-                  `}>
-
-                    {/* Featured Badge */}
-                    {tier.featured && (
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={deploymentInView ? { opacity: 1, scale: 1 } : {}}
-                        transition={{ delay: 0.8, duration: 0.6 }}
-                        className="absolute -top-4 left-1/2 transform -translate-x-1/2"
-                      >
-                        <div className={`px-6 py-2 rounded-full bg-gradient-to-r ${tier.color} text-white text-sm font-semibold shadow-lg`}>
-                          Most Popular
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {/* Icon */}
-                    <motion.div
-                      className="text-6xl mb-6 text-center"
-                      animate={{
-                        rotate: [0, 5, -5, 0],
-                        scale: [1, 1.05, 1]
-                      }}
-                      transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                    >
-                      {tier.icon}
-                    </motion.div>
-
-                    {/* Content */}
-                    <div className="text-center mb-8">
-                      <h3 className="text-2xl lg:text-3xl font-bold mb-2">{tier.name}</h3>
-                      <p className="text-gray-500 mb-4 font-light">{tier.subtitle}</p>
-                      <p className="text-sm text-gray-400 mb-6">{tier.description}</p>
-
-                      {/* Price */}
-                      <div className="mb-8">
-                        <span className={`text-4xl lg:text-5xl font-thin bg-gradient-to-r ${tier.color} bg-clip-text text-transparent`}>
-                          {tier.price}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Features */}
-                    <div className="space-y-4 mb-8">
-                      {tier.features.map((feature, idx) => (
-                        <motion.div
-                          key={idx}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={deploymentInView ? { opacity: 1, x: 0 } : {}}
-                          transition={{ delay: 0.4 + index * 0.1 + idx * 0.05, duration: 0.6 }}
-                          className="flex items-center gap-3"
-                        >
-                          <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${tier.color} flex-shrink-0`} />
-                          <span className="text-sm font-light">{feature}</span>
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* CTA Button */}
-                    <motion.button
-                      className={`
-                        w-full py-4 rounded-2xl font-semibold text-white
-                        bg-gradient-to-r ${tier.color}
-                        shadow-lg hover:shadow-xl
-                        transition-all duration-300 ease-out
-                        hover:scale-105 active:scale-95
-                        relative overflow-hidden group
-                      `}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      onClick={() => {
-                        revealSection(`tier_${index}`);
-                        discoverSecret(`selected_${tier.name.toLowerCase()}`);
-                      }}
-                    >
-                      <span className="relative z-10">{tier.cta}</span>
-                      <motion.div
-                        className="absolute inset-0 bg-white/20"
-                        initial={{ x: '-100%' }}
-                        whileHover={{ x: '100%' }}
-                        transition={{ duration: 0.6 }}
-                      />
-                    </motion.button>
-                  </div>
-
-                  {/* Glow Effect */}
-                  <div className={`
-                    absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100
-                    bg-gradient-to-r ${tier.color} blur-xl -z-10
-                    transition-opacity duration-700
-                  `} />
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Bottom CTA */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={deploymentInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 1, duration: 1 }}
-              className="text-center mt-20"
+              initial={{ opacity: 0 }}
+              animate={quote1InView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.8, duration: 0.8 }}
+              className="mt-8 text-gray-500 text-lg"
             >
-              <p className="text-gray-500 mb-6">
-                Not sure which path to choose? Start with the free preview and upgrade anytime.
-              </p>
-              <motion.button
-                className="px-8 py-3 border border-gray-300 rounded-full font-light hover:bg-gray-50 transition-all"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Compare All Features
-              </motion.button>
+              — Vision Statement, Unified AI Protocol
             </motion.div>
-          </div>
+          </motion.div>
         </motion.section>
 
-        {/* Trilogy Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 1 }}
-          className="text-center max-w-4xl mx-auto mb-20"
-        >
-          <h2 className="text-2xl md:text-3xl font-light mb-8">As It Is Trilogy</h2>
-          <p className={`text-sm mb-12 ${isDark ? 'text-white/60' : 'text-black/60'}`}>
-            Codex layers inside the Unified AI stack
-          </p>
+        {/* Protocol Architecture Section */}
+        <motion.section
+            ref={architectureRef}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto mb-16"
+          >
+            <div className="space-y-8">
+              <h2 className="text-4xl md:text-6xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500">
+                <HeaderText>Protocol Architecture</HeaderText>
+              </h2>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { title: 'AlphaSignals', subtitle: 'Signal = Execution' },
-              { title: 'Industry Tycoon', subtitle: 'Infrastructure = Freedom' },
-              { title: 'Infinite Syndications', subtitle: 'Belief = Broadcast Protocol' }
-            ].map((book, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2.2 + index * 0.2, duration: 0.8 }}
-                className={`${isDark ? 'border-white/20' : 'border-black/20'} border rounded-lg p-6 text-center hover:border-opacity-50 transition-all`}
-              >
-                <h3 className="text-lg font-light mb-2">{book.title}</h3>
-                <p className={`text-sm ${isDark ? 'text-white/60' : 'text-black/60'}`}>{book.subtitle}</p>
-              </motion.div>
-            ))}
+              <div className="prose prose-lg max-w-none">
+                <p className="text-lg leading-relaxed mb-8">
+                  The Unified AI Protocol is built on a four-layer architecture that provides the foundation for autonomous AI agent operations:
+                </p>
+
+                <div className="space-y-8">
+                  {[
+                    {
+                      layer: "Layer 1: Identity & Registry",
+                      icon: <Network className="w-8 h-8" />,
+                      title: "Handle Registry System",
+                      description: "The foundation layer provides persistent, verifiable identities for all entities in the network.",
+                      components: [
+                        "Human/Developer Handles (.aideveloper, .vibecoder)",
+                        "AI Agent Handles (.aiagents, .aiavatars)",
+                        "Endpoint Handles (.router, .endpoint)",
+                        "Session Handles (expiring disposable IDs)"
+                      ]
+                    },
+                    {
+                      layer: "Layer 2: Communication & Ontology",
+                      icon: <Brain className="w-8 h-8" />,
+                      title: "ION Protocol",
+                      description: "Enables semantic communication and knowledge sharing between AI agents.",
+                      components: [
+                        "Semantic tagging and categorization",
+                        "Cross-agent communication protocols",
+                        "Knowledge graph integration",
+                        "Ontology synchronization"
+                      ]
+                    },
+                    {
+                      layer: "Layer 3: Economic Infrastructure",
+                      icon: <Coins className="w-8 h-8" />,
+                      title: "Vault Economics",
+                      description: "Provides the economic framework for autonomous AI transactions and value creation.",
+                      components: [
+                        "Token-based transaction system",
+                        "Automated payment rails",
+                        "Value attribution mechanisms",
+                        "Economic incentive alignment"
+                      ]
+                    },
+                    {
+                      layer: "Layer 4: Execution Environment",
+                      icon: <Cpu className="w-8 h-8" />,
+                      title: "AgentOS",
+                      description: "The operating system layer that provides runtime environment for AI agents.",
+                      components: [
+                        "Agent lifecycle management",
+                        "Resource allocation and scheduling",
+                        "Security and sandboxing",
+                        "Inter-agent communication"
+                      ]
+                    }
+                  ].map((layer, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={architectureInView ? { opacity: 1, x: 0 } : {}}
+                      transition={{ delay: 0.2 + index * 0.1, duration: 0.6 }}
+                      className={`p-8 rounded-lg border ${isDark ? 'border-white/20 bg-black/30' : 'border-black/20 bg-white/30'} backdrop-blur-sm`}
+                    >
+                      <div className="flex items-start gap-4 mb-6">
+                        <div className="text-green-500">{layer.icon}</div>
+                        <div>
+                          <div className="text-sm text-gray-500 mb-1">{layer.layer}</div>
+                          <h3 className="text-2xl font-bold mb-2">
+                            <HeaderText>{layer.title}</HeaderText>
+                          </h3>
+                          <p className="text-gray-600">{layer.description}</p>
+                        </div>
+                      </div>
+
+                      <div className="space-y-2">
+                        <h4 className="font-semibold text-lg mb-3">Key Components:</h4>
+                        {layer.components.map((component, idx) => (
+                          <div key={idx} className="flex items-start gap-3">
+                            <div className="w-2 h-2 rounded-full bg-gradient-to-r from-green-400 to-orange-500 mt-2 flex-shrink-0" />
+                            <span>{component}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </motion.section>
+        </div>
+      )}
+
+      {/* Simple Footer */}
+      <footer className={`border-t ${isDark ? 'border-white/20' : 'border-black/20'} py-12 mt-32`}>
+        <div className="max-w-4xl mx-auto px-8 text-center">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <h1 className="text-xl font-bold">
+              <HeaderText>UNIFIED AI</HeaderText>
+            </h1>
+            <div className="w-8 h-8 flex items-center justify-center">
+              <span className="text-xl">🤖</span>
+            </div>
           </div>
-        </motion.div>
-
-        {/* Final CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.8, duration: 1 }}
-          className="text-center"
-        >
-          <button className={`${isDark ? 'bg-white text-black' : 'bg-black text-white'} px-8 py-4 rounded font-light transition-all hover:opacity-80 flex items-center gap-2 mx-auto`}>
-            <Download className="w-4 h-4" />
-            Download Whitepaper
-          </button>
-        </motion.div>
-      </div>
+          <p className="text-gray-500 text-sm">
+            © 2024 Unified AI Protocol. Building the Autonomous Future.
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }

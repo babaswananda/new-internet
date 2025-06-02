@@ -255,14 +255,17 @@ const NewHeroSlider: React.FC = () => {
         </button>
       </div>
 
-      {/* Progress bar */}
+      {/* Progress bar with glowing effect */}
       <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 z-20">
         <motion.div
-          className="h-full bg-purple-600"
+          className="h-full bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 shadow-lg shadow-orange-500/50"
           initial={{ width: '0%' }}
           animate={{ width: '100%' }}
           transition={{ duration: 5, ease: 'linear' }}
           key={currentSlide}
+          style={{
+            boxShadow: '0 0 10px rgba(34, 197, 94, 0.5), 0 0 20px rgba(234, 179, 8, 0.3), 0 0 30px rgba(249, 115, 22, 0.2)'
+          }}
         />
       </div>
     </div>
