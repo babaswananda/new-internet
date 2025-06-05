@@ -55,11 +55,13 @@ export default function AGIULanding() {
 
   // Scroll refs
   const heroRef = useRef(null);
+  const productRef = useRef(null);
   const slidesRef = useRef(null);
   const productsRef = useRef(null);
   const countdownRef = useRef(null);
 
   const heroInView = useInView(heroRef, { threshold: 0.3 });
+  const productInView = useInView(productRef, { threshold: 0.3 });
   const slidesInView = useInView(slidesRef, { threshold: 0.3 });
   const productsInView = useInView(productsRef, { threshold: 0.3 });
   const countdownInView = useInView(countdownRef, { threshold: 0.3 });
@@ -107,43 +109,78 @@ export default function AGIULanding() {
     }
   ];
 
-  // Product cards data
+  // Product cards data - Apple-style grid
   const products = [
     {
+      name: 'AI Phone',
+      description: 'A new era of intelligence',
+      image: '📱',
+      gradient: 'from-blue-600 via-blue-500 to-blue-400',
+      bgColor: 'bg-gradient-to-br from-blue-900/20 to-blue-600/20'
+    },
+    {
+      name: 'AI Glasses',
+      description: 'See the world differently',
+      image: '👓',
+      gradient: 'from-gray-600 via-gray-500 to-gray-400',
+      bgColor: 'bg-gradient-to-br from-gray-900/20 to-gray-600/20'
+    },
+    {
+      name: 'AI Compute',
+      description: 'High-performance AI clusters',
+      image: '🖥️',
+      gradient: 'from-gray-800 via-gray-700 to-gray-600',
+      bgColor: 'bg-gradient-to-br from-gray-900/30 to-black/30'
+    },
+    {
+      name: 'AI Mail',
+      description: 'Intelligent email for your domain',
+      image: '📧',
+      gradient: 'from-gray-700 via-gray-600 to-gray-500',
+      bgColor: 'bg-gradient-to-br from-gray-800/30 to-gray-600/30'
+    },
+    {
+      name: 'VibeCoder',
+      description: 'Shaping the STEM curriculum',
+      image: '💻',
+      gradient: 'from-blue-600 via-blue-500 to-cyan-400',
+      bgColor: 'bg-gradient-to-br from-blue-900/20 to-cyan-600/20'
+    },
+    {
+      name: 'AI Books',
+      description: 'Crypto-native educational content',
+      image: '📚',
+      gradient: 'from-blue-600 via-blue-500 to-blue-400',
+      bgColor: 'bg-gradient-to-br from-blue-900/20 to-blue-600/20'
+    },
+    {
+      name: '.k12',
+      description: 'AI-first infrastructure for schools',
+      image: '.k12',
+      gradient: 'from-white to-gray-200',
+      bgColor: 'bg-gradient-to-br from-gray-900/30 to-black/30',
+      isText: true
+    },
+    {
       name: 'Agent OS',
-      description: 'The operating system for autonomous AI agents',
-      image: '🤖',
-      gradient: 'from-green-400 via-yellow-500 to-orange-500'
-    },
-    {
-      name: 'ION Protocol',
-      description: 'Intelligent Ontology Network for AI communication',
-      image: '⚡',
-      gradient: 'from-blue-500 via-cyan-500 to-teal-500'
-    },
-    {
-      name: 'Alpha Router',
-      description: 'Smart routing for optimal AI model selection',
-      image: '🧠',
-      gradient: 'from-purple-500 via-pink-500 to-red-500'
-    },
-    {
-      name: 'Vault Economics',
-      description: 'Tokenized incentive system for AI agents',
-      image: '💎',
-      gradient: 'from-yellow-400 via-orange-500 to-red-500'
-    },
-    {
-      name: 'Handle Registry',
-      description: 'Decentralized identity system for AI entities',
+      description: 'Build and deploy AI agents',
       image: '🔗',
-      gradient: 'from-indigo-500 via-purple-500 to-pink-500'
+      gradient: 'from-blue-500 via-cyan-400 to-teal-400',
+      bgColor: 'bg-gradient-to-br from-blue-900/20 to-teal-600/20'
     },
     {
-      name: 'Agent Chat',
-      description: 'Multi-agent communication platform',
-      image: '💬',
-      gradient: 'from-teal-500 via-green-500 to-blue-500'
+      name: 'Fugio',
+      description: 'The intelligent cryptocurrency',
+      image: '🌐',
+      gradient: 'from-gray-600 via-gray-500 to-gray-400',
+      bgColor: 'bg-gradient-to-br from-gray-900/20 to-gray-600/20'
+    },
+    {
+      name: 'Fugio',
+      description: 'The intelligent cryptocurrency',
+      image: '🪙',
+      gradient: 'from-yellow-600 via-yellow-500 to-orange-400',
+      bgColor: 'bg-gradient-to-br from-yellow-900/20 to-orange-600/20'
     }
   ];
 
@@ -260,6 +297,109 @@ export default function AGIULanding() {
             <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse" />
           </div>
         </motion.div>
+      </motion.section>
+
+      {/* Apple-Style Product Grid */}
+      <motion.section
+        ref={productRef}
+        className="py-32 relative"
+      >
+        <div className="max-w-7xl mx-auto px-8">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={productInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2 }}
+            className="text-center mb-20"
+          >
+            <motion.h3
+              className="text-4xl md:text-6xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={productInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.3, duration: 0.8 }}
+            >
+              <HeaderText>THE UNIFIED AI ECOSYSTEM</HeaderText>
+            </motion.h3>
+            <motion.p
+              className="text-xl text-gray-400 max-w-3xl mx-auto"
+              initial={{ opacity: 0 }}
+              animate={productInView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.5, duration: 0.8 }}
+            >
+              A complete suite of AI-powered products and services designed for the future
+            </motion.p>
+          </motion.div>
+
+          {/* Product Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+            {products.map((product, index) => (
+              <motion.div
+                key={product.name + index}
+                initial={{ opacity: 0, y: 50 }}
+                animate={productInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: 0.1 * index, duration: 0.8 }}
+                className={`
+                  relative rounded-3xl p-8 h-80 flex flex-col justify-between
+                  ${product.bgColor} backdrop-blur-sm border border-white/10
+                  hover:border-white/20 transition-all duration-500 group
+                  cursor-pointer overflow-hidden
+                  ${index === 0 || index === 6 ? 'lg:col-span-2' : ''}
+                  ${index === 1 || index === 2 ? 'lg:row-span-1' : ''}
+                `}
+                whileHover={{ scale: 1.02, y: -5 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Background Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                {/* Product Icon/Image */}
+                <div className="flex-1 flex items-center justify-center">
+                  {product.isText ? (
+                    <div className={`text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${product.gradient}`}>
+                      {product.image}
+                    </div>
+                  ) : (
+                    <div className="text-8xl transform group-hover:scale-110 transition-transform duration-500">
+                      {product.image}
+                    </div>
+                  )}
+                </div>
+
+                {/* Product Info */}
+                <div className="text-center">
+                  <h4 className={`text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r ${product.gradient}`}>
+                    <HeaderText>{product.name}</HeaderText>
+                  </h4>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {product.description}
+                  </p>
+                </div>
+
+                {/* Hover Overlay */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl"
+                  initial={false}
+                />
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Reserve Handle CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={productInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 1.5, duration: 0.8 }}
+            className="text-center mt-16"
+          >
+            <motion.button
+              className="px-8 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white font-medium hover:bg-white/20 hover:border-white/30 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <HeaderText>Reserve Handle</HeaderText>
+            </motion.button>
+          </motion.div>
+        </div>
       </motion.section>
 
       {/* A.G.I.U Slides Section */}
