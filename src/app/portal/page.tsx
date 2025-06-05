@@ -2,7 +2,6 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
-import { Terminal } from 'lucide-react';
 import Spline from '@splinetool/react-spline';
 import CinematicPreloader from '@/components/ui/CinematicPreloader';
 import { addToWaitlist, requestWhitepaperAccess, hasValidCredentials } from '@/lib/supabase';
@@ -44,16 +43,18 @@ export default function PortalLanding() {
       title: "AGI + U",
       subtitle: "The Internet's Operating System",
       description: "Welcome to the Agentic Web. Where intelligence meets identity, governance meets protocol, and you control the future.",
-      isOpening: true
+      isOpening: true,
+      whitepaperIndex: 0 // Unified AI Protocol
     },
     // A-G-I-U breakdown slides
     {
       spline: "https://prod.spline.design/vJWTCBb2Fx5TXfEt/scene.splinecode",
       letter: "🅰️",
-      title: "A — AIVA + Agents",
-      subtitle: "AIVA is not one voice. It's all of them.",
-      description: "The interface is no longer visual. It's conversational, ambient, alive. This is the world's first agentic operating system — powered by voice, identity, and protocol.",
-      tagline: "AIVA is the gateway. AYD is the OS. You don't open apps — you invoke agents."
+      title: "A — AIVA",
+      subtitle: "Agentic Interface for Voice + Autonomy",
+      description: "AIVA is the sovereign OS of the new internet. Not a chatbot, not a dashboard — the interface. She's the invocation layer for all agents, polyphonic and protocol-native.",
+      tagline: "She doesn't just respond — she governs, negotiates, executes. The voice of the internet.",
+      whitepaperIndex: 7 // Technical Architecture
     },
     {
       spline: "https://prod.spline.design/rCLiR6SEmfAIBhKL/scene.splinecode",
@@ -61,37 +62,30 @@ export default function PortalLanding() {
       title: "G — Governance",
       subtitle: "You don't browse the internet anymore. You govern it.",
       description: "Every handle is a contract. Every action, recorded. Every domain, a DAO. Fugio is the execution engine that turns names into networks and users into governors.",
-      tagline: "The age of passive platforms is over. The agentic web is governed — by you."
+      tagline: "The age of passive platforms is over. The agentic web is governed — by you.",
+      whitepaperIndex: 3 // AGI Governance Framework
     },
     {
       spline: "https://prod.spline.design/Fej997t12CFxVwfs/scene.splinecode",
       letter: "🅸",
-      title: "I — Identity, Intelligence, Interface",
-      subtitle: "The internet remembers who you are. Finally.",
-      description: "Every handle is a memory vault. Every agent is a reflection. Every domain is your portal. This is sovereign identity, rebuilt: TLD + Agent + Wallet = You",
-      tagline: "You don't log in. You are the login. Intelligence is now personalized, persistent, and protocol-native."
+      title: "I — Intelligent Identity Interface",
+      subtitle: "The Internet now remembers who you are — and speaks back.",
+      description: "Your handle is your memory. Your domain is your identity. Your agent is your interface. Welcome to the Intelligent Identity Interface.",
+      tagline: "Intelligence + Identity + Interface = The new internet layer",
+      whitepaperIndex: 1 // Handle Registry Specification
     },
     {
       spline: "https://prod.spline.design/0KEJ6WQwWH9vZhcv/scene.splinecode",
       letter: "🆄",
       title: "U — Unified",
-      subtitle: "It's not a browser. It's a civilization interface.",
+      subtitle: "Convergence of centralized AI and opensource AI",
       description: "Everything connects — agents, data, devices, governance, media, learning. This isn't a platform. It's the Unified Protocol Layer for the Agentic Web.",
-      tagline: "You just downloaded the next internet. One operating system. One interface. All unified."
+      tagline: "You just downloaded the next internet. One operating system. One interface. All unified.",
+      whitepaperIndex: 0 // Unified AI Protocol
     }
   ];
 
-  // Add final CTA slide
-  const finalSlide = {
-    spline: "https://prod.spline.design/0KEJ6WQwWH9vZhcv/scene.splinecode",
-    title: "AGI + U",
-    subtitle: "Autonomous. Governed. Intelligent. Unified.",
-    description: "The Internet's Operating System launches June 9.",
-    tagline: "Powered by Fugio • Runs on AYD OS • Only at AGI+U",
-    isCTA: true
-  };
-
-  const allSlides = [...heroSlides, finalSlide];
+  const allSlides = [...heroSlides];
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [terminalText, setTerminalText] = useState('');
   const [showPreloader, setShowPreloader] = useState(true);
@@ -394,9 +388,6 @@ export default function PortalLanding() {
           ))}
         </div>
 
-        {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 z-20 bg-black/70 backdrop-blur-sm"></div>
-
         {/* Text Overlay Layer - Always on top */}
         <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
           <motion.div
@@ -405,8 +396,6 @@ export default function PortalLanding() {
             transition={{ duration: 2, delay: 1 }}
             className="text-center max-w-4xl mx-auto px-8 relative"
           >
-            {/* Iridescent glow background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-green-400/20 via-yellow-500/20 to-orange-500/20 rounded-3xl backdrop-blur-md border border-green-400/30 shadow-2xl shadow-green-400/25"></div>
             <motion.div
               className="text-white leading-relaxed tracking-wide relative z-10 p-8"
               initial={{ opacity: 0 }}
@@ -414,246 +403,376 @@ export default function PortalLanding() {
               transition={{ duration: 1, delay: 0.5 }}
               key={`slide-content-${currentHeroSlide}`}
             >
-              {/* Opening AGI+U Slide */}
+              {/* Opening AGI+U Slide - NO TEXT OVERLAY */}
               {'isOpening' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].isOpening ? (
-                <>
-                  {/* Clean typography stack - like preloader screen 2 */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="space-y-8"
-                  >
-                    {/* Main AGI+U Title - Clean bold style */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3, duration: 0.6 }}
-                      className="text-6xl md:text-8xl lg:text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500"
-                    >
-                      AGI + U
-                    </motion.div>
-
-                    {/* Minimal separator */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.6 }}
-                      className="text-white/40 text-4xl md:text-5xl font-bold"
-                    >
-                      —
-                    </motion.div>
-
-                    {/* Subtitle - Clean style */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.9, duration: 0.6 }}
-                      className="text-2xl md:text-4xl lg:text-5xl font-bold text-white/90"
-                    >
-                      {allSlides[currentHeroSlide].subtitle}
-                    </motion.div>
-
-                    {/* Description */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1.2 }}
-                      className="text-lg md:text-xl text-white/70 max-w-3xl mx-auto leading-relaxed font-normal"
-                    >
-                      {allSlides[currentHeroSlide].description}
-                    </motion.div>
-
-                    {/* Minimal cursor indicator */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: [0, 1, 0] }}
-                      transition={{ delay: 1.5, duration: 1, repeat: Infinity }}
-                      className="text-white/40 text-2xl font-light"
-                    >
-                      _
-                    </motion.div>
-                  </motion.div>
-                </>
+                <></>
               ) : (
-                /* A-G-I-U Breakdown Slides - Clean typography style */
+                /* A-G-I-U Breakdown Slides - Meet AIVA Style */
                 <>
                   <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0, y: 100 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="space-y-8"
+                    transition={{ duration: 2 }}
+                    className="text-center"
                     key={`breakdown-${currentHeroSlide}`}
                   >
-                    {/* Letter Icon - Large and prominent */}
-                    <motion.div
+                    {/* Main Title - Meet AIVA Style */}
+                    <motion.h3
+                      className="text-5xl md:text-7xl font-bold mb-8 text-white drop-shadow-2xl"
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.2, duration: 0.6 }}
-                      className="text-8xl md:text-9xl"
+                      transition={{ delay: 0.5, duration: 1.5 }}
                     >
-                      {'letter' in allSlides[currentHeroSlide] ? allSlides[currentHeroSlide].letter : ''}
-                    </motion.div>
+                      <HeaderText>{allSlides[currentHeroSlide].title}</HeaderText>
+                    </motion.h3>
 
-                    {/* Title - Clean bold style like preloader */}
+                    {/* Subtitle */}
+                    <motion.p
+                      className="text-2xl md:text-3xl text-white/90 drop-shadow-xl mb-12"
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1, duration: 1 }}
+                    >
+                      <HeaderText>{allSlides[currentHeroSlide].subtitle}</HeaderText>
+                    </motion.p>
+
+                    {/* Different visual for each slide */}
                     <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.4, duration: 0.6 }}
-                      className="text-4xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500"
+                      initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
+                      transition={{ delay: 1.5, duration: 1.5, ease: "easeOut" }}
+                      className="flex justify-center"
                     >
-                      {allSlides[currentHeroSlide].title}
+                      {/* AIVA - Voice Interface */}
+                      {'letter' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].letter === '🅰️' && (
+                        <motion.div
+                          className="w-48 h-96 bg-gradient-to-b from-gray-900 to-black rounded-[3rem] border border-white/20 shadow-2xl relative overflow-hidden"
+                          whileHover={{ scale: 1.05, rotateY: 5 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <div className="absolute inset-4 bg-black rounded-[2.5rem] flex flex-col items-center justify-center">
+                            <motion.div
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 2, duration: 1 }}
+                              className="text-center"
+                            >
+                              <div className="text-4xl mb-4">🎤</div>
+                              <div className="text-white text-sm font-medium mb-2">AIVA</div>
+                              <div className="text-green-400 text-xs">● Voice Active</div>
+                            </motion.div>
+                            <motion.div
+                              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-1"
+                              initial={{ opacity: 0 }}
+                              animate={{ opacity: 1 }}
+                              transition={{ delay: 2.5, duration: 1 }}
+                            >
+                              {[...Array(5)].map((_, i) => (
+                                <motion.div
+                                  key={i}
+                                  className="w-1 bg-green-400 rounded-full"
+                                  animate={{ height: [4, 12, 4] }}
+                                  transition={{
+                                    duration: 1,
+                                    repeat: Infinity,
+                                    delay: i * 0.1,
+                                    ease: "easeInOut"
+                                  }}
+                                />
+                              ))}
+                            </motion.div>
+                          </div>
+                          <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white/20 rounded-full" />
+                          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full" />
+                        </motion.div>
+                      )}
+
+                      {/* GOVERNANCE - 3D FUGIO Coin with REAL Iridescent Colors */}
+                      {'letter' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].letter === '🅶' && (
+                        <motion.div
+                          className="relative w-64 h-64"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {/* 3D Coin Container */}
+                          <motion.div
+                            className="w-full h-full relative preserve-3d"
+                            animate={{
+                              rotateY: [0, 360],
+                              rotateX: [0, 15, 0, -15, 0]
+                            }}
+                            transition={{
+                              duration: 8,
+                              repeat: Infinity,
+                              ease: "linear"
+                            }}
+                            style={{ transformStyle: 'preserve-3d' }}
+                          >
+                            {/* Coin Front Face */}
+                            <div className="absolute inset-0 rounded-full flex items-center justify-center shadow-2xl"
+                                 style={{
+                                   background: 'conic-gradient(from 0deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0040, #ff69b4, #00bfff, #ff1493, #ff0080)',
+                                   transform: 'translateZ(12px)',
+                                   border: '3px solid rgba(255, 255, 255, 0.3)'
+                                 }}>
+                              <div className="text-center">
+                                <div className="text-white text-xs font-bold drop-shadow-lg mb-2">TIME FLEES</div>
+                                <motion.div
+                                  className="text-6xl mb-2 filter drop-shadow-lg"
+                                  animate={{ rotateZ: [0, 360] }}
+                                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                                >
+                                  ⚖️
+                                </motion.div>
+                                <div className="text-white text-lg font-bold drop-shadow-lg">$FUGIO</div>
+                                <div className="text-white text-xs font-bold drop-shadow-lg mt-2">MINDS YOUR BUSINESS</div>
+                              </div>
+                            </div>
+
+                            {/* Coin Back Face */}
+                            <div className="absolute inset-0 rounded-full flex items-center justify-center shadow-2xl"
+                                 style={{
+                                   background: 'conic-gradient(from 180deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0040, #ff69b4, #00bfff, #ff1493, #ff0080)',
+                                   transform: 'translateZ(-12px) rotateY(180deg)',
+                                   border: '3px solid rgba(255, 255, 255, 0.3)'
+                                 }}>
+                              <div className="text-center">
+                                <div className="text-white text-xs font-bold drop-shadow-lg mb-2">TIME FLEES</div>
+                                <div className="text-4xl mb-2 filter drop-shadow-lg">🌐</div>
+                                <div className="text-white text-sm font-bold drop-shadow-lg">PROTOCOL</div>
+                                <div className="text-white text-xs font-bold drop-shadow-lg mt-2">MINDS YOUR BUSINESS</div>
+                              </div>
+                            </div>
+
+                            {/* Coin Edge */}
+                            <div className="absolute inset-0 rounded-full"
+                                 style={{
+                                   background: 'linear-gradient(90deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0040)',
+                                   transform: 'translateZ(0px)',
+                                   height: '24px',
+                                   top: '50%',
+                                   marginTop: '-12px',
+                                   border: '1px solid rgba(255, 255, 255, 0.2)'
+                                 }}>
+                            </div>
+                          </motion.div>
+
+                          {/* Iridescent Glow Effect */}
+                          <motion.div
+                            className="absolute inset-0 rounded-full blur-xl opacity-60"
+                            animate={{
+                              background: [
+                                'radial-gradient(circle, #ff0080, transparent)',
+                                'radial-gradient(circle, #40e0d0, transparent)',
+                                'radial-gradient(circle, #32cd32, transparent)',
+                                'radial-gradient(circle, #ff8c00, transparent)',
+                                'radial-gradient(circle, #da70d6, transparent)',
+                                'radial-gradient(circle, #ff0080, transparent)'
+                              ]
+                            }}
+                            transition={{ duration: 4, repeat: Infinity }}
+                          />
+
+                          {/* Sparkle Effects */}
+                          {[...Array(8)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              className="absolute w-2 h-2 rounded-full"
+                              style={{
+                                background: ['#ff0080', '#40e0d0', '#32cd32', '#ff8c00', '#da70d6', '#ff69b4', '#00bfff', '#ff1493'][i],
+                                left: `${20 + i * 15}%`,
+                                top: `${10 + (i % 3) * 30}%`
+                              }}
+                              animate={{
+                                scale: [0, 1, 0],
+                                opacity: [0, 1, 0]
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: i * 0.3
+                              }}
+                            />
+                          ))}
+                        </motion.div>
+                      )}
+
+                      {/* IDENTITY - Intelligent Identity Interface */}
+                      {'letter' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].letter === '🅸' && (
+                        <motion.div
+                          className="relative w-64 h-64"
+                          whileHover={{ scale: 1.1 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          {/* Central Identity Core */}
+                          <motion.div
+                            className="absolute inset-0 flex items-center justify-center"
+                            animate={{ rotateY: [0, 360] }}
+                            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                          >
+                            <div
+                              className="w-32 h-32 rounded-full border-4 border-white/30 flex items-center justify-center relative"
+                              style={{
+                                background: 'conic-gradient(from 0deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0080)',
+                              }}
+                            >
+                              <div className="text-center">
+                                <div className="text-4xl mb-2 text-white">🧠</div>
+                                <div className="text-white text-sm font-bold">YOU</div>
+                              </div>
+                            </div>
+                          </motion.div>
+
+                          {/* Three Interface Layers */}
+                          {[
+                            { radius: 80, label: 'Intelligence', icon: '🤖', color: '#ff0080', delay: 0 },
+                            { radius: 100, label: 'Identity', icon: '🔐', color: '#8000ff', delay: 0.5 },
+                            { radius: 120, label: 'Interface', icon: '🌐', color: '#0080ff', delay: 1 }
+                          ].map((layer, i) => (
+                            <motion.div
+                              key={i}
+                              className="absolute inset-0 flex items-center justify-center"
+                              animate={{ rotate: [0, 360] }}
+                              transition={{
+                                duration: 10 + i * 2,
+                                repeat: Infinity,
+                                ease: "linear",
+                                delay: layer.delay
+                              }}
+                            >
+                              <div
+                                className="absolute border border-white/20 rounded-full"
+                                style={{
+                                  width: `${layer.radius}px`,
+                                  height: `${layer.radius}px`,
+                                  borderColor: layer.color + '40'
+                                }}
+                              />
+                              <motion.div
+                                className="absolute w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                                style={{
+                                  background: layer.color,
+                                  top: `${50 - layer.radius/8}%`,
+                                  left: '50%',
+                                  transform: 'translateX(-50%)'
+                                }}
+                                animate={{
+                                  scale: [1, 1.2, 1],
+                                  boxShadow: [
+                                    `0 0 0px ${layer.color}`,
+                                    `0 0 20px ${layer.color}`,
+                                    `0 0 0px ${layer.color}`
+                                  ]
+                                }}
+                                transition={{ duration: 2, repeat: Infinity, delay: i * 0.7 }}
+                              >
+                                {layer.icon}
+                              </motion.div>
+                            </motion.div>
+                          ))}
+
+                          {/* Data Streams */}
+                          {[...Array(6)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              className="absolute w-1 h-16 rounded-full"
+                              style={{
+                                background: `linear-gradient(to bottom, ${['#ff0080', '#8000ff', '#0080ff'][i % 3]}, transparent)`,
+                                left: `${30 + i * 12}%`,
+                                top: `${20 + (i % 2) * 40}%`,
+                                transformOrigin: 'bottom'
+                              }}
+                              animate={{
+                                scaleY: [0, 1, 0],
+                                opacity: [0, 1, 0]
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: i * 0.3
+                              }}
+                            />
+                          ))}
+
+                          {/* Memory Nodes */}
+                          {[...Array(8)].map((_, i) => (
+                            <motion.div
+                              key={i}
+                              className="absolute w-2 h-2 rounded-full"
+                              style={{
+                                background: ['#ff0080', '#8000ff', '#0080ff', '#00ff80'][i % 4],
+                                left: `${20 + i * 10}%`,
+                                top: `${15 + (i % 4) * 20}%`
+                              }}
+                              animate={{
+                                scale: [0.5, 1.5, 0.5],
+                                opacity: [0.3, 1, 0.3]
+                              }}
+                              transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                delay: i * 0.4
+                              }}
+                            />
+                          ))}
+
+                          {/* Central Label */}
+                          <motion.div
+                            className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ delay: 2, duration: 1 }}
+                          >
+                            <div className="text-center bg-black/60 backdrop-blur-sm rounded-lg p-2 border border-white/20">
+                              <div className="text-white text-sm font-medium">INTELLIGENT</div>
+                              <div className="text-purple-400 text-xs">IDENTITY INTERFACE</div>
+                            </div>
+                          </motion.div>
+
+                          {/* Ambient Glow */}
+                          <motion.div
+                            className="absolute inset-0 rounded-full blur-2xl opacity-30"
+                            animate={{
+                              background: [
+                                'radial-gradient(circle, #ff0080, transparent)',
+                                'radial-gradient(circle, #8000ff, transparent)',
+                                'radial-gradient(circle, #0080ff, transparent)',
+                                'radial-gradient(circle, #ff0080, transparent)'
+                              ]
+                            }}
+                            transition={{ duration: 6, repeat: Infinity }}
+                          />
+                        </motion.div>
+                      )}
+
+                      {/* UNIFIED - Simple Text Only */}
+                      {'letter' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].letter === '🆄' && (
+                        <div className="text-center">
+                          <div className="text-white text-lg font-medium mb-4">CONVERGENCE</div>
+                          <div className="text-cyan-400 text-sm">Centralized AI ⚡ Opensource AI</div>
+                        </div>
+                      )}
                     </motion.div>
 
-                    {/* Minimal separator */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.6 }}
-                      className="text-white/40 text-3xl md:text-4xl font-bold"
-                    >
-                      —
-                    </motion.div>
-
-                    {/* Subtitle - Clean italic style */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.8, duration: 0.6 }}
-                      className="text-xl md:text-3xl lg:text-4xl font-bold text-white/90 italic"
-                    >
-                      "{allSlides[currentHeroSlide].subtitle}"
-                    </motion.div>
-
-                    {/* Description */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1.0 }}
-                      className="text-base md:text-lg text-white/70 leading-relaxed max-w-3xl mx-auto font-normal"
-                    >
-                      {allSlides[currentHeroSlide].description}
-                    </motion.div>
-
-                    {/* Tagline with brain emoji */}
-                    {'tagline' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].tagline && (
+                    {/* View Documentation Button - Only for non-opening slides */}
+                    {'whitepaperIndex' in allSlides[currentHeroSlide] && !('isOpening' in allSlides[currentHeroSlide]) && (
                       <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 1.2 }}
-                        className="text-base md:text-lg text-green-400 font-medium"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 2.5, duration: 1 }}
+                        className="mt-8 pointer-events-auto"
                       >
-                        🧠 {allSlides[currentHeroSlide].tagline}
+                        <button
+                          onClick={() => openWhitepaperModal(allSlides[currentHeroSlide].whitepaperIndex)}
+                          className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                          <span className="relative z-10">📄 View Documentation</span>
+                        </button>
                       </motion.div>
                     )}
-
-                    {/* Minimal cursor indicator */}
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: [0, 1, 0] }}
-                      transition={{ delay: 1.4, duration: 1, repeat: Infinity }}
-                      className="text-white/40 text-2xl font-light"
-                    >
-                      _
-                    </motion.div>
                   </motion.div>
                 </>
-              )}
-
-              {/* Final CTA Slide - Clean typography style */}
-              {'isCTA' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].isCTA && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  className="space-y-8"
-                  key={`cta-${currentHeroSlide}`}
-                >
-                  {/* Main Title - Clean bold style */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                    className="text-6xl md:text-8xl lg:text-9xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500"
-                  >
-                    {allSlides[currentHeroSlide].title}
-                  </motion.div>
-
-                  {/* Minimal separator */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.6 }}
-                    className="text-white/40 text-4xl md:text-5xl font-bold"
-                  >
-                    —
-                  </motion.div>
-
-                  {/* Subtitle */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.9, duration: 0.6 }}
-                    className="text-2xl md:text-4xl lg:text-5xl font-bold text-white/90"
-                  >
-                    {allSlides[currentHeroSlide].subtitle}
-                  </motion.div>
-
-                  {/* Description */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.2 }}
-                    className="text-lg md:text-xl text-white/70 font-normal"
-                  >
-                    {allSlides[currentHeroSlide].description}
-                  </motion.div>
-
-                  {/* CTA Buttons - Iridescent Style */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.5 }}
-                    className="flex flex-col sm:flex-row gap-4 justify-center pointer-events-auto"
-                  >
-                    <button className="group relative px-6 py-3 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-green-400/25 overflow-hidden border border-green-400/30">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                      <span className="relative z-10">🔗 download.newinternet</span>
-                    </button>
-                    <button className="group relative px-6 py-3 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-yellow-400/25 overflow-hidden border border-yellow-400/30">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                      <span className="relative z-10">Join the Waitlist</span>
-                    </button>
-                    <button className="group relative px-6 py-3 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-orange-400/25 overflow-hidden border border-orange-400/30">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                      <span className="relative z-10">Reserve Your Handle</span>
-                    </button>
-                    <button className="group relative px-6 py-3 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-green-400/25 overflow-hidden border border-green-400/30">
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                      <span className="relative z-10">Bind to the New Internet</span>
-                    </button>
-                  </motion.div>
-
-                  {/* Tagline */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 1.8 }}
-                    className="text-base md:text-lg text-green-400 font-medium"
-                  >
-                    {'tagline' in allSlides[currentHeroSlide] ? allSlides[currentHeroSlide].tagline : ''}
-                  </motion.div>
-
-                  {/* Minimal cursor indicator */}
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 1, 0] }}
-                    transition={{ delay: 2.0, duration: 1, repeat: Infinity }}
-                    className="text-white/40 text-2xl font-light"
-                  >
-                    _
-                  </motion.div>
-                </motion.div>
               )}
             </motion.div>
           </motion.div>
@@ -671,6 +790,58 @@ export default function PortalLanding() {
             <div className="w-1 h-3 bg-white/30 rounded-full mt-2 animate-pulse" />
           </div>
         </motion.div>
+      </motion.section>
+
+      {/* CTA Section - Right after hero */}
+      <motion.section className="py-32 relative bg-black">
+        <div className="max-w-4xl mx-auto px-8 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true }}
+            className="mb-16"
+          >
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold text-white mb-8">
+              <HeaderText>AGI + U</HeaderText>
+            </h2>
+            <h3 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white/90 mb-6">
+              <HeaderText>Autonomous. Governed. Intelligent. Unified.</HeaderText>
+            </h3>
+            <p className="text-lg md:text-xl text-white/70 mb-8">
+              The Internet's Operating System launches June 9.
+            </p>
+            <p className="text-base md:text-lg text-white/70 font-medium mb-12">
+              Powered by Fugio • Runs on AYD OS • Only at AGI+U
+            </p>
+          </motion.div>
+
+          {/* CTA Buttons - Iridescent Style */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <button className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">🔗 download.newinternet</span>
+            </button>
+            <button className="group relative px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-blue-500/25 overflow-hidden border border-blue-500/30">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">Join the Waitlist</span>
+            </button>
+            <button className="group relative px-6 py-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-cyan-400/25 overflow-hidden border border-cyan-400/30">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">Reserve Your Handle</span>
+            </button>
+            <button className="group relative px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-pink-500/25 overflow-hidden border border-pink-500/30">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">Bind to the New Internet</span>
+            </button>
+          </motion.div>
+        </div>
       </motion.section>
 
       {/* Floating Music Player */}
@@ -950,7 +1121,7 @@ export default function PortalLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.8 }}
                 viewport={{ once: true }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-white/20 transition-all duration-500 cursor-pointer group"
+                className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-400/10 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 hover:border-purple-500/70 transition-all duration-500 cursor-pointer group shadow-2xl hover:shadow-purple-500/25"
                 whileHover={{ scale: 1.02, y: -5 }}
               >
                 <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
@@ -1007,8 +1178,8 @@ export default function PortalLanding() {
             ease: "linear"
           }}
         >
-          <span className="text-[340pt] font-black bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 inline-block leading-none">
-            WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;
+          <span className="text-[170pt] font-black bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 inline-block leading-none">
+            WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;
           </span>
         </motion.div>
       </motion.section>
@@ -1042,7 +1213,7 @@ export default function PortalLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.2, duration: 0.8 }}
                 viewport={{ once: true }}
-                className="group relative bg-gradient-to-br from-green-400/10 via-yellow-500/10 to-orange-500/10 border border-green-400/30 rounded-2xl p-8 h-48 flex flex-col justify-center items-center hover:border-green-400/70 transition-all duration-500 cursor-pointer overflow-hidden shadow-2xl hover:shadow-green-400/25"
+                className="group relative bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-400/10 border border-blue-500/30 rounded-2xl p-8 h-48 flex flex-col justify-center items-center hover:border-blue-500/70 transition-all duration-500 cursor-pointer overflow-hidden shadow-2xl hover:shadow-blue-500/25"
               >
                 {/* Metal shine effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
@@ -1154,7 +1325,7 @@ export default function PortalLanding() {
                 className="group relative cursor-pointer"
                 onClick={() => openWhitepaperModal(index)}
               >
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-green-400/10 via-yellow-500/10 to-orange-500/10 backdrop-blur-sm border border-green-400/30 hover:border-green-400/70 transition-all duration-500 hover:scale-105 p-6 h-80 w-72 flex-shrink-0 shadow-2xl hover:shadow-green-400/25">
+                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-400/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 hover:scale-105 p-6 h-96 w-72 flex-shrink-0 shadow-2xl hover:shadow-cyan-400/25">
                   {/* Metal shine effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
 
@@ -1325,7 +1496,7 @@ export default function PortalLanding() {
             <h2 className="text-3xl md:text-5xl font-bold mb-4 text-white">
               <HeaderText>The Internet Hasn't Started Yet.</HeaderText>
             </h2>
-            <h3 className="text-xl md:text-3xl font-bold text-green-400 mb-8">
+            <h3 className="text-xl md:text-3xl font-bold text-white/90 mb-8">
               <HeaderText>It Reboots June 9.</HeaderText>
             </h3>
 
@@ -1345,33 +1516,33 @@ export default function PortalLanding() {
             className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12"
           >
             {/* Download Command */}
-            <div className="bg-black/60 backdrop-blur-sm border border-green-400/30 rounded-lg p-6 font-mono group hover:border-green-400/50 transition-all cursor-pointer">
+            <div className="bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-blue-500/10 backdrop-blur-sm border border-pink-500/30 rounded-lg p-6 font-mono group hover:border-pink-500/70 transition-all cursor-pointer shadow-2xl hover:shadow-pink-500/25">
               <div className="flex items-center gap-2 mb-2">
                 <span className="text-green-400">$</span>
-                <span className="text-white group-hover:text-green-400 transition-colors text-sm">
+                <span className="text-white group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-400 group-hover:via-yellow-500 group-hover:to-orange-500 transition-colors text-sm">
                   download.newinternet
                 </span>
               </div>
-              <div className="text-xs text-gray-400 mb-2">
+              <div className="text-xs text-green-400 mb-2">
                 <HeaderText>⟶ Join the waitlist</HeaderText>
               </div>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-white/70">
                 <HeaderText>Your agent arrives by voice</HeaderText>
               </div>
             </div>
 
             {/* Bind Command */}
-            <div className="bg-black/60 backdrop-blur-sm border border-purple-400/30 rounded-lg p-6 font-mono group hover:border-purple-400/50 transition-all cursor-pointer">
+            <div className="bg-gradient-to-br from-cyan-400/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-400/30 rounded-lg p-6 font-mono group hover:border-cyan-400/70 transition-all cursor-pointer shadow-2xl hover:shadow-cyan-400/25">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-purple-400">$</span>
-                <span className="text-white group-hover:text-purple-400 transition-colors text-sm">
+                <span className="text-orange-400">$</span>
+                <span className="text-white group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-400 group-hover:via-yellow-500 group-hover:to-orange-500 transition-colors text-sm">
                   bind.newinternet
                 </span>
               </div>
-              <div className="text-xs text-gray-400 mb-2">
+              <div className="text-xs text-orange-400 mb-2">
                 <HeaderText>⟶ Lock in your agent & handle</HeaderText>
               </div>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-white/70">
                 <HeaderText>Begin sovereignty</HeaderText>
               </div>
             </div>
@@ -1449,10 +1620,12 @@ export default function PortalLanding() {
                       setSubmitMessage('');
                       setWhitepaperEmail('');
                     }}
-                    className="flex-1 px-6 py-3 bg-gray-700 text-white font-medium rounded-lg hover:bg-gray-600 transition-all disabled:opacity-50"
+                    className="group relative flex-1 px-6 py-3 bg-gradient-to-r from-green-400/20 via-yellow-500/20 to-orange-500/20 border border-green-400/30 text-white font-medium rounded-lg transition-all disabled:opacity-50 hover:border-green-400/70 overflow-hidden"
                     disabled={isSubmitting}
                   >
-                    Cancel
+                    {/* Metal shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                    <span className="relative z-10">Cancel</span>
                   </button>
                   <button
                     type="submit"
