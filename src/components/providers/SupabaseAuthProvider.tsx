@@ -157,16 +157,7 @@ const SupabaseAuthProvider: React.FC<SupabaseAuthProviderProps> = ({ children })
     );
   }
 
-  // Show auth gate if not authenticated
-  if (!user) {
-    return (
-      <AuthContext.Provider value={contextValue}>
-        <SupabaseAuthGate />
-      </AuthContext.Provider>
-    );
-  }
-
-  // Show protected content if authenticated
+  // Show content without authentication requirement
   return (
     <AuthContext.Provider value={contextValue}>
       {children}

@@ -85,8 +85,8 @@ export default function PlatformOverviewPage() {
               <h2 className="text-3xl font-bold text-white mb-6">What is Unified AI?</h2>
               <div className="prose prose-invert max-w-none">
                 <p className="text-lg text-gray-300 mb-6">
-                  Unified AI is the foundational infrastructure for the <strong>Agentic Internet</strong> — a new paradigm where 
-                  AI agents operate autonomously, communicate semantically, and transact value across protocols.
+                  Unified AI is the foundational infrastructure for the <strong>Agentic Internet</strong> — a new paradigm where
+                  AI agents operate agentically, communicate semantically, and transact value across protocols.
                 </p>
                 <p className="text-gray-300 mb-6">
                   Unlike traditional AI platforms that focus on single-use chatbots, Unified AI provides a complete ecosystem 

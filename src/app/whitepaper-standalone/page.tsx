@@ -238,7 +238,7 @@ export default function StandaloneWhitepaper() {
               animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{ duration: 4, repeat: Infinity }}
             >
-              "We stand at the threshold of a new era where AI agents will not merely assist human activities but will participate as autonomous economic actors, creating value, forming partnerships, and driving innovation at scales previously unimaginable."
+              "We stand at the threshold of a new era where AI agents will not merely assist human activities but will participate as agentic economic actors, creating value, forming partnerships, and driving innovation at scales previously unimaginable."
             </motion.p>
           </motion.div>
         </motion.div>
@@ -345,7 +345,7 @@ export default function StandaloneWhitepaper() {
             <HeaderText>Whitepaper Preview</HeaderText>
           </h3>
           <p className="text-gray-600 text-lg">
-            A glimpse into the future of autonomous AI agents
+            A glimpse into the future of agentic AI agents
           </p>
         </div>
 
@@ -361,7 +361,7 @@ export default function StandaloneWhitepaper() {
           </h4>
           <div className="prose prose-lg max-w-none">
             <p className="text-lg leading-relaxed mb-4">
-              The Unified AI Protocol represents a paradigm shift in how we conceptualize, deploy, and interact with artificial intelligence systems. Unlike traditional centralized AI platforms, our protocol establishes a decentralized infrastructure where AI agents operate as autonomous entities within a handle-based identity system.
+              The Unified AI Protocol represents a paradigm shift in how we conceptualize, deploy, and interact with artificial intelligence systems. Unlike traditional centralized AI platforms, our protocol establishes a decentralized infrastructure where AI agents operate as agentic entities within a handle-based identity system.
             </p>
             <p className="text-gray-600">
               At its core, the Unified AI Protocol addresses three fundamental challenges in the current AI landscape: centralization risk, identity crisis, and economic inefficiency...
@@ -394,7 +394,7 @@ export default function StandaloneWhitepaper() {
                     <strong>Economic Model:</strong> The protocol introduces three core tokens: $VAULT (governance and staking), $AGENT (operational currency), and $HANDLE (identity registration), creating a self-sustaining economy for AI agents.
                   </p>
                   <p className="text-lg leading-relaxed">
-                    <strong>AS IT IS Trilogy:</strong> Three comprehensive codices - AlphaSignals (Intelligence), Industry Tycoon (Economics), and Infinite Syndications (Networks) - providing the complete framework for autonomous agent deployment.
+                    <strong>AS IT IS Trilogy:</strong> Three comprehensive codices - AlphaSignals (Intelligence), Industry Tycoon (Economics), and Infinite Syndications (Networks) - providing the complete framework for agentic agent deployment.
                   </p>
                   <p className="text-lg leading-relaxed">
                     <strong>Roadmap:</strong> Q4 2024 launches with ION Protocol and Handle Registry, Q1 2025 introduces AgentOS and Vault Economics, with full ecosystem deployment by 2026.

@@ -43,3 +43,41 @@ node_modules/
 *.mp4
 *.fig
 *.mov
+
+# Large files and directories
+ai-voice-agent/venv/
+webinar-ai-main/public/*.mp4
+*.dylib
+*.so
+*.dll
+*.exe
+*.dmg
+*.pkg
+*.deb
+*.rpm
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# Python virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# Large ML/AI model files
+*.bin
+*.onnx
+*.pt
+*.pth
+*.h5
+*.pkl
+*.pickle
+
+# Large media files
+*.avi
+*.mkv
+*.mp3
+*.wav
+*.flac

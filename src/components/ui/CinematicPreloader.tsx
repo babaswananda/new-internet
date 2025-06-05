@@ -39,6 +39,7 @@ const TypewriterText: React.FC<{
   );
 };
 import SpaceParticlesBackground from './SpaceParticlesBackground';
+import Spline from '@splinetool/react-spline';
 
 interface CinematicPreloaderProps {
   onComplete: () => void;
@@ -51,7 +52,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
 }) => {
   const [progress, setProgress] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
-  const [currentScreen, setCurrentScreen] = useState<'agents' | 'agentos' | 'welcome'>('agents');
+  const [currentScreen, setCurrentScreen] = useState<'agents' | 'spline1' | 'agentos' | 'spline2'>('agents');
   const [audioContext, setAudioContext] = useState<AudioContext | null>(null);
   const [soundPlayed, setSoundPlayed] = useState(false);
   const [showSoundPrompt, setShowSoundPrompt] = useState(true);
@@ -145,88 +146,62 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
     return () => clearInterval(fontCycleInterval);
   }, [currentScreen, fonts.length]);
 
-  // Screen transition logic - SLOWED DOWN AS REQUESTED
+  // Screen transition logic with new Spline screens
   useEffect(() => {
-    // Show "agents are coming" for 4 seconds (was 2.5)
+    // Show "agents are coming" for 3 seconds
     const agentsTimer = setTimeout(() => {
+      setCurrentScreen('spline1');
+    }, 3000);
+
+    // Show first Spline screen for 3 seconds
+    const spline1Timer = setTimeout(() => {
       setCurrentScreen('agentos');
-    }, 4000);
+    }, 6000);
 
-    // Show AgentOS screen for 3.5 seconds (was 2), then transition to welcome screen
+    // Show AgentOS screen for 3 seconds
     const agentOSTimer = setTimeout(() => {
-      setCurrentScreen('welcome');
-    }, 7500);
+      setCurrentScreen('spline2');
+    }, 9000);
 
-    // Show skip button after 4 seconds
-    const skipButtonTimer = setTimeout(() => {
-      setShowSkipButton(true);
-    }, 4000);
+    // Show final Spline screen for 3 seconds, then complete
+    const spline2Timer = setTimeout(() => {
+      setIsComplete(true);
+      setTimeout(() => {
+        onComplete();
+      }, 500);
+    }, 12000);
 
     return () => {
       clearTimeout(agentsTimer);
+      clearTimeout(spline1Timer);
       clearTimeout(agentOSTimer);
-      clearTimeout(skipButtonTimer);
+      clearTimeout(spline2Timer);
     };
   }, []);
 
-  // Skip intro function
-  const skipIntro = () => {
-    setCurrentScreen('welcome');
-    setShowSkipButton(false);
-  };
-
+  // Cleanup audio context when component unmounts
   useEffect(() => {
-    // Only start progress when on welcome screen
-    if (currentScreen !== 'welcome') return;
-
-    const interval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setIsComplete(true);
-            // Always redirect to whitepaper after preloader
-            setTimeout(() => {
-              window.location.href = '/whitepaper';
-            }, 500);
-          }, 500);
-          return 100;
-        }
-        return prev + (100 / (duration / 50));
-      });
-    }, 50);
-
     return () => {
-      clearInterval(interval);
-      // Cleanup audio context
       if (audioContext) {
         audioContext.close();
       }
     };
-  }, [duration, onComplete, audioContext, currentScreen]);
+  }, [audioContext]);
 
   return (
     <AnimatePresence>
       {!isComplete && (
         <motion.div
           className={`fixed inset-0 z-[9999] flex items-center justify-center ${
-            currentScreen === 'agents' ? 'bg-black' : currentScreen === 'agentos' ? 'bg-white' : 'bg-black'
+            currentScreen === 'agents' ? 'bg-black' :
+            currentScreen === 'spline1' ? 'bg-black' :
+            currentScreen === 'agentos' ? 'bg-white' :
+            currentScreen === 'spline2' ? 'bg-black' : 'bg-black'
           }`}
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
         >
-          {/* Space Particles Background - Only on welcome screen */}
-          {currentScreen === 'welcome' && (
-            <SpaceParticlesBackground
-              particleCount={60}
-              color="mixed"
-              speed="slow"
-              depth={false}
-              interactive={false}
-              tinyParticles={false}
-            />
-          )}
 
           {/* Main content */}
           <div className="relative z-10 text-center w-full">
@@ -248,6 +223,19 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                       speed={120}
                     />
                   </div>
+                </motion.div>
+              )}
+
+              {currentScreen === 'spline1' && (
+                <motion.div
+                  key="spline1"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                  className="w-full h-screen relative"
+                >
+                  <Spline scene="https://prod.spline.design/rJPA857DGZSxML8o/scene.splinecode" />
                 </motion.div>
               )}
 
@@ -309,7 +297,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 1.0, duration: 0.6 }}
-                          className="text-3xl md:text-5xl font-light text-black"
+                          className="text-6xl md:text-8xl lg:text-9xl font-bold text-black"
                         >
                           AgentOS
                         </motion.div>
@@ -318,7 +306,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 1.3 }}
-                          className="text-gray-400 text-xl font-light"
+                          className="text-gray-400 text-4xl md:text-5xl font-bold"
                         >
                           +
                         </motion.div>
@@ -327,7 +315,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 1.6, duration: 0.6 }}
-                          className="text-3xl md:text-5xl font-light text-black"
+                          className="text-6xl md:text-8xl lg:text-9xl font-bold text-black"
                         >
                           AlphaRouter
                         </motion.div>
@@ -336,7 +324,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                           initial={{ opacity: 0 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 1.9 }}
-                          className="text-gray-400 text-xl font-light"
+                          className="text-gray-400 text-4xl md:text-5xl font-bold"
                         >
                           +
                         </motion.div>
@@ -345,7 +333,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 2.2, duration: 0.6 }}
-                          className="text-3xl md:text-5xl font-light text-black"
+                          className="text-6xl md:text-8xl lg:text-9xl font-bold text-black"
                         >
                           commandline
                         </motion.div>
@@ -365,102 +353,21 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                 </motion.div>
               )}
 
-              {currentScreen === 'welcome' && (
+              {currentScreen === 'spline2' && (
                 <motion.div
-                  key="welcome"
+                  key="spline2"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   transition={{ duration: 0.3, ease: "easeInOut" }}
-                  className="mb-8"
+                  className="w-full h-screen relative"
                 >
-                  {/* ORIGINAL SCREEN 2 - Rotating text with font cycling */}
-                  <motion.h1
-                    className="text-4xl md:text-6xl font-black mb-4 text-white"
-                    style={{
-                      fontFamily: fonts[fontCycleIndex],
-                      color: colors[fontCycleIndex % colors.length]
-                    }}
-                    animate={{
-                      scale: [1, 1.05, 1],
-                      rotate: [0, 1, -1, 0]
-                    }}
-                    transition={{
-                      duration: 0.3,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    Welcome to the New Internet
-                  </motion.h1>
-                  <p className="text-xl text-gray-300 mb-2">
-                    Loading AI Agents
-                  </p>
-                  <p className="text-lg text-gray-400">
-                    agentic🌐 coming soon
-                  </p>
+                  <Spline scene="https://prod.spline.design/f3aPrjPqriBnVnIu/scene.splinecode" />
                 </motion.div>
               )}
             </AnimatePresence>
 
-            {/* Progress bar - Only on welcome screen */}
-            {currentScreen === 'welcome' && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5 }}
-                className="w-80 mx-auto"
-              >
-                <div className="bg-gray-200 rounded-full h-2 mb-4">
-                  <motion.div
-                    className="bg-gradient-to-r from-purple-500 to-pink-500 h-2 rounded-full"
-                    style={{ width: `${progress}%` }}
-                    transition={{ duration: 0.1 }}
-                  />
-                </div>
-                <p className="text-gray-300 text-sm">
-                  {Math.round(progress)}% Complete
-                </p>
-              </motion.div>
-            )}
 
-            {/* Sound Enable Button - Only on welcome screen */}
-            {currentScreen === 'welcome' && showSoundPrompt && !soundPlayed && (
-              <motion.button
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.5 }}
-                onClick={handleSoundEnable}
-                className="mt-6 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold rounded-lg shadow-lg hover:shadow-purple-500/30 transition-all hover:scale-105"
-              >
-                🔊 Enable Loading Sound
-              </motion.button>
-            )}
-
-            {/* Sound Indicator */}
-            {soundPlayed && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="mt-4 text-green-400 text-sm flex items-center justify-center gap-2"
-              >
-                <span className="animate-pulse">🔊</span>
-                <span>Sound Enabled</span>
-              </motion.div>
-            )}
-
-            {/* Loading stages */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1 }}
-              className="mt-8 text-sm text-gray-400"
-            >
-              {progress < 25 && "Initializing blockchain protocols..."}
-              {progress >= 25 && progress < 50 && "Deploying AI agents on-chain..."}
-              {progress >= 50 && progress < 75 && "Synchronizing crypto intelligence..."}
-              {progress >= 75 && progress < 100 && "Web3 AI network activated..."}
-              {progress >= 100 && "Welcome to the decentralized future ₿"}
-            </motion.div>
           </div>
 
 

@@ -20,15 +20,15 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Unified AI Protocol Whitepaper | The Sovereign Intelligence Stack",
-  description: "Read the complete Unified AI Protocol whitepaper. Discover the future of autonomous AI agents, decentralized identity systems, and the Agentic Internet infrastructure.",
-  keywords: "AI whitepaper, Unified AI Protocol, autonomous AI agents, blockchain, decentralized web, artificial intelligence, crypto, DeFi, Web3, automation, Agentic Internet, ION protocol, AgentOS, Vault Economics",
+  description: "Read the complete Unified AI Protocol whitepaper. Discover the future of agentic AI agents, decentralized identity systems, and the Agentic Internet infrastructure.",
+  keywords: "AI whitepaper, Unified AI Protocol, agentic AI agents, blockchain, decentralized web, artificial intelligence, crypto, DeFi, Web3, automation, Agentic Internet, ION protocol, AgentOS, Vault Economics",
   authors: [{ name: "Unified AI Protocol" }],
   creator: "Unified AI Protocol",
   publisher: "Unified AI Protocol",
   robots: "index, follow",
   openGraph: {
     title: "Unified AI Protocol Whitepaper | The Sovereign Intelligence Stack",
-    description: "Read the complete technical documentation for the future of autonomous AI agents and decentralized intelligence.",
+    description: "Read the complete technical documentation for the future of agentic AI agents and decentralized intelligence.",
     url: "https://unified-ai-protocol-whitepaper-1ahnjuv2i-4commas.vercel.app/whitepaper",
     siteName: "Unified AI Protocol",
     type: "website",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Unified AI Protocol Whitepaper | The Sovereign Intelligence Stack",
-    description: "Read the complete technical documentation for the future of autonomous AI agents and decentralized intelligence.",
+    description: "Read the complete technical documentation for the future of agentic AI agents and decentralized intelligence.",
   },
 };
 

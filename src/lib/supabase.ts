@@ -42,3 +42,58 @@ export const getSession = async () => {
   const { data: { session } } = await supabase.auth.getSession()
   return session
 }
+
+// Email signup for waitlist/portal access
+export const addToWaitlist = async (email: string, source: string = 'portal') => {
+  try {
+    const { data, error } = await supabase
+      .from('waitlist')
+      .insert([
+        {
+          email,
+          source,
+          created_at: new Date().toISOString()
+        }
+      ])
+      .select()
+
+    return { data, error }
+  } catch (error) {
+    return { data: null, error }
+  }
+}
+
+// Check if email is already in waitlist
+export const checkWaitlistStatus = async (email: string) => {
+  try {
+    const { data, error } = await supabase
+      .from('waitlist')
+      .select('*')
+      .eq('email', email)
+      .single()
+
+    return { data, error }
+  } catch (error) {
+    return { data: null, error }
+  }
+}
+
+// Add whitepaper access request
+export const requestWhitepaperAccess = async (email: string, whitepaper: string) => {
+  try {
+    const { data, error } = await supabase
+      .from('whitepaper_requests')
+      .insert([
+        {
+          email,
+          whitepaper,
+          created_at: new Date().toISOString()
+        }
+      ])
+      .select()
+
+    return { data, error }
+  } catch (error) {
+    return { data: null, error }
+  }
+}
