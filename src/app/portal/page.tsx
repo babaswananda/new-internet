@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import Spline from '@splinetool/react-spline';
 import CinematicPreloader from '@/components/ui/CinematicPreloader';
 import { addToWaitlist, requestWhitepaperAccess, hasValidCredentials } from '@/lib/supabase';
@@ -87,7 +87,6 @@ export default function PortalLanding() {
 
   const allSlides = [...heroSlides];
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const [terminalText, setTerminalText] = useState('');
   const [showPreloader, setShowPreloader] = useState(true);
   const [whitepaperEmail, setWhitepaperEmail] = useState('');
   const [showWhitepaperModal, setShowWhitepaperModal] = useState(false);
@@ -101,13 +100,17 @@ export default function PortalLanding() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [showMusicPlayer, setShowMusicPlayer] = useState(true);
   const [isPlayerMinimized, setIsPlayerMinimized] = useState(true);
-  const [showScrollTop, setShowScrollTop] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0
   });
+
+  // Initialize slide to 0 on mount
+  useEffect(() => {
+    setCurrentHeroSlide(0);
+  }, []);
 
   // Countdown timer to June 9, 2025
   useEffect(() => {
@@ -130,29 +133,20 @@ export default function PortalLanding() {
     return () => clearInterval(timer);
   }, []);
 
-  // Terminal typing effect
+
+
+  // Hero slide auto-rotation - Start after initial delay
   useEffect(() => {
-    const text = '> run.agent aiva';
-    let i = 0;
-    const timer = setInterval(() => {
-      if (i < text.length) {
-        setTerminalText(text.slice(0, i + 1));
-        i++;
-      } else {
-        clearInterval(timer);
-      }
-    }, 150);
+    // Start auto-rotation after 10 seconds to let users see the opening slide
+    const initialDelay = setTimeout(() => {
+      const slideInterval = setInterval(() => {
+        setCurrentHeroSlide((prev) => (prev + 1) % allSlides.length);
+      }, 8000); // Change slide every 8 seconds
 
-    return () => clearInterval(timer);
-  }, []);
+      return () => clearInterval(slideInterval);
+    }, 10000); // Wait 10 seconds before starting auto-rotation
 
-  // Hero slide auto-rotation
-  useEffect(() => {
-    const slideInterval = setInterval(() => {
-      setCurrentHeroSlide((prev) => (prev + 1) % allSlides.length);
-    }, 8000); // Change slide every 8 seconds
-
-    return () => clearInterval(slideInterval);
+    return () => clearTimeout(initialDelay);
   }, [allSlides.length]);
 
   const nextHeroSlide = () => {
@@ -291,8 +285,6 @@ export default function PortalLanding() {
   };
 
   const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { threshold: 0.3 });
-
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], ['0%', '0%']); // Disabled parallax to prevent jumping
 
