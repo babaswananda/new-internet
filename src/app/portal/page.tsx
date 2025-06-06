@@ -131,70 +131,24 @@ export default function PortalLanding() {
 
 
 
-  // A-G-I-U slide auto-rotation (disabled when user is actively scrolling)
+  // A-G-I-U slide auto-rotation (simple version)
   useEffect(() => {
-    let slideInterval: NodeJS.Timeout;
-    let scrollTimeout: NodeJS.Timeout;
-    let isUserScrolling = false;
+    const slideInterval = setInterval(() => {
+      setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
+    }, 10000); // Slower auto-rotation - every 10 seconds
 
-    const handleUserScroll = () => {
-      isUserScrolling = true;
-      clearTimeout(scrollTimeout);
-      clearInterval(slideInterval);
-
-      // Resume auto-rotation after user stops scrolling for 3 seconds
-      scrollTimeout = setTimeout(() => {
-        isUserScrolling = false;
-        slideInterval = setInterval(() => {
-          setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
-        }, 8000);
-      }, 3000);
-    };
-
-    // Start auto-rotation initially
-    slideInterval = setInterval(() => {
-      if (!isUserScrolling) {
-        setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
-      }
-    }, 8000);
-
-    window.addEventListener('scroll', handleUserScroll);
-    window.addEventListener('wheel', handleUserScroll);
-
-    return () => {
-      clearInterval(slideInterval);
-      clearTimeout(scrollTimeout);
-      window.removeEventListener('scroll', handleUserScroll);
-      window.removeEventListener('wheel', handleUserScroll);
-    };
+    return () => clearInterval(slideInterval);
   }, [agiuSlides.length]);
 
-  // Scroll to top functionality and hero navigation
+  // Scroll to top functionality - removed aggressive slide advancement
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 500);
-
-      // Auto-advance A-G-I-U slides based on scroll position
-      const agiuSection = document.querySelector('#agiu-slides');
-      if (agiuSection) {
-        const rect = agiuSection.getBoundingClientRect();
-        const isInView = rect.top <= window.innerHeight && rect.bottom >= 0;
-
-        if (isInView) {
-          // Calculate which slide should be active based on scroll position
-          const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
-          const targetSlide = Math.floor(scrollProgress * agiuSlides.length);
-
-          if (targetSlide !== currentAgiuSlide && targetSlide < agiuSlides.length) {
-            setCurrentAgiuSlide(targetSlide);
-          }
-        }
-      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentAgiuSlide, agiuSlides.length]);
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -211,31 +165,47 @@ export default function PortalLanding() {
     setCurrentAgiuSlide((prev) => (prev - 1 + agiuSlides.length) % agiuSlides.length);
   };
 
-  // Wheel event handler for A-G-I-U slides
+  // Wheel event handler for A-G-I-U slides - only when section is centered
   useEffect(() => {
+    let lastWheelTime = 0;
+    const wheelThrottle = 800; // Throttle wheel events to prevent endless scrolling
+
     const handleWheel = (e: WheelEvent) => {
+      const now = Date.now();
+      if (now - lastWheelTime < wheelThrottle) return;
+
       const agiuSection = document.querySelector('#agiu-slides');
       if (agiuSection) {
         const rect = agiuSection.getBoundingClientRect();
-        const isInView = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+        // Only intercept wheel when section is perfectly centered (not at edges)
+        const isCentered = rect.top <= 50 && rect.bottom >= window.innerHeight - 50;
+        const isAtTop = rect.top >= -50;
+        const isAtBottom = rect.bottom <= window.innerHeight + 50;
 
-        if (isInView) {
-          e.preventDefault();
+        if (isCentered && isAtTop && isAtBottom) {
+          // Only prevent default if we're going to change slides
+          const isAtFirstSlide = currentAgiuSlide === 0;
+          const isAtLastSlide = currentAgiuSlide === agiuSlides.length - 1;
 
-          if (e.deltaY > 0) {
-            // Scrolling down - next slide
+          if (e.deltaY > 0 && !isAtLastSlide) {
+            // Scrolling down and not at last slide
+            e.preventDefault();
             nextAgiuSlide();
-          } else {
-            // Scrolling up - previous slide
+            lastWheelTime = now;
+          } else if (e.deltaY < 0 && !isAtFirstSlide) {
+            // Scrolling up and not at first slide
+            e.preventDefault();
             prevAgiuSlide();
+            lastWheelTime = now;
           }
+          // If at first/last slide, allow normal scrolling to continue
         }
       }
     };
 
     window.addEventListener('wheel', handleWheel, { passive: false });
     return () => window.removeEventListener('wheel', handleWheel);
-  }, []);
+  }, [currentAgiuSlide, agiuSlides.length]);
 
   // Keyboard navigation for A-G-I-U slides
   useEffect(() => {
