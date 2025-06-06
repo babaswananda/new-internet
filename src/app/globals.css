@@ -236,8 +236,10 @@ button:not(.no-agentos):not([class*="bg-black"]):not([class*="bg-white"]):not([c
 .submit-button,
 button[type="submit"],
 .agentos-button {
-  background: linear-gradient(to right, #4ade80, #eab308, #f97316) !important;
-  color: #000 !important;
+  background: linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080) !important;
+  background-size: 300% 300% !important;
+  animation: iridescent 3s ease-in-out infinite !important;
+  color: #fff !important;
   font-weight: bold !important;
   border: none !important;
   transition: all 0.3s ease !important;
@@ -248,8 +250,11 @@ button:not(.no-agentos):not([class*="bg-black"]):not([class*="bg-white"]):not([c
 .submit-button:hover,
 button[type="submit"]:hover,
 .agentos-button:hover {
-  background: linear-gradient(to right, #22c55e, #ca8a04, #ea580c) !important;
+  background: linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080) !important;
+  background-size: 300% 300% !important;
+  animation: iridescent 3s ease-in-out infinite !important;
   transform: scale(1.02) !important;
+  box-shadow: 0 0 15px rgba(255, 0, 128, 0.5) !important;
 }
 
 /* AgentOS Text Gradient */

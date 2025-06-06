@@ -193,10 +193,10 @@ export default function PortalLanding() {
     setCurrentAgiuSlide((prev) => (prev - 1 + agiuSlides.length) % agiuSlides.length);
   };
 
-  // Wheel event handler for A-G-I-U slides - SUPER RESPONSIVE VERSION
+  // Wheel event handler for A-G-I-U slides - ULTRA RESPONSIVE VERSION
   useEffect(() => {
     let lastWheelTime = 0;
-    const wheelThrottle = 50; // Even faster response
+    const wheelThrottle = 30; // Ultra fast response
 
     const handleWheel = (e: WheelEvent) => {
       const now = Date.now();
@@ -205,9 +205,9 @@ export default function PortalLanding() {
       const agiuSection = document.querySelector('#agiu-slides') as HTMLElement;
       if (agiuSection) {
         const rect = agiuSection.getBoundingClientRect();
-        // Much more aggressive detection - section is anywhere in viewport
-        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-        const isCentered = rect.top <= window.innerHeight * 0.3 && rect.bottom >= window.innerHeight * 0.7;
+        // Extremely aggressive detection - section is anywhere near viewport
+        const isInView = rect.top < window.innerHeight * 1.2 && rect.bottom > -window.innerHeight * 0.2;
+        const isCentered = rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.6;
 
         if (isInView || isCentered) {
           const isAtFirstSlide = currentAgiuSlide === 0;
@@ -217,30 +217,47 @@ export default function PortalLanding() {
           e.preventDefault();
           e.stopPropagation();
 
-          if (e.deltaY > 0 && !isAtLastSlide) {
-            // Scrolling down - next slide
+          // More sensitive detection of scroll direction
+          const scrollThreshold = 5;
+          
+          if (e.deltaY > scrollThreshold && !isAtLastSlide) {
+            // Scrolling down - next slide with immediate feedback
             nextAgiuSlide();
             lastWheelTime = now;
-          } else if (e.deltaY < 0 && !isAtFirstSlide) {
-            // Scrolling up - previous slide
+            
+            // Visual feedback
+            const indicator = document.querySelector('.slide-indicator-' + (currentAgiuSlide + 1));
+            if (indicator) {
+              indicator.classList.add('pulse-animation');
+              setTimeout(() => indicator.classList.remove('pulse-animation'), 500);
+            }
+          } else if (e.deltaY < -scrollThreshold && !isAtFirstSlide) {
+            // Scrolling up - previous slide with immediate feedback
             prevAgiuSlide();
             lastWheelTime = now;
-          } else if (e.deltaY > 0 && isAtLastSlide) {
-            // At last slide, allow scroll to next section
+            
+            // Visual feedback
+            const indicator = document.querySelector('.slide-indicator-' + (currentAgiuSlide - 1));
+            if (indicator) {
+              indicator.classList.add('pulse-animation');
+              setTimeout(() => indicator.classList.remove('pulse-animation'), 500);
+            }
+          } else if (e.deltaY > scrollThreshold && isAtLastSlide) {
+            // At last slide, allow scroll to next section with smoother transition
             setTimeout(() => {
               const nextSection = agiuSection.nextElementSibling as HTMLElement;
               if (nextSection) {
                 nextSection.scrollIntoView({ behavior: 'smooth' });
               }
-            }, 100);
-          } else if (e.deltaY < 0 && isAtFirstSlide) {
-            // At first slide, allow scroll to previous section
+            }, 50);
+          } else if (e.deltaY < -scrollThreshold && isAtFirstSlide) {
+            // At first slide, allow scroll to previous section with smoother transition
             setTimeout(() => {
               const prevSection = agiuSection.previousElementSibling as HTMLElement;
               if (prevSection) {
                 prevSection.scrollIntoView({ behavior: 'smooth' });
               }
-            }, 100);
+            }, 50);
           }
         }
       }
@@ -251,26 +268,36 @@ export default function PortalLanding() {
     return () => document.removeEventListener('wheel', handleWheel, { capture: true });
   }, [currentAgiuSlide, agiuSlides.length]);
 
-  // Keyboard navigation for A-G-I-U slides - SUPER RESPONSIVE
+  // Keyboard navigation for A-G-I-U slides - ULTRA RESPONSIVE
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const agiuSection = document.querySelector('#agiu-slides') as HTMLElement;
       if (agiuSection) {
         const rect = agiuSection.getBoundingClientRect();
-        // More aggressive detection for keyboard navigation
-        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        // Ultra aggressive detection for keyboard navigation - works even when section is partially visible
+        const isInView = rect.top < window.innerHeight * 1.2 && rect.bottom > -window.innerHeight * 0.2;
+        const isCentered = rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.6;
 
-        if (isInView) {
+        if (isInView || isCentered) {
           switch (e.key) {
             case 'ArrowRight':
             case 'ArrowDown':
             case 'Space':
+            case 'd':
+            case 's':
               e.preventDefault();
               e.stopPropagation();
               if (currentAgiuSlide < agiuSlides.length - 1) {
                 nextAgiuSlide();
+                
+                // Visual feedback
+                const indicator = document.querySelector('.slide-indicator-' + (currentAgiuSlide + 1));
+                if (indicator) {
+                  indicator.classList.add('pulse-animation');
+                  setTimeout(() => indicator.classList.remove('pulse-animation'), 500);
+                }
               } else {
-                // At last slide, scroll to next section
+                // At last slide, scroll to next section with smoother transition
                 const nextSection = agiuSection.nextElementSibling as HTMLElement;
                 if (nextSection) {
                   nextSection.scrollIntoView({ behavior: 'smooth' });
@@ -279,16 +306,34 @@ export default function PortalLanding() {
               break;
             case 'ArrowLeft':
             case 'ArrowUp':
+            case 'a':
+            case 'w':
               e.preventDefault();
               e.stopPropagation();
               if (currentAgiuSlide > 0) {
                 prevAgiuSlide();
+                
+                // Visual feedback
+                const indicator = document.querySelector('.slide-indicator-' + (currentAgiuSlide - 1));
+                if (indicator) {
+                  indicator.classList.add('pulse-animation');
+                  setTimeout(() => indicator.classList.remove('pulse-animation'), 500);
+                }
               } else {
-                // At first slide, scroll to previous section
+                // At first slide, scroll to previous section with smoother transition
                 const prevSection = agiuSection.previousElementSibling as HTMLElement;
                 if (prevSection) {
                   prevSection.scrollIntoView({ behavior: 'smooth' });
                 }
+              }
+              break;
+            // Number keys for direct navigation
+            case '1': case '2': case '3': case '4':
+              const slideIndex = parseInt(e.key) - 1;
+              if (slideIndex >= 0 && slideIndex < agiuSlides.length) {
+                e.preventDefault();
+                e.stopPropagation();
+                setCurrentAgiuSlide(slideIndex);
               }
               break;
           }
@@ -502,6 +547,16 @@ export default function PortalLanding() {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
+        
+        @keyframes pulse-animation {
+          0% { transform: scale(1); opacity: 1; }
+          50% { transform: scale(1.5); opacity: 0.7; }
+          100% { transform: scale(1); opacity: 1; }
+        }
+        
+        .pulse-animation {
+          animation: pulse-animation 0.5s ease-in-out;
+        }
       `}</style>
 
       {/* STANDALONE HERO SECTION - AGI+U */}
@@ -598,7 +653,7 @@ export default function PortalLanding() {
             <button
               key={index}
               onClick={() => setCurrentAgiuSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
+              className={`w-3 h-3 rounded-full transition-all slide-indicator-${index} ${
                 index === currentAgiuSlide
                   ? 'bg-purple-400 scale-125'
                   : 'bg-white/30 hover:bg-white/50'
@@ -1153,11 +1208,12 @@ export default function PortalLanding() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all duration-300 shadow-2xl border border-white/20"
+            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[9999] w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all duration-300 shadow-2xl border border-white/20"
             style={{
               background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
               backgroundSize: '300% 300%',
-              animation: 'iridescent 3s ease-in-out infinite'
+              animation: 'iridescent 3s ease-in-out infinite',
+              boxShadow: '0 0 20px rgba(255, 0, 128, 0.5)'
             }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -1511,14 +1567,16 @@ export default function PortalLanding() {
                     />
                     <button
                       type="submit"
-                      className="px-4 py-4 text-white rounded-lg transition-all hover:scale-105 border border-white/20"
+                      className="px-4 py-4 text-white rounded-lg transition-all hover:scale-105 border border-white/20 relative overflow-hidden"
                       style={{
                         background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
                         backgroundSize: '300% 300%',
-                        animation: 'iridescent 3s ease-in-out infinite'
+                        animation: 'iridescent 3s ease-in-out infinite',
+                        boxShadow: '0 0 15px rgba(255, 0, 128, 0.3)'
                       }}
                     >
-                      ⏎
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] hover:translate-x-[200%] transition-transform duration-700"></div>
+                      <span className="relative z-10">⏎</span>
                     </button>
                   </div>
                 </form>
