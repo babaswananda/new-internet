@@ -57,3 +57,5 @@ const nextConfig: NextConfig = {
 };
 
 export default nextConfig;
+
+// Force deployment update - Portal content restored
