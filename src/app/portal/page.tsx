@@ -193,27 +193,29 @@ export default function PortalLanding() {
     setCurrentAgiuSlide((prev) => (prev - 1 + agiuSlides.length) % agiuSlides.length);
   };
 
-  // Wheel event handler for A-G-I-U slides - FIXED for proper scrolling
+  // Wheel event handler for A-G-I-U slides - SUPER RESPONSIVE VERSION
   useEffect(() => {
     let lastWheelTime = 0;
-    const wheelThrottle = 100; // Much faster response
+    const wheelThrottle = 50; // Even faster response
 
     const handleWheel = (e: WheelEvent) => {
       const now = Date.now();
       if (now - lastWheelTime < wheelThrottle) return;
 
-      const agiuSection = document.querySelector('#agiu-slides');
+      const agiuSection = document.querySelector('#agiu-slides') as HTMLElement;
       if (agiuSection) {
         const rect = agiuSection.getBoundingClientRect();
-        // More responsive detection - section is in view
-        const isInView = rect.top <= window.innerHeight * 0.8 && rect.bottom >= window.innerHeight * 0.2;
+        // Much more aggressive detection - section is anywhere in viewport
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
+        const isCentered = rect.top <= window.innerHeight * 0.3 && rect.bottom >= window.innerHeight * 0.7;
 
-        if (isInView) {
+        if (isInView || isCentered) {
           const isAtFirstSlide = currentAgiuSlide === 0;
           const isAtLastSlide = currentAgiuSlide === agiuSlides.length - 1;
 
-          // Always prevent default when in the section to control navigation
+          // Prevent default scrolling when in A-G-I-U section
           e.preventDefault();
+          e.stopPropagation();
 
           if (e.deltaY > 0 && !isAtLastSlide) {
             // Scrolling down - next slide
@@ -224,39 +226,47 @@ export default function PortalLanding() {
             prevAgiuSlide();
             lastWheelTime = now;
           } else if (e.deltaY > 0 && isAtLastSlide) {
-            // At last slide, scroll to next section
-            const nextSection = agiuSection.nextElementSibling as HTMLElement;
-            if (nextSection) {
-              nextSection.scrollIntoView({ behavior: 'smooth' });
-            }
+            // At last slide, allow scroll to next section
+            setTimeout(() => {
+              const nextSection = agiuSection.nextElementSibling as HTMLElement;
+              if (nextSection) {
+                nextSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 100);
           } else if (e.deltaY < 0 && isAtFirstSlide) {
-            // At first slide, scroll to previous section
-            const prevSection = agiuSection.previousElementSibling as HTMLElement;
-            if (prevSection) {
-              prevSection.scrollIntoView({ behavior: 'smooth' });
-            }
+            // At first slide, allow scroll to previous section
+            setTimeout(() => {
+              const prevSection = agiuSection.previousElementSibling as HTMLElement;
+              if (prevSection) {
+                prevSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 100);
           }
         }
       }
     };
 
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    return () => window.removeEventListener('wheel', handleWheel);
+    // Add event listener with capture to catch events early
+    document.addEventListener('wheel', handleWheel, { passive: false, capture: true });
+    return () => document.removeEventListener('wheel', handleWheel, { capture: true });
   }, [currentAgiuSlide, agiuSlides.length]);
 
-  // Keyboard navigation for A-G-I-U slides - FIXED
+  // Keyboard navigation for A-G-I-U slides - SUPER RESPONSIVE
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const agiuSection = document.querySelector('#agiu-slides');
+      const agiuSection = document.querySelector('#agiu-slides') as HTMLElement;
       if (agiuSection) {
         const rect = agiuSection.getBoundingClientRect();
-        const isInView = rect.top <= window.innerHeight * 0.8 && rect.bottom >= window.innerHeight * 0.2;
+        // More aggressive detection for keyboard navigation
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
 
         if (isInView) {
           switch (e.key) {
             case 'ArrowRight':
             case 'ArrowDown':
+            case 'Space':
               e.preventDefault();
+              e.stopPropagation();
               if (currentAgiuSlide < agiuSlides.length - 1) {
                 nextAgiuSlide();
               } else {
@@ -270,6 +280,7 @@ export default function PortalLanding() {
             case 'ArrowLeft':
             case 'ArrowUp':
               e.preventDefault();
+              e.stopPropagation();
               if (currentAgiuSlide > 0) {
                 prevAgiuSlide();
               } else {
@@ -285,8 +296,9 @@ export default function PortalLanding() {
       }
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    // Use capture to catch events early
+    document.addEventListener('keydown', handleKeyDown, { capture: true });
+    return () => document.removeEventListener('keydown', handleKeyDown, { capture: true });
   }, [currentAgiuSlide, agiuSlides.length]);
 
   // Command line handler
@@ -1499,7 +1511,12 @@ export default function PortalLanding() {
                     />
                     <button
                       type="submit"
-                      className="px-4 py-4 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-400/20 border border-purple-500/30 rounded-lg text-white hover:bg-gradient-to-r hover:from-purple-500/30 hover:via-pink-500/30 hover:to-cyan-400/30 transition-all"
+                      className="px-4 py-4 text-white rounded-lg transition-all hover:scale-105 border border-white/20"
+                      style={{
+                        background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                        backgroundSize: '300% 300%',
+                        animation: 'iridescent 3s ease-in-out infinite'
+                      }}
                     >
                       ⏎
                     </button>
@@ -1738,8 +1755,18 @@ export default function PortalLanding() {
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
               <HeaderText>Built with VibeCoder</HeaderText>
             </h2>
-            <div className="text-2xl md:text-3xl bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent mb-8">
-              💻 This page was made with VibeCoder.
+            <div className="text-2xl md:text-3xl mb-8 flex items-center justify-center gap-3">
+              <span className="text-2xl md:text-3xl">💻</span>
+              <span className="bg-clip-text text-transparent"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                      backgroundClip: 'text',
+                      WebkitBackgroundClip: 'text',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite'
+                    }}>
+                This page was made with VibeCoder.
+              </span>
             </div>
             <p className="text-xl md:text-2xl text-white/90 mb-4">
               Download the AI IDE that built the new internet.
@@ -1836,7 +1863,7 @@ export default function PortalLanding() {
             </button>
             <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
                     style={{
-                      background: 'linear-gradient(45deg, #40e0d0, #da70d6, #ff69b4, #00bfff, #32cd32, #40e0d0)',
+                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
                       backgroundSize: '300% 300%',
                       animation: 'iridescent 3s ease-in-out infinite 0.5s'
                     }}>
@@ -1845,7 +1872,7 @@ export default function PortalLanding() {
             </button>
             <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
                     style={{
-                      background: 'linear-gradient(45deg, #ff1493, #00ced1, #ffd700, #ff6347, #9370db, #ff1493)',
+                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
                       backgroundSize: '300% 300%',
                       animation: 'iridescent 3s ease-in-out infinite 1s'
                     }}>
