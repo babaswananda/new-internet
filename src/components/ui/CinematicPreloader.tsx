@@ -215,13 +215,16 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                   transition={{ duration: 0.3, ease: "easeInOut" }}
                   className="w-full h-screen flex items-center justify-center overflow-hidden relative"
                 >
-                  {/* ONE FUCKING LINE - Robot emoji and text together */}
+                  {/* Clean robot emoji and text */}
                   <div className="text-center relative z-10 font-mono px-4">
-                    <TypewriterText
-                      text="🤖 agents are loading..."
-                      className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-green-400 font-mono"
-                      speed={120}
-                    />
+                    <div className="flex items-center justify-center gap-3">
+                      <span className="text-xl sm:text-2xl md:text-3xl lg:text-5xl">🤖</span>
+                      <TypewriterText
+                        text="agents are loading..."
+                        className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-cyan-400 font-mono"
+                        speed={120}
+                      />
+                    </div>
                   </div>
                 </motion.div>
               )}
