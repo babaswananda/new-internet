@@ -359,6 +359,14 @@ export default function PortalLanding() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
+      {/* Iridescent Animation Styles */}
+      <style jsx>{`
+        @keyframes iridescent {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+      `}</style>
 
       {/* STANDALONE HERO SECTION - AGI+U */}
       <motion.section
@@ -751,7 +759,12 @@ export default function PortalLanding() {
               >
                 <button
                   onClick={() => openWhitepaperModal(agiuSlides[currentAgiuSlide].whitepaperIndex)}
-                  className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30"
+                  className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                  style={{
+                    background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                    backgroundSize: '300% 300%',
+                    animation: 'iridescent 3s ease-in-out infinite'
+                  }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
                   <span className="relative z-10">📄 View Documentation</span>
@@ -786,7 +799,7 @@ export default function PortalLanding() {
             </p>
           </motion.div>
 
-          {/* CTA Buttons - Iridescent Style */}
+          {/* CTA Buttons - True Iridescent Style */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -794,19 +807,39 @@ export default function PortalLanding() {
             viewport={{ once: true }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <button className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite'
+                    }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
               <span className="relative z-10">🔗 download.newinternet</span>
             </button>
-            <button className="group relative px-6 py-3 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-blue-500/25 overflow-hidden border border-blue-500/30">
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #40e0d0, #da70d6, #ff69b4, #00bfff, #32cd32, #40e0d0)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite 0.5s'
+                    }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
               <span className="relative z-10">Join the Waitlist</span>
             </button>
-            <button className="group relative px-6 py-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-cyan-400/25 overflow-hidden border border-cyan-400/30">
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff1493, #00ced1, #ffd700, #ff6347, #9370db, #ff1493)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite 1s'
+                    }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
               <span className="relative z-10">Reserve Your Handle</span>
             </button>
-            <button className="group relative px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-pink-500/25 overflow-hidden border border-pink-500/30">
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff4500, #1e90ff, #ff69b4, #32cd32, #ff8c00, #ff4500)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite 1.5s'
+                    }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
               <span className="relative z-10">Bind to the New Internet</span>
             </button>
@@ -855,8 +888,8 @@ export default function PortalLanding() {
               <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent text-sm">terminal</div>
             </div>
             <div className="text-sm space-y-1">
-              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">{'>'} compiled with VibeCoder</div>
-              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">{'>'} powered by AlphaRouter</div>
+              <div className="bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent">{'>'} compiled with VibeCoder</div>
+              <div className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">{'>'} powered by AlphaRouter</div>
               <div className="text-white">🧠 agentic IDE for the New Internet</div>
               <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">⏳ available June 9</div>
             </div>
@@ -873,7 +906,7 @@ export default function PortalLanding() {
             <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
               <HeaderText>Built with VibeCoder</HeaderText>
             </h2>
-            <div className="text-2xl md:text-3xl bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent mb-8">
+            <div className="text-2xl md:text-3xl bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent mb-8">
               💻 This page was made with VibeCoder.
             </div>
             <p className="text-xl md:text-2xl text-white/90 mb-4">
@@ -960,15 +993,30 @@ export default function PortalLanding() {
             viewport={{ once: true }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
-            <button className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite'
+                    }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
               <span className="relative z-10">🏆 Join Vibathon</span>
             </button>
-            <button className="group relative px-6 py-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-cyan-400/25 overflow-hidden border border-cyan-400/30">
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #40e0d0, #da70d6, #ff69b4, #00bfff, #32cd32, #40e0d0)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite 0.5s'
+                    }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
               <span className="relative z-10">RSVP for Early Access</span>
             </button>
-            <button className="group relative px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-pink-500/25 overflow-hidden border border-pink-500/30">
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff1493, #00ced1, #ffd700, #ff6347, #9370db, #ff1493)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite 1s'
+                    }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
               <span className="relative z-10">Get Notified</span>
             </button>
@@ -1049,13 +1097,13 @@ export default function PortalLanding() {
               <div className="flex items-center justify-center gap-4 mb-4">
                 <button
                   onClick={handlePrevious}
-                  className="text-white hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent transition-colors"
+                  className="text-white hover:bg-gradient-to-r hover:from-pink-500 hover:via-cyan-400 hover:to-purple-500 hover:bg-clip-text hover:text-transparent transition-colors"
                 >
                   ⏮️
                 </button>
                 <button
                   onClick={handlePlayPause}
-                  className="text-2xl text-white hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent transition-colors"
+                  className="text-2xl text-white hover:bg-gradient-to-r hover:from-cyan-400 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition-colors"
                 >
                   {isPlaying ? '⏸️' : '▶️'}
                 </button>
@@ -1067,13 +1115,13 @@ export default function PortalLanding() {
                 </button>
                 <button
                   onClick={handleLoop}
-                  className={`text-white transition-colors ${isLooping ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent' : 'hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent'}`}
+                  className={`text-white transition-colors ${isLooping ? 'bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent' : 'hover:bg-gradient-to-r hover:from-pink-500 hover:via-cyan-400 hover:to-purple-500 hover:bg-clip-text hover:text-transparent'}`}
                 >
                   🔁
                 </button>
                 <button
                   onClick={handleMute}
-                  className="text-white hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent transition-colors"
+                  className="text-white hover:bg-gradient-to-r hover:from-cyan-400 hover:via-purple-500 hover:to-pink-500 hover:bg-clip-text hover:text-transparent transition-colors"
                 >
                   {isMuted ? '🔇' : '🔊'}
                 </button>
@@ -1083,7 +1131,12 @@ export default function PortalLanding() {
               <div className="flex items-center gap-2 text-xs text-gray-400">
                 <span>1:23</span>
                 <div className="flex-1 bg-white/10 rounded-full h-1">
-                  <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 h-1 rounded-full w-1/3"></div>
+                  <div className="h-1 rounded-full w-1/3"
+                       style={{
+                         background: 'linear-gradient(90deg, #ff0080, #8000ff, #0080ff, #00ff80)',
+                         backgroundSize: '200% 100%',
+                         animation: 'iridescent 2s ease-in-out infinite'
+                       }}></div>
                 </div>
                 <span>{musicTracks[currentTrack].duration}</span>
               </div>
@@ -1725,14 +1778,14 @@ export default function PortalLanding() {
             className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12"
           >
             {/* Download Command */}
-            <div className="bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-blue-500/10 backdrop-blur-sm border border-pink-500/30 rounded-lg p-6 font-mono group hover:border-pink-500/70 transition-all cursor-pointer shadow-2xl hover:shadow-pink-500/25">
+            <div className="bg-gradient-to-br from-pink-500/10 via-purple-500/10 to-cyan-400/10 backdrop-blur-sm border border-pink-500/30 rounded-lg p-6 font-mono group hover:border-pink-500/70 transition-all cursor-pointer shadow-2xl hover:shadow-pink-500/25">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-green-400">$</span>
-                <span className="text-white group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-400 group-hover:via-yellow-500 group-hover:to-orange-500 transition-colors text-sm">
+                <span className="text-pink-400">$</span>
+                <span className="text-white group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-pink-500 group-hover:via-cyan-400 group-hover:to-purple-500 transition-colors text-sm">
                   download.newinternet
                 </span>
               </div>
-              <div className="text-xs text-green-400 mb-2">
+              <div className="text-xs text-pink-400 mb-2">
                 <HeaderText>⟶ Join the waitlist</HeaderText>
               </div>
               <div className="text-xs text-white/70">
@@ -1741,14 +1794,14 @@ export default function PortalLanding() {
             </div>
 
             {/* Bind Command */}
-            <div className="bg-gradient-to-br from-cyan-400/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-400/30 rounded-lg p-6 font-mono group hover:border-cyan-400/70 transition-all cursor-pointer shadow-2xl hover:shadow-cyan-400/25">
+            <div className="bg-gradient-to-br from-cyan-400/10 via-purple-500/10 to-pink-500/10 backdrop-blur-sm border border-cyan-400/30 rounded-lg p-6 font-mono group hover:border-cyan-400/70 transition-all cursor-pointer shadow-2xl hover:shadow-cyan-400/25">
               <div className="flex items-center gap-2 mb-2">
-                <span className="text-orange-400">$</span>
-                <span className="text-white group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-400 group-hover:via-yellow-500 group-hover:to-orange-500 transition-colors text-sm">
+                <span className="text-cyan-400">$</span>
+                <span className="text-white group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-cyan-400 group-hover:via-purple-500 group-hover:to-pink-500 transition-colors text-sm">
                   bind.newinternet
                 </span>
               </div>
-              <div className="text-xs text-orange-400 mb-2">
+              <div className="text-xs text-cyan-400 mb-2">
                 <HeaderText>⟶ Lock in your agent & handle</HeaderText>
               </div>
               <div className="text-xs text-white/70">
@@ -1829,7 +1882,7 @@ export default function PortalLanding() {
                       setSubmitMessage('');
                       setWhitepaperEmail('');
                     }}
-                    className="group relative flex-1 px-6 py-3 bg-gradient-to-r from-green-400/20 via-yellow-500/20 to-orange-500/20 border border-green-400/30 text-white font-medium rounded-lg transition-all disabled:opacity-50 hover:border-green-400/70 overflow-hidden"
+                    className="group relative flex-1 px-6 py-3 bg-black/50 border border-white/30 text-white font-medium rounded-lg transition-all disabled:opacity-50 hover:border-white/70 overflow-hidden"
                     disabled={isSubmitting}
                   >
                     {/* Metal shine effect */}
@@ -1839,7 +1892,12 @@ export default function PortalLanding() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="group relative flex-1 px-6 py-3 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden"
+                    className="group relative flex-1 px-6 py-3 text-white font-bold rounded-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite'
+                    }}
                   >
                     {/* Metal shine effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
