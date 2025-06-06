@@ -131,24 +131,70 @@ export default function PortalLanding() {
 
 
 
-  // A-G-I-U slide auto-rotation
+  // A-G-I-U slide auto-rotation (disabled when user is actively scrolling)
   useEffect(() => {
-    const slideInterval = setInterval(() => {
-      setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
-    }, 8000); // Change slide every 8 seconds
+    let slideInterval: NodeJS.Timeout;
+    let scrollTimeout: NodeJS.Timeout;
+    let isUserScrolling = false;
 
-    return () => clearInterval(slideInterval);
+    const handleUserScroll = () => {
+      isUserScrolling = true;
+      clearTimeout(scrollTimeout);
+      clearInterval(slideInterval);
+
+      // Resume auto-rotation after user stops scrolling for 3 seconds
+      scrollTimeout = setTimeout(() => {
+        isUserScrolling = false;
+        slideInterval = setInterval(() => {
+          setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
+        }, 8000);
+      }, 3000);
+    };
+
+    // Start auto-rotation initially
+    slideInterval = setInterval(() => {
+      if (!isUserScrolling) {
+        setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
+      }
+    }, 8000);
+
+    window.addEventListener('scroll', handleUserScroll);
+    window.addEventListener('wheel', handleUserScroll);
+
+    return () => {
+      clearInterval(slideInterval);
+      clearTimeout(scrollTimeout);
+      window.removeEventListener('scroll', handleUserScroll);
+      window.removeEventListener('wheel', handleUserScroll);
+    };
   }, [agiuSlides.length]);
 
-  // Scroll to top functionality
+  // Scroll to top functionality and hero navigation
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 500);
+
+      // Auto-advance A-G-I-U slides based on scroll position
+      const agiuSection = document.querySelector('#agiu-slides');
+      if (agiuSection) {
+        const rect = agiuSection.getBoundingClientRect();
+        const isInView = rect.top <= window.innerHeight && rect.bottom >= 0;
+
+        if (isInView) {
+          // Calculate which slide should be active based on scroll position
+          const scrollProgress = Math.max(0, Math.min(1, (window.innerHeight - rect.top) / window.innerHeight));
+          const targetSlide = Math.floor(scrollProgress * agiuSlides.length);
+
+          if (targetSlide !== currentAgiuSlide && targetSlide < agiuSlides.length) {
+            setCurrentAgiuSlide(targetSlide);
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [currentAgiuSlide, agiuSlides.length]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -164,6 +210,61 @@ export default function PortalLanding() {
   const prevAgiuSlide = () => {
     setCurrentAgiuSlide((prev) => (prev - 1 + agiuSlides.length) % agiuSlides.length);
   };
+
+  // Wheel event handler for A-G-I-U slides
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      const agiuSection = document.querySelector('#agiu-slides');
+      if (agiuSection) {
+        const rect = agiuSection.getBoundingClientRect();
+        const isInView = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+
+        if (isInView) {
+          e.preventDefault();
+
+          if (e.deltaY > 0) {
+            // Scrolling down - next slide
+            nextAgiuSlide();
+          } else {
+            // Scrolling up - previous slide
+            prevAgiuSlide();
+          }
+        }
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    return () => window.removeEventListener('wheel', handleWheel);
+  }, []);
+
+  // Keyboard navigation for A-G-I-U slides
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const agiuSection = document.querySelector('#agiu-slides');
+      if (agiuSection) {
+        const rect = agiuSection.getBoundingClientRect();
+        const isInView = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+
+        if (isInView) {
+          switch (e.key) {
+            case 'ArrowRight':
+            case 'ArrowDown':
+              e.preventDefault();
+              nextAgiuSlide();
+              break;
+            case 'ArrowLeft':
+            case 'ArrowUp':
+              e.preventDefault();
+              prevAgiuSlide();
+              break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   // Command line handler
   const handleCommandSubmit = (e: React.FormEvent) => {
@@ -381,12 +482,12 @@ export default function PortalLanding() {
 
         {/* No text overlay - pure visual experience */}
 
-        {/* Scroll indicator - More prominent and clickable */}
+        {/* Enhanced Scroll indicator with multiple interaction methods */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3, duration: 1 }}
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 cursor-pointer"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 cursor-pointer group"
           onClick={() => {
             const nextSection = document.querySelector('#agiu-slides');
             if (nextSection) {
@@ -394,17 +495,31 @@ export default function PortalLanding() {
             }
           }}
         >
-          <div className="flex flex-col items-center text-white/80 hover:text-white transition-colors">
-            <div className="text-sm font-medium mb-2">
-              <HeaderText>Scroll to explore</HeaderText>
+          <div className="flex flex-col items-center text-white/80 hover:text-white transition-all duration-300 group-hover:scale-110">
+            <div className="text-sm font-medium mb-2 bg-black/30 backdrop-blur-sm px-3 py-1 rounded-full border border-white/20">
+              <HeaderText>Scroll • Wheel • Arrow Keys</HeaderText>
             </div>
             <motion.div
-              animate={{ y: [0, 8, 0] }}
+              animate={{
+                y: [0, 8, 0],
+                scale: [1, 1.1, 1]
+              }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="text-2xl"
+              className="text-3xl filter drop-shadow-lg"
+              style={{
+                background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                backgroundSize: '200% 200%',
+                animation: 'iridescent 2s ease-in-out infinite'
+              }}
             >
               ↓
             </motion.div>
+            <div className="text-xs text-white/60 mt-1">
+              Navigate A-G-I-U
+            </div>
           </div>
         </motion.div>
       </motion.section>
