@@ -98,6 +98,7 @@ export default function PortalLanding() {
   const [commandInput, setCommandInput] = useState('');
   const [commandResponse, setCommandResponse] = useState('');
   const [currentAgiuSlide, setCurrentAgiuSlide] = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -137,6 +138,23 @@ export default function PortalLanding() {
     return () => clearInterval(slideInterval);
   }, [agiuSlides.length]);
 
+  // Scroll to top functionality
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   const nextAgiuSlide = () => {
     setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
   };
@@ -175,6 +193,87 @@ export default function PortalLanding() {
   const handlePrevious = () => setCurrentTrack((prev) => (prev - 1 + musicTracks.length) % musicTracks.length);
   const handleLoop = () => setIsLooping(!isLooping);
   const handleMute = () => setIsMuted(!isMuted);
+
+  // Scroll hook for parallax
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll();
+  const y = useTransform(scrollYProgress, [0, 1], ['0%', '0%']); // Disabled parallax to prevent jumping
+
+  // Email submission handler
+  const handleEmailSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !email.includes('@')) return;
+
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      if (hasValidCredentials()) {
+        const { error } = await addToWaitlist(email, 'portal-countdown');
+
+        if (error) {
+          setSubmitMessage('Error joining waitlist. Please try again.');
+        } else {
+          setIsSubscribed(true);
+          setSubmitMessage('Successfully joined the waitlist!');
+        }
+      } else {
+        // Fallback for development
+        setIsSubscribed(true);
+        setSubmitMessage('Successfully joined the waitlist!');
+      }
+    } catch (error) {
+      setSubmitMessage('Error joining waitlist. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  // Whitepaper modal functions
+  const openWhitepaperModal = (index: number) => {
+    setCurrentWhitepaper(index);
+    setShowWhitepaperModal(true);
+  };
+
+  const handleWhitepaperAccess = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!whitepaperEmail || !whitepaperEmail.includes('@')) return;
+
+    setIsSubmitting(true);
+    setSubmitMessage('');
+
+    try {
+      if (hasValidCredentials()) {
+        const { error } = await requestWhitepaperAccess(
+          whitepaperEmail,
+          whitepapers[currentWhitepaper]?.title || 'Unknown'
+        );
+
+        if (error) {
+          setSubmitMessage('Error submitting request. Please try again.');
+        } else {
+          setSubmitMessage('Access request submitted! Check your email within 24 hours.');
+          setTimeout(() => {
+            setShowWhitepaperModal(false);
+            setWhitepaperEmail('');
+            setSubmitMessage('');
+          }, 2000);
+        }
+      } else {
+        // Fallback for development
+        setSubmitMessage('Access request submitted! Check your email within 24 hours.');
+        setTimeout(() => {
+          setShowWhitepaperModal(false);
+          setWhitepaperEmail('');
+          setSubmitMessage('');
+        }, 2000);
+      }
+    } catch (error) {
+      setSubmitMessage('Error submitting request. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // Whitepaper data - Extended for scrolling
   const whitepapers = [
@@ -244,83 +343,7 @@ export default function PortalLanding() {
     }
   ];
 
-  const handleWhitepaperAccess = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!whitepaperEmail || !whitepaperEmail.includes('@')) return;
 
-    setIsSubmitting(true);
-    setSubmitMessage('');
-
-    try {
-      if (hasValidCredentials()) {
-        const { error } = await requestWhitepaperAccess(
-          whitepaperEmail,
-          whitepapers[currentWhitepaper]?.title || 'Unknown'
-        );
-
-        if (error) {
-          setSubmitMessage('Error submitting request. Please try again.');
-        } else {
-          setSubmitMessage('Access request submitted! Check your email within 24 hours.');
-          setTimeout(() => {
-            setShowWhitepaperModal(false);
-            setWhitepaperEmail('');
-            setSubmitMessage('');
-          }, 2000);
-        }
-      } else {
-        // Fallback for development
-        setSubmitMessage('Access request submitted! Check your email within 24 hours.');
-        setTimeout(() => {
-          setShowWhitepaperModal(false);
-          setWhitepaperEmail('');
-          setSubmitMessage('');
-        }, 2000);
-      }
-    } catch (error) {
-      setSubmitMessage('Error submitting request. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const openWhitepaperModal = (index: number) => {
-    setCurrentWhitepaper(index);
-    setShowWhitepaperModal(true);
-  };
-
-  const heroRef = useRef(null);
-  const { scrollYProgress } = useScroll();
-  const y = useTransform(scrollYProgress, [0, 1], ['0%', '0%']); // Disabled parallax to prevent jumping
-
-  const handleEmailSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !email.includes('@')) return;
-
-    setIsSubmitting(true);
-    setSubmitMessage('');
-
-    try {
-      if (hasValidCredentials()) {
-        const { error } = await addToWaitlist(email, 'portal-countdown');
-
-        if (error) {
-          setSubmitMessage('Error joining waitlist. Please try again.');
-        } else {
-          setIsSubscribed(true);
-          setSubmitMessage('Successfully joined the waitlist!');
-        }
-      } else {
-        // Fallback for development
-        setIsSubscribed(true);
-        setSubmitMessage('Successfully joined the waitlist!');
-      }
-    } catch (error) {
-      setSubmitMessage('Error joining waitlist. Please try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
 
   // Show preloader first
   if (showPreloader) {
@@ -334,12 +357,11 @@ export default function PortalLanding() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
+
       {/* STANDALONE HERO SECTION - AGI+U */}
       <motion.section
         ref={heroRef}
-        className="h-screen relative flex items-center justify-center"
-        initial={{ y: 0 }}
-        animate={{ y: 0 }}
+        className="relative h-screen overflow-hidden"
         style={{ y }}
       >
         {/* Spline Portal Background */}
@@ -351,9 +373,10 @@ export default function PortalLanding() {
 
         {/* Scroll indicator - More prominent and clickable */}
         <motion.div
-          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-40 cursor-pointer"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 3, duration: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 cursor-pointer"
           onClick={() => {
             const nextSection = document.querySelector('#agiu-slides');
             if (nextSection) {
@@ -361,23 +384,25 @@ export default function PortalLanding() {
             }
           }}
         >
-          <div className="text-white/80 text-center bg-black/20 backdrop-blur-sm rounded-full px-4 py-3 border border-white/20 hover:bg-white/10 transition-all">
-            <div className="text-sm mb-2 font-medium">Scroll to explore</div>
-            <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-            </svg>
+          <div className="flex flex-col items-center text-white/80 hover:text-white transition-colors">
+            <div className="text-sm font-medium mb-2">
+              <HeaderText>Scroll to explore</HeaderText>
+            </div>
+            <motion.div
+              animate={{ y: [0, 8, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-2xl"
+            >
+              ↓
+            </motion.div>
           </div>
         </motion.div>
-
       </motion.section>
 
       {/* A-G-I-U HERO SLIDER SECTION */}
       <motion.section
         id="agiu-slides"
-        className="h-screen relative flex items-center justify-center"
-        initial={{ y: 0 }}
-        animate={{ y: 0 }}
-        style={{ y }}
+        className="relative h-screen overflow-hidden"
       >
         {/* Spline Background */}
         <div className="absolute inset-0 z-0">
@@ -457,341 +482,278 @@ export default function PortalLanding() {
                 <HeaderText>{agiuSlides[currentAgiuSlide].subtitle}</HeaderText>
               </motion.p>
 
-                    {/* Visual for each slide */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{ delay: 1.5, duration: 1.5, ease: "easeOut" }}
-                  className="flex justify-center"
-                  key={`visual-${currentAgiuSlide}`}
-                >
-                  {/* AIVA - Voice Interface */}
-                  {agiuSlides[currentAgiuSlide].letter === '🅰️' && (
-                        <motion.div
-                          className="w-48 h-96 bg-gradient-to-b from-gray-900 to-black rounded-[3rem] border border-white/20 shadow-2xl relative overflow-hidden"
-                          whileHover={{ scale: 1.05, rotateY: 5 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          <div className="absolute inset-4 bg-black rounded-[2.5rem] flex flex-col items-center justify-center">
-                            <motion.div
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: 2, duration: 1 }}
-                              className="text-center"
-                            >
-                              <div className="text-4xl mb-4">🎤</div>
-                              <div className="text-white text-sm font-medium mb-2">AIVA</div>
-                              <div className="text-green-400 text-xs">● Voice Active</div>
-                            </motion.div>
-                            <motion.div
-                              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-1"
-                              initial={{ opacity: 0 }}
-                              animate={{ opacity: 1 }}
-                              transition={{ delay: 2.5, duration: 1 }}
-                            >
-                              {[...Array(5)].map((_, i) => (
-                                <motion.div
-                                  key={i}
-                                  className="w-1 bg-green-400 rounded-full"
-                                  animate={{ height: [4, 12, 4] }}
-                                  transition={{
-                                    duration: 1,
-                                    repeat: Infinity,
-                                    delay: i * 0.1,
-                                    ease: "easeInOut"
-                                  }}
-                                />
-                              ))}
-                            </motion.div>
-                          </div>
-                          <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white/20 rounded-full" />
-                          <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full" />
-                        </motion.div>
-                      )}
-
-                  {/* GOVERNANCE - 3D FUGIO Coin with REAL Iridescent Colors */}
-                  {agiuSlides[currentAgiuSlide].letter === '🅶' && (
-                        <motion.div
-                          className="relative w-64 h-64"
-                          whileHover={{ scale: 1.1 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          {/* 3D Coin Container */}
-                          <motion.div
-                            className="w-full h-full relative preserve-3d"
-                            animate={{
-                              rotateY: [0, 360],
-                              rotateX: [0, 15, 0, -15, 0]
-                            }}
-                            transition={{
-                              duration: 8,
-                              repeat: Infinity,
-                              ease: "linear"
-                            }}
-                            style={{ transformStyle: 'preserve-3d' }}
-                          >
-                            {/* Coin Front Face */}
-                            <div className="absolute inset-0 rounded-full flex items-center justify-center shadow-2xl"
-                                 style={{
-                                   background: 'conic-gradient(from 0deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0040, #ff69b4, #00bfff, #ff1493, #ff0080)',
-                                   transform: 'translateZ(12px)',
-                                   border: '3px solid rgba(255, 255, 255, 0.3)'
-                                 }}>
-                              <div className="text-center">
-                                <div className="text-white text-xs font-bold drop-shadow-lg mb-2">TIME FLEES</div>
-                                <motion.div
-                                  className="text-6xl mb-2 filter drop-shadow-lg"
-                                  animate={{ rotateZ: [0, 360] }}
-                                  transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-                                >
-                                  ⚖️
-                                </motion.div>
-                                <div className="text-white text-lg font-bold drop-shadow-lg">$FUGIO</div>
-                                <div className="text-white text-xs font-bold drop-shadow-lg mt-2">MINDS YOUR BUSINESS</div>
-                              </div>
-                            </div>
-
-                            {/* Coin Back Face */}
-                            <div className="absolute inset-0 rounded-full flex items-center justify-center shadow-2xl"
-                                 style={{
-                                   background: 'conic-gradient(from 180deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0040, #ff69b4, #00bfff, #ff1493, #ff0080)',
-                                   transform: 'translateZ(-12px) rotateY(180deg)',
-                                   border: '3px solid rgba(255, 255, 255, 0.3)'
-                                 }}>
-                              <div className="text-center">
-                                <div className="text-white text-xs font-bold drop-shadow-lg mb-2">TIME FLEES</div>
-                                <div className="text-4xl mb-2 filter drop-shadow-lg">🌐</div>
-                                <div className="text-white text-sm font-bold drop-shadow-lg">PROTOCOL</div>
-                                <div className="text-white text-xs font-bold drop-shadow-lg mt-2">MINDS YOUR BUSINESS</div>
-                              </div>
-                            </div>
-
-                            {/* Coin Edge */}
-                            <div className="absolute inset-0 rounded-full"
-                                 style={{
-                                   background: 'linear-gradient(90deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0040)',
-                                   transform: 'translateZ(0px)',
-                                   height: '24px',
-                                   top: '50%',
-                                   marginTop: '-12px',
-                                   border: '1px solid rgba(255, 255, 255, 0.2)'
-                                 }}>
-                            </div>
-                          </motion.div>
-
-                          {/* Iridescent Glow Effect */}
-                          <motion.div
-                            className="absolute inset-0 rounded-full blur-xl opacity-60"
-                            animate={{
-                              background: [
-                                'radial-gradient(circle, #ff0080, transparent)',
-                                'radial-gradient(circle, #40e0d0, transparent)',
-                                'radial-gradient(circle, #32cd32, transparent)',
-                                'radial-gradient(circle, #ff8c00, transparent)',
-                                'radial-gradient(circle, #da70d6, transparent)',
-                                'radial-gradient(circle, #ff0080, transparent)'
-                              ]
-                            }}
-                            transition={{ duration: 4, repeat: Infinity }}
-                          />
-
-                          {/* Sparkle Effects */}
-                          {[...Array(8)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              className="absolute w-2 h-2 rounded-full"
-                              style={{
-                                background: ['#ff0080', '#40e0d0', '#32cd32', '#ff8c00', '#da70d6', '#ff69b4', '#00bfff', '#ff1493'][i],
-                                left: `${20 + i * 15}%`,
-                                top: `${10 + (i % 3) * 30}%`
-                              }}
-                              animate={{
-                                scale: [0, 1, 0],
-                                opacity: [0, 1, 0]
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: i * 0.3
-                              }}
-                            />
-                          ))}
-                        </motion.div>
-                      )}
-
-                  {/* IDENTITY - Intelligent Identity Interface */}
-                  {agiuSlides[currentAgiuSlide].letter === '🅸' && (
-                        <motion.div
-                          className="relative w-64 h-64"
-                          whileHover={{ scale: 1.1 }}
-                          transition={{ duration: 0.3 }}
-                        >
-                          {/* Central Identity Core */}
-                          <motion.div
-                            className="absolute inset-0 flex items-center justify-center"
-                            animate={{ rotateY: [0, 360] }}
-                            transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-                          >
-                            <div
-                              className="w-32 h-32 rounded-full border-4 border-white/30 flex items-center justify-center relative"
-                              style={{
-                                background: 'conic-gradient(from 0deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0080)',
-                              }}
-                            >
-                              <div className="text-center">
-                                <div className="text-4xl mb-2 text-white">🧠</div>
-                                <div className="text-white text-sm font-bold">YOU</div>
-                              </div>
-                            </div>
-                          </motion.div>
-
-                          {/* Three Interface Layers */}
-                          {[
-                            { radius: 80, label: 'Intelligence', icon: '🤖', color: '#ff0080', delay: 0 },
-                            { radius: 100, label: 'Identity', icon: '🔐', color: '#8000ff', delay: 0.5 },
-                            { radius: 120, label: 'Interface', icon: '🌐', color: '#0080ff', delay: 1 }
-                          ].map((layer, i) => (
-                            <motion.div
-                              key={i}
-                              className="absolute inset-0 flex items-center justify-center"
-                              animate={{ rotate: [0, 360] }}
-                              transition={{
-                                duration: 10 + i * 2,
-                                repeat: Infinity,
-                                ease: "linear",
-                                delay: layer.delay
-                              }}
-                            >
-                              <div
-                                className="absolute border border-white/20 rounded-full"
-                                style={{
-                                  width: `${layer.radius}px`,
-                                  height: `${layer.radius}px`,
-                                  borderColor: layer.color + '40'
-                                }}
-                              />
-                              <motion.div
-                                className="absolute w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
-                                style={{
-                                  background: layer.color,
-                                  top: `${50 - layer.radius/8}%`,
-                                  left: '50%',
-                                  transform: 'translateX(-50%)'
-                                }}
-                                animate={{
-                                  scale: [1, 1.2, 1],
-                                  boxShadow: [
-                                    `0 0 0px ${layer.color}`,
-                                    `0 0 20px ${layer.color}`,
-                                    `0 0 0px ${layer.color}`
-                                  ]
-                                }}
-                                transition={{ duration: 2, repeat: Infinity, delay: i * 0.7 }}
-                              >
-                                {layer.icon}
-                              </motion.div>
-                            </motion.div>
-                          ))}
-
-                          {/* Data Streams */}
-                          {[...Array(6)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              className="absolute w-1 h-16 rounded-full"
-                              style={{
-                                background: `linear-gradient(to bottom, ${['#ff0080', '#8000ff', '#0080ff'][i % 3]}, transparent)`,
-                                left: `${30 + i * 12}%`,
-                                top: `${20 + (i % 2) * 40}%`,
-                                transformOrigin: 'bottom'
-                              }}
-                              animate={{
-                                scaleY: [0, 1, 0],
-                                opacity: [0, 1, 0]
-                              }}
-                              transition={{
-                                duration: 2,
-                                repeat: Infinity,
-                                delay: i * 0.3
-                              }}
-                            />
-                          ))}
-
-                          {/* Memory Nodes */}
-                          {[...Array(8)].map((_, i) => (
-                            <motion.div
-                              key={i}
-                              className="absolute w-2 h-2 rounded-full"
-                              style={{
-                                background: ['#ff0080', '#8000ff', '#0080ff', '#00ff80'][i % 4],
-                                left: `${20 + i * 10}%`,
-                                top: `${15 + (i % 4) * 20}%`
-                              }}
-                              animate={{
-                                scale: [0.5, 1.5, 0.5],
-                                opacity: [0.3, 1, 0.3]
-                              }}
-                              transition={{
-                                duration: 3,
-                                repeat: Infinity,
-                                delay: i * 0.4
-                              }}
-                            />
-                          ))}
-
-                          {/* Central Label */}
-                          <motion.div
-                            className="absolute bottom-4 left-1/2 transform -translate-x-1/2"
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 2, duration: 1 }}
-                          >
-                            <div className="text-center bg-black/60 backdrop-blur-sm rounded-lg p-2 border border-white/20">
-                              <div className="text-white text-sm font-medium">INTELLIGENT</div>
-                              <div className="text-purple-400 text-xs">IDENTITY INTERFACE</div>
-                            </div>
-                          </motion.div>
-
-                          {/* Ambient Glow */}
-                          <motion.div
-                            className="absolute inset-0 rounded-full blur-2xl opacity-30"
-                            animate={{
-                              background: [
-                                'radial-gradient(circle, #ff0080, transparent)',
-                                'radial-gradient(circle, #8000ff, transparent)',
-                                'radial-gradient(circle, #0080ff, transparent)',
-                                'radial-gradient(circle, #ff0080, transparent)'
-                              ]
-                            }}
-                            transition={{ duration: 6, repeat: Infinity }}
-                          />
-                        </motion.div>
-                      )}
-
-                  {/* UNIFIED - Simple Text Only */}
-                  {agiuSlides[currentAgiuSlide].letter === '🆄' && (
-                    <div className="text-center">
-                      <div className="text-white text-lg font-medium mb-4">CONVERGENCE</div>
-                      <div className="text-cyan-400 text-sm">Centralized AI ⚡ Opensource AI</div>
-                    </div>
-                  )}
-                </motion.div>
-
-                {/* View Documentation Button */}
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 2.5, duration: 1 }}
-                  className="mt-8 pointer-events-auto"
-                  viewport={{ once: true }}
-                >
-                  <button
-                    onClick={() => openWhitepaperModal(agiuSlides[currentAgiuSlide].whitepaperIndex)}
-                    className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30"
+              {/* Visual for each slide */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ delay: 1.5, duration: 1.5, ease: "easeOut" }}
+                className="flex justify-center"
+                key={`visual-${currentAgiuSlide}`}
+              >
+                {/* AIVA - Voice Interface */}
+                {agiuSlides[currentAgiuSlide].letter === '🅰️' && (
+                  <motion.div
+                    className="w-48 h-96 bg-gradient-to-b from-gray-900 to-black rounded-[3rem] border border-white/20 shadow-2xl relative overflow-hidden"
+                    whileHover={{ scale: 1.05, rotateY: 5 }}
+                    transition={{ duration: 0.3 }}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                    <span className="relative z-10">📄 View Documentation</span>
-                  </button>
-                </motion.div>
+                    <div className="absolute inset-4 bg-black rounded-[2.5rem] flex flex-col items-center justify-center">
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2, duration: 1 }}
+                        className="text-center"
+                      >
+                        <div className="text-4xl mb-4">🎤</div>
+                        <div className="text-white text-sm font-medium mb-2">AIVA</div>
+                        <div className="text-green-400 text-xs">● Voice Active</div>
+                      </motion.div>
+                      <motion.div
+                        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-1"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 2.5, duration: 1 }}
+                      >
+                        {[...Array(5)].map((_, i) => (
+                          <motion.div
+                            key={i}
+                            className="w-1 bg-green-400 rounded-full"
+                            animate={{ height: [4, 12, 4] }}
+                            transition={{
+                              duration: 1,
+                              repeat: Infinity,
+                              delay: i * 0.1,
+                              ease: "easeInOut"
+                            }}
+                          />
+                        ))}
+                      </motion.div>
+                    </div>
+                    <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white/20 rounded-full" />
+                    <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full" />
+                  </motion.div>
+                )}
+
+                {/* GOVERNANCE - 3D FUGIO Coin with REAL Iridescent Colors */}
+                {agiuSlides[currentAgiuSlide].letter === '🅶' && (
+                  <motion.div
+                    className="relative w-64 h-64"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {/* 3D Coin Container */}
+                    <motion.div
+                      className="w-full h-full relative preserve-3d"
+                      animate={{
+                        rotateY: [0, 360],
+                        rotateX: [0, 15, 0, -15, 0]
+                      }}
+                      transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: "linear"
+                      }}
+                      style={{ transformStyle: 'preserve-3d' }}
+                    >
+                      {/* Coin Front Face */}
+                      <div className="absolute inset-0 rounded-full flex items-center justify-center shadow-2xl"
+                           style={{
+                             background: 'conic-gradient(from 0deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0040, #ff69b4, #00bfff, #ff1493, #ff0080)',
+                             transform: 'translateZ(12px)',
+                             border: '3px solid rgba(255, 255, 255, 0.3)'
+                           }}>
+                        <div className="text-center">
+                          <div className="text-white text-xs font-bold drop-shadow-lg mb-2">TIME FLEES</div>
+                          <motion.div
+                            className="text-6xl mb-2 filter drop-shadow-lg"
+                            animate={{ rotateZ: [0, 360] }}
+                            transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
+                          >
+                            ⚖️
+                          </motion.div>
+                          <div className="text-white text-lg font-bold drop-shadow-lg">$FUGIO</div>
+                          <div className="text-white text-xs font-bold drop-shadow-lg mt-2">MINDS YOUR BUSINESS</div>
+                        </div>
+                      </div>
+
+                      {/* Coin Back Face */}
+                      <div className="absolute inset-0 rounded-full flex items-center justify-center shadow-2xl"
+                           style={{
+                             background: 'conic-gradient(from 180deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0040, #ff69b4, #00bfff, #ff1493, #ff0080)',
+                             transform: 'translateZ(-12px) rotateY(180deg)',
+                             border: '3px solid rgba(255, 255, 255, 0.3)'
+                           }}>
+                        <div className="text-center">
+                          <div className="text-white text-xs font-bold drop-shadow-lg mb-2">TIME FLEES</div>
+                          <div className="text-4xl mb-2 filter drop-shadow-lg">🌐</div>
+                          <div className="text-white text-sm font-bold drop-shadow-lg">PROTOCOL</div>
+                          <div className="text-white text-xs font-bold drop-shadow-lg mt-2">MINDS YOUR BUSINESS</div>
+                        </div>
+                      </div>
+
+                      {/* Coin Edge */}
+                      <div className="absolute inset-0 rounded-full"
+                           style={{
+                             background: 'linear-gradient(90deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0040)',
+                             transform: 'translateZ(0px)',
+                             height: '24px',
+                             top: '50%',
+                             marginTop: '-12px',
+                             border: '1px solid rgba(255, 255, 255, 0.2)'
+                           }}>
+                      </div>
+                    </motion.div>
+
+                    {/* Iridescent Glow Effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full blur-xl opacity-60"
+                      animate={{
+                        background: [
+                          'radial-gradient(circle, #ff0080, transparent)',
+                          'radial-gradient(circle, #40e0d0, transparent)',
+                          'radial-gradient(circle, #32cd32, transparent)',
+                          'radial-gradient(circle, #ff8c00, transparent)',
+                          'radial-gradient(circle, #da70d6, transparent)',
+                          'radial-gradient(circle, #ff0080, transparent)'
+                        ]
+                      }}
+                      transition={{ duration: 4, repeat: Infinity }}
+                    />
+
+                    {/* Sparkle Effects */}
+                    {[...Array(8)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-2 h-2 rounded-full"
+                        style={{
+                          background: ['#ff0080', '#40e0d0', '#32cd32', '#ff8c00', '#da70d6', '#ff69b4', '#00bfff', '#ff1493'][i],
+                          left: `${20 + i * 15}%`,
+                          top: `${10 + (i % 3) * 30}%`
+                        }}
+                        animate={{
+                          scale: [0, 1, 0],
+                          opacity: [0, 1, 0]
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.3
+                        }}
+                      />
+                    ))}
+                  </motion.div>
+                )}
+
+                {/* IDENTITY - Intelligent Identity Interface */}
+                {agiuSlides[currentAgiuSlide].letter === '🅸' && (
+                  <motion.div
+                    className="relative w-64 h-64"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {/* Central Identity Core */}
+                    <motion.div
+                      className="absolute inset-0 flex items-center justify-center"
+                      animate={{ rotateY: [0, 360] }}
+                      transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                    >
+                      <div
+                        className="w-32 h-32 rounded-full border-4 border-white/30 flex items-center justify-center relative"
+                        style={{
+                          background: 'conic-gradient(from 0deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff0080)',
+                        }}
+                      >
+                        <div className="text-center">
+                          <div className="text-4xl mb-2 text-white">🧠</div>
+                          <div className="text-white text-sm font-bold">YOU</div>
+                        </div>
+                      </div>
+                    </motion.div>
+
+                    {/* Three Interface Layers */}
+                    {[
+                      { radius: 80, label: 'Intelligence', icon: '🤖', color: '#ff0080', delay: 0 },
+                      { radius: 100, label: 'Identity', icon: '🔐', color: '#8000ff', delay: 0.5 },
+                      { radius: 120, label: 'Interface', icon: '🌐', color: '#0080ff', delay: 1 }
+                    ].map((layer, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute inset-0 flex items-center justify-center"
+                        animate={{ rotate: [0, 360] }}
+                        transition={{
+                          duration: 10 + i * 2,
+                          repeat: Infinity,
+                          ease: "linear",
+                          delay: layer.delay
+                        }}
+                      >
+                        <div
+                          className="absolute border border-white/20 rounded-full"
+                          style={{
+                            width: `${layer.radius}px`,
+                            height: `${layer.radius}px`,
+                            borderColor: layer.color + '40'
+                          }}
+                        />
+                        <motion.div
+                          className="absolute w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                          style={{
+                            background: layer.color,
+                            top: `${50 - layer.radius/8}%`,
+                            left: '50%',
+                            transform: 'translateX(-50%)'
+                          }}
+                          animate={{
+                            scale: [1, 1.2, 1],
+                            boxShadow: [
+                              `0 0 0px ${layer.color}`,
+                              `0 0 20px ${layer.color}`,
+                              `0 0 0px ${layer.color}`
+                            ]
+                          }}
+                          transition={{ duration: 2, repeat: Infinity, delay: i * 0.7 }}
+                        >
+                          {layer.icon}
+                        </motion.div>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                )}
+
+                {/* UNIFIED - Enhanced Text with Better Copy */}
+                {agiuSlides[currentAgiuSlide].letter === '🆄' && (
+                  <div className="text-center max-w-2xl mx-auto">
+                    <div className="text-white text-2xl font-bold mb-6">INFRASTRUCTURE</div>
+                    <div className="space-y-4 text-lg">
+                      <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent font-medium">
+                        Centralized AI + Decentralized AI = Unified AI
+                      </div>
+                      <div className="text-white/80 text-base">
+                        Together we bind it under one infrastructure.
+                      </div>
+                      <div className="text-white/80 text-base">
+                        Making it become one. Unified.
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </motion.div>
+
+              {/* View Documentation Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.5, duration: 1 }}
+                className="mt-8 pointer-events-auto"
+                viewport={{ once: true }}
+              >
+                <button
+                  onClick={() => openWhitepaperModal(agiuSlides[currentAgiuSlide].whitepaperIndex)}
+                  className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                  <span className="relative z-10">📄 View Documentation</span>
+                </button>
               </motion.div>
             </motion.div>
           </motion.div>
@@ -851,135 +813,182 @@ export default function PortalLanding() {
       </motion.section>
 
       {/* BUILT WITH VIBECODER SECTION */}
-      <section className="py-32 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+      <motion.section className="py-32 relative bg-black overflow-hidden">
         {/* Animated background grid */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 bg-[linear-gradient(rgba(139,69,19,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(139,69,19,0.1)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse"></div>
+        <div className="absolute inset-0 opacity-10">
+          <div className="grid grid-cols-12 gap-4 h-full">
+            {[...Array(48)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="border border-green-400/20"
+                animate={{
+                  opacity: [0.1, 0.3, 0.1],
+                  borderColor: ['rgba(34, 197, 94, 0.1)', 'rgba(34, 197, 94, 0.3)', 'rgba(34, 197, 94, 0.1)']
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.1
+                }}
+              />
+            ))}
+          </div>
         </div>
 
-        <div className="container mx-auto px-8 text-center relative z-10">
+        <div className="max-w-6xl mx-auto px-8 relative z-10">
+          {/* Terminal-style header */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto"
+            className="bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 mb-12 font-mono"
           >
-            {/* Terminal-style header */}
+            <div className="flex items-center gap-2 mb-4">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+              </div>
+              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent text-sm">terminal</div>
+            </div>
+            <div className="text-sm space-y-1">
+              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">{'>'} compiled with VibeCoder</div>
+              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">{'>'} powered by AlphaRouter</div>
+              <div className="text-white">🧠 agentic IDE for the New Internet</div>
+              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">⏳ available June 9</div>
+            </div>
+          </motion.div>
+
+          {/* Main content */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              <HeaderText>Built with VibeCoder</HeaderText>
+            </h2>
+            <div className="text-2xl md:text-3xl bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent mb-8">
+              💻 This page was made with VibeCoder.
+            </div>
+            <p className="text-xl md:text-2xl text-white/90 mb-4">
+              Download the AI IDE that built the new internet.
+            </p>
+            <p className="text-lg md:text-xl text-white/70 mb-8">
+              Code with agents. Build with prompts. Fork the future.
+            </p>
+
+            {/* Vibathon Announcement */}
             <motion.div
-              className="bg-black/80 border border-green-500/30 rounded-lg p-8 mb-12 font-mono text-left max-w-2xl mx-auto"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3, duration: 1 }}
-              viewport={{ once: true }}
-            >
-              <div className="text-green-400 text-sm mb-2">
-                <span className="text-green-500">{'>'}</span> compiled with VibeCoder
-              </div>
-              <div className="text-green-400 text-sm mb-4">
-                <span className="text-green-500">{'>'}</span> powered by AlphaRouter
-              </div>
-              <div className="text-white text-lg mb-2">🧠 agentic IDE for the New Internet</div>
-              <div className="text-cyan-400 text-sm">⏳ available June 9</div>
-            </motion.div>
-
-            {/* Main content */}
-            <motion.h2
-              className="text-4xl md:text-6xl font-bold mb-8 text-white"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 1 }}
               viewport={{ once: true }}
+              className="bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-cyan-400/10 border border-purple-500/30 rounded-2xl p-6 mb-12 backdrop-blur-sm"
             >
-              <HeaderText>Built with VibeCoder</HeaderText>
-            </motion.h2>
-
-            <motion.p
-              className="text-xl md:text-2xl text-white/80 mb-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.7, duration: 1 }}
-              viewport={{ once: true }}
-            >
-              💻 This page was made with VibeCoder.
-            </motion.p>
-
-            <motion.div
-              className="text-lg md:text-xl text-white/70 mb-12 space-y-2"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.9, duration: 1 }}
-              viewport={{ once: true }}
-            >
-              <p>Download the AI IDE that built the new internet.</p>
-              <p>Code with agents. Build with prompts. Fork the future.</p>
-            </motion.div>
-
-            {/* Features */}
-            <motion.div
-              className="grid md:grid-cols-3 gap-6 mb-12 text-left"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.1, duration: 1 }}
-              viewport={{ once: true }}
-            >
-              <div className="bg-black/40 border border-purple-500/20 rounded-lg p-6">
-                <div className="text-2xl mb-2">🔧</div>
-                <div className="text-white font-semibold mb-2">Bring your own model</div>
-                <div className="text-white/60 text-sm">Connect any AI model to your development workflow</div>
+              <div className="text-3xl mb-4">🏆</div>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                <HeaderText>Join the Vibathon</HeaderText>
+              </h3>
+              <p className="text-lg text-white/80 mb-4">
+                The world's first AI coding competition. Build the future with VibeCoder.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-sm text-white/70">
+                <div className="flex items-center gap-2">
+                  <span className="text-purple-400">🗓️</span>
+                  <span>June 9-16, 2025</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-pink-400">💰</span>
+                  <span>$100K+ in prizes</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-cyan-400">🌐</span>
+                  <span>Global virtual event</span>
+                </div>
               </div>
-              <div className="bg-black/40 border border-purple-500/20 rounded-lg p-6">
-                <div className="text-2xl mb-2">🚀</div>
-                <div className="text-white font-semibold mb-2">Or route through AlphaRouter</div>
-                <div className="text-white/60 text-sm">Intelligent model routing for optimal performance</div>
-              </div>
-              <div className="bg-black/40 border border-purple-500/20 rounded-lg p-6">
-                <div className="text-2xl mb-2">🗓️</div>
-                <div className="text-white font-semibold mb-2">Live on June 9</div>
-                <div className="text-white/60 text-sm">Early access available now</div>
-              </div>
-            </motion.div>
-
-            {/* CTA Buttons */}
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.3, duration: 1 }}
-              viewport={{ once: true }}
-            >
-              <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                <span className="relative z-10">RSVP for Early Access</span>
-              </button>
-              <button className="group relative px-8 py-4 bg-black/60 border border-white/20 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/40">
-                <span className="relative z-10">Get Notified</span>
-              </button>
             </motion.div>
           </motion.div>
+
+          {/* Features */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-8 mb-16"
+          >
+            <div className="text-center">
+              <div className="text-4xl mb-4">🔧</div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <HeaderText>Bring your own model</HeaderText>
+              </h3>
+              <p className="text-white/70">
+                Connect any AI model to your development workflow
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">🚀</div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <HeaderText>Or route through AlphaRouter</HeaderText>
+              </h3>
+              <p className="text-white/70">
+                Intelligent model routing for optimal performance
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">🗓️</div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <HeaderText>Live on June 9</HeaderText>
+              </h3>
+              <p className="text-white/70">
+                Early access available now
+              </p>
+            </div>
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <button className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">🏆 Join Vibathon</span>
+            </button>
+            <button className="group relative px-6 py-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-cyan-400/25 overflow-hidden border border-cyan-400/30">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">RSVP for Early Access</span>
+            </button>
+            <button className="group relative px-6 py-3 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-pink-500/25 overflow-hidden border border-pink-500/30">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">Get Notified</span>
+            </button>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Floating Music Player */}
       {showMusicPlayer && (
         <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2, duration: 1 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
           className="fixed bottom-6 right-6 z-50"
         >
-          <AnimatePresence mode="wait">
-            {isPlayerMinimized ? (
-              /* Minimized Player */
-              <motion.div
-                key="minimized"
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                className="bg-black/80 backdrop-blur-sm border border-white/20 rounded-full p-3 flex items-center gap-3 cursor-pointer"
-                onClick={() => setIsPlayerMinimized(false)}
-              >
-                <div className="text-xl">🤖</div>
+          {isPlayerMinimized ? (
+            /* Minimized Player */
+            <motion.div
+              className="bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-full p-4 cursor-pointer hover:bg-purple-500/20 transition-all"
+              onClick={() => setIsPlayerMinimized(false)}
+            >
+              <div className="flex items-center gap-3">
+                <div className="text-2xl">🤖</div>
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
@@ -989,245 +998,213 @@ export default function PortalLanding() {
                 >
                   {isPlaying ? '⏸️' : '▶️'}
                 </button>
-                <div className="w-8 h-1 bg-white/10 rounded-full overflow-hidden">
-                  <div className="bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 h-full w-1/3"></div>
-                </div>
-              </motion.div>
-            ) : (
-              /* Expanded Player */
-              <motion.div
-                key="expanded"
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-black/80 backdrop-blur-sm border border-white/20 rounded-2xl p-4 w-80"
-              >
-                {/* Player Header */}
-                <div className="flex items-center justify-between mb-3">
-                  <div className="flex items-center gap-2">
-                    <div className="text-2xl">🤖</div>
-                    <div>
-                      <div className="text-sm font-medium text-white">
-                        <HeaderText>AIVA Radio</HeaderText>
-                      </div>
-                      <div className="text-xs text-gray-400">
-                        {musicTracks[currentTrack].title}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <button
-                      onClick={() => setIsPlayerMinimized(true)}
-                      className="text-gray-400 hover:text-white transition-colors p-1"
-                      title="Minimize"
-                    >
-                      ➖
-                    </button>
-                    <button
-                      onClick={() => setShowMusicPlayer(false)}
-                      className="text-gray-400 hover:text-white transition-colors p-1"
-                      title="Close"
-                    >
-                      ✕
-                    </button>
+              </div>
+            </motion.div>
+          ) : (
+            /* Expanded Player */
+            <motion.div
+              className="bg-black/90 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 w-80"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+            >
+              {/* Player Header */}
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="text-xl">🤖</div>
+                  <div>
+                    <div className="text-white font-medium text-sm">AIVA Radio</div>
+                    <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent text-xs">{musicTracks[currentTrack].title}</div>
                   </div>
                 </div>
+                <div className="flex gap-2">
+                  <button
+                    onClick={() => setIsPlayerMinimized(true)}
+                    className="text-gray-400 hover:text-white transition-colors p-1"
+                    title="Minimize"
+                  >
+                    ➖
+                  </button>
+                  <button
+                    onClick={() => setShowMusicPlayer(false)}
+                    className="text-gray-400 hover:text-white transition-colors p-1"
+                    title="Close"
+                  >
+                    ✕
+                  </button>
+                </div>
+              </div>
 
-                {/* Chat Prompt Bar */}
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    placeholder="Ask what is AGI+U?"
-                    className="w-full px-3 py-2 bg-white/5 border border-white/20 rounded-lg text-white placeholder-gray-400 text-sm focus:outline-none focus:border-green-400 transition-all"
-                  />
-                </div>
+              {/* Chat Prompt Bar */}
+              <div className="mb-4">
+                <input
+                  type="text"
+                  placeholder="what is AGI+U?"
+                  className="w-full px-3 py-2 bg-white/5 border border-purple-500/30 rounded-lg text-white placeholder-gray-400 text-sm focus:outline-none focus:border-purple-500/70 transition-all"
+                />
+              </div>
 
-                {/* Music Controls */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={handlePrevious}
-                      className="p-2 hover:bg-white/10 rounded-lg transition-colors text-lg"
-                      title="Previous"
-                    >
-                      ⏮️
-                    </button>
-                    <button
-                      onClick={handlePlayPause}
-                      className="p-2 hover:bg-white/10 rounded-lg transition-colors text-xl"
-                      title={isPlaying ? "Pause" : "Play"}
-                    >
-                      {isPlaying ? '⏸️' : '▶️'}
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      className="p-2 hover:bg-white/10 rounded-lg transition-colors text-lg"
-                      title="Next"
-                    >
-                      ⏭️
-                    </button>
-                  </div>
+              {/* Music Controls */}
+              <div className="flex items-center justify-center gap-4 mb-4">
+                <button
+                  onClick={handlePrevious}
+                  className="text-white hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent transition-colors"
+                >
+                  ⏮️
+                </button>
+                <button
+                  onClick={handlePlayPause}
+                  className="text-2xl text-white hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent transition-colors"
+                >
+                  {isPlaying ? '⏸️' : '▶️'}
+                </button>
+                <button
+                  onClick={handleNext}
+                  className="text-white hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent transition-colors"
+                >
+                  ⏭️
+                </button>
+                <button
+                  onClick={handleLoop}
+                  className={`text-white transition-colors ${isLooping ? 'bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent' : 'hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent'}`}
+                >
+                  🔁
+                </button>
+                <button
+                  onClick={handleMute}
+                  className="text-white hover:bg-gradient-to-r hover:from-purple-500 hover:via-pink-500 hover:to-cyan-400 hover:bg-clip-text hover:text-transparent transition-colors"
+                >
+                  {isMuted ? '🔇' : '🔊'}
+                </button>
+              </div>
 
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={handleLoop}
-                      className={`p-2 hover:bg-white/10 rounded-lg transition-colors text-lg ${isLooping ? 'text-green-400' : 'text-gray-400'}`}
-                      title="Loop"
-                    >
-                      🔁
-                    </button>
-                    <button
-                      onClick={handleMute}
-                      className={`p-2 hover:bg-white/10 rounded-lg transition-colors text-lg ${isMuted ? 'text-red-400' : 'text-gray-400'}`}
-                      title={isMuted ? "Unmute" : "Mute"}
-                    >
-                      {isMuted ? '🔇' : '🔊'}
-                    </button>
-                  </div>
+              {/* Progress Bar */}
+              <div className="flex items-center gap-2 text-xs text-gray-400">
+                <span>1:23</span>
+                <div className="flex-1 bg-white/10 rounded-full h-1">
+                  <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 h-1 rounded-full w-1/3"></div>
                 </div>
-
-                {/* Progress Bar */}
-                <div className="mt-3">
-                  <div className="w-full bg-white/10 rounded-full h-1">
-                    <div className="bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 h-1 rounded-full w-1/3"></div>
-                  </div>
-                  <div className="flex justify-between text-xs text-gray-400 mt-1">
-                    <span>1:23</span>
-                    <span>{musicTracks[currentTrack].duration}</span>
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <span>{musicTracks[currentTrack].duration}</span>
+              </div>
+            </motion.div>
+          )}
         </motion.div>
       )}
 
+      {/* Scroll to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            onClick={scrollToTop}
+            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-12 h-12 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all duration-300 shadow-2xl shadow-purple-500/25"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            🚀
+          </motion.button>
+        )}
+      </AnimatePresence>
+
       {/* AIVA Parallax Section */}
-      <motion.section className="relative h-screen overflow-hidden">
+      <motion.section className="relative h-screen overflow-hidden bg-black">
         {/* Black gradient overlay at top - Extended */}
-        <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black via-black/80 to-transparent z-10"></div>
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-20"></div>
 
         {/* Black gradient overlay at bottom - Extended */}
-        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black via-black/80 to-transparent z-10"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-20"></div>
 
-        {/* Contained AIVA Background */}
-        <div className="absolute inset-0 z-0">
-          <Spline scene="https://prod.spline.design/GXMvk1yD7tdlTpch/scene.splinecode" />
+        {/* Original AIVA Background */}
+        <div className="absolute inset-0 z-0 opacity-60">
+          <Spline scene="https://prod.spline.design/vJWTCBb2Fx5TXfEt/scene.splinecode" />
         </div>
 
         {/* AIVA Content Overlay */}
-        <div className="relative z-20 h-full flex items-center justify-center">
-          <div className="max-w-4xl mx-auto px-8 text-center">
+        <div className="absolute inset-0 z-30 flex items-center justify-center">
+          <div className="max-w-6xl mx-auto px-8 grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
             <motion.div
-              initial={{ opacity: 0, y: 100 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2 }}
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.5 }}
               viewport={{ once: true }}
+              className="text-white"
             >
-              <motion.h3
-                className="text-5xl md:text-7xl font-bold mb-8 text-white drop-shadow-2xl"
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.5, duration: 1.5 }}
-                viewport={{ once: true }}
-              >
-                <HeaderText>🪩 Meet AIVA</HeaderText>
-              </motion.h3>
-
-              <motion.p
-                className="text-2xl md:text-3xl text-white/90 drop-shadow-xl mb-8"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1, duration: 1 }}
-                viewport={{ once: true }}
-              >
-                <HeaderText>The Voice of the New Internet</HeaderText>
-              </motion.p>
-
-              <motion.div
-                className="text-xl md:text-2xl text-white/80 mb-12 space-y-4"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: 1 }}
-                viewport={{ once: true }}
-              >
+              <div className="text-6xl mb-6">🪩</div>
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <HeaderText>Meet AIVA</HeaderText>
+              </h2>
+              <h3 className="text-2xl md:text-3xl text-white/90 mb-8">
+                The Voice of the New Internet
+              </h3>
+              <div className="space-y-4 text-lg md:text-xl text-white/80 mb-12">
                 <p>Not a chatbot. Not a search engine.</p>
-                <p>A unified, ambient interface for everything.</p>
-              </motion.div>
-
-              <motion.div
-                className="text-lg text-cyan-400 mb-8"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2, duration: 1 }}
-                viewport={{ once: true }}
-              >
-                Coming June 9th
-              </motion.div>
+                <p className="text-2xl font-bold text-white">A unified, ambient interface for everything.</p>
+                <p className="text-purple-400">Coming June 9th</p>
+              </div>
 
               {/* CTA Buttons */}
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2.2, duration: 1 }}
-                viewport={{ once: true }}
-              >
-                <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
                   <span className="relative z-10">Join the Waitlist</span>
                 </button>
-                <button className="group relative px-8 py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-cyan-400/25 overflow-hidden border border-cyan-400/30">
+                <button className="group relative px-6 py-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-cyan-400/25 overflow-hidden border border-cyan-400/30">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
                   <span className="relative z-10">Reserve Your Handle</span>
                 </button>
-              </motion.div>
+              </div>
+            </motion.div>
 
-              {/* Phone Reveal Animation */}
+            {/* Phone Reveal Animation */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.5, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="flex justify-center"
+            >
               <motion.div
-                initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ delay: 1.5, duration: 1.5, ease: "easeOut" }}
-                viewport={{ once: true }}
-                className="flex justify-center"
+                className="w-64 h-[500px] bg-gradient-to-b from-gray-900 to-black rounded-[3rem] border border-white/20 shadow-2xl relative overflow-hidden"
+                whileHover={{ scale: 1.05, rotateY: 5 }}
+                transition={{ duration: 0.3 }}
               >
-                <motion.div
-                  className="w-48 h-96 bg-gradient-to-b from-gray-900 to-black rounded-[3rem] border border-white/20 shadow-2xl relative overflow-hidden"
-                  whileHover={{ scale: 1.05, rotateY: 5 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {/* Phone Screen */}
-                  <div className="absolute inset-4 bg-black rounded-[2.5rem] flex flex-col items-center justify-center">
-                    {/* AIVA Interface */}
+                {/* Phone Screen */}
+                <div className="absolute inset-4 bg-black rounded-[2.5rem] flex flex-col">
+                  {/* Status Bar */}
+                  <div className="flex justify-between items-center p-4 text-white text-xs">
+                    <span>9:41</span>
+                    <span>100%</span>
+                  </div>
+
+                  {/* AIVA Interface */}
+                  <div className="flex-1 flex flex-col items-center justify-center p-6">
                     <motion.div
                       initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
+                      animate={{ opacity: 1 }}
                       transition={{ delay: 2, duration: 1 }}
-                      viewport={{ once: true }}
-                      className="text-center"
+                      className="text-center mb-8"
                     >
                       <div className="text-4xl mb-4">🤖</div>
-                      <div className="text-white text-sm font-medium mb-2">AIVA</div>
-                      <div className="text-green-400 text-xs">● Online</div>
+                      <div className="text-white text-lg font-medium mb-2">AIVA</div>
+                      <div className="text-green-400 text-sm">● Online</div>
                     </motion.div>
 
                     {/* Voice Waves Animation */}
                     <motion.div
-                      className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-1"
+                      className="flex gap-1 mb-8"
                       initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
+                      animate={{ opacity: 1 }}
                       transition={{ delay: 2.5, duration: 1 }}
-                      viewport={{ once: true }}
                     >
                       {[...Array(5)].map((_, i) => (
                         <motion.div
                           key={i}
                           className="w-1 bg-green-400 rounded-full"
-                          animate={{
-                            height: [4, 12, 4],
-                          }}
+                          animate={{ height: [8, 24, 8] }}
                           transition={{
-                            duration: 1,
+                            duration: 1.5,
                             repeat: Infinity,
                             delay: i * 0.1,
                             ease: "easeInOut"
@@ -1235,12 +1212,16 @@ export default function PortalLanding() {
                         />
                       ))}
                     </motion.div>
-                  </div>
 
-                  {/* Phone Details */}
-                  <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white/20 rounded-full" />
-                  <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full" />
-                </motion.div>
+                    <div className="text-white/70 text-sm text-center">
+                      "Show me the new internet"
+                    </div>
+                  </div>
+                </div>
+
+                {/* Phone Details */}
+                <div className="absolute top-6 left-1/2 transform -translate-x-1/2 w-16 h-1 bg-white/20 rounded-full" />
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-1 bg-white/20 rounded-full" />
               </motion.div>
             </motion.div>
           </div>
@@ -1248,22 +1229,28 @@ export default function PortalLanding() {
       </motion.section>
 
       {/* AIVA Products Section */}
-      <motion.section className="relative z-10 bg-black py-32">
+      <motion.section className="py-32 bg-black">
         <div className="max-w-6xl mx-auto px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: 1 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h4 className="text-2xl md:text-3xl font-bold mb-6 text-white/90">
-              <HeaderText>AIVA is only available on Unified AI products & services</HeaderText>
+            <h4 className="text-lg md:text-xl text-white/70 mb-8">
+              AIVA is only available on Unified AI products & services
             </h4>
           </motion.div>
 
           {/* Product Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16"
+          >
             {[
               { name: 'AI Phone', link: 'preorder.aiphone', icon: '📱' },
               { name: 'AI Glasses', link: 'preorder.aiglasses', icon: '👓' },
@@ -1271,91 +1258,85 @@ export default function PortalLanding() {
               { name: 'AI Email', link: 'yourhandle.aiemail', icon: '📧', note: 'Available with subscription or hardware only' }
             ].map((product, index) => (
               <motion.div
-                key={product.name}
+                key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.8 }}
                 viewport={{ once: true }}
-                className="bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-cyan-400/10 backdrop-blur-sm border border-purple-500/30 rounded-2xl p-6 hover:border-purple-500/70 transition-all duration-500 cursor-pointer group shadow-2xl hover:shadow-purple-500/25"
-                whileHover={{ scale: 1.02, y: -5 }}
+                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center hover:bg-white/10 transition-all cursor-pointer"
               >
-                <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {product.icon}
-                </div>
+                <div className="text-4xl mb-4">{product.icon}</div>
                 <h5 className="text-xl font-bold text-white mb-2">
                   <HeaderText>{product.name}</HeaderText>
                 </h5>
-                <div className="text-green-400 text-sm font-mono mb-2">
-                  {product.link}
-                </div>
+                <div className="text-purple-400 text-sm mb-4">{product.link}</div>
                 {product.note && (
-                  <p className="text-xs text-gray-400">
-                    {product.note}
-                  </p>
+                  <p className="text-xs text-white/60">{product.note}</p>
                 )}
               </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           {/* Reserve Handle CTA */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
             viewport={{ once: true }}
             className="text-center"
           >
-            <button className="group relative px-8 py-4 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden">
+            <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
               {/* Metal shine effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-              <span className="relative z-10">
-                <HeaderText>Reserve Your Handle</HeaderText>
-              </span>
+              <span className="relative z-10">Reserve Your Handle</span>
             </button>
           </motion.div>
         </div>
       </motion.section>
 
       {/* Big Scrolling Marquee */}
-      <motion.section className="py-16 overflow-hidden relative">
+      <motion.section className="py-16 bg-black overflow-hidden">
         {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none"></div>
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10"></div>
 
         <motion.div
-          className="whitespace-nowrap flex"
-          animate={{
-            x: [0, -2000],
-          }}
+          className="whitespace-nowrap text-white font-bold"
+          style={{ fontSize: '255pt' }}
+          animate={{ x: ['-100%', '100%'] }}
           transition={{
-            duration: 30,
+            duration: 25,
             repeat: Infinity,
             ease: "linear"
           }}
         >
-          <span className="text-[170pt] font-black bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 inline-block leading-none">
-            WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE NEW INTERNET...THE AGENTIC WEB&nbsp;&nbsp;&nbsp;&nbsp;
-          </span>
+          WELCOME TO THE AGENTIC WEB. WE CAN'T WAIT TO SEE WHAT YOU BUILD WITH IT&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE AGENTIC WEB. WE CAN'T WAIT TO SEE WHAT YOU BUILD WITH IT&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE AGENTIC WEB. WE CAN'T WAIT TO SEE WHAT YOU BUILD WITH IT&nbsp;&nbsp;&nbsp;&nbsp;WELCOME TO THE AGENTIC WEB. WE CAN'T WAIT TO SEE WHAT YOU BUILD WITH IT&nbsp;&nbsp;&nbsp;&nbsp;
         </motion.div>
       </motion.section>
 
       {/* AGI Stack - Black Tile Grid */}
-      <motion.section className="py-32 relative">
-        <div className="max-w-6xl mx-auto px-8">
+      <motion.section className="py-32 bg-black">
+        <div className="max-w-4xl mx-auto px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: 1 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h3 className="text-4xl md:text-6xl font-bold mb-8 text-white/90">
+            <h3 className="text-4xl md:text-6xl font-bold text-white">
               <HeaderText>AGI Stack</HeaderText>
             </h3>
           </motion.div>
 
           {/* Black Tile Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-6"
+          >
             {[
               { letter: 'A', word: 'AGENTIC', desc: 'Agentic intelligent systems', spline: 'https://prod.spline.design/rJPA857DGZSxML8o/scene.splinecode' },
               { letter: 'G', word: 'GOVERNANCE', desc: 'Protocol authority', spline: 'https://prod.spline.design/f3aPrjPqriBnVnIu/scene.splinecode' },
@@ -1363,277 +1344,271 @@ export default function PortalLanding() {
               { letter: 'U', word: 'UNIFIED', desc: 'Seamless integration', spline: 'https://prod.spline.design/0KEJ6WQwWH9vZhcv/scene.splinecode' }
             ].map((item, index) => (
               <motion.div
-                key={item.letter}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.2, duration: 0.8 }}
+                key={index}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1, duration: 0.8 }}
                 viewport={{ once: true }}
-                className="group relative bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-400/10 border border-blue-500/30 rounded-2xl p-8 h-48 flex flex-col justify-center items-center hover:border-blue-500/70 transition-all duration-500 cursor-pointer overflow-hidden shadow-2xl hover:shadow-blue-500/25"
+                className="group relative bg-black border border-white/20 rounded-2xl p-8 h-64 overflow-hidden cursor-pointer hover:border-purple-500/50 transition-all"
               >
                 {/* Metal shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
 
                 {/* Purple glow on hover */}
-                <div className="absolute inset-0 bg-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl blur-sm"></div>
+                <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 transition-all duration-300 rounded-2xl"></div>
 
                 {/* Spline Background on Hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-500">
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
                   <Spline scene={item.spline} />
                 </div>
 
-                <div className="relative z-10">
-                  <div className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 mb-2">{item.letter}</div>
-                  <div className="text-sm font-medium text-white/80 mb-1">
+                <div className="relative z-10 h-full flex flex-col justify-center">
+                  <div className="text-6xl font-bold text-white mb-4">{item.letter}</div>
+                  <div className="text-2xl font-bold text-white mb-2">
                     <HeaderText>{item.word}</HeaderText>
                   </div>
-                  <div className="text-xs text-white/60 text-center">
-                    {item.desc}
-                  </div>
+                  <div className="text-white/70">{item.desc}</div>
                 </div>
               </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
       {/* .commandline/userprompt Section - Enhanced */}
-      <motion.section className="py-32 relative bg-gradient-to-b from-black via-gray-900/50 to-black">
+      <motion.section className="py-32 bg-black">
         <div className="max-w-6xl mx-auto px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: 1 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h3 className="text-4xl md:text-6xl font-bold mb-8 text-white/90">
+            <h3 className="text-4xl md:text-6xl font-bold text-white mb-8">
               <HeaderText>🖥️ Introducing .commandline/userprompt</HeaderText>
             </h3>
           </motion.div>
 
           {/* Main Terminal Interface */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.3, duration: 1 }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
             viewport={{ once: true }}
-            className="max-w-4xl mx-auto mb-16"
+            className="mb-16"
           >
             {/* Browser Window */}
-            <div className="bg-gray-900/80 border border-purple-500/30 rounded-xl overflow-hidden shadow-2xl shadow-purple-500/20">
+            <div className="bg-gray-900 rounded-t-lg border border-gray-700">
               {/* Browser Header */}
-              <div className="bg-gray-800 px-4 py-3 flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                <div className="flex-1 mx-4">
-                  <div className="bg-black/50 rounded-lg px-4 py-2 border border-white/20">
-                    <span className="text-gray-400 text-sm">.commandline/userprompt</span>
-                  </div>
+              <div className="flex items-center gap-2 p-4 border-b border-gray-700">
+                <div className="flex gap-2">
+                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                  <div className="w-3 h-3 rounded-full bg-green-500"></div>
                 </div>
+                <div className="flex-1 text-center text-gray-400 text-sm">.commandline/userprompt</div>
               </div>
 
               {/* Terminal Content */}
-              <div className="p-8 bg-black/90 font-mono">
-                <form onSubmit={handleCommandSubmit} className="mb-6">
-                  <div className="relative">
+              <div className="p-6 bg-black rounded-b-lg font-mono">
+                <form onSubmit={handleCommandSubmit} className="mb-4">
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">$</span>
                     <input
                       type="text"
                       value={commandInput}
                       onChange={(e) => setCommandInput(e.target.value)}
                       placeholder="type anything"
-                      className="w-full px-4 py-4 bg-transparent border border-green-500/30 rounded-lg text-green-400 placeholder-green-400/50 focus:outline-none focus:border-green-400 transition-all text-lg"
+                      className="w-full px-4 py-4 bg-transparent border border-purple-500/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-purple-500/70 transition-all text-lg"
                     />
-                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-                      <div className="w-8 h-8 rounded bg-green-400/20 flex items-center justify-center">
-                        <span className="text-green-400">⏎</span>
-                      </div>
-                    </div>
+                    <button
+                      type="submit"
+                      className="px-4 py-4 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-400/20 border border-purple-500/30 rounded-lg text-white hover:bg-gradient-to-r hover:from-purple-500/30 hover:via-pink-500/30 hover:to-cyan-400/30 transition-all"
+                    >
+                      ⏎
+                    </button>
                   </div>
                 </form>
 
                 {commandResponse && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="text-cyan-400 text-lg mb-4"
-                  >
+                  <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent mb-4">
                     {'>'} {commandResponse}
-                  </motion.div>
+                  </div>
                 )}
 
-                <div className="text-white/60 text-lg">
-                  <HeaderText>Your agent responds in real time.</HeaderText>
+                <div className="text-white/70 text-sm">
+                  Your agent responds in real time.
                 </div>
               </div>
             </div>
           </motion.div>
 
           {/* Expanded Copy */}
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            {/* Left Column */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <div className="text-2xl md:text-3xl text-white font-bold">
-                You're not browsing. You're invoking.
-              </div>
-              <div className="text-xl text-white/80">
-                This isn't a website. It's a command line for the intelligent web.
-              </div>
-              <div className="text-lg text-white/70">
-                Every key you press is a signal. Every signal calls an agent.
-              </div>
-            </motion.div>
-
-            {/* Right Column */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.7, duration: 1 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              {/* Example Command */}
-              <div className="bg-black/60 border border-green-500/30 rounded-lg p-6 font-mono">
-                <div className="text-green-400 mb-2">.prompt "Design me a drop page for my meme coin"</div>
-                <div className="text-gray-400 mb-2">⏎</div>
-                <div className="text-cyan-400">AIVA responds instantly. Your drop page is live.</div>
-              </div>
-
-              <div className="text-lg text-white/70">
-                You don't click around here. You command.
-              </div>
-              <div className="text-lg text-white/70">
-                No interfaces. No tabs. Just you and your operating system — powered by language, identity, and protocol logic.
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Bottom Features */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
             viewport={{ once: true }}
-            className="mt-16 text-center space-y-4"
+            className="grid lg:grid-cols-2 gap-12 mb-16"
           >
-            <div className="text-lg text-cyan-400">🔁 Reload the page, the interface remembers where you left off.</div>
-            <div className="text-lg text-cyan-400">🎤 Every voice command is a launch command.</div>
+            {/* Left Column */}
+            <div className="space-y-6 text-white">
+              <h4 className="text-2xl md:text-3xl font-bold">
+                <HeaderText>You're not browsing. You're invoking.</HeaderText>
+              </h4>
+              <p className="text-lg text-white/80">
+                This isn't a website. It's a command line for the intelligent web.
+              </p>
+              <p className="text-lg text-white/80">
+                Every key you press is a signal. Every signal calls an agent.
+              </p>
+            </div>
+
+            {/* Right Column */}
+            <div className="space-y-6">
+              {/* Example Command */}
+              <div className="bg-black/50 border border-green-500/30 rounded-lg p-4 font-mono">
+                <div className="text-green-400 mb-2">
+                  .prompt "Design me a drop page for my meme coin"
+                </div>
+                <div className="text-green-400/70 text-sm mb-2">⏎</div>
+                <div className="text-green-400">
+                  AIVA responds instantly. Your drop page is live.
+                </div>
+              </div>
+
+              <p className="text-lg text-white/80">
+                You don't click around here. You command.
+              </p>
+              <p className="text-white/70">
+                No interfaces. No tabs. Just you and your operating system — powered by language, identity, and protocol logic.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Bottom Features */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.7 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-8 text-center"
+          >
+            <div className="flex items-center justify-center gap-3 text-white/70">
+              <span className="text-2xl">🔁</span>
+              <span>Reload the page, the interface remembers where you left off.</span>
+            </div>
+            <div className="flex items-center justify-center gap-3 text-white/70">
+              <span className="text-2xl">🎤</span>
+              <span>Every voice command is a launch command.</span>
+            </div>
           </motion.div>
         </div>
       </motion.section>
 
       {/* Whitepaper Carousel Section */}
-      <motion.section className="py-32 relative bg-gradient-to-b from-black via-gray-900/50 to-black">
+      <motion.section className="py-32 bg-black">
         <div className="max-w-6xl mx-auto px-8">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: 1 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h3 className="text-3xl md:text-5xl font-bold mb-6 text-white/90">
+            <h3 className="text-4xl md:text-6xl font-bold text-white mb-6">
               <HeaderText>Research Library</HeaderText>
             </h3>
-            <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-white/70">
               Access comprehensive research papers and technical documentation
             </p>
           </motion.div>
 
           {/* Whitepaper Scrollable Grid */}
-          <div className="overflow-x-auto pb-4">
-            <div className="flex gap-6 w-max">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
             {whitepapers.map((paper, index) => (
               <motion.div
-                key={paper.title}
-                initial={{ opacity: 0, y: 50 }}
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.8 }}
                 viewport={{ once: true }}
-                className="group relative cursor-pointer"
+                className="group relative bg-black border border-white/20 rounded-2xl p-6 cursor-pointer hover:border-purple-500/50 transition-all overflow-hidden"
                 onClick={() => openWhitepaperModal(index)}
               >
-                <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-cyan-400/10 via-blue-500/10 to-purple-500/10 backdrop-blur-sm border border-cyan-400/30 hover:border-cyan-400/70 transition-all duration-500 hover:scale-105 p-6 h-96 w-72 flex-shrink-0 shadow-2xl hover:shadow-cyan-400/25">
-                  {/* Metal shine effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                {/* Metal shine effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
 
-                  {/* Purple glow on hover */}
-                  <div className="absolute inset-0 bg-purple-500/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl blur-sm"></div>
+                {/* Purple glow on hover */}
+                <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 transition-all duration-300 rounded-2xl"></div>
 
-                  {/* Background Glow Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Background Glow Effect */}
+                <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 ${paper.bgColor} rounded-2xl`}></div>
 
+                <div className="relative z-10">
                   {/* Paper Image Placeholder */}
-                  <div className="flex items-center justify-center mb-6">
-                    <div className="w-32 h-24 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg border border-white/10 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 overflow-hidden">
-                      {/* Placeholder content */}
-                      <div className="text-center">
-                        <div className="text-3xl mb-1">{paper.image}</div>
-                        <div className="text-xs text-white/40">Preview</div>
-                      </div>
-                      {/* Subtle gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                    </div>
+                  <div className="w-full h-32 bg-white/5 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                    {/* Placeholder content */}
+                    <div className="text-4xl">{paper.image}</div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+                    <div className="absolute bottom-2 right-2 text-xs text-white/50">Preview</div>
+
+                    {/* Subtle gradient overlay */}
+                    <div className={`absolute inset-0 bg-gradient-to-br ${paper.bgColor} opacity-20`}></div>
                   </div>
 
                   {/* Paper Info */}
-                  <div className="text-center">
-                    <h4 className={`text-xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r ${paper.gradient}`}>
-                      <HeaderText>{paper.title}</HeaderText>
-                    </h4>
-                    <h5 className="text-sm font-medium text-white/80 mb-3">
-                      {paper.subtitle}
-                    </h5>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                      {paper.description}
-                    </p>
+                  <h4 className="text-lg font-bold text-white mb-2">
+                    <HeaderText>{paper.title}</HeaderText>
+                  </h4>
+                  <h5 className="text-sm text-purple-400 mb-3">{paper.subtitle}</h5>
+                  <p className="text-xs text-white/70 mb-4">{paper.description}</p>
 
-                    {/* Access Button */}
-                    <div className="flex items-center justify-center">
-                      <div className="group/btn relative px-4 py-2 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-medium text-sm rounded-lg transition-all duration-300 group-hover:scale-105 overflow-hidden">
-                        {/* Metal shine effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover/btn:translate-x-[200%] transition-transform duration-700"></div>
-                        <span className="relative z-10">
-                          <HeaderText>Request Access</HeaderText>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Hover Overlay */}
-                  <motion.div
-                    className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
-                    initial={false}
-                  />
+                  {/* Access Button */}
+                  <button className="group/btn relative w-full px-4 py-2 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-400/20 border border-purple-500/30 text-white font-medium rounded-lg transition-all hover:border-purple-500/70 overflow-hidden">
+                    {/* Metal shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover/btn:translate-x-[200%] transition-transform duration-700"></div>
+                    <span className="relative z-10 text-sm">Request Access</span>
+                  </button>
                 </div>
+
+                {/* Hover Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
               </motion.div>
             ))}
-            </div>
-          </div>
+          </motion.div>
         </div>
       </motion.section>
 
       {/* Countdown Section */}
-      <motion.section className="py-32 relative">
+      <motion.section className="py-32 bg-black">
         <div className="max-w-4xl mx-auto px-8 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 50 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5 }}
+            transition={{ duration: 1 }}
             viewport={{ once: true }}
+            className="mb-16"
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-12 text-white/80">
+            <h3 className="text-4xl md:text-6xl font-bold text-white mb-12">
               <HeaderText>AGI+U begins in:</HeaderText>
             </h3>
 
             {/* Minimalist Countdown */}
-            <div className="grid grid-cols-4 gap-8 max-w-2xl mx-auto mb-16">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-4 gap-8 mb-16"
+            >
               {[
                 { label: 'DAYS', value: timeLeft.days },
                 { label: 'HOURS', value: timeLeft.hours },
@@ -1641,79 +1616,71 @@ export default function PortalLanding() {
                 { label: 'SECONDS', value: timeLeft.seconds }
               ].map((unit, index) => (
                 <motion.div
-                  key={unit.label}
-                  initial={{ opacity: 0, y: 30 }}
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.8 }}
                   viewport={{ once: true }}
                   className="text-center"
                 >
-                  <motion.div
-                    className="text-4xl md:text-6xl font-bold text-white/90 mb-2"
-                    key={unit.value}
-                    initial={{ scale: 1.1, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ duration: 0.3 }}
+                  <div
+                    className="text-4xl md:text-6xl font-bold mb-2 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent"
                   >
                     {String(unit.value).padStart(2, '0')}
-                  </motion.div>
-                  <div className="text-xs font-medium text-white/40 tracking-wider">
-                    <HeaderText>{unit.label}</HeaderText>
+                  </div>
+                  <div className="text-sm md:text-base text-white/70 font-medium">
+                    {unit.label}
                   </div>
                 </motion.div>
               ))}
-            </div>
-
-            {/* Optional Email Signup */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
-              viewport={{ once: true }}
-            >
-              {!isSubscribed ? (
-                <div className="max-w-md mx-auto">
-                  <p className="text-white/60 mb-6 text-sm">
-                    <HeaderText>Receive access signal first.</HeaderText>
-                  </p>
-                  <form onSubmit={handleEmailSubmit} className="flex gap-4">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="your@email.com"
-                      className="flex-1 px-4 py-3 bg-white/5 backdrop-blur-sm border border-white/20 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-white/40 transition-all text-sm"
-                      required
-                      disabled={isSubmitting}
-                    />
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="px-6 py-3 bg-gradient-to-r from-green-400 via-yellow-500 to-orange-500 text-black font-bold rounded-lg hover:scale-105 transition-all text-sm disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      {isSubmitting ? '⏳' : '→'}
-                    </button>
-                  </form>
-                  {submitMessage && (
-                    <p className={`text-xs mt-2 ${submitMessage.includes('Error') ? 'text-red-400' : 'text-green-400'}`}>
-                      {submitMessage}
-                    </p>
-                  )}
-                </div>
-              ) : (
-                <motion.div
-                  initial={{ scale: 0.8, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  className="text-center"
-                >
-                  <div className="text-2xl mb-2">⚡</div>
-                  <p className="text-white/60 text-sm">
-                    <HeaderText>Access signal received.</HeaderText>
-                  </p>
-                </motion.div>
-              )}
             </motion.div>
           </motion.div>
+
+          {/* Optional Email Signup */}
+          {!isSubscribed ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="max-w-md mx-auto"
+            >
+              <p className="text-white/70 mb-6">Receive access signal first.</p>
+              <form onSubmit={handleEmailSubmit} className="flex gap-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="your@email.com"
+                  className="flex-1 px-4 py-3 bg-white/5 backdrop-blur-sm border border-purple-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-500/70 transition-all text-sm"
+                  required
+                  disabled={isSubmitting}
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-lg transition-all hover:scale-105 disabled:opacity-50"
+                >
+                  {isSubmitting ? '⏳' : '→'}
+                </button>
+              </form>
+
+              {submitMessage && (
+                <div className="mt-4 text-sm bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
+                  {submitMessage}
+                </div>
+              )}
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center"
+            >
+              <div className="text-4xl mb-4">⚡</div>
+              <p className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent font-medium">Access signal received.</p>
+            </motion.div>
+          )}
         </div>
       </motion.section>
 
