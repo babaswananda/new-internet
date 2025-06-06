@@ -205,11 +205,21 @@ export default function PortalLanding() {
       const agiuSection = document.querySelector('#agiu-slides') as HTMLElement;
       if (agiuSection) {
         const rect = agiuSection.getBoundingClientRect();
-        // Extremely aggressive detection - section is anywhere near viewport
-        const isInView = rect.top < window.innerHeight * 1.2 && rect.bottom > -window.innerHeight * 0.2;
-        const isCentered = rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.6;
+        // More precise detection to ensure we don't skip the slider
+        const isInView = rect.top <= window.innerHeight && rect.bottom >= 0;
+        const isFullyVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+        const isPartiallyVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        
+        // If we're approaching the section from above, ensure we stop at it
+        if (rect.top > 0 && rect.top < window.innerHeight * 0.5 && e.deltaY > 0) {
+          e.preventDefault();
+          e.stopPropagation();
+          agiuSection.scrollIntoView({ behavior: 'smooth' });
+          lastWheelTime = now;
+          return;
+        }
 
-        if (isInView || isCentered) {
+        if (isInView || isFullyVisible || isPartiallyVisible) {
           const isAtFirstSlide = currentAgiuSlide === 0;
           const isAtLastSlide = currentAgiuSlide === agiuSlides.length - 1;
 
@@ -279,10 +289,10 @@ export default function PortalLanding() {
         const isCentered = rect.top <= window.innerHeight * 0.4 && rect.bottom >= window.innerHeight * 0.6;
 
         if (isInView || isCentered) {
-          switch (e.key) {
-            case 'ArrowRight':
-            case 'ArrowDown':
-            case 'Space':
+          switch (e.key.toLowerCase()) {
+            case 'arrowright':
+            case 'arrowdown':
+            case 'space':
             case 'd':
             case 's':
               e.preventDefault();
@@ -304,9 +314,8 @@ export default function PortalLanding() {
                 }
               }
               break;
-            case 'ArrowLeft':
-            case 'ArrowUp':
-            case 'a':
+            case 'arrowleft':
+            case 'arrowup':
             case 'w':
               e.preventDefault();
               e.stopPropagation();
@@ -326,6 +335,27 @@ export default function PortalLanding() {
                   prevSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }
+              break;
+            // A-G-I-U keys for direct navigation
+            case 'a':
+              e.preventDefault();
+              e.stopPropagation();
+              setCurrentAgiuSlide(0); // A slide
+              break;
+            case 'g':
+              e.preventDefault();
+              e.stopPropagation();
+              setCurrentAgiuSlide(1); // G slide
+              break;
+            case 'i':
+              e.preventDefault();
+              e.stopPropagation();
+              setCurrentAgiuSlide(2); // I slide
+              break;
+            case 'u':
+              e.preventDefault();
+              e.stopPropagation();
+              setCurrentAgiuSlide(3); // U slide
               break;
             // Number keys for direct navigation
             case '1': case '2': case '3': case '4':
@@ -1208,7 +1238,7 @@ export default function PortalLanding() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-[9999] w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all duration-300 shadow-2xl border border-white/20"
+            className="fixed bottom-6 right-6 z-[9999] w-14 h-14 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all duration-300 shadow-2xl border border-white/20"
             style={{
               background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
               backgroundSize: '300% 300%',
@@ -1731,12 +1761,13 @@ export default function PortalLanding() {
                       <h5 className="text-sm text-purple-400 mb-3">{paper.subtitle}</h5>
                       <p className="text-xs text-white/70 mb-4">{paper.description}</p>
 
-                      {/* Access Button */}
-                      <button className="group/btn relative w-full px-4 py-2 text-white font-medium rounded-lg transition-all overflow-hidden border border-white/20"
+                      {/* Access Button - Updated with consistent iridescent styling */}
+                      <button className="group/btn relative w-full px-4 py-2 text-white font-bold rounded-lg transition-all overflow-hidden border border-white/20 hover:scale-105"
                               style={{
                                 background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
                                 backgroundSize: '300% 300%',
-                                animation: 'iridescent 3s ease-in-out infinite'
+                                animation: 'iridescent 3s ease-in-out infinite',
+                                boxShadow: '0 0 15px rgba(255, 0, 128, 0.3)'
                               }}>
                         {/* Metal shine effect */}
                         <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover/btn:translate-x-[200%] transition-transform duration-700"></div>
