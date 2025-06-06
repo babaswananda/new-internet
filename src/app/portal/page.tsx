@@ -140,15 +140,42 @@ export default function PortalLanding() {
     return () => clearInterval(slideInterval);
   }, [agiuSlides.length]);
 
-  // Scroll to top functionality - removed aggressive slide advancement
+  // Scroll to top functionality and gentle slide advancement
   useEffect(() => {
+    let scrollTimeout: NodeJS.Timeout;
+
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 500);
+
+      // Clear existing timeout
+      clearTimeout(scrollTimeout);
+
+      // Gentle slide advancement based on scroll position (with delay)
+      scrollTimeout = setTimeout(() => {
+        const agiuSection = document.querySelector('#agiu-slides');
+        if (agiuSection) {
+          const rect = agiuSection.getBoundingClientRect();
+          const isInView = rect.top <= window.innerHeight * 0.5 && rect.bottom >= window.innerHeight * 0.5;
+
+          if (isInView) {
+            // Calculate which slide should be active based on scroll position
+            const sectionProgress = Math.max(0, Math.min(1, (window.innerHeight * 0.5 - rect.top) / window.innerHeight));
+            const targetSlide = Math.floor(sectionProgress * agiuSlides.length);
+
+            if (targetSlide !== currentAgiuSlide && targetSlide < agiuSlides.length && targetSlide >= 0) {
+              setCurrentAgiuSlide(targetSlide);
+            }
+          }
+        }
+      }, 100); // Small delay to prevent excessive updates
     };
 
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [currentAgiuSlide, agiuSlides.length]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -165,10 +192,10 @@ export default function PortalLanding() {
     setCurrentAgiuSlide((prev) => (prev - 1 + agiuSlides.length) % agiuSlides.length);
   };
 
-  // Wheel event handler for A-G-I-U slides - only when section is centered
+  // Wheel event handler for A-G-I-U slides - smart scrolling
   useEffect(() => {
     let lastWheelTime = 0;
-    const wheelThrottle = 800; // Throttle wheel events to prevent endless scrolling
+    const wheelThrottle = 300; // Reduced throttle for better responsiveness
 
     const handleWheel = (e: WheelEvent) => {
       const now = Date.now();
@@ -177,28 +204,31 @@ export default function PortalLanding() {
       const agiuSection = document.querySelector('#agiu-slides');
       if (agiuSection) {
         const rect = agiuSection.getBoundingClientRect();
-        // Only intercept wheel when section is perfectly centered (not at edges)
-        const isCentered = rect.top <= 50 && rect.bottom >= window.innerHeight - 50;
-        const isAtTop = rect.top >= -50;
-        const isAtBottom = rect.bottom <= window.innerHeight + 50;
+        // Check if the A-G-I-U section is in the viewport
+        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+        const isCentered = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
 
-        if (isCentered && isAtTop && isAtBottom) {
-          // Only prevent default if we're going to change slides
+        if (isInViewport && isCentered) {
           const isAtFirstSlide = currentAgiuSlide === 0;
           const isAtLastSlide = currentAgiuSlide === agiuSlides.length - 1;
 
-          if (e.deltaY > 0 && !isAtLastSlide) {
-            // Scrolling down and not at last slide
-            e.preventDefault();
-            nextAgiuSlide();
-            lastWheelTime = now;
-          } else if (e.deltaY < 0 && !isAtFirstSlide) {
-            // Scrolling up and not at first slide
-            e.preventDefault();
-            prevAgiuSlide();
-            lastWheelTime = now;
+          if (e.deltaY > 0) {
+            // Scrolling down
+            if (!isAtLastSlide) {
+              e.preventDefault();
+              nextAgiuSlide();
+              lastWheelTime = now;
+            }
+            // If at last slide, allow normal scrolling to continue to next section
+          } else {
+            // Scrolling up
+            if (!isAtFirstSlide) {
+              e.preventDefault();
+              prevAgiuSlide();
+              lastWheelTime = now;
+            }
+            // If at first slide, allow normal scrolling to continue to previous section
           }
-          // If at first/last slide, allow normal scrolling to continue
         }
       }
     };
