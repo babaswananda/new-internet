@@ -221,7 +221,7 @@ const CinematicPreloader: React.FC<CinematicPreloaderProps> = ({
                       <span className="text-xl sm:text-2xl md:text-3xl lg:text-5xl">🤖</span>
                       <TypewriterText
                         text="agents are loading..."
-                        className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-cyan-400 font-mono"
+                        className="text-xl sm:text-2xl md:text-3xl lg:text-5xl text-green-400 font-mono"
                         speed={120}
                       />
                     </div>
