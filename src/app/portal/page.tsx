@@ -32,21 +32,18 @@ const HeaderText = ({ children, className = '' }: { children: React.ReactNode; c
 };
 
 export default function PortalLanding() {
-  const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
   const [email, setEmail] = useState('');
 
-  // Hero slides data
-  const heroSlides = [
-    // Opening AGI+U slide
-    {
-      spline: "https://prod.spline.design/VkRWgTTfjABvoQlQ/scene.splinecode",
-      title: "AGI + U",
-      subtitle: "The Internet's Operating System",
-      description: "Welcome to the Agentic Web. Where intelligence meets identity, governance meets protocol, and you control the future.",
-      isOpening: true,
-      whitepaperIndex: 0 // Unified AI Protocol
-    },
-    // A-G-I-U breakdown slides
+  // Standalone Hero Data
+  const heroData = {
+    spline: "https://prod.spline.design/VkRWgTTfjABvoQlQ/scene.splinecode",
+    title: "AGI + U",
+    subtitle: "The Internet's Operating System",
+    description: "Welcome to the Agentic Web. Where intelligence meets identity, governance meets protocol, and you control the future."
+  };
+
+  // A-G-I-U breakdown slides (separate from hero)
+  const agiuSlides = [
     {
       spline: "https://prod.spline.design/vJWTCBb2Fx5TXfEt/scene.splinecode",
       letter: "🅰️",
@@ -68,9 +65,9 @@ export default function PortalLanding() {
     {
       spline: "https://prod.spline.design/Fej997t12CFxVwfs/scene.splinecode",
       letter: "🅸",
-      title: "I — Intelligent Identity Interface",
-      subtitle: "The Internet now remembers who you are — and speaks back.",
-      description: "Your handle is your memory. Your domain is your identity. Your agent is your interface. Welcome to the Intelligent Identity Interface.",
+      title: "I — Intelligent Identity Internet Protocol",
+      subtitle: "You're not on the internet. You are the internet.",
+      description: "This protocol binds memory, voice, and logic to a single domain — and gives it agency. This is how code becomes character. Welcome to UNIFIED AI.",
       tagline: "Intelligence + Identity + Interface = The new internet layer",
       whitepaperIndex: 1 // Handle Registry Specification
     },
@@ -85,7 +82,6 @@ export default function PortalLanding() {
     }
   ];
 
-  const allSlides = [...heroSlides];
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [showPreloader, setShowPreloader] = useState(true);
   const [whitepaperEmail, setWhitepaperEmail] = useState('');
@@ -100,17 +96,15 @@ export default function PortalLanding() {
   const [currentTrack, setCurrentTrack] = useState(0);
   const [showMusicPlayer, setShowMusicPlayer] = useState(true);
   const [isPlayerMinimized, setIsPlayerMinimized] = useState(true);
+  const [currentAgiuSlide, setCurrentAgiuSlide] = useState(0);
+  const [commandInput, setCommandInput] = useState('');
+  const [commandResponse, setCommandResponse] = useState('');
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
     minutes: 0,
     seconds: 0
   });
-
-  // Initialize slide to 0 on mount
-  useEffect(() => {
-    setCurrentHeroSlide(0);
-  }, []);
 
   // Countdown timer to June 9, 2025
   useEffect(() => {
@@ -135,26 +129,38 @@ export default function PortalLanding() {
 
 
 
-  // Hero slide auto-rotation - Start after initial delay
+  // A-G-I-U slide auto-rotation
   useEffect(() => {
-    // Start auto-rotation after 10 seconds to let users see the opening slide
-    const initialDelay = setTimeout(() => {
-      const slideInterval = setInterval(() => {
-        setCurrentHeroSlide((prev) => (prev + 1) % allSlides.length);
-      }, 8000); // Change slide every 8 seconds
+    const slideInterval = setInterval(() => {
+      setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
+    }, 8000); // Change slide every 8 seconds
 
-      return () => clearInterval(slideInterval);
-    }, 10000); // Wait 10 seconds before starting auto-rotation
+    return () => clearInterval(slideInterval);
+  }, [agiuSlides.length]);
 
-    return () => clearTimeout(initialDelay);
-  }, [allSlides.length]);
-
-  const nextHeroSlide = () => {
-    setCurrentHeroSlide((prev) => (prev + 1) % allSlides.length);
+  const nextAgiuSlide = () => {
+    setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
   };
 
-  const prevHeroSlide = () => {
-    setCurrentHeroSlide((prev) => (prev - 1 + allSlides.length) % allSlides.length);
+  const prevAgiuSlide = () => {
+    setCurrentAgiuSlide((prev) => (prev - 1 + agiuSlides.length) % agiuSlides.length);
+  };
+
+  // Command line handler
+  const handleCommandSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!commandInput.trim()) return;
+
+    // Demo responses
+    const responses = [
+      "AIVA responds instantly. Your drop page is live.",
+      "Agent deployed. Domain binding complete.",
+      "Protocol activated. Your handle is now sovereign.",
+      "Command executed. Welcome to the agentic web."
+    ];
+
+    setCommandResponse(responses[Math.floor(Math.random() * responses.length)]);
+    setCommandInput('');
   };
 
   // Music tracks data
@@ -329,7 +335,7 @@ export default function PortalLanding() {
 
   return (
     <div className="min-h-screen bg-black text-white overflow-hidden">
-      {/* HERO SECTION - The Portal */}
+      {/* STANDALONE HERO SECTION - AGI+U */}
       <motion.section
         ref={heroRef}
         className="h-screen relative flex items-center justify-center"
@@ -339,104 +345,110 @@ export default function PortalLanding() {
       >
         {/* Spline Portal Background */}
         <div className="absolute inset-0 z-0">
-          <Spline scene={allSlides[currentHeroSlide].spline} />
+          <Spline scene={heroData.spline} />
         </div>
 
-        {/* Hero Navigation Controls - Above text layer */}
-        <div className="absolute top-1/2 left-4 z-40 transform -translate-y-1/2">
-          <button
-            onClick={prevHeroSlide}
-            className="p-3 bg-black/30 backdrop-blur-sm border border-purple-500/30 rounded-full text-purple-300 hover:bg-purple-500/20 transition-all"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-        </div>
-
-        <div className="absolute top-1/2 right-4 z-40 transform -translate-y-1/2">
-          <button
-            onClick={nextHeroSlide}
-            className="p-3 bg-black/30 backdrop-blur-sm border border-purple-500/30 rounded-full text-purple-300 hover:bg-purple-500/20 transition-all"
-          >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-
-        {/* Slide Indicators - Above text layer */}
-        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-40 flex space-x-2">
-          {allSlides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentHeroSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                index === currentHeroSlide
-                  ? 'bg-purple-400 scale-125'
-                  : 'bg-white/30 hover:bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
-
-        {/* Text Overlay Layer - Always on top */}
+        {/* Minimal Text Overlay - Just the title */}
         <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
           <motion.div
-            initial={{ opacity: 0, y: 0 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 2, delay: 1 }}
-            className="text-center max-w-4xl mx-auto px-8 relative"
+            className="text-center max-w-4xl mx-auto px-8"
           >
-            <motion.div
-              className="text-white leading-relaxed tracking-wide relative z-10 p-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              key={`slide-content-${currentHeroSlide}`}
+            <motion.h1
+              className="text-8xl md:text-9xl font-bold mb-8 text-white drop-shadow-2xl"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.5, duration: 2 }}
             >
-              {/* Opening AGI+U Slide - NO TEXT OVERLAY */}
-              {'isOpening' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].isOpening ? (
-                <></>
-              ) : (
-                /* A-G-I-U Breakdown Slides - Meet AIVA Style */
-                <>
-                  <motion.div
-                    initial={{ opacity: 0, y: 100 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 2 }}
-                    className="text-center"
-                    key={`breakdown-${currentHeroSlide}`}
-                  >
-                    {/* Main Title - Meet AIVA Style */}
-                    <motion.h3
-                      className="text-5xl md:text-7xl font-bold mb-8 text-white drop-shadow-2xl"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 0.5, duration: 1.5 }}
-                    >
-                      <HeaderText>{allSlides[currentHeroSlide].title}</HeaderText>
-                    </motion.h3>
+              <HeaderText>{heroData.title}</HeaderText>
+            </motion.h1>
 
-                    {/* Subtitle */}
-                    <motion.p
-                      className="text-2xl md:text-3xl text-white/90 drop-shadow-xl mb-12"
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 1, duration: 1 }}
-                    >
-                      <HeaderText>{allSlides[currentHeroSlide].subtitle}</HeaderText>
-                    </motion.p>
+            <motion.p
+              className="text-3xl md:text-4xl text-white/90 drop-shadow-xl"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 2.5, duration: 1.5 }}
+            >
+              <HeaderText>{heroData.subtitle}</HeaderText>
+            </motion.p>
+          </motion.div>
+        </div>
 
-                    {/* Different visual for each slide */}
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                      animate={{ opacity: 1, scale: 1, y: 0 }}
-                      transition={{ delay: 1.5, duration: 1.5, ease: "easeOut" }}
-                      className="flex justify-center"
-                    >
-                      {/* AIVA - Voice Interface */}
-                      {'letter' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].letter === '🅰️' && (
+        {/* Scroll indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="text-white/60 text-center">
+            <div className="text-sm mb-2">Scroll to explore</div>
+            <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </div>
+        </motion.div>
+
+      </motion.section>
+
+      {/* A-G-I-U SLIDES SECTION */}
+      <section className="relative">
+        {agiuSlides.map((slide, index) => (
+          <motion.div
+            key={index}
+            className="h-screen relative flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            {/* Spline Background */}
+            <div className="absolute inset-0 z-0">
+              <Spline scene={slide.spline} />
+            </div>
+
+            {/* Content Overlay */}
+            <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+              <motion.div
+                initial={{ opacity: 0, y: 100 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 2 }}
+                className="text-center max-w-4xl mx-auto px-8"
+                viewport={{ once: true }}
+              >
+                {/* Main Title */}
+                <motion.h3
+                  className="text-5xl md:text-7xl font-bold mb-8 text-white drop-shadow-2xl"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.5, duration: 1.5 }}
+                  viewport={{ once: true }}
+                >
+                  <HeaderText>{slide.title}</HeaderText>
+                </motion.h3>
+
+                {/* Subtitle */}
+                <motion.p
+                  className="text-2xl md:text-3xl text-white/90 drop-shadow-xl mb-12"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, duration: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <HeaderText>{slide.subtitle}</HeaderText>
+                </motion.p>
+
+                    {/* Visual for each slide */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ delay: 1.5, duration: 1.5, ease: "easeOut" }}
+                  className="flex justify-center"
+                  viewport={{ once: true }}
+                >
+                  {/* AIVA - Voice Interface */}
+                  {slide.letter === '🅰️' && (
                         <motion.div
                           className="w-48 h-96 bg-gradient-to-b from-gray-900 to-black rounded-[3rem] border border-white/20 shadow-2xl relative overflow-hidden"
                           whileHover={{ scale: 1.05, rotateY: 5 }}
@@ -479,8 +491,8 @@ export default function PortalLanding() {
                         </motion.div>
                       )}
 
-                      {/* GOVERNANCE - 3D FUGIO Coin with REAL Iridescent Colors */}
-                      {'letter' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].letter === '🅶' && (
+                  {/* GOVERNANCE - 3D FUGIO Coin with REAL Iridescent Colors */}
+                  {slide.letter === '🅶' && (
                         <motion.div
                           className="relative w-64 h-64"
                           whileHover={{ scale: 1.1 }}
@@ -589,8 +601,8 @@ export default function PortalLanding() {
                         </motion.div>
                       )}
 
-                      {/* IDENTITY - Intelligent Identity Interface */}
-                      {'letter' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].letter === '🅸' && (
+                  {/* IDENTITY - Intelligent Identity Interface */}
+                  {slide.letter === '🅸' && (
                         <motion.div
                           className="relative w-64 h-64"
                           whileHover={{ scale: 1.1 }}
@@ -737,52 +749,36 @@ export default function PortalLanding() {
                         </motion.div>
                       )}
 
-                      {/* UNIFIED - Simple Text Only */}
-                      {'letter' in allSlides[currentHeroSlide] && allSlides[currentHeroSlide].letter === '🆄' && (
-                        <div className="text-center">
-                          <div className="text-white text-lg font-medium mb-4">CONVERGENCE</div>
-                          <div className="text-cyan-400 text-sm">Centralized AI ⚡ Opensource AI</div>
-                        </div>
-                      )}
-                    </motion.div>
+                  {/* UNIFIED - Simple Text Only */}
+                  {slide.letter === '🆄' && (
+                    <div className="text-center">
+                      <div className="text-white text-lg font-medium mb-4">CONVERGENCE</div>
+                      <div className="text-cyan-400 text-sm">Centralized AI ⚡ Opensource AI</div>
+                    </div>
+                  )}
+                </motion.div>
 
-                    {/* View Documentation Button - Only for non-opening slides */}
-                    {'whitepaperIndex' in allSlides[currentHeroSlide] && !('isOpening' in allSlides[currentHeroSlide]) && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 2.5, duration: 1 }}
-                        className="mt-8 pointer-events-auto"
-                      >
-                        <button
-                          onClick={() => openWhitepaperModal(allSlides[currentHeroSlide].whitepaperIndex)}
-                          className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30"
-                        >
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-                          <span className="relative z-10">📄 View Documentation</span>
-                        </button>
-                      </motion.div>
-                    )}
-                  </motion.div>
-                </>
-              )}
-            </motion.div>
+                {/* View Documentation Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 2.5, duration: 1 }}
+                  className="mt-8 pointer-events-auto"
+                  viewport={{ once: true }}
+                >
+                  <button
+                    onClick={() => openWhitepaperModal(slide.whitepaperIndex)}
+                    className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                    <span className="relative z-10">📄 View Documentation</span>
+                  </button>
+                </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
-        </div>
-
-        {/* Scroll Indicator - Above text layer */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40"
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-        >
-          <div className="w-6 h-10 border-2 border-white/20 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/30 rounded-full mt-2 animate-pulse" />
-          </div>
-        </motion.div>
-      </motion.section>
+        ))}
+      </section>
 
       {/* CTA Section - Right after hero */}
       <motion.section className="py-32 relative bg-black">
