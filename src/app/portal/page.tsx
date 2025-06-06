@@ -192,10 +192,10 @@ export default function PortalLanding() {
     setCurrentAgiuSlide((prev) => (prev - 1 + agiuSlides.length) % agiuSlides.length);
   };
 
-  // Wheel event handler for A-G-I-U slides - smart scrolling
+  // Wheel event handler for A-G-I-U slides - FIXED for proper scrolling
   useEffect(() => {
     let lastWheelTime = 0;
-    const wheelThrottle = 300; // Reduced throttle for better responsiveness
+    const wheelThrottle = 100; // Much faster response
 
     const handleWheel = (e: WheelEvent) => {
       const now = Date.now();
@@ -204,30 +204,36 @@ export default function PortalLanding() {
       const agiuSection = document.querySelector('#agiu-slides');
       if (agiuSection) {
         const rect = agiuSection.getBoundingClientRect();
-        // Check if the A-G-I-U section is in the viewport
-        const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
-        const isCentered = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+        // More responsive detection - section is in view
+        const isInView = rect.top <= window.innerHeight * 0.8 && rect.bottom >= window.innerHeight * 0.2;
 
-        if (isInViewport && isCentered) {
+        if (isInView) {
           const isAtFirstSlide = currentAgiuSlide === 0;
           const isAtLastSlide = currentAgiuSlide === agiuSlides.length - 1;
 
-          if (e.deltaY > 0) {
-            // Scrolling down
-            if (!isAtLastSlide) {
-              e.preventDefault();
-              nextAgiuSlide();
-              lastWheelTime = now;
+          // Always prevent default when in the section to control navigation
+          e.preventDefault();
+
+          if (e.deltaY > 0 && !isAtLastSlide) {
+            // Scrolling down - next slide
+            nextAgiuSlide();
+            lastWheelTime = now;
+          } else if (e.deltaY < 0 && !isAtFirstSlide) {
+            // Scrolling up - previous slide
+            prevAgiuSlide();
+            lastWheelTime = now;
+          } else if (e.deltaY > 0 && isAtLastSlide) {
+            // At last slide, scroll to next section
+            const nextSection = agiuSection.nextElementSibling as HTMLElement;
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth' });
             }
-            // If at last slide, allow normal scrolling to continue to next section
-          } else {
-            // Scrolling up
-            if (!isAtFirstSlide) {
-              e.preventDefault();
-              prevAgiuSlide();
-              lastWheelTime = now;
+          } else if (e.deltaY < 0 && isAtFirstSlide) {
+            // At first slide, scroll to previous section
+            const prevSection = agiuSection.previousElementSibling as HTMLElement;
+            if (prevSection) {
+              prevSection.scrollIntoView({ behavior: 'smooth' });
             }
-            // If at first slide, allow normal scrolling to continue to previous section
           }
         }
       }
@@ -237,25 +243,41 @@ export default function PortalLanding() {
     return () => window.removeEventListener('wheel', handleWheel);
   }, [currentAgiuSlide, agiuSlides.length]);
 
-  // Keyboard navigation for A-G-I-U slides
+  // Keyboard navigation for A-G-I-U slides - FIXED
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const agiuSection = document.querySelector('#agiu-slides');
       if (agiuSection) {
         const rect = agiuSection.getBoundingClientRect();
-        const isInView = rect.top <= 100 && rect.bottom >= window.innerHeight - 100;
+        const isInView = rect.top <= window.innerHeight * 0.8 && rect.bottom >= window.innerHeight * 0.2;
 
         if (isInView) {
           switch (e.key) {
             case 'ArrowRight':
             case 'ArrowDown':
               e.preventDefault();
-              nextAgiuSlide();
+              if (currentAgiuSlide < agiuSlides.length - 1) {
+                nextAgiuSlide();
+              } else {
+                // At last slide, scroll to next section
+                const nextSection = agiuSection.nextElementSibling as HTMLElement;
+                if (nextSection) {
+                  nextSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
               break;
             case 'ArrowLeft':
             case 'ArrowUp':
               e.preventDefault();
-              prevAgiuSlide();
+              if (currentAgiuSlide > 0) {
+                prevAgiuSlide();
+              } else {
+                // At first slide, scroll to previous section
+                const prevSection = agiuSection.previousElementSibling as HTMLElement;
+                if (prevSection) {
+                  prevSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }
               break;
           }
         }
@@ -264,7 +286,7 @@ export default function PortalLanding() {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [currentAgiuSlide, agiuSlides.length]);
 
   // Command line handler
   const handleCommandSubmit = (e: React.FormEvent) => {
@@ -1118,7 +1140,12 @@ export default function PortalLanding() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
             onClick={scrollToTop}
-            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-12 h-12 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all duration-300 shadow-2xl shadow-purple-500/25"
+            className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl hover:scale-110 transition-all duration-300 shadow-2xl border border-white/20"
+            style={{
+              background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+              backgroundSize: '300% 300%',
+              animation: 'iridescent 3s ease-in-out infinite'
+            }}
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -1166,11 +1193,21 @@ export default function PortalLanding() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <button className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
+                <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                        style={{
+                          background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                          backgroundSize: '300% 300%',
+                          animation: 'iridescent 3s ease-in-out infinite'
+                        }}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
                   <span className="relative z-10">Join the Waitlist</span>
                 </button>
-                <button className="group relative px-6 py-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-cyan-400/25 overflow-hidden border border-cyan-400/30">
+                <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                        style={{
+                          background: 'linear-gradient(45deg, #40e0d0, #da70d6, #ff69b4, #00bfff, #32cd32, #40e0d0)',
+                          backgroundSize: '300% 300%',
+                          animation: 'iridescent 3s ease-in-out infinite 0.5s'
+                        }}>
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
                   <span className="relative z-10">Reserve Your Handle</span>
                 </button>
@@ -1305,7 +1342,12 @@ export default function PortalLanding() {
             viewport={{ once: true }}
             className="text-center"
           >
-            <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
+            <button className="group relative px-8 py-4 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite'
+                    }}>
               {/* Metal shine effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
               <span className="relative z-10">Reserve Your Handle</span>
@@ -1821,7 +1863,14 @@ export default function PortalLanding() {
                   className="text-center"
                 >
                   <div
-                    className="text-4xl md:text-6xl font-bold mb-2 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent"
+                    className="text-4xl md:text-6xl font-bold mb-2 bg-clip-text text-transparent"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                      backgroundClip: 'text',
+                      WebkitBackgroundClip: 'text',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite'
+                    }}
                   >
                     {String(unit.value).padStart(2, '0')}
                   </div>
@@ -1856,14 +1905,26 @@ export default function PortalLanding() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-lg transition-all hover:scale-105 disabled:opacity-50"
+                  className="px-6 py-3 text-white font-bold rounded-lg transition-all hover:scale-105 disabled:opacity-50 border border-white/20"
+                  style={{
+                    background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                    backgroundSize: '300% 300%',
+                    animation: 'iridescent 3s ease-in-out infinite'
+                  }}
                 >
                   {isSubmitting ? '⏳' : '→'}
                 </button>
               </form>
 
               {submitMessage && (
-                <div className="mt-4 text-sm bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">
+                <div className="mt-4 text-sm bg-clip-text text-transparent"
+                     style={{
+                       background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                       backgroundClip: 'text',
+                       WebkitBackgroundClip: 'text',
+                       backgroundSize: '300% 300%',
+                       animation: 'iridescent 3s ease-in-out infinite'
+                     }}>
                   {submitMessage}
                 </div>
               )}
@@ -1875,7 +1936,14 @@ export default function PortalLanding() {
               className="text-center"
             >
               <div className="text-4xl mb-4">⚡</div>
-              <p className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent font-medium">Access signal received.</p>
+              <p className="bg-clip-text text-transparent font-medium"
+                 style={{
+                   background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                   backgroundClip: 'text',
+                   WebkitBackgroundClip: 'text',
+                   backgroundSize: '300% 300%',
+                   animation: 'iridescent 3s ease-in-out infinite'
+                 }}>Access signal received.</p>
             </motion.div>
           )}
         </div>
