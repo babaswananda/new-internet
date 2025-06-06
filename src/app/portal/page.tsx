@@ -1285,9 +1285,9 @@ export default function PortalLanding() {
         {/* Black gradient overlay at bottom - Extended */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-20"></div>
 
-        {/* Original AIVA Background */}
+        {/* Meet AIVA Background - Correct Spline Scene */}
         <div className="absolute inset-0 z-0 opacity-60">
-          <Spline scene="https://prod.spline.design/vJWTCBb2Fx5TXfEt/scene.splinecode" />
+          <Spline scene="https://prod.spline.design/GXMvk1yD7tdlTpch/scene.splinecode" />
         </div>
 
         {/* AIVA Content Overlay */}
