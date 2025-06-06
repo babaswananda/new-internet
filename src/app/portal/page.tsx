@@ -89,14 +89,12 @@ export default function PortalLanding() {
   const [currentWhitepaper, setCurrentWhitepaper] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitMessage, setSubmitMessage] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLooping, setIsLooping] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(0);
   const [showMusicPlayer, setShowMusicPlayer] = useState(true);
   const [isPlayerMinimized, setIsPlayerMinimized] = useState(true);
-  const [currentAgiuSlide, setCurrentAgiuSlide] = useState(0);
   const [commandInput, setCommandInput] = useState('');
   const [commandResponse, setCommandResponse] = useState('');
   const [timeLeft, setTimeLeft] = useState({
@@ -129,22 +127,7 @@ export default function PortalLanding() {
 
 
 
-  // A-G-I-U slide auto-rotation
-  useEffect(() => {
-    const slideInterval = setInterval(() => {
-      setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
-    }, 8000); // Change slide every 8 seconds
-
-    return () => clearInterval(slideInterval);
-  }, [agiuSlides.length]);
-
-  const nextAgiuSlide = () => {
-    setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
-  };
-
-  const prevAgiuSlide = () => {
-    setCurrentAgiuSlide((prev) => (prev - 1 + agiuSlides.length) % agiuSlides.length);
-  };
+  // No slide rotation needed - using scroll-based sections
 
   // Command line handler
   const handleCommandSubmit = (e: React.FormEvent) => {
@@ -348,42 +331,22 @@ export default function PortalLanding() {
           <Spline scene={heroData.spline} />
         </div>
 
-        {/* Minimal Text Overlay - Just the title */}
-        <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2, delay: 1 }}
-            className="text-center max-w-4xl mx-auto px-8"
-          >
-            <motion.h1
-              className="text-8xl md:text-9xl font-bold mb-8 text-white drop-shadow-2xl"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.5, duration: 2 }}
-            >
-              <HeaderText>{heroData.title}</HeaderText>
-            </motion.h1>
+        {/* No text overlay - pure visual experience */}
 
-            <motion.p
-              className="text-3xl md:text-4xl text-white/90 drop-shadow-xl"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 2.5, duration: 1.5 }}
-            >
-              <HeaderText>{heroData.subtitle}</HeaderText>
-            </motion.p>
-          </motion.div>
-        </div>
-
-        {/* Scroll indicator */}
+        {/* Scroll indicator - More prominent and clickable */}
         <motion.div
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-40"
+          className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-40 cursor-pointer"
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
+          onClick={() => {
+            const nextSection = document.querySelector('#agiu-slides');
+            if (nextSection) {
+              nextSection.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
         >
-          <div className="text-white/60 text-center">
-            <div className="text-sm mb-2">Scroll to explore</div>
+          <div className="text-white/80 text-center bg-black/20 backdrop-blur-sm rounded-full px-4 py-3 border border-white/20 hover:bg-white/10 transition-all">
+            <div className="text-sm mb-2 font-medium">Scroll to explore</div>
             <svg className="w-6 h-6 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
@@ -393,7 +356,7 @@ export default function PortalLanding() {
       </motion.section>
 
       {/* A-G-I-U SLIDES SECTION */}
-      <section className="relative">
+      <section id="agiu-slides" className="relative">
         {agiuSlides.map((slide, index) => (
           <motion.div
             key={index}
@@ -856,10 +819,10 @@ export default function PortalLanding() {
               viewport={{ once: true }}
             >
               <div className="text-green-400 text-sm mb-2">
-                <span className="text-green-500">></span> compiled with VibeCoder
+                <span className="text-green-500">{'>'}</span> compiled with VibeCoder
               </div>
               <div className="text-green-400 text-sm mb-4">
-                <span className="text-green-500">></span> powered by AlphaRouter
+                <span className="text-green-500">{'>'}</span> powered by AlphaRouter
               </div>
               <div className="text-white text-lg mb-2">🧠 agentic IDE for the New Internet</div>
               <div className="text-cyan-400 text-sm">⏳ available June 9</div>
