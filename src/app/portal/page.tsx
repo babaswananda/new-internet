@@ -34,6 +34,8 @@ const HeaderText = ({ children, className = '' }: { children: React.ReactNode; c
 export default function PortalLanding() {
   const [email, setEmail] = useState('');
 
+  // Force deployment update - all content should be visible
+
   // Standalone Hero Data
   const heroData = {
     spline: "https://prod.spline.design/VkRWgTTfjABvoQlQ/scene.splinecode",
