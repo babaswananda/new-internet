@@ -97,6 +97,7 @@ export default function PortalLanding() {
   const [isPlayerMinimized, setIsPlayerMinimized] = useState(true);
   const [commandInput, setCommandInput] = useState('');
   const [commandResponse, setCommandResponse] = useState('');
+  const [currentAgiuSlide, setCurrentAgiuSlide] = useState(0);
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -127,7 +128,22 @@ export default function PortalLanding() {
 
 
 
-  // No slide rotation needed - using scroll-based sections
+  // A-G-I-U slide auto-rotation
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
+    }, 8000); // Change slide every 8 seconds
+
+    return () => clearInterval(slideInterval);
+  }, [agiuSlides.length]);
+
+  const nextAgiuSlide = () => {
+    setCurrentAgiuSlide((prev) => (prev + 1) % agiuSlides.length);
+  };
+
+  const prevAgiuSlide = () => {
+    setCurrentAgiuSlide((prev) => (prev - 1 + agiuSlides.length) % agiuSlides.length);
+  };
 
   // Command line handler
   const handleCommandSubmit = (e: React.FormEvent) => {
@@ -355,63 +371,102 @@ export default function PortalLanding() {
 
       </motion.section>
 
-      {/* A-G-I-U SLIDES SECTION */}
-      <section id="agiu-slides" className="relative">
-        {agiuSlides.map((slide, index) => (
-          <motion.div
-            key={index}
-            className="h-screen relative flex items-center justify-center"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
+      {/* A-G-I-U HERO SLIDER SECTION */}
+      <motion.section
+        id="agiu-slides"
+        className="h-screen relative flex items-center justify-center"
+        initial={{ y: 0 }}
+        animate={{ y: 0 }}
+        style={{ y }}
+      >
+        {/* Spline Background */}
+        <div className="absolute inset-0 z-0">
+          <Spline scene={agiuSlides[currentAgiuSlide].spline} />
+        </div>
+
+        {/* Hero Navigation Controls */}
+        <div className="absolute top-1/2 left-4 z-40 transform -translate-y-1/2">
+          <button
+            onClick={prevAgiuSlide}
+            className="p-3 bg-black/30 backdrop-blur-sm border border-purple-500/30 rounded-full text-purple-300 hover:bg-purple-500/20 transition-all"
           >
-            {/* Spline Background */}
-            <div className="absolute inset-0 z-0">
-              <Spline scene={slide.spline} />
-            </div>
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+        </div>
 
-            {/* Content Overlay */}
-            <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
-              <motion.div
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 2 }}
-                className="text-center max-w-4xl mx-auto px-8"
-                viewport={{ once: true }}
+        <div className="absolute top-1/2 right-4 z-40 transform -translate-y-1/2">
+          <button
+            onClick={nextAgiuSlide}
+            className="p-3 bg-black/30 backdrop-blur-sm border border-purple-500/30 rounded-full text-purple-300 hover:bg-purple-500/20 transition-all"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="absolute bottom-20 left-1/2 transform -translate-x-1/2 z-40 flex space-x-2">
+          {agiuSlides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentAgiuSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                index === currentAgiuSlide
+                  ? 'bg-purple-400 scale-125'
+                  : 'bg-white/30 hover:bg-white/50'
+              }`}
+            />
+          ))}
+        </div>
+
+        {/* Text Overlay Layer */}
+        <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
+          <motion.div
+            initial={{ opacity: 0, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 2, delay: 1 }}
+            className="text-center max-w-4xl mx-auto px-8 relative"
+          >
+            <motion.div
+              className="text-white leading-relaxed tracking-wide relative z-10 p-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              key={`slide-content-${currentAgiuSlide}`}
+            >
+              {/* Main Title */}
+              <motion.h3
+                className="text-5xl md:text-7xl font-bold mb-8 text-white drop-shadow-2xl"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.5, duration: 1.5 }}
               >
-                {/* Main Title */}
-                <motion.h3
-                  className="text-5xl md:text-7xl font-bold mb-8 text-white drop-shadow-2xl"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.5, duration: 1.5 }}
-                  viewport={{ once: true }}
-                >
-                  <HeaderText>{slide.title}</HeaderText>
-                </motion.h3>
+                <HeaderText>{agiuSlides[currentAgiuSlide].title}</HeaderText>
+              </motion.h3>
 
-                {/* Subtitle */}
-                <motion.p
-                  className="text-2xl md:text-3xl text-white/90 drop-shadow-xl mb-12"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 1, duration: 1 }}
-                  viewport={{ once: true }}
-                >
-                  <HeaderText>{slide.subtitle}</HeaderText>
-                </motion.p>
+              {/* Subtitle */}
+              <motion.p
+                className="text-2xl md:text-3xl text-white/90 drop-shadow-xl mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1, duration: 1 }}
+              >
+                <HeaderText>{agiuSlides[currentAgiuSlide].subtitle}</HeaderText>
+              </motion.p>
 
                     {/* Visual for each slide */}
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8, y: 50 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ delay: 1.5, duration: 1.5, ease: "easeOut" }}
                   className="flex justify-center"
-                  viewport={{ once: true }}
+                  key={`visual-${currentAgiuSlide}`}
                 >
                   {/* AIVA - Voice Interface */}
-                  {slide.letter === '🅰️' && (
+                  {agiuSlides[currentAgiuSlide].letter === '🅰️' && (
                         <motion.div
                           className="w-48 h-96 bg-gradient-to-b from-gray-900 to-black rounded-[3rem] border border-white/20 shadow-2xl relative overflow-hidden"
                           whileHover={{ scale: 1.05, rotateY: 5 }}
@@ -455,7 +510,7 @@ export default function PortalLanding() {
                       )}
 
                   {/* GOVERNANCE - 3D FUGIO Coin with REAL Iridescent Colors */}
-                  {slide.letter === '🅶' && (
+                  {agiuSlides[currentAgiuSlide].letter === '🅶' && (
                         <motion.div
                           className="relative w-64 h-64"
                           whileHover={{ scale: 1.1 }}
@@ -565,7 +620,7 @@ export default function PortalLanding() {
                       )}
 
                   {/* IDENTITY - Intelligent Identity Interface */}
-                  {slide.letter === '🅸' && (
+                  {agiuSlides[currentAgiuSlide].letter === '🅸' && (
                         <motion.div
                           className="relative w-64 h-64"
                           whileHover={{ scale: 1.1 }}
@@ -713,7 +768,7 @@ export default function PortalLanding() {
                       )}
 
                   {/* UNIFIED - Simple Text Only */}
-                  {slide.letter === '🆄' && (
+                  {agiuSlides[currentAgiuSlide].letter === '🆄' && (
                     <div className="text-center">
                       <div className="text-white text-lg font-medium mb-4">CONVERGENCE</div>
                       <div className="text-cyan-400 text-sm">Centralized AI ⚡ Opensource AI</div>
@@ -730,7 +785,7 @@ export default function PortalLanding() {
                   viewport={{ once: true }}
                 >
                   <button
-                    onClick={() => openWhitepaperModal(slide.whitepaperIndex)}
+                    onClick={() => openWhitepaperModal(agiuSlides[currentAgiuSlide].whitepaperIndex)}
                     className="group relative px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30"
                   >
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
@@ -738,10 +793,10 @@ export default function PortalLanding() {
                   </button>
                 </motion.div>
               </motion.div>
-            </div>
+            </motion.div>
           </motion.div>
-        ))}
-      </section>
+        </div>
+      </motion.section>
 
       {/* CTA Section - Right after hero */}
       <motion.section className="py-32 relative bg-black">
