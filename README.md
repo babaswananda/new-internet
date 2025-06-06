@@ -2,6 +2,8 @@
 
 ![Unified AI I/O Protocol](https://via.placeholder.com/1200x400/0a0a0a/ffffff?text=Unified+AI+I/O+Protocol)
 
+<!-- Deployment trigger: Portal page updated -->
+
 This project is a protocol-grade launchpad for the agent economy, featuring a comprehensive suite of tools, protocols, and economic models that power The New Internet.
 
 ## Core Protocol Elements
