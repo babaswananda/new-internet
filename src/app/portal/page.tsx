@@ -962,6 +962,31 @@ export default function PortalLanding() {
         </div>
       </motion.section>
 
+      {/* NEW SPLINE SECTION */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        viewport={{ once: true }}
+        className="relative h-screen overflow-hidden"
+      >
+        {/* Spline Background */}
+        <div className="absolute inset-0 z-0">
+          <Spline scene="https://prod.spline.design/MaCBo5ZC2U0H0A2x/scene.splinecode" />
+        </div>
+
+        {/* Optional overlay content - can be customized */}
+        <div className="absolute inset-0 z-10 flex items-center justify-center">
+          <div className="text-center text-white">
+            {/* Add any overlay content here if needed */}
+          </div>
+        </div>
+
+        {/* Gradient overlays for smooth transitions */}
+        <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-black to-transparent z-20"></div>
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-20"></div>
+      </motion.section>
+
       {/* BUILT WITH VIBECODER SECTION */}
       <motion.section className="py-32 relative bg-black overflow-hidden">
         {/* Animated background grid */}
