@@ -277,71 +277,71 @@ export default function PortalLanding() {
     }
   };
 
-  // Whitepaper data - Extended for scrolling
+  // Whitepaper data - Extended for scrolling with iridescent colors
   const whitepapers = [
     {
       title: 'Unified AI Protocol',
       subtitle: 'The Foundation of the Agentic Web',
       description: 'Comprehensive overview of the protocol powering the new internet',
       image: '📄',
-      gradient: 'from-green-400 via-yellow-500 to-orange-500',
-      bgColor: 'bg-gradient-to-br from-green-900/20 to-orange-600/20'
+      gradient: 'from-pink-500 via-cyan-400 to-purple-500',
+      bgColor: 'bg-gradient-to-br from-pink-900/20 to-purple-600/20'
     },
     {
       title: 'Handle Registry Specification',
       subtitle: 'Identity Architecture for AI Agents',
       description: 'Technical specification for the four-tier handle system',
       image: '🔗',
-      gradient: 'from-green-400 via-yellow-500 to-orange-500',
-      bgColor: 'bg-gradient-to-br from-green-900/20 to-yellow-600/20'
+      gradient: 'from-cyan-400 via-purple-500 to-pink-500',
+      bgColor: 'bg-gradient-to-br from-cyan-900/20 to-pink-600/20'
     },
     {
       title: 'Tokenomics Paper',
       subtitle: 'Economic Model & Token Distribution',
       description: 'Detailed analysis of the token economy and incentive structures',
       image: '💰',
-      gradient: 'from-green-400 via-yellow-500 to-orange-500',
-      bgColor: 'bg-gradient-to-br from-yellow-900/20 to-orange-600/20'
+      gradient: 'from-purple-500 via-pink-500 to-cyan-400',
+      bgColor: 'bg-gradient-to-br from-purple-900/20 to-cyan-600/20'
     },
     {
       title: 'AGI Governance Framework',
       subtitle: 'Decentralized Decision Making',
       description: 'Community governance model for the AGI ecosystem',
       image: '⚖️',
-      gradient: 'from-green-400 via-yellow-500 to-orange-500',
-      bgColor: 'bg-gradient-to-br from-green-900/20 to-orange-600/20'
+      gradient: 'from-pink-500 via-cyan-400 to-purple-500',
+      bgColor: 'bg-gradient-to-br from-pink-900/20 to-purple-600/20'
     },
     {
       title: 'AlphaSignals Whitepaper',
       subtitle: 'Predictive Intelligence Network',
       description: 'Advanced signal processing and market intelligence framework',
       image: '📡',
-      gradient: 'from-green-400 via-yellow-500 to-orange-500',
-      bgColor: 'bg-gradient-to-br from-green-900/20 to-yellow-600/20'
+      gradient: 'from-cyan-400 via-purple-500 to-pink-500',
+      bgColor: 'bg-gradient-to-br from-cyan-900/20 to-pink-600/20'
     },
     {
       title: 'Agent Security Protocol',
       subtitle: 'Cryptographic Safety Standards',
       description: 'Security measures and encryption protocols for AI agents',
       image: '🔐',
-      gradient: 'from-green-400 via-yellow-500 to-orange-500',
-      bgColor: 'bg-gradient-to-br from-green-900/20 to-orange-600/20'
+      gradient: 'from-purple-500 via-pink-500 to-cyan-400',
+      bgColor: 'bg-gradient-to-br from-purple-900/20 to-cyan-600/20'
     },
     {
       title: 'Operator Economy Model',
       subtitle: 'Incentive Structures & Rewards',
       description: 'Economic framework for agent operators and stakeholders',
       image: '🏛️',
-      gradient: 'from-green-400 via-yellow-500 to-orange-500',
-      bgColor: 'bg-gradient-to-br from-yellow-900/20 to-orange-600/20'
+      gradient: 'from-pink-500 via-cyan-400 to-purple-500',
+      bgColor: 'bg-gradient-to-br from-pink-900/20 to-purple-600/20'
     },
     {
       title: 'Technical Architecture',
       subtitle: 'Infrastructure & Scalability',
       description: 'Deep dive into the technical implementation and scaling solutions',
       image: '🏗️',
-      gradient: 'from-green-400 via-yellow-500 to-orange-500',
-      bgColor: 'bg-gradient-to-br from-green-900/20 to-yellow-600/20'
+      gradient: 'from-cyan-400 via-purple-500 to-pink-500',
+      bgColor: 'bg-gradient-to-br from-cyan-900/20 to-pink-600/20'
     }
   ];
 
@@ -516,7 +516,7 @@ export default function PortalLanding() {
                       >
                         <div className="text-4xl mb-4">🎤</div>
                         <div className="text-white text-sm font-medium mb-2">AIVA</div>
-                        <div className="text-green-400 text-xs">● Voice Active</div>
+                        <div className="text-cyan-400 text-xs">● Voice Active</div>
                       </motion.div>
                       <motion.div
                         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-1"
@@ -527,7 +527,7 @@ export default function PortalLanding() {
                         {[...Array(5)].map((_, i) => (
                           <motion.div
                             key={i}
-                            className="w-1 bg-green-400 rounded-full"
+                            className="w-1 bg-cyan-400 rounded-full"
                             animate={{ height: [4, 12, 4] }}
                             transition={{
                               duration: 1,
@@ -855,10 +855,10 @@ export default function PortalLanding() {
             {[...Array(48)].map((_, i) => (
               <motion.div
                 key={i}
-                className="border border-green-400/20"
+                className="border border-cyan-400/20"
                 animate={{
                   opacity: [0.1, 0.3, 0.1],
-                  borderColor: ['rgba(34, 197, 94, 0.1)', 'rgba(34, 197, 94, 0.3)', 'rgba(34, 197, 94, 0.1)']
+                  borderColor: ['rgba(34, 211, 238, 0.1)', 'rgba(168, 85, 247, 0.3)', 'rgba(236, 72, 153, 0.1)']
                 }}
                 transition={{
                   duration: 3,
@@ -881,9 +881,9 @@ export default function PortalLanding() {
           >
             <div className="flex items-center gap-2 mb-4">
               <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                <div className="w-3 h-3 rounded-full bg-pink-500"></div>
+                <div className="w-3 h-3 rounded-full bg-cyan-400"></div>
+                <div className="w-3 h-3 rounded-full bg-purple-500"></div>
               </div>
               <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent text-sm">terminal</div>
             </div>
