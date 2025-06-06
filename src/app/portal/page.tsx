@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Spline from '@splinetool/react-spline';
 import CinematicPreloader from '@/components/ui/CinematicPreloader';
 import { addToWaitlist, requestWhitepaperAccess, hasValidCredentials } from '@/lib/supabase';
+import { GlowingEffect } from '@/components/ui/glowing-effect';
 
 // HeaderText component for normalBold styling
 const HeaderText = ({ children, className = '' }: { children: React.ReactNode; className?: string }) => {
@@ -1411,25 +1412,37 @@ export default function PortalLanding() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ delay: index * 0.1, duration: 0.8 }}
                 viewport={{ once: true }}
-                className="group relative bg-black border border-white/20 rounded-2xl p-8 h-64 overflow-hidden cursor-pointer hover:border-purple-500/50 transition-all"
+                className="group relative h-64 cursor-pointer"
               >
-                {/* Metal shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                {/* Glowing Effect Container */}
+                <div className="relative h-full rounded-2xl border border-white/20 p-2 overflow-hidden">
+                  <GlowingEffect
+                    spread={40}
+                    glow={true}
+                    disabled={false}
+                    proximity={64}
+                    inactiveZone={0.01}
+                    borderWidth={1}
+                  />
 
-                {/* Purple glow on hover */}
-                <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 transition-all duration-300 rounded-2xl"></div>
+                  {/* Card Content */}
+                  <div className="relative h-full bg-black rounded-xl border border-white/10 p-6 overflow-hidden">
+                    {/* Metal shine effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
 
-                {/* Spline Background on Hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
-                  <Spline scene={item.spline} />
-                </div>
+                    {/* Spline Background on Hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500">
+                      <Spline scene={item.spline} />
+                    </div>
 
-                <div className="relative z-10 h-full flex flex-col justify-center">
-                  <div className="text-6xl font-bold text-white mb-4">{item.letter}</div>
-                  <div className="text-2xl font-bold text-white mb-2">
-                    <HeaderText>{item.word}</HeaderText>
+                    <div className="relative z-10 h-full flex flex-col justify-center">
+                      <div className="text-6xl font-bold text-white mb-4">{item.letter}</div>
+                      <div className="text-2xl font-bold text-white mb-2">
+                        <HeaderText>{item.word}</HeaderText>
+                      </div>
+                      <div className="text-white/70">{item.desc}</div>
+                    </div>
                   </div>
-                  <div className="text-white/70">{item.desc}</div>
                 </div>
               </motion.div>
             ))}
@@ -1602,47 +1615,64 @@ export default function PortalLanding() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1, duration: 0.8 }}
                 viewport={{ once: true }}
-                className="group relative bg-black border border-white/20 rounded-2xl p-6 cursor-pointer hover:border-purple-500/50 transition-all overflow-hidden"
+                className="group relative cursor-pointer"
                 onClick={() => openWhitepaperModal(index)}
               >
-                {/* Metal shine effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                {/* Glowing Effect Container */}
+                <div className="relative rounded-2xl border border-white/20 p-2 overflow-hidden">
+                  <GlowingEffect
+                    spread={40}
+                    glow={true}
+                    disabled={false}
+                    proximity={64}
+                    inactiveZone={0.01}
+                    borderWidth={1}
+                  />
 
-                {/* Purple glow on hover */}
-                <div className="absolute inset-0 bg-purple-500/0 group-hover:bg-purple-500/10 transition-all duration-300 rounded-2xl"></div>
-
-                {/* Background Glow Effect */}
-                <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 ${paper.bgColor} rounded-2xl`}></div>
-
-                <div className="relative z-10">
-                  {/* Paper Image Placeholder */}
-                  <div className="w-full h-32 bg-white/5 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-                    {/* Placeholder content */}
-                    <div className="text-4xl">{paper.image}</div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
-                    <div className="absolute bottom-2 right-2 text-xs text-white/50">Preview</div>
-
-                    {/* Subtle gradient overlay */}
-                    <div className={`absolute inset-0 bg-gradient-to-br ${paper.bgColor} opacity-20`}></div>
-                  </div>
-
-                  {/* Paper Info */}
-                  <h4 className="text-lg font-bold text-white mb-2">
-                    <HeaderText>{paper.title}</HeaderText>
-                  </h4>
-                  <h5 className="text-sm text-purple-400 mb-3">{paper.subtitle}</h5>
-                  <p className="text-xs text-white/70 mb-4">{paper.description}</p>
-
-                  {/* Access Button */}
-                  <button className="group/btn relative w-full px-4 py-2 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-cyan-400/20 border border-purple-500/30 text-white font-medium rounded-lg transition-all hover:border-purple-500/70 overflow-hidden">
+                  {/* Card Content */}
+                  <div className="relative bg-black rounded-xl border border-white/10 p-4 overflow-hidden">
                     {/* Metal shine effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover/btn:translate-x-[200%] transition-transform duration-700"></div>
-                    <span className="relative z-10 text-sm">Request Access</span>
-                  </button>
-                </div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
 
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                    {/* Background Glow Effect */}
+                    <div className={`absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 ${paper.bgColor} rounded-xl`}></div>
+
+                    <div className="relative z-10">
+                      {/* Paper Image Placeholder */}
+                      <div className="w-full h-32 bg-white/5 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
+                        {/* Placeholder content */}
+                        <div className="text-4xl">{paper.image}</div>
+                        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+                        <div className="absolute bottom-2 right-2 text-xs text-white/50">Preview</div>
+
+                        {/* Subtle gradient overlay */}
+                        <div className={`absolute inset-0 bg-gradient-to-br ${paper.bgColor} opacity-20`}></div>
+                      </div>
+
+                      {/* Paper Info */}
+                      <h4 className="text-lg font-bold text-white mb-2">
+                        <HeaderText>{paper.title}</HeaderText>
+                      </h4>
+                      <h5 className="text-sm text-purple-400 mb-3">{paper.subtitle}</h5>
+                      <p className="text-xs text-white/70 mb-4">{paper.description}</p>
+
+                      {/* Access Button */}
+                      <button className="group/btn relative w-full px-4 py-2 text-white font-medium rounded-lg transition-all overflow-hidden border border-white/20"
+                              style={{
+                                background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                                backgroundSize: '300% 300%',
+                                animation: 'iridescent 3s ease-in-out infinite'
+                              }}>
+                        {/* Metal shine effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover/btn:translate-x-[200%] transition-transform duration-700"></div>
+                        <span className="relative z-10 text-sm">Request Access</span>
+                      </button>
+                    </div>
+
+                    {/* Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl"></div>
+                  </div>
+                </div>
               </motion.div>
             ))}
           </motion.div>

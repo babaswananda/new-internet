@@ -2,7 +2,7 @@
 
 import { memo, useCallback, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { animate } from "framer-motion";
+import { animate } from "motion/react";
 
 interface GlowingEffectProps {
   blur?: number;
@@ -19,15 +19,15 @@ interface GlowingEffectProps {
 const GlowingEffect = memo(
   ({
     blur = 0,
-    inactiveZone = 0.01,
-    proximity = 100,
-    spread = 40,
+    inactiveZone = 0.7,
+    proximity = 0,
+    spread = 20,
     variant = "default",
-    glow = true,
+    glow = false,
     className,
     movementDuration = 2,
     borderWidth = 1,
-    disabled = false,
+    disabled = true,
   }: GlowingEffectProps) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const lastPosition = useRef({ x: 0, y: 0 });
@@ -144,19 +144,7 @@ const GlowingEffect = memo(
                   var(--black),
                   var(--black) calc(25% / var(--repeating-conic-gradient-times))
                 )`
-                  : `radial-gradient(circle, #4ade80 15%, #4ade8000 25%),
-                radial-gradient(circle at 40% 40%, #eab308 10%, #eab30800 20%),
-                radial-gradient(circle at 60% 60%, #f97316 15%, #f9731600 25%),
-                radial-gradient(circle at 40% 60%, #22c55e 15%, #22c55e00 25%),
-                radial-gradient(circle at 80% 20%, #facc15 12%, #facc1500 22%),
-                repeating-conic-gradient(
-                  from 236.84deg at 50% 50%,
-                  #4ade80 0%,
-                  #eab308 calc(25% / var(--repeating-conic-gradient-times)),
-                  #f97316 calc(50% / var(--repeating-conic-gradient-times)),
-                  #22c55e calc(75% / var(--repeating-conic-gradient-times)),
-                  #4ade80 calc(100% / var(--repeating-conic-gradient-times))
-                )`,
+                  : `linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)`,
             } as React.CSSProperties
           }
           className={cn(
