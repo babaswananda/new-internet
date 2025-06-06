@@ -22,8 +22,8 @@ Create or update your `.env.local` file:
 
 ```bash
 # Supabase Configuration
-NEXT_PUBLIC_SUPABASE_URL=https://your-project-ref.supabase.co
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key-here
+NEXT_PUBLIC_SUPABASE_URL=https://yoneebuiixhtqucuhbyq.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlvbmVlYnVpaXhodHF1Y3VoYnlxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkxNTExMDcsImV4cCI6MjA2NDcyNzEwN30.jTquNE9daox87Jc8vRGUGZFBTUxVZdy-oIgI2w5Q1s4
 ```
 
 ### 5. Test the Connection

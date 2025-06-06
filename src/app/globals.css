@@ -197,3 +197,82 @@ button[type="submit"]:hover,
   background-clip: text;
   font-weight: bold;
 }
+
+/* Metal GPU Button with Iridescent Glow - Apply to ALL buttons */
+.metal-gpu-button {
+  position: relative;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.metal-gpu-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  background: linear-gradient(45deg,
+    #ff0080, #ff8c00, #40e0d0, #ff0080,
+    #8a2be2, #00ff00, #ff1493, #00bfff,
+    #ff0080, #ff8c00, #40e0d0);
+  background-size: 300% 300%;
+  border-radius: inherit;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: xor;
+  -webkit-mask-composite: xor;
+  animation: iridescent-border 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.metal-gpu-button:hover::before {
+  opacity: 1;
+}
+
+.metal-gpu-button::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%);
+  border-radius: 10px;
+  z-index: -1;
+}
+
+.metal-gpu-button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.4),
+    0 8px 25px rgba(0, 0, 0, 0.4),
+    0 0 20px rgba(255, 0, 128, 0.3);
+}
+
+@keyframes iridescent-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Apply metal GPU styling to all buttons by default */
+button:not(.no-metal):not([class*="bg-transparent"]):not([class*="bg-black/"]):not([class*="bg-white/"]):not([class*="bg-gray/"]) {
+  position: relative;
+  background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0a0a0a 100%);
+  border: 1px solid transparent;
+  border-radius: 12px;
+  color: white;
+  font-weight: bold;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+}

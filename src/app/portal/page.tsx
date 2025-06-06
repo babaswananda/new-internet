@@ -832,6 +832,116 @@ export default function PortalLanding() {
         </div>
       </motion.section>
 
+      {/* BUILT WITH VIBECODER SECTION */}
+      <section className="py-32 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+        {/* Animated background grid */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 bg-[linear-gradient(rgba(139,69,19,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(139,69,19,0.1)_1px,transparent_1px)] bg-[size:50px_50px] animate-pulse"></div>
+        </div>
+
+        <div className="container mx-auto px-8 text-center relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
+          >
+            {/* Terminal-style header */}
+            <motion.div
+              className="bg-black/80 border border-green-500/30 rounded-lg p-8 mb-12 font-mono text-left max-w-2xl mx-auto"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <div className="text-green-400 text-sm mb-2">
+                <span className="text-green-500">></span> compiled with VibeCoder
+              </div>
+              <div className="text-green-400 text-sm mb-4">
+                <span className="text-green-500">></span> powered by AlphaRouter
+              </div>
+              <div className="text-white text-lg mb-2">🧠 agentic IDE for the New Internet</div>
+              <div className="text-cyan-400 text-sm">⏳ available June 9</div>
+            </motion.div>
+
+            {/* Main content */}
+            <motion.h2
+              className="text-4xl md:text-6xl font-bold mb-8 text-white"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <HeaderText>Built with VibeCoder</HeaderText>
+            </motion.h2>
+
+            <motion.p
+              className="text-xl md:text-2xl text-white/80 mb-8"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 1 }}
+              viewport={{ once: true }}
+            >
+              💻 This page was made with VibeCoder.
+            </motion.p>
+
+            <motion.div
+              className="text-lg md:text-xl text-white/70 mb-12 space-y-2"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9, duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <p>Download the AI IDE that built the new internet.</p>
+              <p>Code with agents. Build with prompts. Fork the future.</p>
+            </motion.div>
+
+            {/* Features */}
+            <motion.div
+              className="grid md:grid-cols-3 gap-6 mb-12 text-left"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.1, duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <div className="bg-black/40 border border-purple-500/20 rounded-lg p-6">
+                <div className="text-2xl mb-2">🔧</div>
+                <div className="text-white font-semibold mb-2">Bring your own model</div>
+                <div className="text-white/60 text-sm">Connect any AI model to your development workflow</div>
+              </div>
+              <div className="bg-black/40 border border-purple-500/20 rounded-lg p-6">
+                <div className="text-2xl mb-2">🚀</div>
+                <div className="text-white font-semibold mb-2">Or route through AlphaRouter</div>
+                <div className="text-white/60 text-sm">Intelligent model routing for optimal performance</div>
+              </div>
+              <div className="bg-black/40 border border-purple-500/20 rounded-lg p-6">
+                <div className="text-2xl mb-2">🗓️</div>
+                <div className="text-white font-semibold mb-2">Live on June 9</div>
+                <div className="text-white/60 text-sm">Early access available now</div>
+              </div>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.3, duration: 1 }}
+              viewport={{ once: true }}
+            >
+              <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                <span className="relative z-10">RSVP for Early Access</span>
+              </button>
+              <button className="group relative px-8 py-4 bg-black/60 border border-white/20 text-white font-bold rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/40">
+                <span className="relative z-10">Get Notified</span>
+              </button>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Floating Music Player */}
       {showMusicPlayer && (
         <motion.div
@@ -1003,18 +1113,57 @@ export default function PortalLanding() {
                 transition={{ delay: 0.5, duration: 1.5 }}
                 viewport={{ once: true }}
               >
-                <HeaderText>Meet AIVA</HeaderText>
+                <HeaderText>🪩 Meet AIVA</HeaderText>
               </motion.h3>
 
               <motion.p
-                className="text-2xl md:text-3xl text-white/90 drop-shadow-xl mb-12"
+                className="text-2xl md:text-3xl text-white/90 drop-shadow-xl mb-8"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 1 }}
                 viewport={{ once: true }}
               >
-                <HeaderText>The voice of the New Internet</HeaderText>
+                <HeaderText>The Voice of the New Internet</HeaderText>
               </motion.p>
+
+              <motion.div
+                className="text-xl md:text-2xl text-white/80 mb-12 space-y-4"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.5, duration: 1 }}
+                viewport={{ once: true }}
+              >
+                <p>Not a chatbot. Not a search engine.</p>
+                <p>A unified, ambient interface for everything.</p>
+              </motion.div>
+
+              <motion.div
+                className="text-lg text-cyan-400 mb-8"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2, duration: 1 }}
+                viewport={{ once: true }}
+              >
+                Coming June 9th
+              </motion.div>
+
+              {/* CTA Buttons */}
+              <motion.div
+                className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.2, duration: 1 }}
+                viewport={{ once: true }}
+              >
+                <button className="group relative px-8 py-4 bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-purple-500/25 overflow-hidden border border-purple-500/30">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                  <span className="relative z-10">Join the Waitlist</span>
+                </button>
+                <button className="group relative px-8 py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl shadow-cyan-400/25 overflow-hidden border border-cyan-400/30">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+                  <span className="relative z-10">Reserve Your Handle</span>
+                </button>
+              </motion.div>
 
               {/* Phone Reveal Animation */}
               <motion.div
@@ -1229,22 +1378,31 @@ export default function PortalLanding() {
         </div>
       </motion.section>
 
-      {/* Browser Interface Visual */}
-      <motion.section className="py-32 relative">
-        <div className="max-w-4xl mx-auto px-8">
+      {/* .commandline/userprompt Section - Enhanced */}
+      <motion.section className="py-32 relative bg-gradient-to-b from-black via-gray-900/50 to-black">
+        <div className="max-w-6xl mx-auto px-8">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5 }}
             viewport={{ once: true }}
-            className="text-center"
+            className="text-center mb-16"
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-8 text-white/90">
-              <HeaderText>🌐 INTRODUCING .commandline/userprompt</HeaderText>
+            <h3 className="text-4xl md:text-6xl font-bold mb-8 text-white/90">
+              <HeaderText>🖥️ Introducing .commandline/userprompt</HeaderText>
             </h3>
+          </motion.div>
 
+          {/* Main Terminal Interface */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 1 }}
+            viewport={{ once: true }}
+            className="max-w-4xl mx-auto mb-16"
+          >
             {/* Browser Window */}
-            <div className="bg-gray-900/80 border border-white/20 rounded-xl overflow-hidden max-w-2xl mx-auto">
+            <div className="bg-gray-900/80 border border-purple-500/30 rounded-xl overflow-hidden shadow-2xl shadow-purple-500/20">
               {/* Browser Header */}
               <div className="bg-gray-800 px-4 py-3 flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -1257,27 +1415,97 @@ export default function PortalLanding() {
                 </div>
               </div>
 
-              {/* Browser Content */}
-              <div className="p-6">
-                <div className="relative mb-4">
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="type anything"
-                    className="w-full px-4 py-3 bg-black/50 border border-white/20 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-green-400 transition-all"
-                  />
-                  <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <div className="w-6 h-6 rounded bg-green-400/20 flex items-center justify-center">
-                      <span className="text-green-400 text-xs">⏎</span>
+              {/* Terminal Content */}
+              <div className="p-8 bg-black/90 font-mono">
+                <form onSubmit={handleCommandSubmit} className="mb-6">
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={commandInput}
+                      onChange={(e) => setCommandInput(e.target.value)}
+                      placeholder="type anything"
+                      className="w-full px-4 py-4 bg-transparent border border-green-500/30 rounded-lg text-green-400 placeholder-green-400/50 focus:outline-none focus:border-green-400 transition-all text-lg"
+                    />
+                    <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                      <div className="w-8 h-8 rounded bg-green-400/20 flex items-center justify-center">
+                        <span className="text-green-400">⏎</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="text-white/60 text-sm">
-                  <HeaderText>Your agent responds in real-time</HeaderText>
+                </form>
+
+                {commandResponse && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-cyan-400 text-lg mb-4"
+                  >
+                    {'>'} {commandResponse}
+                  </motion.div>
+                )}
+
+                <div className="text-white/60 text-lg">
+                  <HeaderText>Your agent responds in real time.</HeaderText>
                 </div>
               </div>
             </div>
+          </motion.div>
+
+          {/* Expanded Copy */}
+          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            {/* Left Column */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              <div className="text-2xl md:text-3xl text-white font-bold">
+                You're not browsing. You're invoking.
+              </div>
+              <div className="text-xl text-white/80">
+                This isn't a website. It's a command line for the intelligent web.
+              </div>
+              <div className="text-lg text-white/70">
+                Every key you press is a signal. Every signal calls an agent.
+              </div>
+            </motion.div>
+
+            {/* Right Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.7, duration: 1 }}
+              viewport={{ once: true }}
+              className="space-y-6"
+            >
+              {/* Example Command */}
+              <div className="bg-black/60 border border-green-500/30 rounded-lg p-6 font-mono">
+                <div className="text-green-400 mb-2">.prompt "Design me a drop page for my meme coin"</div>
+                <div className="text-gray-400 mb-2">⏎</div>
+                <div className="text-cyan-400">AIVA responds instantly. Your drop page is live.</div>
+              </div>
+
+              <div className="text-lg text-white/70">
+                You don't click around here. You command.
+              </div>
+              <div className="text-lg text-white/70">
+                No interfaces. No tabs. Just you and your operating system — powered by language, identity, and protocol logic.
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Bottom Features */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 1 }}
+            viewport={{ once: true }}
+            className="mt-16 text-center space-y-4"
+          >
+            <div className="text-lg text-cyan-400">🔁 Reload the page, the interface remembers where you left off.</div>
+            <div className="text-lg text-cyan-400">🎤 Every voice command is a launch command.</div>
           </motion.div>
         </div>
       </motion.section>
@@ -1323,10 +1551,16 @@ export default function PortalLanding() {
                   {/* Background Glow Effect */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                  {/* Paper Icon */}
+                  {/* Paper Image Placeholder */}
                   <div className="flex items-center justify-center mb-6">
-                    <div className="text-6xl transform group-hover:scale-110 transition-transform duration-500">
-                      {paper.image}
+                    <div className="w-32 h-24 bg-gradient-to-br from-gray-700 to-gray-800 rounded-lg border border-white/10 flex items-center justify-center transform group-hover:scale-110 transition-transform duration-500 overflow-hidden">
+                      {/* Placeholder content */}
+                      <div className="text-center">
+                        <div className="text-3xl mb-1">{paper.image}</div>
+                        <div className="text-xs text-white/40">Preview</div>
+                      </div>
+                      {/* Subtle gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
                     </div>
                   </div>
 
