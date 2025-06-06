@@ -987,182 +987,7 @@ export default function PortalLanding() {
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent z-20"></div>
       </motion.section>
 
-      {/* BUILT WITH VIBECODER SECTION */}
-      <motion.section className="py-32 relative bg-black overflow-hidden">
-        {/* Animated background grid */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="grid grid-cols-12 gap-4 h-full">
-            {[...Array(48)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="border border-cyan-400/20"
-                animate={{
-                  opacity: [0.1, 0.3, 0.1],
-                  borderColor: ['rgba(34, 211, 238, 0.1)', 'rgba(168, 85, 247, 0.3)', 'rgba(236, 72, 153, 0.1)']
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  delay: i * 0.1
-                }}
-              />
-            ))}
-          </div>
-        </div>
 
-        <div className="max-w-6xl mx-auto px-8 relative z-10">
-          {/* Terminal-style header */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 mb-12 font-mono"
-          >
-            <div className="flex items-center gap-2 mb-4">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-pink-500"></div>
-                <div className="w-3 h-3 rounded-full bg-cyan-400"></div>
-                <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-              </div>
-              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent text-sm">terminal</div>
-            </div>
-            <div className="text-sm space-y-1">
-              <div className="bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent">{'>'} compiled with VibeCoder</div>
-              <div className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">{'>'} powered by AlphaRouter</div>
-              <div className="text-white">🧠 agentic IDE for the New Internet</div>
-              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">⏳ available June 9</div>
-            </div>
-          </motion.div>
-
-          {/* Main content */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
-              <HeaderText>Built with VibeCoder</HeaderText>
-            </h2>
-            <div className="text-2xl md:text-3xl bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent mb-8">
-              💻 This page was made with VibeCoder.
-            </div>
-            <p className="text-xl md:text-2xl text-white/90 mb-4">
-              Download the AI IDE that built the new internet.
-            </p>
-            <p className="text-lg md:text-xl text-white/70 mb-8">
-              Code with agents. Build with prompts. Fork the future.
-            </p>
-
-            {/* Vibathon Announcement */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5, duration: 1 }}
-              viewport={{ once: true }}
-              className="bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-cyan-400/10 border border-purple-500/30 rounded-2xl p-6 mb-12 backdrop-blur-sm"
-            >
-              <div className="text-3xl mb-4">🏆</div>
-              <h3 className="text-2xl font-bold text-white mb-4">
-                <HeaderText>Join the Vibathon</HeaderText>
-              </h3>
-              <p className="text-lg text-white/80 mb-4">
-                The world's first AI coding competition. Build the future with VibeCoder.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-sm text-white/70">
-                <div className="flex items-center gap-2">
-                  <span className="text-purple-400">🗓️</span>
-                  <span>June 9-16, 2025</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-pink-400">💰</span>
-                  <span>$100K+ in prizes</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-cyan-400">🌐</span>
-                  <span>Global virtual event</span>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Features */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 1 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-3 gap-8 mb-16"
-          >
-            <div className="text-center">
-              <div className="text-4xl mb-4">🔧</div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                <HeaderText>Bring your own model</HeaderText>
-              </h3>
-              <p className="text-white/70">
-                Connect any AI model to your development workflow
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">🚀</div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                <HeaderText>Or route through AlphaRouter</HeaderText>
-              </h3>
-              <p className="text-white/70">
-                Intelligent model routing for optimal performance
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="text-4xl mb-4">🗓️</div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                <HeaderText>Live on June 9</HeaderText>
-              </h3>
-              <p className="text-white/70">
-                Early access available now
-              </p>
-            </div>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
-          >
-            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
-                    style={{
-                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
-                      backgroundSize: '300% 300%',
-                      animation: 'iridescent 3s ease-in-out infinite'
-                    }}>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-              <span className="relative z-10">🏆 Join Vibathon</span>
-            </button>
-            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
-                    style={{
-                      background: 'linear-gradient(45deg, #40e0d0, #da70d6, #ff69b4, #00bfff, #32cd32, #40e0d0)',
-                      backgroundSize: '300% 300%',
-                      animation: 'iridescent 3s ease-in-out infinite 0.5s'
-                    }}>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-              <span className="relative z-10">RSVP for Early Access</span>
-            </button>
-            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
-                    style={{
-                      background: 'linear-gradient(45deg, #ff1493, #00ced1, #ffd700, #ff6347, #9370db, #ff1493)',
-                      backgroundSize: '300% 300%',
-                      animation: 'iridescent 3s ease-in-out infinite 1s'
-                    }}>
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
-              <span className="relative z-10">Get Notified</span>
-            </button>
-          </motion.div>
-        </div>
-      </motion.section>
 
       {/* Floating Music Player */}
       {showMusicPlayer && (
@@ -1778,6 +1603,183 @@ export default function PortalLanding() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </motion.section>
+
+      {/* BUILT WITH VIBECODER SECTION */}
+      <motion.section className="py-32 relative bg-black overflow-hidden">
+        {/* Animated background grid */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="grid grid-cols-12 gap-4 h-full">
+            {[...Array(48)].map((_, i) => (
+              <motion.div
+                key={i}
+                className="border border-cyan-400/20"
+                animate={{
+                  opacity: [0.1, 0.3, 0.1],
+                  borderColor: ['rgba(34, 211, 238, 0.1)', 'rgba(168, 85, 247, 0.3)', 'rgba(236, 72, 153, 0.1)']
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: i * 0.1
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="max-w-6xl mx-auto px-8 relative z-10">
+          {/* Terminal-style header */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="bg-black/80 backdrop-blur-sm border border-purple-500/30 rounded-lg p-6 mb-12 font-mono"
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <div className="flex gap-2">
+                <div className="w-3 h-3 rounded-full bg-pink-500"></div>
+                <div className="w-3 h-3 rounded-full bg-cyan-400"></div>
+                <div className="w-3 h-3 rounded-full bg-purple-500"></div>
+              </div>
+              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent text-sm">terminal</div>
+            </div>
+            <div className="text-sm space-y-1">
+              <div className="bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent">{'>'} compiled with VibeCoder</div>
+              <div className="bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">{'>'} powered by AlphaRouter</div>
+              <div className="text-white">🧠 agentic IDE for the New Internet</div>
+              <div className="bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-400 bg-clip-text text-transparent">⏳ available June 9</div>
+            </div>
+          </motion.div>
+
+          {/* Main content */}
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              <HeaderText>Built with VibeCoder</HeaderText>
+            </h2>
+            <div className="text-2xl md:text-3xl bg-gradient-to-r from-pink-500 via-cyan-400 to-purple-500 bg-clip-text text-transparent mb-8">
+              💻 This page was made with VibeCoder.
+            </div>
+            <p className="text-xl md:text-2xl text-white/90 mb-4">
+              Download the AI IDE that built the new internet.
+            </p>
+            <p className="text-lg md:text-xl text-white/70 mb-8">
+              Code with agents. Build with prompts. Fork the future.
+            </p>
+
+            {/* Vibathon Announcement */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-cyan-400/10 border border-purple-500/30 rounded-2xl p-6 mb-12 backdrop-blur-sm"
+            >
+              <div className="text-3xl mb-4">🏆</div>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                <HeaderText>Join the Vibathon</HeaderText>
+              </h3>
+              <p className="text-lg text-white/80 mb-4">
+                The world's first AI coding competition. Build the future with VibeCoder.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center text-sm text-white/70">
+                <div className="flex items-center gap-2">
+                  <span className="text-purple-400">🗓️</span>
+                  <span>June 9-16, 2025</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-pink-400">💰</span>
+                  <span>$100K+ in prizes</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-cyan-400">🌐</span>
+                  <span>Global virtual event</span>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          {/* Features */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 1 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-3 gap-8 mb-16"
+          >
+            <div className="text-center">
+              <div className="text-4xl mb-4">🔧</div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <HeaderText>Bring your own model</HeaderText>
+              </h3>
+              <p className="text-white/70">
+                Connect any AI model to your development workflow
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">🚀</div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <HeaderText>Or route through AlphaRouter</HeaderText>
+              </h3>
+              <p className="text-white/70">
+                Intelligent model routing for optimal performance
+              </p>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl mb-4">🗓️</div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <HeaderText>Live on June 9</HeaderText>
+              </h3>
+              <p className="text-white/70">
+                Early access available now
+              </p>
+            </div>
+          </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.8 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff0080, #8000ff, #0080ff, #00ff80, #ff8000, #ff0080)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite'
+                    }}>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">🏆 Join Vibathon</span>
+            </button>
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #40e0d0, #da70d6, #ff69b4, #00bfff, #32cd32, #40e0d0)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite 0.5s'
+                    }}>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">RSVP for Early Access</span>
+            </button>
+            <button className="group relative px-6 py-3 text-white font-bold rounded-xl transition-all duration-300 hover:scale-105 shadow-2xl overflow-hidden border border-white/20"
+                    style={{
+                      background: 'linear-gradient(45deg, #ff1493, #00ced1, #ffd700, #ff6347, #9370db, #ff1493)',
+                      backgroundSize: '300% 300%',
+                      animation: 'iridescent 3s ease-in-out infinite 1s'
+                    }}>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[200%] transition-transform duration-700"></div>
+              <span className="relative z-10">Get Notified</span>
+            </button>
           </motion.div>
         </div>
       </motion.section>
